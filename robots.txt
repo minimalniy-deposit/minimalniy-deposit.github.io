@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://minimalniy-deposit.github.io/sitemap.xml
