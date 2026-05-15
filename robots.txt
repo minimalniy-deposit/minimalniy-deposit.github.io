@@ -1,4 +1,12 @@
 User-agent: *
 Allow: /
 
+User-agent: Yandex
+Allow: /
+Clean-param: *
+Noarchive: /
+
+User-agent: YandexImages
+Disallow: /
+
 Sitemap: https://minimalniy-deposit.github.io/sitemap.xml
