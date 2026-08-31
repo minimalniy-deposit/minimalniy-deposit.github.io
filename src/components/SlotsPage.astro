@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import site from '../data/site.json';
-import { slots, slotsMeta, providers, providerSlug } from '../lib/slots';
+import { slots, slotsMeta, providers, providerSlug, vol } from '../lib/slots';
 import { casinos } from '../lib/casinos';
 import { useT, fmt, localePath, formatMoney, type Locale } from '../i18n';
 interface Props { locale: Locale }
@@ -35,7 +35,7 @@ const ld = { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 
           <a class="slot-thumb" href={localePath(locale, `/slots/${s.slug}/`)}>{s.image ? <img src={s.image} alt={s.name} loading="lazy" /> : <span>{s.provider}</span>}</a>
           <div class="slot-body">
             <a class="slot-name" href={localePath(locale, `/slots/${s.slug}/`)}>{s.name}</a>
-            <div class="slot-meta"><span>{s.provider}</span>{s.rtp != null && <span>RTP <b>{s.rtp}%</b></span>}{s.volatility && <span><b>{s.volatility}</b></span>}{s.maxWin && <span>max <b>{s.maxWin}</b></span>}</div>
+            <div class="slot-meta"><span>{s.provider}</span>{s.rtp != null && <span>RTP <b>{s.rtp}%</b></span>}{s.volatility && <span><b>{vol(s.volatility, ru)}</b></span>}{s.maxWin && <span>max <b>{s.maxWin}</b></span>}</div>
           </div>
         </article>
       ))}

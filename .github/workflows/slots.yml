@@ -15,7 +15,6 @@ jobs:
       - run: node scripts/fetch-slots.mjs
         env:
           SLOTSREACH_API_KEY: ${{ secrets.SLOTSREACH_API_KEY }}
-          SLOTSREACH_API_URL: ${{ secrets.SLOTSREACH_API_URL }}
       - name: Commit if changed
         run: |
           git config user.name "github-actions[bot]"
