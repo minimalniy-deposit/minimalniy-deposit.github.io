@@ -8,24 +8,38 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Try candidate endpoints
+      - name: Inspect partner API
         env:
           KEY: ${{ secrets.SLOTSREACH_API_KEY }}
         run: |
-          set +e
-          OUT=probe-result.txt; : > $OUT
-          try() {
-            case "$2" in
-              bearer) R=$(curl -sS -m 20 -o /tmp/b -w "%{http_code} %{content_type}" -H "Authorization: Bearer $KEY" -H "Accept: application/json" "$1" 2>&1);;
-              xkey)   R=$(curl -sS -m 20 -o /tmp/b -w "%{http_code} %{content_type}" -H "X-API-Key: $KEY" -H "Accept: application/json" "$1" 2>&1);;
-              query)  SEP='?'; case "$1" in *\?*) SEP='&';; esac; R=$(curl -sS -m 20 -o /tmp/b -w "%{http_code} %{content_type}" -H "Accept: application/json" "$1${SEP}api_key=$KEY" 2>&1);;
-            esac
-            { echo "== $2 $1 -> $R"; head -c 700 /tmp/b 2>/dev/null | tr '\n' ' ' | sed "s/$KEY/***/g"; echo; echo; } >> $OUT
-            : > /tmp/b
-          }
-          for u in https://slotsreach.com/api/games https://slotsreach.com/api/v1/games https://slotsreach.com/api/plugin/games https://slotsreach.com/demo-plugin/api/games https://slotsreach.com/api/demo-plugin/games https://api.slotsreach.com/games https://api.slotsreach.com/v1/games https://slotsreach.com/api/v1/plugin/games https://slotsreach.com/api/partner/games https://slotsreach.com/api/v1/partner/games https://slotsreach.com/api/plugin/v1/games https://slotsreach.com/api/wp/games; do
-            for m in bearer xkey query; do try "$u" "$m"; done
-          done
-          for u in https://slotsreach.com/api https://slotsreach.com/api/v1 https://slotsreach.com/demo-plugin/api https://slotsreach.com/demo-plugin/docs https://slotsreach.com/docs https://slotsreach.com/api/plugin https://slotsreach.com/robots.txt; do try "$u" bearer; done
+          set +e; OUT=probe-result.txt; : > $OUT
+          H="Authorization: Bearer $KEY"
+          q() { echo "== $1" >> $OUT; curl -sS -m 30 -H "$H" -H "Accept: application/json" "$1" -o /tmp/b -w "%{http_code}\n" >> $OUT; python3 - <<'PY' >> $OUT 2>&1
+          import json
+          try:
+              d=json.load(open('/tmp/b'))
+          except Exception as e:
+              print('not json', open('/tmp/b').read()[:300]); raise SystemExit
+          if isinstance(d,dict):
+              print('top keys:', list(d.keys()))
+              for k,v in d.items():
+                  if k!='data': print(' ',k,'=',json.dumps(v)[:300])
+              items=d.get('data',[])
+          else: items=d
+          print('items:', len(items) if isinstance(items,list) else type(items))
+          if isinstance(items,list) and items:
+              print('item keys:', list(items[0].keys()))
+              print('sample:', json.dumps(items[0],ensure_ascii=False)[:1500])
+          PY
+          echo >> $OUT; }
+          q "https://slotsreach.com/api/partner/games"
+          q "https://slotsreach.com/api/partner/games?page=2"
+          q "https://slotsreach.com/api/partner/games?per_page=100&page=1"
+          q "https://slotsreach.com/api/partner/games?limit=100&offset=100"
+          q "https://slotsreach.com/api/partner/games/gates-of-olympus-pragmatic-play"
+          q "https://slotsreach.com/api/partner/games/1"
+          q "https://slotsreach.com/api/partner/providers"
+          q "https://slotsreach.com/api/partner"
+          q "https://slotsreach.com/api/partner/me"
           git config user.name "github-actions[bot]"; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout -B probe-result && git add $OUT && git commit -qm "probe result" && git push -f origin probe-result
