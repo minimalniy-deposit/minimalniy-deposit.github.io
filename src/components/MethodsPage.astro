@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import site from '../data/site.json';
 import methods from '../data/methods.json';
 import limits from '../data/payment-limits.json';
+import { rates, hasRates, toUsdt, rateDate, spread, fmtRub } from '../lib/rates';
 import { casinos, paymentKeys, acceptsMethod } from '../lib/casinos';
 import { useT, fmt, localePath, formatMoney, type Locale } from '../i18n';
 
@@ -16,6 +17,9 @@ const known = casinos.filter((c) => c.minDeposit != null && c.withdrawMin != nul
 const fastest = [...known].sort((a, b) => a.withdrawMin! - b.withdrawMin! || a.rank - b.rank)[0];
 const lowest = [...known].sort((a, b) => a.minDeposit! - b.minDeposit! || a.rank - b.rank)[0];
 const label = (k: (typeof paymentKeys)[number]) => (t.methods as any)[k] as string;
+const cryptoCasinos = casinos.filter((c) => c.minDeposit != null && c.payments.some((p) => ['usdt','btc','crypto'].includes(p)));
+const withCashier = cryptoCasinos.filter((c) => c.cashierUsdtRate != null);
+const bestCashier = [...withCashier].sort((a, b) => a.cashierUsdtRate! - b.cashierUsdtRate!)[0];
 
 const url = new URL(localePath(locale, '/methods/'), Astro.site).href;
 const ld = {
@@ -66,6 +70,34 @@ const ld = {
       </table>
     </div>
     <p class="section-sub" style="margin-top:10px">{t.methods.note}</p>
+
+    {hasRates && (
+      <section style="margin-top:32px">
+        <h2 class="section-title" style="font-size:1.2rem">{t.rates.h}</h2>
+        <p class="section-sub">{t.rates.lede}</p>
+        <div class="callouts">
+          <div class="callout">{t.rates.cbr}: <b>{fmtRub(rates.usd!)} ₽</b> / $ <span class="verified">({fmt(t.rates.asOf, { date: rateDate(ru) })})</span></div>
+          <div class="callout">{t.rates.market}: <b>{fmtRub(rates.usdt!)} ₽</b></div>
+          <div class="callout">{t.rates.btc}: <b>{fmtRub(rates.btc!)} ₽</b></div>
+          {bestCashier && <div class="callout">{t.rates.bestSpread}: <b><a href={localePath(locale, `/casino/${bestCashier.slug}/`)}>{bestCashier.name}</a></b> — +{spread(bestCashier.cashierUsdtRate)}%</div>}
+        </div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>#</th><th>{t.casino.colName}</th><th>{t.rates.colMin}</th><th>{t.rates.colUsdt}</th><th>{t.rates.colCashier}</th><th>{t.rates.colSpread}</th></tr></thead>
+            <tbody>{cryptoCasinos.map((c) => (
+              <tr>
+                <td class="num">{c.rank}</td>
+                <td><a href={localePath(locale, `/casino/${c.slug}/`)}>{c.name}</a></td>
+                <td class="num">{formatMoney(c.minDeposit!)}</td>
+                <td class="num">{toUsdt(c.minDeposit!)} USDT</td>
+                <td class="num">{c.cashierUsdtRate != null ? `${fmtRub(c.cashierUsdtRate)} ₽` : <span class="verified">— {t.rates.pending}</span>}</td>
+                <td class="num">{c.cashierUsdtRate != null ? `${spread(c.cashierUsdtRate)! > 0 ? '+' : ''}${spread(c.cashierUsdtRate)}%` : '—'}</td>
+              </tr>))}</tbody>
+          </table>
+        </div>
+        <p class="section-sub" style="margin-top:10px">{t.rates.note} {fmt(t.rates.sources, { s: rates.sources.join(', ') })}</p>
+      </section>
+    )}
 
     <h2 class="section-title" style="font-size:1.2rem;margin-top:32px">{t.facts2.limits}</h2>
     <div class="tbl-wrap"><table class="tbl"><thead><tr><th>{ru ? 'Способ' : 'Method'}</th><th>{ru ? 'Скорость вывода' : 'Withdrawal speed'}</th><th>{ru ? 'Лимит в сутки' : 'Limit'}</th></tr></thead>

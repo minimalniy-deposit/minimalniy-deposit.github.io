@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import site from '../data/site.json';
 import { casinos, mentionsOf, type Casino } from '../lib/casinos';
 import { changesFor, observedSince } from '../lib/history';
+import { hasRates, toUsdt, rateDate, spread, fmtRub } from '../lib/rates';
 import { useT, fmt, localePath, formatMoney, type Locale } from '../i18n';
 
 import intro from '../content/home/intro.html?raw';
@@ -87,6 +88,8 @@ const verifiedHuman = new Date(site.lastVerified).toLocaleDateString(ru ? 'ru-RU
       <div class="fact"><dt>{t.casino.payments}</dt><dd>{payLabel ?? '—'}</dd></div>
       <div class="fact"><dt>{t.casino.license}</dt><dd>{c.licenseShort ?? licenseLabel}</dd></div>
       {c.rtp != null && <div class="fact"><dt><a href={g('rtp')}>{t.facts2.rtp}</a></dt><dd class="gold">{c.rtp.toFixed(1)}%</dd></div>}
+      {hasRates && c.minDeposit != null && c.payments.some((p) => ['usdt','btc','crypto'].includes(p)) && <div class="fact"><dt>{t.casino.minDeposit} · USDT</dt><dd>{toUsdt(c.minDeposit)} USDT <span class="verified">({fmt(t.rates.asOf, { date: rateDate(ru) })})</span></dd></div>}
+      {c.cashierUsdtRate != null && hasRates && <div class="fact"><dt>{t.rates.colCashier}</dt><dd>{fmtRub(c.cashierUsdtRate)} ₽ <span class="verified">({spread(c.cashierUsdtRate)! > 0 ? '+' : ''}{spread(c.cashierUsdtRate)}% {ru ? 'к рынку' : 'vs market'})</span></dd></div>}
       {c.wager != null && <div class="fact"><dt><a href={g('wager')}>{t.facts2.wager}</a></dt><dd>x{c.wager}</dd></div>}
       {c.cashback != null && <div class="fact"><dt><a href={g('cashback')}>{t.facts2.cashback}</a></dt><dd>{ru ? 'до' : 'up to'} {c.cashback}%</dd></div>}
     </dl>

@@ -83,7 +83,8 @@
       "fast-payout",
       "live",
       "reload"
-    ]
+    ],
+    "cashierUsdtRate": null
   },
   {
     "slug": "norm",
@@ -171,7 +172,8 @@
       "crypto",
       "new2026",
       "noverif"
-    ]
+    ],
+    "cashierUsdtRate": null
   },
   {
     "slug": "7k",
@@ -251,7 +253,8 @@
       "fast-payout",
       "live",
       "new2026"
-    ]
+    ],
+    "cashierUsdtRate": null
   },
   {
     "slug": "fugu",
@@ -319,7 +322,8 @@
     "wager": null,
     "cashback": null,
     "features": [],
-    "d8cats": []
+    "d8cats": [],
+    "cashierUsdtRate": null
   },
   {
     "slug": "melbet",
@@ -385,7 +389,8 @@
     "wager": null,
     "cashback": null,
     "features": [],
-    "d8cats": []
+    "d8cats": [],
+    "cashierUsdtRate": null
   },
   {
     "slug": "jetton",
@@ -453,7 +458,8 @@
     "wager": null,
     "cashback": null,
     "features": [],
-    "d8cats": []
+    "d8cats": [],
+    "cashierUsdtRate": null
   },
   {
     "slug": "dragon",
@@ -521,7 +527,8 @@
     "wager": null,
     "cashback": 15,
     "features": [],
-    "d8cats": []
+    "d8cats": [],
+    "cashierUsdtRate": null
   },
   {
     "slug": "gizbo",
@@ -597,7 +604,8 @@
       "all",
       "crypto",
       "fast-payout"
-    ]
+    ],
+    "cashierUsdtRate": null
   },
   {
     "slug": "spinbetter",
@@ -664,7 +672,8 @@
     "wager": null,
     "cashback": null,
     "features": [],
-    "d8cats": []
+    "d8cats": [],
+    "cashierUsdtRate": null
   },
   {
     "slug": "twin",
@@ -725,7 +734,8 @@
     "wager": 30,
     "cashback": null,
     "features": [],
-    "d8cats": []
+    "d8cats": [],
+    "cashierUsdtRate": null
   },
   {
     "slug": "slott",
@@ -793,7 +803,8 @@
     "wager": 35,
     "cashback": null,
     "features": [],
-    "d8cats": []
+    "d8cats": [],
+    "cashierUsdtRate": null
   },
   {
     "slug": "flagman",
@@ -863,6 +874,7 @@
       "new2026",
       "crypto",
       "noverif"
-    ]
+    ],
+    "cashierUsdtRate": null
   }
 ]

@@ -2,6 +2,8 @@
 /** Same markup as the legacy card, generated from data. Unknown fields are simply not rendered. */
 import { useT, localePath, formatMoney, type Locale } from '../i18n';
 import type { Casino } from '../lib/casinos';
+import { hasRates, toUsdt, rateDate } from '../lib/rates';
+import { fmt } from '../i18n';
 interface Props { c: Casino; locale: Locale }
 const { c, locale } = Astro.props;
 const t = useT(locale);
@@ -16,6 +18,8 @@ const pills = ru ? c.pills.map((p) => p.text) : c.pills.map((p) => {
 const ctaLines = ru ? c.ctaLines : c.ctaLinesEn;
 const bonus = ru ? c.bonus : c.bonusEn;
 const detailsHref = localePath(locale, `/casino/${c.slug}/`);
+const crypto = c.payments.some((p) => ['usdt', 'btc', 'crypto'].includes(p));
+const usdtLine = hasRates && crypto && c.minDeposit != null ? fmt(t.rates.line, { usdt: toUsdt(c.minDeposit)!, date: rateDate(ru) }) : null;
 ---
 <div class:list={['casino-card', { top: c.top }]} data-deposit={c.minDeposit ?? undefined}>
   <div class:list={['card-rank', { 'gold-rank': c.gold }]}>{c.rank}</div>
@@ -39,6 +43,7 @@ const detailsHref = localePath(locale, `/casino/${c.slug}/`);
   <div class="card-cta">
     <a href={c.url} rel="nofollow noopener" target="_blank" class="btn-go">{t.card.play}</a>
     {ctaLines.map((l) => <span class="cta-min">{l}</span>)}
+    {usdtLine && <span class="cta-min" style="color:var(--muted)">{usdtLine}</span>}
     {c.promo && <span class="promo-tag">{ru ? c.promo : `${t.card.promo}: ${c.promoCode}`}</span>}
     <a class="card-more" href={detailsHref}>{t.card.details}</a>
   </div>

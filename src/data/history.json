@@ -5,7 +5,8 @@
   "wager",
   "rtp",
   "rating",
-  "cashback"
+  "cashback",
+  "cashierUsdtRate"
  ],
  "lastChecked": "2026-08-31",
  "entries": [

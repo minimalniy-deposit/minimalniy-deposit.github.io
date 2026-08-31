@@ -8,7 +8,7 @@ export interface Casino {
   payments: string[]; paymentsLabel: string | null; paymentsLabelEn: string | null;
   withdrawMin: number | null; license: string; reviews: number | null;
   bonusEn: string | null; badgesEn: string[]; ctaLinesEn: string[]; promoCode: string | null;
-  rtp: number | null; licenseFull: string | null; licenseShort: string | null; wager: number | null; cashback: number | null; features: string[]; d8cats: string[];
+  rtp: number | null; licenseFull: string | null; licenseShort: string | null; wager: number | null; cashback: number | null; features: string[]; d8cats: string[]; cashierUsdtRate: number | null;
 }
 export const casinos: Casino[] = ([...data] as Casino[]).sort((a, b) => a.rank - b.rank);
 export const bySlug = (slug: string) => casinos.find((c) => c.slug === slug);
