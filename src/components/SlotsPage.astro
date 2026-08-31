@@ -30,9 +30,9 @@ const ld = { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 
     </div>
 
     <div class="slot-grid" id="slotGrid">
-      {slots.map((s) => (
-        <article class="slot-card" data-provider={providerSlug(s.provider)}>
-          <a class="slot-thumb" href={localePath(locale, `/slots/${s.slug}/`)}>{s.image ? <img src={s.image} alt={s.name} loading="lazy" /> : <span>{s.provider}</span>}</a>
+      {slots.map((s, i) => (
+        <article class:list={['slot-card', { hidden: i >= 48 }]} data-provider={providerSlug(s.provider)} data-i={i}>
+          <a class="slot-thumb" href={localePath(locale, `/slots/${s.slug}/`)}>{s.image ? <img src={s.image} alt={s.name} width="480" height="360" loading="lazy" decoding="async" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:this.alt}))" /> : <span>{s.provider}</span>}</a>
           <div class="slot-body">
             <a class="slot-name" href={localePath(locale, `/slots/${s.slug}/`)}>{s.name}</a>
             <div class="slot-meta"><span>{s.provider}</span>{s.rtp != null && <span>RTP <b>{s.rtp}%</b></span>}{s.volatility && <span><b>{vol(s.volatility, ru)}</b></span>}{s.maxWin && <span>max <b>{s.maxWin}</b></span>}</div>
@@ -41,6 +41,7 @@ const ld = { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 
       ))}
     </div>
 
+    <p style="margin:16px 0 0"><button class="filter-btn" id="moreBtn" type="button">{ru ? 'Показать ещё' : 'Show more'} <span id="moreLeft"></span></button></p>
     <p class="section-sub" style="margin:16px 0 0">{slotsMeta.fetchedAt ? `${t.slots.fetched}: ${slotsMeta.fetchedAt}` : t.slots.sample}</p>
     <div class="cta-row" style="margin-bottom:48px">
       <a href={top.url} rel="nofollow noopener" target="_blank" class="btn-go">{t.slots.playReal}</a>
@@ -48,12 +49,24 @@ const ld = { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 
     </div>
   </div>
   <script>
+    // Provider filter + "show more" in chunks of 48, so the browser never requests 300 images at once.
+    const STEP = 48;
     const btns = document.querySelectorAll<HTMLButtonElement>('[data-provider].filter-btn');
-    const cards = document.querySelectorAll<HTMLElement>('.slot-card');
+    const cards = [...document.querySelectorAll<HTMLElement>('.slot-card')];
+    const more = document.getElementById('moreBtn')!, left = document.getElementById('moreLeft')!;
+    let provider = 'all', shown = STEP;
+    const render = () => {
+      const match = cards.filter((c) => provider === 'all' || c.dataset.provider === provider);
+      cards.forEach((c) => c.classList.add('hidden'));
+      match.slice(0, shown).forEach((c) => c.classList.remove('hidden'));
+      const rest = match.length - Math.min(shown, match.length);
+      more.classList.toggle('hidden', rest <= 0); left.textContent = rest > 0 ? `(${rest})` : '';
+    };
     btns.forEach((b) => b.addEventListener('click', () => {
       btns.forEach((x) => x.classList.remove('active')); b.classList.add('active');
-      const p = b.dataset.provider!;
-      cards.forEach((c) => c.classList.toggle('hidden', !(p === 'all' || c.dataset.provider === p)));
+      provider = b.dataset.provider!; shown = STEP; render();
     }));
+    more.addEventListener('click', () => { shown += STEP; render(); });
+    render();
   </script>
 </Base>

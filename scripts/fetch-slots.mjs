@@ -1,10 +1,12 @@
-// Daily sync: SlotsReach partner API → src/data/slots.json (curated subset, see SELECT below).
+// Daily sync: SlotsReach partner API → src/data/slots.json + local thumbnails in public/slots/img/.
 // Needs repo secret SLOTSREACH_API_KEY. Endpoint: GET https://slotsreach.com/api/partner/games?page=N&per_page=100
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync, unlinkSync } from 'node:fs';
+import sharp from 'sharp';
 
 const KEY = process.env.SLOTSREACH_API_KEY;
 const BASE = 'https://slotsreach.com/api/partner/games';
 const out = new URL('../src/data/slots.json', import.meta.url);
+const imgDir = new URL('../public/slots/img/', import.meta.url);
 if (!KEY) { console.log('SLOTSREACH_API_KEY not set — keeping existing slots.json'); process.exit(0); }
 
 const H = { Authorization: `Bearer ${KEY}`, Accept: 'application/json', 'User-Agent': 'minimalniy-deposit-sync/1.0' };
@@ -20,12 +22,38 @@ do {
 } while (page <= last);
 console.log('fetched', all.length, 'games');
 
-// SELECT: slots only, sorted by editorial rating then release date, capped — enough for a catalogue, not a 6 000-page dump.
 const CAP = 300;
 const picked = all
   .filter((g) => g.game_type === 'Slots' && g.slug && g.title)
   .sort((a, b) => (b.editorial_rating ?? 0) - (a.editorial_rating ?? 0) || (b.release_date ?? '').localeCompare(a.release_date ?? ''))
   .slice(0, CAP);
+
+// Thumbnails: download once, resize to 480px WebP, serve from our own domain.
+mkdirSync(imgDir, { recursive: true });
+const keep = new Set();
+let downloaded = 0, failed = 0;
+async function thumb(g) {
+  const file = `${g.slug}.webp`;
+  const path = new URL(file, imgDir);
+  keep.add(file);
+  if (existsSync(path)) return `/slots/img/${file}`;
+  if (!g.thumbnail_url) return null;
+  try {
+    const r = await fetch(g.thumbnail_url, { headers: { 'User-Agent': 'Mozilla/5.0', Referer: 'https://slotsreach.com/' } });
+    if (!r.ok) throw new Error(String(r.status));
+    const buf = Buffer.from(await r.arrayBuffer());
+    await sharp(buf).resize({ width: 480, withoutEnlargement: true }).webp({ quality: 78 }).toFile(path);
+    downloaded++;
+    return `/slots/img/${file}`;
+  } catch (e) { failed++; return null; }
+}
+// modest concurrency to stay under the image host's limits
+const images = new Map();
+for (let i = 0; i < picked.length; i += 6) {
+  await Promise.all(picked.slice(i, i + 6).map(async (g) => images.set(g.slug, await thumb(g))));
+}
+for (const f of readdirSync(imgDir)) if (!keep.has(f)) unlinkSync(new URL(f, imgDir));
+console.log('thumbnails: downloaded', downloaded, 'failed', failed, 'kept', keep.size);
 
 const games = picked.map((g) => ({
   slug: g.slug, name: g.title, provider: g.provider, providerSlug: g.provider_slug,
@@ -34,9 +62,9 @@ const games = picked.map((g) => ({
   grid: g.grid ?? null, hitFrequency: g.hit_frequency ?? null, releaseDate: g.release_date ?? null,
   rating: g.editorial_rating ?? null, payType: g.pay_type ?? null, isNew: !!g.is_new,
   themes: g.themes ?? [], features: g.features ?? [],
-  image: g.thumbnail_url || null, screenshot: g.screenshot_url || null,
+  image: images.get(g.slug) ?? null, screenshot: g.screenshot_url || null,
   sourceUrl: `https://slotsreach.com/games/${g.slug}`,
-  demoUrl: g.demo_url ?? g.iframe_url ?? g.embed_url ?? null,   // not in the list payload yet
+  demoUrl: g.demo_url ?? g.iframe_url ?? g.embed_url ?? null,
 }));
 
 const prev = JSON.parse(readFileSync(out, 'utf8'));

@@ -41,7 +41,7 @@ const ld = { '@context': 'https://schema.org', '@type': 'WebPage', name: title, 
       {(s as any).releaseDate && <div class="fact"><dt>{ru ? 'Выпущен' : 'Released'}</dt><dd>{new Date((s as any).releaseDate).toLocaleDateString(ru ? 'ru-RU' : 'en-GB', { month: 'long', year: 'numeric' })}</dd></div>}
     </dl>
     {((s as any).features?.length > 0 || (s as any).themes?.length > 0) && <div class="card-pills" style="margin:4px 0 8px">{[...((s as any).features ?? []), ...((s as any).themes ?? [])].map((f: string) => <span class="pill">{f}</span>)}</div>}
-    {(s as any).screenshot && <p style="margin:8px 0 16px"><img src={(s as any).screenshot} alt={`${s.name} — ${ru ? 'скриншот игры' : 'gameplay screenshot'}`} loading="lazy" style="border-radius:var(--radius);border:1px solid var(--border)" /></p>}
+    {(s as any).screenshot && <p style="margin:8px 0 16px"><img src={(s as any).screenshot} alt={`${s.name} — ${ru ? 'скриншот игры' : 'gameplay screenshot'}`} loading="lazy" decoding="async" style="border-radius:var(--radius);border:1px solid var(--border)" onerror="this.parentElement.remove()" /></p>}
 
     <div class="cta-row">
       <a href={top.url} rel="nofollow noopener" target="_blank" class="btn-go">{t.slots.playReal}</a>
