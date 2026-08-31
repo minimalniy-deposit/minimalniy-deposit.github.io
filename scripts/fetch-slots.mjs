@@ -2,6 +2,7 @@
 // Needs repo secret SLOTSREACH_API_KEY. Endpoint: GET https://slotsreach.com/api/partner/games?page=N&per_page=100
 import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync, unlinkSync } from 'node:fs';
 import sharp from 'sharp';
+import { fileURLToPath } from 'node:url';
 
 const KEY = process.env.SLOTSREACH_API_KEY;
 const BASE = 'https://slotsreach.com/api/partner/games';
@@ -42,7 +43,7 @@ async function thumb(g) {
     const r = await fetch(g.thumbnail_url, { headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0 Safari/537.36', Accept: 'image/avif,image/webp,image/*,*/*;q=0.8' } });
     if (!r.ok) throw new Error(`HTTP ${r.status} ${(await r.text()).slice(0, 80)}`);
     const buf = Buffer.from(await r.arrayBuffer());
-    await sharp(buf).resize({ width: 480, withoutEnlargement: true }).webp({ quality: 78 }).toFile(path);
+    await sharp(buf).resize({ width: 480, withoutEnlargement: true }).webp({ quality: 78 }).toFile(fileURLToPath(path));
     downloaded++;
     return `/slots/img/${file}`;
   } catch (e) { failed++; const k = String(e.message).slice(0, 60); errors[k] = (errors[k] ?? 0) + 1; return g.thumbnail_url; } // fall back to the remote URL
