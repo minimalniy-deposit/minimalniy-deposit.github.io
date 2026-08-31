@@ -1,0 +1,13 @@
+# МинДеп.рейтинг — казино с минимальным депозитом (RU) / MinDep.rating (EN)
+
+> Static comparison site: 10 casinos ranked by SBP withdrawal speed, wagering transparency and licence. Data lives in one JSON file; all pages are generated from it. 18+.
+
+## Pages (RU)
+- [Рейтинг ТОП-10](https://minimalniy-deposit.github.io/): full review, FAQ, guides
+- [Методы пополнения](https://minimalniy-deposit.github.io/methods/): casino × payment-method table
+- [Методология](https://minimalniy-deposit.github.io/methodology/): selection criteria and data sources
+
+## Pages (EN)
+- [Top 10 rating](https://minimalniy-deposit.github.io/en/)
+- [Payment methods](https://minimalniy-deposit.github.io/en/methods/)
+- [Methodology](https://minimalniy-deposit.github.io/en/methodology/)

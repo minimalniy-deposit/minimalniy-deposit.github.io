@@ -1,0 +1,13 @@
+---
+import methods from '../data/methods.json';
+---
+<div class="methods-grid">
+  {methods.map((m) => (
+    <div class="method-card">
+      <div class="method-icon">{m.icon}</div>
+      <div class="method-name">{m.name}</div>
+      <div class="method-desc">{m.desc}</div>
+      <span class="method-speed">{m.speed}</span>
+    </div>
+  ))}
+</div>

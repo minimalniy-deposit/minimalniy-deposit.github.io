@@ -1,0 +1,7 @@
+---
+import SlotPage from '../../../components/SlotPage.astro';
+import { slots } from '../../../lib/slots';
+export const getStaticPaths = () => slots.map((s) => ({ params: { slug: s.slug }, props: { s } }));
+const { s } = Astro.props;
+---
+<SlotPage s={s} locale="en" />

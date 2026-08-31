@@ -1,0 +1,12 @@
+---
+/** Native <details name="faq">: one open at a time, no JS. Text verbatim from faq.json. */
+import faq from '../data/faq.json';
+---
+<div class="faq-list">
+  {faq.map((f) => (
+    <details class="faq-item" name="faq">
+      <summary class="faq-q">{f.q}<span class="faq-arrow">▼</span></summary>
+      <div class="faq-a"><div class="faq-a-inner" set:html={f.a} /></div>
+    </details>
+  ))}
+</div>

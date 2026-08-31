@@ -1,0 +1,14 @@
+{
+  "fetchedAt": null,
+  "source": "sample",
+  "games": [
+    { "slug": "triple-tumblin-totems", "name": "Triple Tumblin' Totems", "provider": "Play'n GO", "rtp": 96.2, "volatility": "Medium-high", "maxWin": "5,000x", "demoUrl": null, "image": null },
+    { "slug": "le-clubber", "name": "Le Clubber", "provider": "Hacksaw Gaming", "rtp": 96.34, "volatility": "Medium", "maxWin": "10,000x", "demoUrl": null, "image": null },
+    { "slug": "cheetah-chase", "name": "Cheetah Chase", "provider": "Rival", "rtp": 96.41, "volatility": "High", "maxWin": "5,000x", "demoUrl": null, "image": null },
+    { "slug": "beasts-of-fire-inferno", "name": "Beasts of Fire Inferno", "provider": "Play'n GO", "rtp": 96.2, "volatility": "High", "maxWin": "50,000x", "demoUrl": null, "image": null },
+    { "slug": "genie-jackpots-three-wishes-combo-frenzy", "name": "Genie Jackpots: Three Wishes Combo Frenzy", "provider": "Blueprint Gaming", "rtp": 94.0, "volatility": "High", "maxWin": "3,000x", "demoUrl": null, "image": null },
+    { "slug": "ted-stuffed-loaded", "name": "Ted Stuffed & Loaded", "provider": "Blueprint Gaming", "rtp": 94.0, "volatility": "Medium", "maxWin": "10,000x", "demoUrl": null, "image": null },
+    { "slug": "wicked-grin", "name": "Wicked Grin", "provider": "Hacksaw Gaming", "rtp": 96.27, "volatility": "Medium", "maxWin": "10,000x", "demoUrl": null, "image": null },
+    { "slug": "raccoon-raiders", "name": "Raccoon Raiders", "provider": "Booming Games", "rtp": 95.6, "volatility": null, "maxWin": "10,000x", "demoUrl": null, "image": null }
+  ]
+}

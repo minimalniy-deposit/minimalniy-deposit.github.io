@@ -1,0 +1,32 @@
+---
+import { useT, type Locale } from '../i18n';
+import strings from '../data/home-strings.json';
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = useT(locale);
+---
+<div class="filters-section">
+  <div class="container">
+    <div class="filters-label">{locale === 'ru' ? strings.filtersLabel : 'Filter by minimum deposit:'}</div>
+    <div class="filters" role="group">
+      <button class="filter-btn active" data-filter="all">{t.filters.all}</button>
+      <button class="filter-btn" data-filter="100">{t.filters.to100}</button>
+      <button class="filter-btn" data-filter="500">{t.filters.to500}</button>
+      <button class="filter-btn" data-filter="1000">{t.filters.to1000}</button>
+    </div>
+  </div>
+</div>
+<script>
+  // Same filter logic as before; the only JS on the home page.
+  const btns = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+  const cards = document.querySelectorAll<HTMLElement>('.casino-card');
+  btns.forEach((btn) => btn.addEventListener('click', () => {
+    btns.forEach((b) => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter!;
+    cards.forEach((card) => {
+      const dep = parseInt(card.dataset.deposit ?? '');
+      card.classList.toggle('hidden', !(f === 'all' || (!isNaN(dep) && dep <= parseInt(f))));
+    });
+  }));
+</script>

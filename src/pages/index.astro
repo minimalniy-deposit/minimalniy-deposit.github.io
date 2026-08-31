@@ -1,0 +1,105 @@
+---
+import Base from '../layouts/Base.astro';
+import CasinoCard from '../components/CasinoCard.astro';
+import Filters from '../components/Filters.astro';
+import Faq from '../components/Faq.astro';
+import MethodsGrid from '../components/MethodsGrid.astro';
+import { casinos } from '../lib/casinos';
+import s from '../data/home-strings.json';
+import ldWebPage from '../data/ld/webpage.json';
+import ldFaq from '../data/ld/faqpage.json';
+import ldList from '../data/ld/itemlist.json';
+import { applyDates, updated } from '../lib/dates';
+
+// Verbatim text blocks from the original page — these never go through a template.
+import hero from '../content/home/hero.html?raw';
+import intro from '../content/home/intro.html?raw';
+import otherCasinos from '../content/home/other-casinos.html?raw';
+import whatIs from '../content/home/what-is.html?raw';
+import limits from '../content/home/limits.html?raw';
+import howto from '../content/home/howto.html?raw';
+import prosCons from '../content/home/pros-cons.html?raw';
+import slotsBonuses from '../content/home/slots-bonuses.html?raw';
+import tips from '../content/home/tips.html?raw';
+
+const title = 'Казино с минимальным депозитом 2026 — Рейтинг ТОП-10 от 10 рублей';
+const description = 'Лучшие казино с минимальным депозитом от 10 рублей: рейтинг ТОП-10, сравнение бонусов, методов пополнения и скорости вывода. Проверено в 2026 году.';
+---
+<Base locale="ru" path="/" home {title} {description}
+  ogTitle="Казино с минимальным депозитом 2026 — ТОП-10 от 10 рублей"
+  ogDescription="Лучшие казино с минимальным депозитом от 10 рублей: рейтинг ТОП-10, бонусы, методы пополнения, скорость вывода.">
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify({ ...ldWebPage, dateModified: updated.iso })} />
+    <script type="application/ld+json" set:html={JSON.stringify(ldFaq)} />
+    <script type="application/ld+json" set:html={JSON.stringify(ldList)} />
+  </Fragment>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container" set:html={applyDates(hero).replace('<span class="stat-num">10</span>', `<span class="stat-num">${casinos.length}</span>`)} />
+  </section>
+
+  <!-- FILTERS -->
+  <Filters locale="ru" />
+
+  <!-- RATING SECTION -->
+  <section id="rating">
+    <div class="container">
+      <Fragment set:html={intro} />
+
+      <h2 class="section-title">{s.ratingTitle}</h2>
+      <p class="section-sub">{s.ratingSub}</p>
+
+      <div class="casino-grid" id="casinoGrid">
+        {casinos.map((c) => <CasinoCard c={c} locale="ru" />)}
+      </div><!-- /casino-grid -->
+
+      <Fragment set:html={otherCasinos} />
+    </div>
+  </section>
+
+  <!-- TEXT BLOCK: ЧТО ТАКОЕ КАЗИНО С МИНИМАЛЬНЫМ ДЕПОЗИТОМ -->
+  <section style="padding:0 0 48px">
+    <div class="container" set:html={whatIs} />
+  </section>
+
+  <!-- PAYMENT METHODS -->
+  <section id="methods" style="background:var(--bg2);padding:48px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+    <div class="container">
+      <h2 class="section-title">{s.methodsTitle}</h2>
+      <p class="section-sub">{s.methodsSub}</p>
+      <MethodsGrid />
+      <Fragment set:html={limits} />
+      <p style="margin-top:16px;font-size:.85rem"><a href="/methods/">Сводная таблица: какое казино что принимает и как быстро выводит →</a></p>
+    </div>
+  </section>
+
+  <!-- HOW TO CHOOSE -->
+  <section id="howto">
+    <div class="container" set:html={howto} />
+  </section>
+
+  <!-- PROS / CONS -->
+  <section style="background:var(--bg2);padding:48px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+    <div class="container" set:html={prosCons} />
+  </section>
+
+  <!-- SLOTS + BONUSES -->
+  <section>
+    <div class="container" set:html={slotsBonuses} />
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" style="background:var(--bg2);padding:48px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+    <div class="container">
+      <h2 class="section-title">{s.faqTitle}</h2>
+      <p class="section-sub">{s.faqSub}</p>
+      <Faq />
+    </div>
+  </section>
+
+  <!-- FINAL TEXT BLOCK: ПОЛЕЗНЫЕ СОВЕТЫ + DISCLAIMER -->
+  <section>
+    <div class="container" set:html={tips} />
+  </section>
+</Base>

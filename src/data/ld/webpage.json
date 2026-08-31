@@ -1,0 +1,20 @@
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Казино с минимальным депозитом 2026 — Рейтинг ТОП-10 от 10 рублей",
+  "url": "https://minimalniy-deposit.github.io/",
+  "description": "Лучшие казино с минимальным депозитом от 10 рублей: рейтинг ТОП-10, сравнение бонусов, методов пополнения и скорости вывода.",
+  "inLanguage": "ru",
+  "dateModified": "2026-05-15",
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Главная",
+        "item": "https://minimalniy-deposit.github.io/"
+      }
+    ]
+  }
+}

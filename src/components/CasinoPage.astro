@@ -1,0 +1,142 @@
+---
+import Base from '../layouts/Base.astro';
+import site from '../data/site.json';
+import { casinos, mentionsOf, type Casino } from '../lib/casinos';
+import { useT, fmt, localePath, formatMoney, type Locale } from '../i18n';
+
+import intro from '../content/home/intro.html?raw';
+import otherCasinos from '../content/home/other-casinos.html?raw';
+import whatIs from '../content/home/what-is.html?raw';
+import howto from '../content/home/howto.html?raw';
+import slotsBonuses from '../content/home/slots-bonuses.html?raw';
+import tips from '../content/home/tips.html?raw';
+import faq from '../data/faq.json';
+
+interface Props { c: Casino; locale: Locale }
+const { c, locale } = Astro.props;
+const t = useT(locale);
+const ru = locale === 'ru';
+const home = localePath(locale, '/');
+const short = c.name.replace(/ Casino$/, '');
+
+const blockNames: Record<string, string> = ru
+  ? { intro: 'Вступление', 'other-casinos': 'Другие новые казино', 'what-is': 'Что такое казино с минимальным депозитом', howto: 'Как выбрать', 'slots-bonuses': 'Слоты и бонусы', tips: 'Полезные советы', faq: 'FAQ' }
+  : { intro: 'Introduction', 'other-casinos': 'Other new casinos', 'what-is': 'What a minimum-deposit casino is', howto: 'How to choose', 'slots-bonuses': 'Slots and bonuses', tips: 'Tips', faq: 'FAQ' };
+const mentions = mentionsOf(c.name, {
+  intro, 'other-casinos': otherCasinos, 'what-is': whatIs, howto, 'slots-bonuses': slotsBonuses, tips,
+  faq: faq.map((f) => `<p>${f.a}</p>`).join(''),
+});
+const highlight = (s: string) => s.replace(new RegExp(`(${short})`, 'gi'), '<mark>$1</mark>');
+
+const neighbours = casinos.filter((x) => Math.abs(x.rank - c.rank) <= 1);
+const payLabel = ru ? c.paymentsLabel : c.paymentsLabelEn;
+const licenseLabel = c.license === 'Anjouan' ? 'Anjouan' : (ru ? 'Кюрасао' : 'Curaçao');
+const g = (slug: string) => localePath(locale, '/glossary/') + '#' + slug;
+
+const full = c.minDeposit != null && c.withdrawMin != null;
+const title = ru
+  ? (full ? `${c.name} — минимальный депозит ${formatMoney(c.minDeposit!)}, вывод от ${c.withdrawMin} мин, ${c.rank}-е место в рейтинге 2026` : `${c.name} — ${c.rank}-е место в рейтинге казино с минимальным депозитом 2026`)
+  : (full ? `${c.name} — minimum deposit ${formatMoney(c.minDeposit!)}, withdrawal from ${c.withdrawMin} min, #${c.rank} in the 2026 rating` : `${c.name} — #${c.rank} in the 2026 minimum-deposit casino rating`);
+const bonusText = (ru ? c.bonus : c.bonusEn)?.replace(/<[^>]+>/g, '');
+const description = ru
+  ? [full ? `${c.name}: депозит от ${formatMoney(c.minDeposit!)} через ${payLabel}, вывод от ${c.withdrawMin} минут, лицензия ${c.licenseShort ?? licenseLabel}` : `${c.name}: лицензия ${licenseLabel}, ${c.rank}-е место в рейтинге`, c.rating != null ? `Оценка ${c.rating.toFixed(1)}/10` : null, bonusText].filter(Boolean).join('. ') + '.'
+  : [full ? `${c.name}: deposit from ${formatMoney(c.minDeposit!)} via ${payLabel}, withdrawal from ${c.withdrawMin} minutes, ${c.licenseShort ?? licenseLabel} licence` : `${c.name}: ${licenseLabel} licence, #${c.rank} in the rating`, c.rating != null ? `Score ${c.rating.toFixed(1)}/10` : null, bonusText].filter(Boolean).join('. ') + '.';
+
+const pageUrl = new URL(localePath(locale, `/casino/${c.slug}/`), Astro.site).href;
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: title, url: pageUrl, description, inLanguage: locale, dateModified: site.lastVerified,
+  breadcrumb: { '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: t.casino.breadcrumbHome, item: new URL(home, Astro.site).href },
+    { '@type': 'ListItem', position: 2, name: t.casino.breadcrumbRating, item: new URL(home + '#rating', Astro.site).href },
+    { '@type': 'ListItem', position: 3, name: c.name, item: pageUrl },
+  ] },
+};
+const verifiedHuman = new Date(site.lastVerified).toLocaleDateString(ru ? 'ru-RU' : 'en-GB');
+---
+<Base {locale} path={`/casino/${c.slug}/`} {title} {description}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+  </Fragment>
+
+  <div class="container">
+    <nav class="crumbs" aria-label="breadcrumb">
+      <ol>
+        <li><a href={home}>{t.casino.breadcrumbHome}</a></li>
+        <li><a href={home + '#rating'}>{t.casino.breadcrumbRating}</a></li>
+        <li aria-current="page">{c.name}</li>
+      </ol>
+    </nav>
+
+    <div class="page-head">
+      <span class="rank-chip"><b>#{c.rank}</b> {t.casino.rankIn} {fmt(t.casino.of10, { n: casinos.length })}{c.rating != null && <> · {c.stars} {c.rating.toFixed(1)} · {c.reviews?.toLocaleString(ru ? 'ru-RU' : 'en-US')} {t.casino.reviews}</>}</span>
+      <h1>{c.name}</h1>
+      <p class="lede">{description}</p>
+    </div>
+
+    <h2 class="section-title" style="font-size:1.2rem">{t.casino.facts}</h2>
+    <dl class="facts">
+      <div class="fact"><dt>{t.casino.minDeposit}</dt><dd class="gold">{c.minDeposit != null ? formatMoney(c.minDeposit) : '—'}</dd></div>
+      <div class="fact"><dt>{t.casino.withdraw}</dt><dd>{c.withdrawMin != null ? fmt(t.casino.withdrawFrom, { n: c.withdrawMin }) : '—'}</dd></div>
+      <div class="fact"><dt>{t.casino.payments}</dt><dd>{payLabel ?? '—'}</dd></div>
+      <div class="fact"><dt>{t.casino.license}</dt><dd>{c.licenseShort ?? licenseLabel}</dd></div>
+      {c.rtp != null && <div class="fact"><dt><a href={g('rtp')}>{t.facts2.rtp}</a></dt><dd class="gold">{c.rtp.toFixed(1)}%</dd></div>}
+      {c.wager != null && <div class="fact"><dt><a href={g('wager')}>{t.facts2.wager}</a></dt><dd>x{c.wager}</dd></div>}
+      {c.cashback != null && <div class="fact"><dt><a href={g('cashback')}>{t.facts2.cashback}</a></dt><dd>{ru ? 'до' : 'up to'} {c.cashback}%</dd></div>}
+    </dl>
+    {c.features.length > 0 && <div class="card-pills" style="margin:4px 0 8px">{c.features.map((f) => <span class="pill">{f}</span>)}</div>}
+    {c.licenseFull && <p class="verified" style="margin:4px 0 12px">{t.facts2.licenseFull}: {c.licenseFull}</p>}
+
+    {(ru ? c.bonus : c.bonusEn) && <div class="bonus-box">
+      <p set:html={ru ? c.bonus : c.bonusEn} />
+      {c.promoCode && <p style="margin-top:8px">{t.casino.promoCode}: <code class="promo-code">{c.promoCode}</code></p>}
+    </div>}
+
+    <div class="cta-row">
+      <a href={c.url} rel="nofollow sponsored" target="_blank" class="btn-go">{fmt(t.casino.goto, { name: c.name })}</a>
+      <span class="verified">{t.casino.verified}: <time datetime={site.lastVerified}>{verifiedHuman}</time></span>
+    </div>
+
+    {mentions.length > 0 && (
+      <section style="padding:24px 0">
+        <h2 class="section-title" style="font-size:1.2rem">{t.casino.mentions}</h2>
+        <p class="section-sub">{fmt(t.casino.mentionsNote, { name: c.name })}</p>
+        <div class="mentions">
+          {mentions.map((m) => (
+            <blockquote lang="ru">
+              <span set:html={highlight(m.text)} />
+              <cite><a href={home + (m.block === 'faq' ? '#faq' : m.block === 'howto' ? '#howto' : '#rating')}>{blockNames[m.block]}</a></cite>
+            </blockquote>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <section style="padding:24px 0 48px">
+      <h2 class="section-title" style="font-size:1.2rem">{t.casino.compare}</h2>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>#</th><th>{t.casino.colName}</th><th>{t.casino.colDep}</th><th>{t.casino.colWithdraw}</th><th>{t.casino.colPay}</th><th>{t.casino.rating}</th></tr></thead>
+          <tbody>
+            {neighbours.map((n) => (
+              <tr class:list={{ me: n.slug === c.slug }}>
+                <td class="num">{n.rank}</td>
+                <td>{n.slug === c.slug ? n.name : <a href={localePath(locale, `/casino/${n.slug}/`)}>{n.name}</a>}</td>
+                <td class="num">{n.minDeposit != null ? formatMoney(n.minDeposit) : '—'}</td>
+                <td class="num">{n.withdrawMin != null ? fmt(t.casino.withdrawFrom, { n: n.withdrawMin }) : '—'}</td>
+                <td>{(ru ? n.paymentsLabel : n.paymentsLabelEn) ?? '—'}</td>
+                <td class="num">{n.rating != null ? n.rating.toFixed(1) : '—'}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:16px"><a href={home + '#rating'}>{t.casino.backToRating}</a></p>
+    </section>
+
+    <div class="disclaimer" style="margin-bottom:48px" set:html={ru
+      ? '<strong>⚠️ Важно:</strong> Азартные игры предназначены только для лиц старше 18 лет. Игра на деньги сопряжена с риском финансовых потерь. Все ссылки на казино являются партнёрскими (rel="nofollow sponsored"). Данный сайт не несёт ответственности за действия третьих лиц. Если вы ощущаете признаки игровой зависимости — обратитесь на горячую линию помощи игрокам. Материал носит информационный характер и не является офертой или рекламой.'
+      : '<strong>⚠️ Important:</strong> Gambling is for adults 18+ only. Playing for money carries a risk of financial loss. All casino links are affiliate links (rel="nofollow sponsored"). This site is not responsible for the actions of third parties. If you notice signs of gambling addiction, contact a gambling helpline. This material is informational and is not an offer or advertisement.'} />
+  </div>
+</Base>

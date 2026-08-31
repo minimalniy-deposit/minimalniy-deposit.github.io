@@ -1,0 +1,115 @@
+---
+import '../styles/legacy.css';
+import '../styles/site.css';
+import site from '../data/site.json';
+import { useT, localePath, alternates, otherLocale, type Locale } from '../i18n';
+import { updated } from '../lib/dates';
+
+interface Props {
+  locale: Locale;
+  /** Locale-less path for this page, e.g. "/" or "/casino/7k/". */
+  path: string;
+  title: string;
+  description: string;
+  /** If the page has no translation in the other locale, skip hreflang alternates. */
+  translated?: boolean;
+  /** Set to true for the home page, so nav uses in-page anchors. */
+  home?: boolean;
+  ogTitle?: string;
+  ogDescription?: string;
+  noindex?: boolean;
+}
+
+const { locale, path, title, description, translated = true, home = false, ogTitle, ogDescription, noindex = false } = Astro.props;
+const t = useT(locale);
+const url = new URL(localePath(locale, path), Astro.site).href;
+const alt = translated ? alternates(path) : [];
+const other = otherLocale(locale);
+const switchHref = translated ? localePath(other, path) : localePath(other, '/');
+const anchor = (id: string) => (home ? `#${id}` : `${localePath(locale, '/')}#${id}`);
+const verifiedHuman = new Date(site.lastVerified).toLocaleDateString(locale === 'ru' ? 'ru-RU' : 'en-GB');
+---
+<!DOCTYPE html>
+<html lang={locale}>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{title}</title>
+<meta name="description" content={description}>
+<meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, noarchive'}>
+<meta name="yandex" content="noarchive">
+<link rel="canonical" href={url}>
+{alt.map((a) => <link rel="alternate" hreflang={a.hreflang} href={new URL(a.href, Astro.site).href} />)}
+<meta property="og:title" content={ogTitle ?? title}>
+<meta property="og:description" content={ogDescription ?? description}>
+<meta property="og:type" content="website">
+<meta property="og:url" content={url}>
+<meta property="og:locale" content={locale === 'ru' ? 'ru_RU' : 'en_US'}>
+<meta name="theme-color" content="#0d1117">
+<meta name="google-site-verification" content="B4wbvtosJqPbtLJHawxrKPE5A9w1ORhppvNccsXIf5I" />
+<meta name="yandex-verification" content="4e519904d8845bcc" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<slot name="head" />
+<script type="speculationrules" set:html={JSON.stringify({
+  prerender: [{ where: { and: [{ href_matches: '/*' }, { not: { selector_matches: '[rel~=sponsored]' } }] }, eagerness: 'moderate' }],
+})}></script>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="header-inner">
+      <div class="logo"><a href={localePath(locale, '/')}>{t.logo}<span>{t.logoSuffix}</span></a></div>
+      <nav class="site-nav" aria-label={locale === 'ru' ? 'Разделы' : 'Sections'}>
+        <a href={anchor('rating')}>{t.nav.rating}</a>
+        <a href={localePath(locale, '/methods/')} aria-current={path === '/methods/' ? 'page' : undefined}>{t.nav.methods}</a>
+        {locale === 'ru' && <a href={anchor('howto')}>{t.nav.howto}</a>}
+        {locale === 'ru' && <a href={anchor('faq')}>{t.nav.faq}</a>}
+        <a href={localePath(locale, '/slots/')} aria-current={path.startsWith('/slots/') ? 'page' : undefined}>{t.nav.slots}</a>
+        <a href={localePath(locale, '/glossary/')} aria-current={path === '/glossary/' ? 'page' : undefined}>{t.nav.glossary}</a>
+        <a href={localePath(locale, '/methodology/')} aria-current={path === '/methodology/' ? 'page' : undefined}>{t.nav.methodology}</a>
+      </nav>
+      <div class="header-right">
+        <span class="header-updated">{locale === 'ru' ? `Обновлено: ${updated.ruNom}` : `Updated: ${updated.en}`}</span>
+        <span class="badge-18">18+</span>
+        <a class="lang-switch" href={switchHref} hreflang={other} lang={other} rel="alternate">{t.switchLang}</a>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="line18"><div class="container">{t.banner18}</div></div>
+
+<slot />
+
+<footer>
+  <div class="container">
+    <div class="footer-links">
+      <a href={anchor('rating')}>{t.nav.rating}</a>
+      <a href={localePath(locale, '/methods/')}>{t.nav.methods}</a>
+      {locale === 'ru' && <a href={anchor('howto')}>{t.nav.howto}</a>}
+      {locale === 'ru' && <a href={anchor('faq')}>{t.nav.faq}</a>}
+      <a href={localePath(locale, '/slots/')}>{t.nav.slots}</a>
+      <a href={localePath(locale, '/glossary/')}>{t.nav.glossary}</a>
+      <a href={localePath(locale, '/methodology/')}>{t.nav.methodology}</a>
+    </div>
+    <p>{t.footer.copy}</p>
+    <p style="margin-top:6px;font-size:.72rem">{locale === 'ru' ? `Обновлено: ${updated.dmy} · 18+ · Ответственная игра` : `Updated: ${updated.dmy} · 18+ · Responsible gaming`} · {t.footer.verified} <time datetime={site.lastVerified}>{verifiedHuman}</time></p>
+    <p style="margin-top:6px;font-size:.72rem">{t.footer.source} <a href={site.source.url} rel="nofollow" target="_blank" style="color:var(--muted)">{site.source.name}</a></p>
+  </div>
+</footer>
+
+<!-- Yandex.Metrika counter -->
+<script is:inline type="text/javascript" define:vars={{ id: site.metrikaId }}>
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=' + id, 'ym');
+    ym(Number(id), 'init', {ssr:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src={`https://mc.yandex.ru/watch/${site.metrikaId}`} style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+</body>
+</html>

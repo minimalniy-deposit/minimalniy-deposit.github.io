@@ -1,0 +1,85 @@
+---
+import Base from '../../layouts/Base.astro';
+import CasinoCard from '../../components/CasinoCard.astro';
+import Filters from '../../components/Filters.astro';
+import site from '../../data/site.json';
+import { casinos } from '../../lib/casinos';
+import { updated } from '../../lib/dates';
+
+const title = 'Casinos with a Minimum Deposit 2026 — Top 10 Rating from 10 Roubles';
+const description = 'The best casinos with a minimum deposit from 10 roubles: a top-10 rating comparing bonuses, deposit methods and withdrawal speed. Verified in 2026.';
+const url = new URL('/en/', Astro.site).href;
+const ld = [
+  { '@context': 'https://schema.org', '@type': 'WebPage', name: title, url, description, inLanguage: 'en', dateModified: updated.iso,
+    breadcrumb: { '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: url }] } },
+  { '@context': 'https://schema.org', '@type': 'ItemList', name: 'Top 10 casinos with a minimum deposit 2026', url,
+    itemListElement: casinos.map((c) => ({ '@type': 'ListItem', position: c.rank, name: c.name, url: c.url })) },
+];
+const methodsEn = [
+  { icon: '💳', name: 'Bank card', speed: 'Deposit: instant', desc: 'Visa, Mastercard, MIR — the most common method. Deposits from 100 roubles, withdrawal to a card takes 1–3 business days.' },
+  { icon: '⚡', name: 'SBP — Faster Payments System', speed: 'Withdrawal: 10–30 min', desc: 'Roubles arrive in 3–10 seconds; withdrawals go back to the same bank without a fee. The fastest option in roubles.' },
+  { icon: '₿', name: 'Cryptocurrency', speed: 'Withdrawal: 10–15 min', desc: 'Bitcoin, USDT (TRC-20/ERC-20), Ethereum, LTC. Minimum deposit from the equivalent of 100 roubles; withdrawals without delays or KYC up to a set limit.' },
+  { icon: '📱', name: 'E-wallets', speed: 'Withdrawal: 15–60 min', desc: 'YooMoney, WebMoney, Qiwi (where available). Deposits from 50 roubles; withdrawals are faster than to a bank card.' },
+];
+---
+<Base locale="en" path="/" home {title} {description}>
+  <Fragment slot="head">{ld.map((x) => <script type="application/ld+json" set:html={JSON.stringify(x)} />)}</Fragment>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Casinos with a <span class="accent">minimum deposit</span> 2026 —<br>Top 10 verified sites from 100 roubles</h1>
+      <p class="hero-desc">Top casinos with a minimum deposit in roubles: we compared 60+ online casinos and picked the best licensed ones by withdrawal speed, bonus size and slot RTP. Every small-deposit casino was checked by hand in {updated.en}.</p>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num">{casinos.length}</span><span class="stat-label">casinos in the rating</span></div>
+        <div class="stat"><span class="stat-num">from 100₽</span><span class="stat-label">minimum deposit</span></div>
+        <div class="stat"><span class="stat-num">10–30 min</span><span class="stat-label">withdrawal speed</span></div>
+        <div class="stat"><span class="stat-num">up to 500 FS</span><span class="stat-label">sign-up bonus</span></div>
+      </div>
+      <span class="updated">🔄 Rating updated {updated.dmy} — verified by players</span>
+    </div>
+  </section>
+
+  <Filters locale="en" />
+
+  <section id="rating">
+    <div class="container">
+      <div class="intro-text">
+        <p>Minimum-deposit casinos in roubles are licensed sites where the deposit threshold does not exceed 100–500 roubles via SBP, a MIR bank card or cryptocurrency. They run on the same game engines as premium sites: Pragmatic Play, NetEnt and Evolution Gaming do not change a slot's RTP based on the deposit size — you get the same 96–99% RTP, the same live dealers and the same bonus mechanics.</p>
+        <p>The rating below uses three criteria: first-withdrawal speed via SBP (target under 15 minutes), wagering transparency (no more than 40x within 7 days) and a valid Curaçao eGaming or MGA licence. Full details are on the <a href="/en/methodology/">methodology page</a>; data was cross-checked against the independent portal <a href={site.source.url} rel="nofollow" target="_blank">don8play.ru</a>. The full Russian review, FAQ and guides are on the <a href="/" hreflang="ru">Russian version</a>.</p>
+      </div>
+
+      <h2 class="section-title">Top 10 casinos with a minimum deposit</h2>
+      <p class="section-sub">The best small-deposit online casinos of 2026 — from 100 to 1,000 roubles, with fast withdrawals and bonuses</p>
+
+      <div class="casino-grid" id="casinoGrid">
+        {casinos.map((c) => <CasinoCard c={c} locale="en" />)}
+      </div>
+    </div>
+  </section>
+
+  <section id="methods" style="background:var(--bg2);padding:48px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+    <div class="container">
+      <h2 class="section-title">Deposit and withdrawal methods</h2>
+      <p class="section-sub">Card, SBP, crypto and e-wallets — every option for a minimum deposit</p>
+      <div class="methods-grid">
+        {methodsEn.map((m) => (
+          <div class="method-card">
+            <div class="method-icon">{m.icon}</div>
+            <div class="method-name">{m.name}</div>
+            <div class="method-desc">{m.desc}</div>
+            <span class="method-speed">{m.speed}</span>
+          </div>
+        ))}
+      </div>
+      <p style="margin-top:16px;font-size:.85rem"><a href="/en/methods/">Summary table: which casino accepts what and how fast it pays out →</a></p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="disclaimer">
+        <strong>⚠️ Important:</strong> Gambling is for adults 18+ only. Playing for money carries a risk of financial loss. All casino links are affiliate links (rel="nofollow sponsored"). This site is not responsible for the actions of third parties. If you notice signs of gambling addiction, contact a gambling helpline. This material is informational and is not an offer or advertisement.
+      </div>
+    </div>
+  </section>
+</Base>

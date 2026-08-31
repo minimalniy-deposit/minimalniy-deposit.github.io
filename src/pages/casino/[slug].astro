@@ -1,0 +1,9 @@
+---
+import CasinoPage from '../../components/CasinoPage.astro';
+import { casinos } from '../../lib/casinos';
+export function getStaticPaths() {
+  return casinos.map((c) => ({ params: { slug: c.slug }, props: { c } }));
+}
+const { c } = Astro.props;
+---
+<CasinoPage c={c} locale="ru" />

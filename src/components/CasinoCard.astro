@@ -1,0 +1,45 @@
+---
+/** Same markup as the legacy card, generated from data. Unknown fields are simply not rendered. */
+import { useT, localePath, formatMoney, type Locale } from '../i18n';
+import type { Casino } from '../lib/casinos';
+interface Props { c: Casino; locale: Locale }
+const { c, locale } = Astro.props;
+const t = useT(locale);
+const ru = locale === 'ru';
+const badges = ru ? c.badges.map((b) => b.text) : c.badgesEn;
+const pills = ru ? c.pills.map((p) => p.text) : c.pills.map((p) => {
+  if (p.cls === 'dep') return `from ${c.minDeposit!.toLocaleString('en-US').replace(',', ' ')} ₽`;
+  if (p.cls === 'fast') return `withdrawal from ${c.withdrawMin} min`;
+  if (p.text.includes('·')) return c.paymentsLabelEn ?? p.text;
+  return 'Curaçao licence';
+});
+const ctaLines = ru ? c.ctaLines : c.ctaLinesEn;
+const bonus = ru ? c.bonus : c.bonusEn;
+const detailsHref = localePath(locale, `/casino/${c.slug}/`);
+---
+<div class:list={['casino-card', { top: c.top }]} data-deposit={c.minDeposit ?? undefined}>
+  <div class:list={['card-rank', { 'gold-rank': c.gold }]}>{c.rank}</div>
+  <div class="card-body">
+    <div class="card-top-row">
+      <span class="casino-name"><a href={detailsHref} style="color:inherit">{c.name}</a></span>
+      {c.badges.map((b, i) => <span class:list={['card-badge', b.cls]}>{badges[i]}</span>)}
+    </div>
+    {c.rating != null && (
+      <div class="card-rating">
+        <span class="stars">{c.stars}</span>
+        <span class="rating-num">{c.rating.toFixed(1)}</span>
+        <span class="rating-cnt">{ru ? c.ratingCnt : `/ 10.0 · ${c.reviews?.toLocaleString('en-US')} reviews`}</span>
+      </div>
+    )}
+    <div class="card-pills">
+      {c.pills.map((p, i) => <span class:list={['pill', p.cls]}>{pills[i]}</span>)}
+    </div>
+    {bonus && <div class="card-bonus" set:html={bonus} />}
+  </div>
+  <div class="card-cta">
+    <a href={c.url} rel="nofollow sponsored" target="_blank" class="btn-go">{t.card.play}</a>
+    {ctaLines.map((l) => <span class="cta-min">{l}</span>)}
+    {c.promo && <span class="promo-tag">{ru ? c.promo : `${t.card.promo}: ${c.promoCode}`}</span>}
+    <a class="card-more" href={detailsHref}>{t.card.details}</a>
+  </div>
+</div>

@@ -1,0 +1,131 @@
+{
+  "lang": "en",
+  "logo": "MinDep",
+  "logoSuffix": ".rating",
+  "updated": "Updated: May 2026",
+  "nav": {
+    "rating": "Top 10 rating",
+    "methods": "Payment methods",
+    "howto": "How to choose",
+    "faq": "FAQ",
+    "methodology": "Methodology",
+    "slots": "Demo slots",
+    "glossary": "Glossary"
+  },
+  "switchLang": "Русский",
+  "switchLangHref": "/",
+  "filters": {
+    "all": "All casinos",
+    "to100": "up to 100 ₽",
+    "to500": "up to 500 ₽",
+    "to1000": "up to 1,000 ₽"
+  },
+  "card": {
+    "play": "Play →",
+    "details": "Details",
+    "minDep": "Min. deposit",
+    "promo": "Promo"
+  },
+  "casino": {
+    "breadcrumbHome": "Home",
+    "breadcrumbRating": "Top 10 rating",
+    "rankIn": "Rank",
+    "of10": "of {n}",
+    "facts": "Key terms",
+    "minDeposit": "Minimum deposit",
+    "withdraw": "Withdrawal speed",
+    "withdrawFrom": "from {n} min",
+    "payments": "Deposit methods",
+    "license": "License",
+    "rating": "Score",
+    "reviews": "reviews",
+    "bonus": "Bonus",
+    "promoCode": "Promo code",
+    "mentions": "What the main review says",
+    "mentionsNote": "Excerpts from the main (Russian) review that mention {name}.",
+    "compare": "Compare with neighbours in the rating",
+    "backToRating": "← Back to the full rating",
+    "verified": "Data verified",
+    "goto": "Go to {name} →",
+    "colName": "Casino",
+    "colDep": "Min. deposit",
+    "colWithdraw": "Withdrawal",
+    "colPay": "Deposit via"
+  },
+  "methods": {
+    "title": "Deposit and withdrawal methods — which casino accepts what",
+    "metaDesc": "Table for the 10 rated casinos: minimum deposit, withdrawal speed and supported deposit methods — card, SBP, USDT, BTC.",
+    "h1": "Deposit and withdrawal methods",
+    "intro": "A summary table for the rated casinos: what they accept, from what amount, and how fast they pay out. Method descriptions are on the home page under",
+    "introLink": "\"Deposit and withdrawal methods\"",
+    "matrix": "Who accepts what",
+    "byMethod": "Casinos by payment method",
+    "yes": "yes",
+    "no": "—",
+    "card": "Card",
+    "sbp": "SBP",
+    "usdt": "USDT",
+    "btc": "BTC",
+    "crypto": "Crypto",
+    "fastest": "Fastest withdrawal",
+    "lowest": "Lowest deposit threshold",
+    "note": "Values are taken from the rating cards. Casino-side terms can change — check the cashier before depositing."
+  },
+  "methodology": {
+    "title": "How the rating is built — methodology",
+    "metaDesc": "Selection criteria for minimum-deposit casinos: SBP withdrawal speed, wagering transparency, licence. What excludes a casino, data sources and how often we verify.",
+    "h1": "How the rating is built"
+  },
+  "footer": {
+    "copy": "© 2026 minimalniy-deposit.github.io — Rating of casinos with a minimum deposit in roubles",
+    "meta": "Updated: 15.05.2026 · 18+ · Responsible gaming",
+    "source": "Data source:",
+    "verified": "Data verified:"
+  },
+  "banner18": "Gambling is for adults 18+ only. Playing for money carries a risk of losing funds.",
+  "notFound": {
+    "title": "Page not found",
+    "text": "There is no such page. Go back to the rating.",
+    "link": "Home"
+  },
+  "slots": {
+    "title": "Demo slots — catalogue of free slot games with RTP and volatility",
+    "metaDesc": "Free demo versions of slots: provider, RTP, volatility, max win. Play without registration, then pick a minimum-deposit casino from the rating.",
+    "h1": "Demo slots",
+    "lede": "Free demos without registration or deposit. Every game lists its provider, RTP, volatility and max win so you can pick a slot for a small deposit. The catalogue updates automatically.",
+    "all": "All providers",
+    "games": "games",
+    "provider": "Provider",
+    "rtp": "RTP",
+    "volatility": "Volatility",
+    "maxWin": "Max win",
+    "play": "Play demo",
+    "playReal": "Play for real →",
+    "playRealNote": "Goes to the #1 casino in the rating, deposit from {dep}.",
+    "demoSoon": "The demo will appear once the catalogue is connected.",
+    "similar": "Similar slots",
+    "fetched": "Catalogue updated",
+    "sample": "Sample games shown: the catalogue connects via the SlotsReach API.",
+    "noData": "—",
+    "breadcrumb": "Demo slots",
+    "nav": "Demo slots"
+  },
+  "glossary": {
+    "title": "Glossary for minimum-deposit casinos — RTP, wagering, cashback, SBP",
+    "metaDesc": "12 terms that appear in the rating cards: payout, wagering, minimum deposit, low roller, cashback, SBP, KYC, volatility — explained for small-deposit play.",
+    "h1": "Glossary",
+    "lede": "Terms from the rating cards, explained with small-deposit play in mind.",
+    "breadcrumb": "Glossary",
+    "nav": "Glossary",
+    "usedIn": "Where it appears"
+  },
+  "facts2": {
+    "rtp": "Payout (RTP)",
+    "wager": "Bonus wagering",
+    "cashback": "Cashback",
+    "licenseFull": "Licence",
+    "features": "Features",
+    "limits": "Limits by method",
+    "limitsNote": "Typical speed and daily limits for rouble methods. Check a specific casino's cashier for exact figures."
+  }
+}

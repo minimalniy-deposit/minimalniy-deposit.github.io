@@ -1,0 +1,862 @@
+[
+  {
+    "slug": "joycasino",
+    "name": "JoyCasino",
+    "rank": 1,
+    "top": true,
+    "gold": true,
+    "minDeposit": 100,
+    "rating": 9.6,
+    "stars": "★★★★★",
+    "ratingCnt": "/ 10.0",
+    "badges": [
+      {
+        "cls": "badge-top",
+        "text": "ВЫБОР №1"
+      },
+      {
+        "cls": "badge-new",
+        "text": "RTP 97%"
+      }
+    ],
+    "pills": [
+      {
+        "cls": "dep",
+        "text": "от 100 ₽"
+      },
+      {
+        "cls": "fast",
+        "text": "вывод ~15 мин"
+      },
+      {
+        "cls": "",
+        "text": "СБП"
+      },
+      {
+        "cls": "",
+        "text": "Лицензия Кюрасао"
+      }
+    ],
+    "bonus": "Бонус: 200% + 200 фриспинов на первый депозит от 100 ₽ — фриспины на топ-слоты. Вейджер x35, релоад еженедельно, кэшбэк до 12%",
+    "url": "https://1924.brightwhale.co/ru/registration?partner=p1924p7299p893b",
+    "ctaLines": [
+      "Мин. депозит: 100 ₽",
+      "Вывод ~15 мин"
+    ],
+    "promo": null,
+    "payments": [
+      "sbp"
+    ],
+    "paymentsLabel": "СБП",
+    "paymentsLabelEn": "SBP",
+    "withdrawMin": 15,
+    "license": "Кюрасао",
+    "reviews": null,
+    "bonusEn": "Bonus: 200% + 200 free spins on a first deposit from 100 ₽ — spins on top slots. 35x wagering, weekly reload, cashback up to 12%",
+    "badgesEn": [
+      "TOP PICK",
+      "RTP 97%"
+    ],
+    "ctaLinesEn": [
+      "Min. deposit: 100 ₽",
+      "Withdrawal ~15 min"
+    ],
+    "promoCode": null,
+    "rtp": 97.0,
+    "licenseFull": "Лицензия Curacao eGaming #365/JAZ",
+    "licenseShort": "Curacao #365/JAZ",
+    "wager": 35,
+    "cashback": 12,
+    "features": [
+      "Вывод на СБП",
+      "Моментально",
+      "Лицензионный софт",
+      "Релоад-бонус",
+      "Live 24/7"
+    ],
+    "d8cats": [
+      "all",
+      "fast-payout",
+      "live",
+      "reload"
+    ]
+  },
+  {
+    "slug": "norm",
+    "name": "Norm",
+    "rank": 2,
+    "top": true,
+    "gold": true,
+    "minDeposit": 100,
+    "rating": 9.5,
+    "stars": "★★★★☆",
+    "ratingCnt": "/ 10.0",
+    "badges": [
+      {
+        "cls": "badge-hot",
+        "text": "ТОП ПО БОНУСАМ"
+      },
+      {
+        "cls": "badge-new",
+        "text": "2026"
+      }
+    ],
+    "pills": [
+      {
+        "cls": "dep",
+        "text": "от 100 ₽"
+      },
+      {
+        "cls": "fast",
+        "text": "вывод 15–40 мин"
+      },
+      {
+        "cls": "",
+        "text": "СБП · Крипта"
+      },
+      {
+        "cls": "",
+        "text": "Лицензия Anjouan"
+      }
+    ],
+    "bonus": "Бонус: 100% + 250 фриспинов на первый депозит от 100 ₽ — спины начисляются частями пять дней. Вейджер x35, кэшбэк до 12% без вейджера, 7 уровней лояльности",
+    "url": "https://lucksprint.com/?serial=61360323&creative_id=7675&anid=%7Byour_click%7D_sub2_sub3_sub4_sub5",
+    "ctaLines": [
+      "Мин. депозит: 100 ₽",
+      "Вывод 15–40 мин"
+    ],
+    "promo": null,
+    "payments": [
+      "sbp",
+      "crypto"
+    ],
+    "paymentsLabel": "СБП · Крипта",
+    "paymentsLabelEn": "SBP · Crypto",
+    "withdrawMin": 15,
+    "license": "Anjouan",
+    "reviews": null,
+    "bonusEn": "Bonus: 100% + 250 free spins on a first deposit from 100 ₽ — spins credited in parts over five days. 35x wagering, cashback up to 12% wager-free, 7 loyalty levels",
+    "badgesEn": [
+      "TOP BONUSES",
+      "2026"
+    ],
+    "ctaLinesEn": [
+      "Min. deposit: 100 ₽",
+      "Withdrawal 15–40 min"
+    ],
+    "promoCode": null,
+    "rtp": 96.9,
+    "licenseFull": "Лицензия Anjouan Gaming, оператор Velmora Ltd, C 63384",
+    "licenseShort": "Anjouan #C 63384",
+    "wager": 35,
+    "cashback": 12,
+    "features": [
+      "Вывод на СБП",
+      "Крипто 5–20 мин",
+      "Лицензионный софт",
+      "Live 24/7",
+      "Мин. верификация"
+    ],
+    "d8cats": [
+      "all",
+      "fast-payout",
+      "min-deposit",
+      "live",
+      "crypto",
+      "new2026",
+      "noverif"
+    ]
+  },
+  {
+    "slug": "7k",
+    "name": "7K Casino",
+    "rank": 3,
+    "top": false,
+    "gold": false,
+    "minDeposit": 100,
+    "rating": 9.9,
+    "stars": "★★★★★",
+    "ratingCnt": "/ 10.0 · 5 340 отзывов",
+    "badges": [
+      {
+        "cls": "badge-new",
+        "text": "2026"
+      }
+    ],
+    "pills": [
+      {
+        "cls": "dep",
+        "text": "от 100 ₽"
+      },
+      {
+        "cls": "fast",
+        "text": "вывод от 10 мин"
+      },
+      {
+        "cls": "",
+        "text": "Карта · СБП · USDT · BTC"
+      },
+      {
+        "cls": "",
+        "text": "Лицензия Кюрасао"
+      }
+    ],
+    "bonus": "Бонус: 200% на первый депозит + 500 фриспинов на Gates of Olympus — пополнение от 100 ₽ через СБП, вывод за 10 минут",
+    "url": "https://7k-casino.ru",
+    "ctaLines": [
+      "Мин. депозит: 100 ₽",
+      "Вывод за 10 мин"
+    ],
+    "promo": null,
+    "payments": [
+      "card",
+      "sbp",
+      "usdt",
+      "btc"
+    ],
+    "paymentsLabel": "Карта · СБП · USDT · BTC",
+    "paymentsLabelEn": "Card · SBP · USDT · BTC",
+    "withdrawMin": 10,
+    "license": "Кюрасао",
+    "reviews": 5340,
+    "bonusEn": "Bonus: 200% on first deposit + 500 free spins on Gates of Olympus — deposit from 100 ₽ via SBP, withdrawal in 10 minutes",
+    "badgesEn": [
+      "2026"
+    ],
+    "ctaLinesEn": [
+      "Min. deposit: 100 ₽",
+      "Withdrawal in 10 min"
+    ],
+    "promoCode": null,
+    "rtp": 96.5,
+    "licenseFull": "Лицензия Curacao eGaming #365/JAZ",
+    "licenseShort": "Curacao #365/JAZ",
+    "wager": 30,
+    "cashback": null,
+    "features": [
+      "Вывод на СБП",
+      "Моментально",
+      "Лицензионный софт",
+      "Релоад-бонус",
+      "Live 24/7"
+    ],
+    "d8cats": [
+      "all",
+      "fast-payout",
+      "live",
+      "new2026"
+    ]
+  },
+  {
+    "slug": "fugu",
+    "name": "Fugu Casino",
+    "rank": 4,
+    "top": false,
+    "gold": false,
+    "minDeposit": 500,
+    "rating": 9.8,
+    "stars": "★★★★★",
+    "ratingCnt": "/ 10.0 · 3 640 отзывов",
+    "badges": [
+      {
+        "cls": "badge-hot",
+        "text": "ТОП ТУРНИРЫ"
+      }
+    ],
+    "pills": [
+      {
+        "cls": "dep",
+        "text": "от 500 ₽"
+      },
+      {
+        "cls": "fast",
+        "text": "вывод от 15 мин"
+      },
+      {
+        "cls": "",
+        "text": "Карта · СБП · Крипта"
+      },
+      {
+        "cls": "",
+        "text": "Лицензия Кюрасао"
+      }
+    ],
+    "bonus": "Бонус: 200% на первый депозит + еженедельные турниры с призовым фондом до 1 000 000 ₽",
+    "url": "https://rixdor.com/5wM7MCCQ",
+    "ctaLines": [
+      "Мин. депозит: 500 ₽",
+      "Вывод за 15 мин"
+    ],
+    "promo": null,
+    "payments": [
+      "card",
+      "sbp",
+      "crypto"
+    ],
+    "paymentsLabel": "Карта · СБП · Крипта",
+    "paymentsLabelEn": "Card · SBP · Crypto",
+    "withdrawMin": 15,
+    "license": "Кюрасао",
+    "reviews": 3640,
+    "bonusEn": "Bonus: 200% on first deposit + weekly tournaments with a prize pool up to 1,000,000 ₽",
+    "badgesEn": [
+      "TOP TOURNAMENTS"
+    ],
+    "ctaLinesEn": [
+      "Min. deposit: 500 ₽",
+      "Withdrawal in 15 min"
+    ],
+    "promoCode": null,
+    "rtp": null,
+    "licenseFull": null,
+    "licenseShort": null,
+    "wager": null,
+    "cashback": null,
+    "features": [],
+    "d8cats": []
+  },
+  {
+    "slug": "melbet",
+    "name": "MelBet Casino",
+    "rank": 5,
+    "top": false,
+    "gold": false,
+    "minDeposit": 500,
+    "rating": 9.7,
+    "stars": "★★★★★",
+    "ratingCnt": "/ 10.0 · 5 210 отзывов",
+    "badges": [
+      {
+        "cls": "badge-promo",
+        "text": "ПРОМОКОД"
+      }
+    ],
+    "pills": [
+      {
+        "cls": "dep",
+        "text": "от 500 ₽"
+      },
+      {
+        "cls": "fast",
+        "text": "вывод от 20 мин"
+      },
+      {
+        "cls": "",
+        "text": "Карта · СБП · Bitcoin"
+      },
+      {
+        "cls": "",
+        "text": "Лицензия Кюрасао"
+      }
+    ],
+    "bonus": "Бонус: 150% + промокод <strong>VVQ0tmQ</strong> даёт +100 фриспинов на второй депозит",
+    "url": "https://rixdor.com/LSfT22Jp",
+    "ctaLines": [
+      "Мин. депозит: 500 ₽"
+    ],
+    "promo": "Промо: VVQ0tmQ",
+    "payments": [
+      "card",
+      "sbp",
+      "btc"
+    ],
+    "paymentsLabel": "Карта · СБП · Bitcoin",
+    "paymentsLabelEn": "Card · SBP · Bitcoin",
+    "withdrawMin": 20,
+    "license": "Кюрасао",
+    "reviews": 5210,
+    "bonusEn": "Bonus: 150% + promo code <strong>VVQ0tmQ</strong> gives +100 free spins on the second deposit",
+    "badgesEn": [
+      "PROMO CODE"
+    ],
+    "ctaLinesEn": [
+      "Min. deposit: 500 ₽"
+    ],
+    "promoCode": "VVQ0tmQ",
+    "rtp": null,
+    "licenseFull": null,
+    "licenseShort": null,
+    "wager": null,
+    "cashback": null,
+    "features": [],
+    "d8cats": []
+  },
+  {
+    "slug": "jetton",
+    "name": "Jetton Casino",
+    "rank": 6,
+    "top": false,
+    "gold": false,
+    "minDeposit": 100,
+    "rating": 9.6,
+    "stars": "★★★★★",
+    "ratingCnt": "/ 10.0 · 2 180 отзывов",
+    "badges": [
+      {
+        "cls": "badge-new",
+        "text": "КРИПТА"
+      }
+    ],
+    "pills": [
+      {
+        "cls": "dep",
+        "text": "от 100 ₽"
+      },
+      {
+        "cls": "fast",
+        "text": "вывод от 10 мин"
+      },
+      {
+        "cls": "",
+        "text": "Крипта · СБП · Карта"
+      },
+      {
+        "cls": "",
+        "text": "Лицензия Кюрасао"
+      }
+    ],
+    "bonus": "Бонус: Фриспины за регистрацию + бонус за первый крипто-депозит — казино bitcoin минимальный депозит от 100 ₽",
+    "url": "https://rixdor.com/xwyPThk8",
+    "ctaLines": [
+      "Мин. депозит: 100 ₽",
+      "Моментальный крипто-вывод"
+    ],
+    "promo": null,
+    "payments": [
+      "crypto",
+      "sbp",
+      "card"
+    ],
+    "paymentsLabel": "Крипта · СБП · Карта",
+    "paymentsLabelEn": "Crypto · SBP · Card",
+    "withdrawMin": 10,
+    "license": "Кюрасао",
+    "reviews": 2180,
+    "bonusEn": "Bonus: free spins for signing up + a bonus on the first crypto deposit — bitcoin casino with a minimum deposit from 100 ₽",
+    "badgesEn": [
+      "CRYPTO"
+    ],
+    "ctaLinesEn": [
+      "Min. deposit: 100 ₽",
+      "Instant crypto withdrawal"
+    ],
+    "promoCode": null,
+    "rtp": null,
+    "licenseFull": null,
+    "licenseShort": null,
+    "wager": null,
+    "cashback": null,
+    "features": [],
+    "d8cats": []
+  },
+  {
+    "slug": "dragon",
+    "name": "Dragon Casino",
+    "rank": 7,
+    "top": false,
+    "gold": false,
+    "minDeposit": 100,
+    "rating": 9.6,
+    "stars": "★★★★★",
+    "ratingCnt": "/ 10.0 · 1 930 отзывов",
+    "badges": [
+      {
+        "cls": "badge-hot",
+        "text": "УНИКАЛЬНЫЕ БОНУСЫ"
+      }
+    ],
+    "pills": [
+      {
+        "cls": "dep",
+        "text": "от 100 ₽"
+      },
+      {
+        "cls": "fast",
+        "text": "вывод от 15 мин"
+      },
+      {
+        "cls": "",
+        "text": "Карта · СБП · USDT"
+      },
+      {
+        "cls": "",
+        "text": "Лицензия Кюрасао"
+      }
+    ],
+    "bonus": "Бонус: Уникальный приветственный пакет при регистрации + кешбэк до 15% еженедельно",
+    "url": "https://rixdor.com/Gcq5tKxP",
+    "ctaLines": [
+      "Мин. депозит: 100 ₽",
+      "Вывод за 15 мин"
+    ],
+    "promo": null,
+    "payments": [
+      "card",
+      "sbp",
+      "usdt"
+    ],
+    "paymentsLabel": "Карта · СБП · USDT",
+    "paymentsLabelEn": "Card · SBP · USDT",
+    "withdrawMin": 15,
+    "license": "Кюрасао",
+    "reviews": 1930,
+    "bonusEn": "Bonus: a unique welcome package at registration + weekly cashback up to 15%",
+    "badgesEn": [
+      "UNIQUE BONUSES"
+    ],
+    "ctaLinesEn": [
+      "Min. deposit: 100 ₽",
+      "Withdrawal in 15 min"
+    ],
+    "promoCode": null,
+    "rtp": null,
+    "licenseFull": null,
+    "licenseShort": null,
+    "wager": null,
+    "cashback": 15,
+    "features": [],
+    "d8cats": []
+  },
+  {
+    "slug": "gizbo",
+    "name": "Gizbo Casino",
+    "rank": 8,
+    "top": false,
+    "gold": false,
+    "minDeposit": 500,
+    "rating": 9.5,
+    "stars": "★★★★★",
+    "ratingCnt": "/ 10.0 · 2 760 отзывов",
+    "badges": [
+      {
+        "cls": "badge-top",
+        "text": "БЫСТРЫЕ ВЫПЛАТЫ"
+      }
+    ],
+    "pills": [
+      {
+        "cls": "dep",
+        "text": "от 500 ₽"
+      },
+      {
+        "cls": "fast",
+        "text": "вывод от 10 мин"
+      },
+      {
+        "cls": "",
+        "text": "Карта · СБП · Крипта"
+      },
+      {
+        "cls": "",
+        "text": "Лицензия Кюрасао"
+      }
+    ],
+    "bonus": "Бонус: Бонус с первого шага + 500 фриспинов для новых игроков — один из лучших приветственных пакетов",
+    "url": "https://rixdor.com/16qdQVSP",
+    "ctaLines": [
+      "Мин. депозит: 500 ₽",
+      "Вывод за 10 мин"
+    ],
+    "promo": null,
+    "payments": [
+      "card",
+      "sbp",
+      "crypto"
+    ],
+    "paymentsLabel": "Карта · СБП · Крипта",
+    "paymentsLabelEn": "Card · SBP · Crypto",
+    "withdrawMin": 10,
+    "license": "Кюрасао",
+    "reviews": 2760,
+    "bonusEn": "Bonus: a bonus from the first step + 500 free spins for new players — one of the best welcome packages",
+    "badgesEn": [
+      "FAST PAYOUTS"
+    ],
+    "ctaLinesEn": [
+      "Min. deposit: 500 ₽",
+      "Withdrawal in 10 min"
+    ],
+    "promoCode": null,
+    "rtp": 95.4,
+    "licenseFull": null,
+    "licenseShort": "Curacao #1668/JAZ",
+    "wager": 35,
+    "cashback": null,
+    "features": [
+      "Крипто #1",
+      "Быстрый вывод",
+      "Лицензионный софт"
+    ],
+    "d8cats": [
+      "all",
+      "crypto",
+      "fast-payout"
+    ]
+  },
+  {
+    "slug": "spinbetter",
+    "name": "SpinBetter",
+    "rank": 9,
+    "top": false,
+    "gold": false,
+    "minDeposit": 500,
+    "rating": 9.5,
+    "stars": "★★★★★",
+    "ratingCnt": "/ 10.0 · 3 080 отзывов",
+    "badges": [
+      {
+        "cls": "badge-promo",
+        "text": "ПРОМОКОД"
+      }
+    ],
+    "pills": [
+      {
+        "cls": "dep",
+        "text": "от 500 ₽"
+      },
+      {
+        "cls": "fast",
+        "text": "вывод от 15 мин"
+      },
+      {
+        "cls": "",
+        "text": "Карта · СБП · USDT · BTC"
+      },
+      {
+        "cls": "",
+        "text": "Лицензия Кюрасао"
+      }
+    ],
+    "bonus": "Бонус: Промокод <strong>MINDEP100</strong> — 100 фриспинов в слоте Pragmatic «The Dog House» после первого депозита от 500 ₽",
+    "url": "https://rixdor.com/kt2LWczt",
+    "ctaLines": [
+      "Мин. депозит: 500 ₽"
+    ],
+    "promo": "Промо: MINDEP100",
+    "payments": [
+      "card",
+      "sbp",
+      "usdt",
+      "btc"
+    ],
+    "paymentsLabel": "Карта · СБП · USDT · BTC",
+    "paymentsLabelEn": "Card · SBP · USDT · BTC",
+    "withdrawMin": 15,
+    "license": "Кюрасао",
+    "reviews": 3080,
+    "bonusEn": "Bonus: promo code <strong>MINDEP100</strong> — 100 free spins in Pragmatic's \"The Dog House\" after a first deposit from 500 ₽",
+    "badgesEn": [
+      "PROMO CODE"
+    ],
+    "ctaLinesEn": [
+      "Min. deposit: 500 ₽"
+    ],
+    "promoCode": "MINDEP100",
+    "rtp": null,
+    "licenseFull": null,
+    "licenseShort": null,
+    "wager": null,
+    "cashback": null,
+    "features": [],
+    "d8cats": []
+  },
+  {
+    "slug": "twin",
+    "name": "Twin Casino",
+    "rank": 10,
+    "top": false,
+    "gold": false,
+    "minDeposit": 500,
+    "rating": 9.4,
+    "stars": "★★★★☆",
+    "ratingCnt": "/ 10.0 · 1 850 отзывов",
+    "badges": [],
+    "pills": [
+      {
+        "cls": "dep",
+        "text": "от 500 ₽"
+      },
+      {
+        "cls": "fast",
+        "text": "вывод от 20 мин"
+      },
+      {
+        "cls": "",
+        "text": "Карта · Крипта · СБП"
+      },
+      {
+        "cls": "",
+        "text": "Лицензия Кюрасао"
+      }
+    ],
+    "bonus": "Бонус: Подарок при старте + быстрые выводы без лишних проверок. Прозрачный вейджер 30x",
+    "url": "https://rixdor.com/6Dj4c67Z",
+    "ctaLines": [
+      "Мин. депозит: 500 ₽",
+      "Вывод за 20 мин"
+    ],
+    "promo": null,
+    "payments": [
+      "card",
+      "crypto",
+      "sbp"
+    ],
+    "paymentsLabel": "Карта · Крипта · СБП",
+    "paymentsLabelEn": "Card · Crypto · SBP",
+    "withdrawMin": 20,
+    "license": "Кюрасао",
+    "reviews": 1850,
+    "bonusEn": "Bonus: a starter gift + fast withdrawals without extra checks. Transparent 30x wagering",
+    "badgesEn": [],
+    "ctaLinesEn": [
+      "Min. deposit: 500 ₽",
+      "Withdrawal in 20 min"
+    ],
+    "promoCode": null,
+    "rtp": null,
+    "licenseFull": null,
+    "licenseShort": null,
+    "wager": 30,
+    "cashback": null,
+    "features": [],
+    "d8cats": []
+  },
+  {
+    "slug": "slott",
+    "name": "Slott Casino",
+    "rank": 11,
+    "top": false,
+    "gold": false,
+    "minDeposit": 500,
+    "rating": 9.3,
+    "stars": "★★★★☆",
+    "ratingCnt": "/ 10.0 · 2 140 отзывов",
+    "badges": [
+      {
+        "cls": "badge-top",
+        "text": "СТАБИЛЬНЫЕ ВЫПЛАТЫ"
+      }
+    ],
+    "pills": [
+      {
+        "cls": "dep",
+        "text": "от 500 ₽"
+      },
+      {
+        "cls": "fast",
+        "text": "вывод от 30 мин"
+      },
+      {
+        "cls": "",
+        "text": "Карта · СБП · Крипта"
+      },
+      {
+        "cls": "",
+        "text": "Лицензия Кюрасао"
+      }
+    ],
+    "bonus": "Бонус: Регистрация за минуту + бонус сразу после первого депозита. Честно и прозрачно — вейджер 35x",
+    "url": "https://rixdor.com/LKDhT1Dx",
+    "ctaLines": [
+      "Мин. депозит: 500 ₽",
+      "Стабильный вывод"
+    ],
+    "promo": null,
+    "payments": [
+      "card",
+      "sbp",
+      "crypto"
+    ],
+    "paymentsLabel": "Карта · СБП · Крипта",
+    "paymentsLabelEn": "Card · SBP · Crypto",
+    "withdrawMin": 30,
+    "license": "Кюрасао",
+    "reviews": 2140,
+    "bonusEn": "Bonus: one-minute registration + a bonus right after the first deposit. Fair and transparent — 35x wagering",
+    "badgesEn": [
+      "STABLE PAYOUTS"
+    ],
+    "ctaLinesEn": [
+      "Min. deposit: 500 ₽",
+      "Stable withdrawals"
+    ],
+    "promoCode": null,
+    "rtp": null,
+    "licenseFull": null,
+    "licenseShort": null,
+    "wager": 35,
+    "cashback": null,
+    "features": [],
+    "d8cats": []
+  },
+  {
+    "slug": "flagman",
+    "name": "Flagman Casino",
+    "rank": 12,
+    "top": false,
+    "gold": false,
+    "minDeposit": 1000,
+    "rating": 9.5,
+    "stars": "★★★★☆",
+    "ratingCnt": "/ 10.0 · 1 620 отзывов",
+    "badges": [],
+    "pills": [
+      {
+        "cls": "dep",
+        "text": "от 1 000 ₽"
+      },
+      {
+        "cls": "fast",
+        "text": "вывод от 30 мин"
+      },
+      {
+        "cls": "",
+        "text": "Карта · СБП"
+      },
+      {
+        "cls": "",
+        "text": "Лицензия Кюрасао"
+      }
+    ],
+    "bonus": "Бонус: Щедрый приветственный бонус за место в рейтинге — игроки выбирают за стабильность и репутацию",
+    "url": "https://jomvik.com/75pZq8xY",
+    "ctaLines": [
+      "Мин. депозит: 1 000 ₽",
+      "Стабильный вывод"
+    ],
+    "promo": null,
+    "payments": [
+      "card",
+      "sbp"
+    ],
+    "paymentsLabel": "Карта · СБП",
+    "paymentsLabelEn": "Card · SBP",
+    "withdrawMin": 30,
+    "license": "Кюрасао",
+    "reviews": 1620,
+    "bonusEn": "Bonus: a generous welcome bonus for a place in the rating — players pick it for stability and reputation",
+    "badgesEn": [],
+    "ctaLinesEn": [
+      "Min. deposit: 1 000 ₽",
+      "Stable withdrawals"
+    ],
+    "promoCode": null,
+    "rtp": 95.9,
+    "licenseFull": null,
+    "licenseShort": "Curacao #8302/JAZ",
+    "wager": 38,
+    "cashback": null,
+    "features": [
+      "Новое 2026",
+      "Крипто",
+      "Без паспорта",
+      "Быстрый вывод"
+    ],
+    "d8cats": [
+      "all",
+      "new2026",
+      "crypto",
+      "noverif"
+    ]
+  }
+]

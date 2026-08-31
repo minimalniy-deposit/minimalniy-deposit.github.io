@@ -1,0 +1,6 @@
+[
+  { "key": "sbp", "name": "СБП", "nameEn": "SBP", "time": "5–30 минут", "timeEn": "5–30 min", "limit": "до 100 000 ₽/сут", "limitEn": "up to 100,000 ₽/day" },
+  { "key": "card", "name": "Карты Мир", "nameEn": "MIR cards", "time": "15 мин – 2 часа", "timeEn": "15 min – 2 h", "limit": "до 200 000 ₽/сут", "limitEn": "up to 200,000 ₽/day" },
+  { "key": "crypto", "name": "Bitcoin / USDT", "nameEn": "Bitcoin / USDT", "time": "мгновенно", "timeEn": "instant", "limit": "без лимитов", "limitEn": "no limits" },
+  { "key": "ewallet", "name": "Электронный кошелёк", "nameEn": "E-wallet", "time": "15–60 минут", "timeEn": "15–60 min", "limit": "до 50 000 ₽/сут", "limitEn": "up to 50,000 ₽/day" }
+]

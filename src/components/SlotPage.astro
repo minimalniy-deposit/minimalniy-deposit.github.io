@@ -1,0 +1,53 @@
+---
+import Base from '../layouts/Base.astro';
+import site from '../data/site.json';
+import { similar, type Slot } from '../lib/slots';
+import { casinos } from '../lib/casinos';
+import { useT, fmt, localePath, formatMoney, type Locale } from '../i18n';
+interface Props { s: Slot; locale: Locale }
+const { s, locale } = Astro.props;
+const t = useT(locale); const ru = locale === 'ru';
+const home = localePath(locale, '/');
+const top = casinos[0];
+const sim = similar(s);
+const title = ru ? `${s.name} — демо-слот от ${s.provider}${s.rtp != null ? `, RTP ${s.rtp}%` : ''}` : `${s.name} — demo slot by ${s.provider}${s.rtp != null ? `, RTP ${s.rtp}%` : ''}`;
+const description = ru
+  ? `Бесплатная демо-версия ${s.name} (${s.provider}). ${s.rtp != null ? `RTP ${s.rtp}%` : ''}${s.volatility ? `, волатильность ${s.volatility}` : ''}${s.maxWin ? `, макс. выигрыш ${s.maxWin}` : ''}. Играть без регистрации.`
+  : `Free demo of ${s.name} (${s.provider}). ${s.rtp != null ? `RTP ${s.rtp}%` : ''}${s.volatility ? `, ${s.volatility} volatility` : ''}${s.maxWin ? `, max win ${s.maxWin}` : ''}. Play without registration.`;
+const url = new URL(localePath(locale, `/slots/${s.slug}/`), Astro.site).href;
+const ld = { '@context': 'https://schema.org', '@type': 'WebPage', name: title, url, description, inLanguage: locale, dateModified: site.lastVerified,
+  breadcrumb: { '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: t.casino.breadcrumbHome, item: new URL(home, Astro.site).href },
+    { '@type': 'ListItem', position: 2, name: t.slots.breadcrumb, item: new URL(localePath(locale, '/slots/'), Astro.site).href },
+    { '@type': 'ListItem', position: 3, name: s.name, item: url } ] } };
+---
+<Base {locale} path={`/slots/${s.slug}/`} {title} {description}>
+  <Fragment slot="head"><script type="application/ld+json" set:html={JSON.stringify(ld)} /></Fragment>
+  <div class="container">
+    <nav class="crumbs" aria-label="breadcrumb"><ol><li><a href={home}>{t.casino.breadcrumbHome}</a></li><li><a href={localePath(locale, '/slots/')}>{t.slots.breadcrumb}</a></li><li aria-current="page">{s.name}</li></ol></nav>
+    <div class="page-head"><span class="rank-chip">{s.provider}</span><h1>{s.name}</h1><p class="lede">{description}</p></div>
+
+    {s.demoUrl
+      ? <iframe class="demo-frame" src={s.demoUrl} title={`${s.name} demo`} loading="lazy" allow="fullscreen" sandbox="allow-scripts allow-same-origin allow-popups"></iframe>
+      : <div class="demo-empty">{t.slots.demoSoon}</div>}
+
+    <dl class="facts">
+      <div class="fact"><dt>{t.slots.provider}</dt><dd>{s.provider}</dd></div>
+      <div class="fact"><dt>{t.slots.rtp}</dt><dd class="gold">{s.rtp != null ? `${s.rtp}%` : t.slots.noData}</dd></div>
+      <div class="fact"><dt>{t.slots.volatility}</dt><dd>{s.volatility ?? t.slots.noData}</dd></div>
+      <div class="fact"><dt>{t.slots.maxWin}</dt><dd>{s.maxWin ?? t.slots.noData}</dd></div>
+    </dl>
+
+    <div class="cta-row">
+      <a href={top.url} rel="nofollow sponsored" target="_blank" class="btn-go">{t.slots.playReal}</a>
+      <span class="verified">{top.minDeposit != null ? fmt(t.slots.playRealNote, { dep: formatMoney(top.minDeposit) }) : (ru ? 'Ведёт на казино №1 рейтинга:' : 'Goes to the #1 casino in the rating:')} <a href={localePath(locale, `/casino/${top.slug}/`)}>{top.name}</a></span>
+    </div>
+
+    {sim.length > 0 && <section style="padding:16px 0 48px">
+      <h2 class="section-title" style="font-size:1.2rem">{t.slots.similar}</h2>
+      <div class="slot-grid">{sim.map((x) => (
+        <article class="slot-card"><div class="slot-body"><a class="slot-name" href={localePath(locale, `/slots/${x.slug}/`)}>{x.name}</a>
+          <div class="slot-meta"><span>{x.provider}</span>{x.rtp != null && <span>RTP <b>{x.rtp}%</b></span>}{x.maxWin && <span>max <b>{x.maxWin}</b></span>}</div></div></article>))}
+      </div></section>}
+  </div>
+</Base>

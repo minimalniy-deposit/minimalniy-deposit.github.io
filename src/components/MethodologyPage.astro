@@ -1,0 +1,91 @@
+---
+import Base from '../layouts/Base.astro';
+import site from '../data/site.json';
+import { casinos } from '../lib/casinos';
+import { useT, localePath, type Locale } from '../i18n';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = useT(locale);
+const ru = locale === 'ru';
+const home = localePath(locale, '/');
+const verifiedHuman = new Date(site.lastVerified).toLocaleDateString(ru ? 'ru-RU' : 'en-GB');
+const updatedHuman = new Date(site.contentUpdated).toLocaleDateString(ru ? 'ru-RU' : 'en-GB');
+const url = new URL(localePath(locale, '/methodology/'), Astro.site).href;
+const ld = {
+  '@context': 'https://schema.org', '@type': 'WebPage', name: t.methodology.title, url, description: t.methodology.metaDesc, inLanguage: locale, dateModified: site.lastVerified,
+  breadcrumb: { '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: t.casino.breadcrumbHome, item: new URL(home, Astro.site).href },
+    { '@type': 'ListItem', position: 2, name: t.methodology.h1, item: url },
+  ] },
+};
+---
+<Base {locale} path="/methodology/" title={t.methodology.title} description={t.methodology.metaDesc}>
+  <Fragment slot="head"><script type="application/ld+json" set:html={JSON.stringify(ld)} /></Fragment>
+  <div class="container">
+    <nav class="crumbs" aria-label="breadcrumb"><ol><li><a href={home}>{t.casino.breadcrumbHome}</a></li><li aria-current="page">{t.methodology.h1}</li></ol></nav>
+    <div class="page-head"><h1>{t.methodology.h1}</h1></div>
+
+    {ru ? (
+      <div class="prose" style="padding-bottom:48px">
+        <p>Рейтинг на главной — это список из {casinos.length} площадок, выстроенных по трём критериям. Здесь описано, как именно они применяются, что исключает площадку из списка и откуда берутся цифры в карточках.</p>
+
+        <h2>Три критерия отбора</h2>
+        <ol>
+          <li><strong>Скорость первого вывода через СБП.</strong> Целевой показатель — до 15 минут. В карточке это поле «вывод от N мин».</li>
+          <li><strong>Прозрачность бонусного вейджера.</strong> Не выше 40x за 7 дней, и условия должны быть написаны там, где их найдёт обычный игрок, а не спрятаны в правилах.</li>
+          <li><strong>Действующая лицензия.</strong> Кюрасао eGaming или MGA Мальты. Без лицензии площадка не рассматривается.</li>
+        </ol>
+
+        <h2>Что исключает из рейтинга</h2>
+        <ul>
+          <li>Вывод дольше 30 минут без объяснения причин.</li>
+          <li>Вейджер, скрытый в нечитаемом разделе правил.</li>
+          <li>Отсутствие подтверждаемой лицензии в футере сайта казино.</li>
+        </ul>
+
+        <h2>Откуда данные</h2>
+        <p>Минимальный депозит, скорость вывода, способы пополнения и условия бонуса берутся из кассы и правил самого казино. Для сверки используются материалы независимого портала <a href={site.source.url} rel="nofollow" target="_blank">don8play.ru</a>. Оценка в карточке — сводная, на основе этих же трёх критериев и отзывов игроков.</p>
+
+        <h2>Как это устроено технически</h2>
+        <p>Все цифры хранятся в одном файле данных. Из него собираются карточки на главной, страницы отдельных площадок и <a href={localePath(locale, '/methods/')}>таблица методов пополнения</a> — поэтому значение не может расходиться между разделами. Правка одной строки меняет все три места одновременно.</p>
+
+        <h2>Как часто проверяем</h2>
+        <p>Содержательное обновление рейтинга: <time datetime={site.contentUpdated}>{updatedHuman}</time>. Автоматическая сверка данных карточек запускается еженедельно; дата последней сверки — <time datetime={site.lastVerified}>{verifiedHuman}</time> — показана внизу каждой страницы. Если условия на стороне казино изменились раньше, чем прошла сверка, ориентируйтесь на кассу казино.</p>
+
+        <h2>Партнёрские ссылки и ответственная игра</h2>
+        <p>Кнопки «Играть» ведут по партнёрским ссылкам (помечены <code>rel="nofollow sponsored"</code>). Это не влияет на позицию площадки в рейтинге — критерии выше одинаковы для всех. Сайт предназначен только для лиц старше 18 лет; игра на деньги связана с риском потери средств. Если вы замечаете признаки игровой зависимости, обратитесь на горячую линию помощи игрокам.</p>
+      </div>
+    ) : (
+      <div class="prose" style="padding-bottom:48px">
+        <p>The rating on the home page is a list of {casinos.length} casinos ordered by three criteria. This page explains how they are applied, what excludes a casino, and where the numbers in the cards come from.</p>
+
+        <h2>Three selection criteria</h2>
+        <ol>
+          <li><strong>First-withdrawal speed via SBP.</strong> Target: under 15 minutes. In the card this is the "withdrawal from N min" field.</li>
+          <li><strong>Wagering transparency.</strong> No more than 40x within 7 days, and the terms must be where a regular player can find them, not buried in the rules.</li>
+          <li><strong>A valid licence.</strong> Curaçao eGaming or Malta's MGA. Unlicensed casinos are not considered.</li>
+        </ol>
+
+        <h2>What excludes a casino</h2>
+        <ul>
+          <li>Withdrawals taking longer than 30 minutes with no explanation.</li>
+          <li>Wagering terms hidden in an unreadable section of the rules.</li>
+          <li>No verifiable licence in the casino's footer.</li>
+        </ul>
+
+        <h2>Where the data comes from</h2>
+        <p>Minimum deposit, withdrawal speed, deposit methods and bonus terms are taken from each casino's cashier and rules, cross-checked against the independent portal <a href={site.source.url} rel="nofollow" target="_blank">don8play.ru</a>. The score in a card is a composite of these three criteria and player reviews.</p>
+
+        <h2>How it works technically</h2>
+        <p>All figures live in a single data file. The home-page cards, the individual casino pages and the <a href={localePath(locale, '/methods/')}>payment-methods table</a> are generated from it, so a value cannot diverge between sections. Editing one line updates all three places at once.</p>
+
+        <h2>How often we check</h2>
+        <p>Last content update of the rating: <time datetime={site.contentUpdated}>{updatedHuman}</time>. An automated data check runs weekly; the last check date — <time datetime={site.lastVerified}>{verifiedHuman}</time> — is shown at the bottom of every page. If a casino changed its terms before the check ran, trust the casino's cashier.</p>
+
+        <h2>Affiliate links and responsible gaming</h2>
+        <p>"Play" buttons are affiliate links (marked <code>rel="nofollow sponsored"</code>). This does not affect a casino's position — the criteria above are the same for everyone. This site is for adults 18+ only; playing for money carries a risk of losing funds. If you notice signs of gambling addiction, contact a gambling helpline.</p>
+      </div>
+    )}
+  </div>
+</Base>
