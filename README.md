@@ -1,1 +1,0 @@
-# minimalniy_deposit.github.io
