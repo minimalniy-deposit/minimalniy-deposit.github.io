@@ -93,7 +93,7 @@ const verifiedHuman = new Date(site.lastVerified).toLocaleDateString(locale === 
       <a href={localePath(locale, '/methodology/')}>{t.nav.methodology}</a>
     </div>
     <p>{t.footer.copy}</p>
-    <p style="margin-top:6px;font-size:.72rem">{locale === 'ru' ? `Обновлено: ${updated.dmy} · 18+ · Ответственная игра` : `Updated: ${updated.dmy} · 18+ · Responsible gaming`} · {t.footer.verified} <time datetime={site.lastVerified}>{verifiedHuman}</time></p>
+    <p style="margin-top:6px;font-size:.72rem">{locale === 'ru' ? `Обновлено ${updated.dmy} · 18+ · Ответственная игра` : `Updated: ${updated.dmy} · 18+ · Responsible gaming`} · {t.footer.verified} <time datetime={site.lastVerified}>{verifiedHuman}</time></p>
     <p style="margin-top:6px;font-size:.72rem">{t.footer.source} <a href={site.source.url} rel="nofollow" target="_blank" style="color:var(--muted)">{site.source.name}</a></p>
   </div>
 </footer>

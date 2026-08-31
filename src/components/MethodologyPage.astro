@@ -23,11 +23,11 @@ const minWager = Math.min(...wagers), maxWager = Math.max(...wagers);
 
 const weights: [string, number, string][] = ru
   ? [
-    ['Скорость первого вывода', 35, 'Замеряем от нажатия «Вывести» до зачисления на СБП. До 15 минут — полный балл, 30 минут — половина, больше часа без объяснения — площадка вылетает из списка, а не теряет баллы.'],
-    ['Честность бонуса', 25, 'Не размер, а условия: вейджер, срок, максимальная ставка при отыгрыше и порог вывода. Вейджер выше x40 или условия, спрятанные глубже двух кликов от кассы, обнуляют этот критерий.'],
-    ['Лицензия и софт', 20, 'Номер лицензии сверяем с реестром регулятора, а не с футером. Смотрим, запускаются ли слоты с сервера провайдера — подделки видно по адресу игрового фрейма.'],
-    ['Порог входа и касса', 10, 'Принимает ли касса 100 ₽ без «минимум 500 для бонуса» мелким шрифтом, есть ли СБП и карты Мир, не берёт ли комиссию на вывод мелких сумм.'],
-    ['Поддержка и мобильная версия', 10, 'Ответ в чате на русском за пять минут, лайв-столы на 4G, приложение или PWA без ошибок при пополнении с телефона.'],
+    ['Скорость первого вывода', 35, 'Отсчёт идёт от нажатия кнопки «Вывести» до поступления денег через СБП. До 15 минут — высший балл, около получаса — половина. Если ожидание превышает час, а поддержка не объясняет причину, площадка не теряет баллы, а покидает список.'],
+    ['Условия бонуса', 25, 'Оцениваем не размер, а условия: вейджер, срок отыгрыша, предельную ставку и порог вывода. Вейджер выше x40 или правила, до которых от кассы не добраться за два шага, обнуляют этот критерий.'],
+    ['Лицензия и игры', 20, 'Номер лицензии сверяем с реестром регулятора, а не с подвалом сайта. Проверяем, что слоты запускаются с серверов провайдера, — подделку выдаёт адрес, с которого загружается игра.'],
+    ['Порог входа и касса', 10, 'Принимает ли касса 100 рублей без оговорки «для бонуса — от 500» мелким шрифтом, работают ли СБП и карты «Мир», нет ли комиссии за вывод небольших сумм.'],
+    ['Поддержка и мобильная версия', 10, 'Ответ в чате на русском языке в течение пяти минут, столы с живыми дилерами в мобильной сети, пополнение с телефона без сбоев.'],
   ]
   : [
     ['First-withdrawal speed', 35, 'Measured from tapping "Withdraw" to money landing via SBP. Under 15 minutes scores full marks, 30 minutes half; over an hour with no explanation removes the casino from the list rather than costing points.'],
@@ -53,25 +53,25 @@ const ld = {
     <div class="page-head">
       <h1>{t.methodology.h1}</h1>
       <p class="lede">{ru
-        ? `Рейтинг — это не «кто больше платит за место», а таблица из ${n} площадок, отсортированная по формуле, которую можно проверить. Ниже — веса критериев, что мы делаем в день проверки и за что казино вылетает из списка.`
+        ? `Место в рейтинге нельзя купить: это таблица из ${n} площадок, упорядоченная по формуле, которую можно проверить. Ниже — вес каждого критерия, порядок проверки и причины, по которым казино покидает список.`
         : `The rating is not "who pays most for a slot" but a table of ${n} casinos sorted by a formula you can check. Below: the criteria weights, what we do on a check day, and what gets a casino removed.`}</p>
     </div>
 
     <div class="callouts">
-      <div class="callout"><b>{from100}</b> {ru ? `из ${n} площадок принимают 100 ₽` : `of ${n} casinos accept 100 ₽`}</div>
-      <div class="callout"><b>{fast15}</b> {ru ? 'выводят за 15 минут и быстрее' : 'pay out within 15 minutes'}</div>
-      <div class="callout"><b>x{minWager}–x{maxWager}</b> {ru ? 'разброс вейджера в рейтинге' : 'wagering range in the rating'}</div>
-      {bestRtp && <div class="callout"><b>{bestRtp.rtp!.toFixed(1)}%</b> {ru ? 'лучший заявленный RTP — ' : 'best declared RTP — '}<a href={localePath(locale, `/casino/${bestRtp.slug}/`)}>{bestRtp.name}</a></div>}
+      <div class="callout"><b>{from100}</b> {ru ? `из ${n} площадок принимают 100 рублей` : `of ${n} casinos accept 100 ₽`}</div>
+      <div class="callout"><b>{fast15}</b> {ru ? 'выплачивают не дольше 15 минут' : 'pay out within 15 minutes'}</div>
+      <div class="callout"><b>x{minWager}–x{maxWager}</b> {ru ? 'диапазон вейджера в рейтинге' : 'wagering range in the rating'}</div>
+      {bestRtp && <div class="callout"><b>{bestRtp.rtp!.toFixed(1)}%</b> {ru ? 'самый высокий заявленный RTP — ' : 'best declared RTP — '}<a href={localePath(locale, `/casino/${bestRtp.slug}/`)}>{bestRtp.name}</a></div>}
     </div>
 
     <div class="prose" style="padding-bottom:48px">
       <h2>{ru ? 'Из чего складывается оценка' : 'What makes up the score'}</h2>
       <p>{ru
-        ? 'Пять критериев с разными весами. Итог в карточке — взвешенная сумма по 10-балльной шкале, поэтому казино с щедрым бонусом, но медленным выводом никогда не обгонит скромное, но быстрое.'
+        ? 'Пять критериев, и у каждого свой вес. Оценка в карточке — взвешенная сумма по десятибалльной шкале. Поэтому казино с щедрым бонусом, но медленными выплатами не обгонит площадку со скромным бонусом и быстрым выводом.'
         : 'Five criteria with different weights. The score in a card is the weighted sum on a 10-point scale, so a casino with a generous bonus but slow payouts never overtakes a modest but fast one.'}</p>
       <div class="tbl-wrap">
         <table class="tbl">
-          <thead><tr><th>{ru ? 'Критерий' : 'Criterion'}</th><th>{ru ? 'Вес' : 'Weight'}</th><th>{ru ? 'Что именно проверяем' : 'What exactly we check'}</th></tr></thead>
+          <thead><tr><th>{ru ? 'Критерий' : 'Criterion'}</th><th>{ru ? 'Вес' : 'Weight'}</th><th>{ru ? 'Что проверяем' : 'What exactly we check'}</th></tr></thead>
           <tbody>{weights.map(([name, w, desc]) => <tr><td><b>{name}</b></td><td class="num"><b style="color:var(--gold)">{w}%</b></td><td style="white-space:normal;color:var(--muted);min-width:260px">{desc}</td></tr>)}</tbody>
         </table>
       </div>
@@ -79,62 +79,62 @@ const ld = {
       <h2>{ru ? 'Как проходит день проверки' : 'How a check day goes'}</h2>
       <ol>
         <li><strong>{ru ? 'Реестр регулятора.' : 'Regulator registry.'}</strong> {ru
-          ? 'Открываем сайт Curaçao eGaming, MGA или Anjouan и ищем номер из футера. Нет в реестре — дальше не идём.'
+          ? 'Открываем реестр Curaçao eGaming, MGA или Anjouan и ищем номер, указанный на сайте казино. Если номера в реестре нет, проверка на этом заканчивается.'
           : 'We open the Curaçao eGaming, MGA or Anjouan site and look up the number from the footer. Not in the registry — we stop here.'}</li>
-        <li><strong>{ru ? 'Депозит 100 ₽ с реального счёта.' : 'A real 100 ₽ deposit.'}</strong> {ru
-          ? 'Через СБП, с телефона. Смотрим, зачислилось ли за секунды, активировался ли бонус и не потребовала ли касса «минимум 500» задним числом.'
+        <li><strong>{ru ? 'Депозит в 100 рублей с реального счёта.' : 'A real 100 ₽ deposit.'}</strong> {ru
+          ? 'Пополняем через СБП с телефона. Смотрим, поступили ли деньги за секунды, включился ли бонус и не потребовала ли касса «минимум 500» уже после оплаты.'
           : 'Via SBP, from a phone. We check it lands in seconds, the bonus activates, and the cashier does not retroactively demand "minimum 500".'}</li>
         <li><strong>{ru ? 'Секундомер на выводе.' : 'A stopwatch on withdrawal.'}</strong> {ru
-          ? 'Заявка на вывод сразу после короткой сессии. Засекаем время до денег на счёте — именно эта цифра стоит в карточке в поле «вывод от N мин».'
+          ? 'Подаём заявку на вывод сразу после короткой игровой сессии и засекаем время до поступления денег. Эта цифра и стоит в карточке в графе «вывод от N минут».'
           : 'A withdrawal request right after a short session. We time it to the money arriving — that figure is the "withdrawal from N min" field in the card.'}</li>
-        <li><strong>{ru ? 'RTP по paytable провайдера.' : "RTP by the provider's paytable."}</strong> {ru
-          ? "Открываем два-три популярных слота и сверяем RTP в игре с официальным значением Pragmatic, NetEnt или Play'n GO. Урезанный RTP — красный флаг."
+        <li><strong>{ru ? 'RTP по данным провайдера.' : "RTP by the provider's paytable."}</strong> {ru
+          ? "Открываем два-три популярных слота и сверяем RTP в игре с официальным значением от Pragmatic Play, NetEnt или Play'n GO. Заниженный RTP — серьёзный повод для сомнений."
           : "We open two or three popular slots and compare in-game RTP with the official Pragmatic, NetEnt or Play'n GO value. A reduced RTP is a red flag."}</li>
-        <li><strong>{ru ? 'Правила бонуса — целиком.' : 'Bonus terms — in full.'}</strong> {ru
-          ? 'Считаем реальный оборот для вывода (сумма бонуса × вейджер), максимальную ставку при отыгрыше и что происходит с депозитом, если бонус отменить.'
+        <li><strong>{ru ? 'Правила бонуса — от первой до последней строки.' : 'Bonus terms — in full.'}</strong> {ru
+          ? 'Считаем реальный оборот, который нужен для вывода (сумма бонуса, умноженная на вейджер), смотрим предельную ставку при отыгрыше и что произойдёт с депозитом, если от бонуса отказаться.'
           : 'We compute the real turnover to withdraw (bonus × wagering), the max bet while wagering, and what happens to the deposit if the bonus is cancelled.'}</li>
       </ol>
 
-      <h2>{ru ? 'За что казино вылетает из рейтинга' : 'What gets a casino removed'}</h2>
+      <h2>{ru ? 'За что казино исключают из рейтинга' : 'What gets a casino removed'}</h2>
       <ul>
-        <li>{ru ? 'Вывод дольше часа без ответа поддержки о причине.' : 'A withdrawal taking over an hour with no explanation from support.'}</li>
-        <li>{ru ? 'Вейджер выше x40 или условия, которые нельзя найти за два клика от кассы.' : 'Wagering above 40x, or terms not findable within two clicks of the cashier.'}</li>
-        <li>{ru ? 'Номер лицензии, которого нет в реестре, или подмена игрового фрейма.' : 'A licence number missing from the registry, or a swapped game frame.'}</li>
-        <li>{ru ? 'Верификация, запрошенная при первом выводе до 5 000 ₽.' : 'Verification demanded on a first withdrawal under 5,000 ₽.'}</li>
+        <li>{ru ? 'Ожидание выплаты дольше часа, при этом поддержка не называет причину.' : 'A withdrawal taking over an hour with no explanation from support.'}</li>
+        <li>{ru ? 'Вейджер выше x40 или условия бонуса, до которых от кассы не добраться за два шага.' : 'Wagering above 40x, or terms not findable within two clicks of the cashier.'}</li>
+        <li>{ru ? 'Номер лицензии, которого нет в реестре регулятора, или игры, запущенные не с серверов провайдера.' : 'A licence number missing from the registry, or a swapped game frame.'}</li>
+        <li>{ru ? 'Требование верификации при первом выводе суммы до 5 000 рублей.' : 'Verification demanded on a first withdrawal under 5,000 ₽.'}</li>
       </ul>
       <p>{ru
-        ? 'Исключение — не «минус балл», а удаление из списка до следующей проверки. Поэтому в рейтинге нет площадок с оценкой ниже 9: всё, что не прошло порог, не показывается вовсе.'
+        ? 'Исключение — это не «минус балл», а удаление из списка до следующей проверки. Поэтому в рейтинге нет площадок с оценкой ниже девяти: то, что не прошло порог, в него просто не попадает.'
         : 'Removal is not "minus a point" but deletion from the list until the next check. That is why no casino in the rating scores below 9: anything that fails the threshold is not shown at all.'}</p>
 
-      <h2>{ru ? 'Откуда цифры и почему они не расходятся' : 'Where the numbers come from and why they never diverge'}</h2>
+      <h2>{ru ? 'Откуда берутся цифры' : 'Where the numbers come from and why they never diverge'}</h2>
       <p>{ru
-        ? 'Все значения — минимальный депозит, минуты на вывод, вейджер, RTP, номер лицензии — живут в одном файле данных. Из него собираются карточки на главной, страницы площадок, '
+        ? 'Минимальный депозит, время вывода, вейджер, RTP, номер лицензии — все эти значения хранятся в одном месте. Из него формируются карточки на главной странице, страницы площадок, '
         : 'Every value — minimum deposit, withdrawal minutes, wagering, RTP, licence number — lives in one data file. The home-page cards, the casino pages, the '}<a href={localePath(locale, '/methods/')}>{ru ? 'таблица методов' : 'methods table'}</a>{ru ? ' и ' : ' and the '}<a href={localePath(locale, '/glossary/')}>{ru ? 'словарь' : 'glossary'}</a>{ru
-        ? '. Одна правка меняет все страницы сразу, поэтому на сайте не бывает «в карточке 100 ₽, а в таблице 500».'
+        ? '. Любое изменение сразу отражается во всех разделах, поэтому на сайте не бывает расхождений вроде «в карточке 100 рублей, а в таблице 500».'
         : ' are generated from it. One edit changes every page at once, so the site never has "100 ₽ in the card but 500 in the table".'}</p>
       <p>{ru
         ? 'Для сверки используем материалы независимого портала '
         : 'For cross-checks we use the independent portal '}<a href={site.source.url} rel="nofollow" target="_blank">don8play.ru</a>{ru
-        ? ' — оттуда взяты номера лицензий и заявленный RTP там, где казино не публикует их прямо в кассе.'
+        ? ': оттуда взяты номера лицензий и заявленный RTP в тех случаях, когда казино не публикует их у себя.'
         : ' — licence numbers and declared RTP come from there where a casino does not publish them in its cashier.'}</p>
 
       <h2>{ru ? 'Как часто проверяем' : 'How often we check'}</h2>
       <p>{ru
-        ? 'Содержательное обновление — когда меняются условия или состав списка; последнее: '
+        ? 'Содержательное обновление выходит, когда меняются условия или состав списка. Последнее: '
         : 'A content update happens when terms or the line-up change; the latest: '}<time datetime={site.contentUpdated}>{updatedHuman}</time>{ru
-        ? '. Автоматическая сверка данных карточек запускается каждый понедельник; дата последней — '
+        ? '. Сверка условий в карточках проходит каждый понедельник, дата последней — '
         : '. An automated data check runs every Monday; the latest — '}<time datetime={site.lastVerified}>{verifiedHuman}</time>{ru
-        ? ' — стоит внизу каждой страницы. Если касса казино говорит одно, а карточка другое, правы касса и ваш скриншот: напишите нам, исправим в ближайшую проверку.'
+        ? ' — указана внизу каждой страницы. Если касса казино показывает одно, а карточка — другое, верить следует кассе: сообщите нам, и мы исправим карточку при ближайшей сверке.'
         : " — is at the bottom of every page. If a casino's cashier says one thing and the card another, the cashier and your screenshot are right: tell us and we fix it at the next check."}</p>
 
-      <h2>{ru ? 'Партнёрские ссылки и честный ответ про деньги' : 'Affiliate links and the honest answer about money'}</h2>
+      <h2>{ru ? 'Партнёрские ссылки' : 'Affiliate links and the honest answer about money'}</h2>
       <p>{ru
-        ? 'Кнопки «Играть» ведут по партнёрским ссылкам с пометкой '
-        : '"Play" buttons are affiliate links marked '}<code>rel="nofollow sponsored"</code>{ru
-        ? '. Мы получаем вознаграждение, если вы регистрируетесь и вносите депозит. Это не влияет на позицию: веса выше одинаковы для всех, а площадка с самым большим вознаграждением может стоять на последнем месте — или не стоять вовсе.'
+        ? 'Кнопки «Играть» ведут по партнёрским ссылкам'
+        : '"Play" buttons are affiliate links marked '}{!ru && <code>rel="nofollow sponsored"</code>}{ru
+        ? '. Если вы регистрируетесь и вносите депозит, мы получаем вознаграждение от казино. На место в рейтинге это не влияет: критерии и веса одинаковы для всех, и площадка с самым щедрым вознаграждением может оказаться последней — или не попасть в список вовсе.'
         : '. We are paid if you sign up and deposit. This does not affect position: the weights above are the same for everyone, and the casino paying the most can be last — or absent.'}</p>
       <p>{ru
-        ? 'Сайт предназначен только для лиц старше 18 лет; игра на деньги связана с риском потери средств. Если замечаете признаки зависимости, обратитесь на горячую линию помощи игрокам и поставьте лимиты в настройках аккаунта казино — они есть у всех площадок рейтинга.'
+        ? 'Сайт предназначен только для совершеннолетних. Игра на деньги связана с риском потери средств. Если вы замечаете у себя признаки зависимости, обратитесь на горячую линию помощи игрокам и установите лимиты в настройках аккаунта — такая возможность есть у всех площадок рейтинга.'
         : 'This site is for adults 18+ only; playing for money carries a risk of losing funds. If you notice signs of addiction, contact a gambling helpline and set limits in your casino account — every casino in the rating has them.'}</p>
     </div>
   </div>

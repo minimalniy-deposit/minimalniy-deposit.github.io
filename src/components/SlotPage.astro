@@ -10,9 +10,9 @@ const t = useT(locale); const ru = locale === 'ru';
 const home = localePath(locale, '/');
 const top = casinos[0];
 const sim = similar(s);
-const title = ru ? `${s.name} — демо-слот от ${s.provider}${s.rtp != null ? `, RTP ${s.rtp}%` : ''}` : `${s.name} — demo slot by ${s.provider}${s.rtp != null ? `, RTP ${s.rtp}%` : ''}`;
+const title = ru ? `${s.name}: демоверсия слота от ${s.provider}${s.rtp != null ? `, RTP ${s.rtp}%` : ''}` : `${s.name} — demo slot by ${s.provider}${s.rtp != null ? `, RTP ${s.rtp}%` : ''}`;
 const description = ru
-  ? `Бесплатная демо-версия ${s.name} (${s.provider}). ${s.rtp != null ? `RTP ${s.rtp}%` : ''}${s.volatility ? `, волатильность ${s.volatility}` : ''}${s.maxWin ? `, макс. выигрыш ${s.maxWin}` : ''}. Играть без регистрации.`
+  ? `Бесплатная демоверсия слота ${s.name} от ${s.provider}${s.rtp != null ? `: RTP ${s.rtp}%` : ''}${s.volatility ? `, волатильность — ${s.volatility}` : ''}${s.maxWin ? `, максимальный выигрыш — ${s.maxWin}` : ''}. Играть можно без регистрации.`
   : `Free demo of ${s.name} (${s.provider}). ${s.rtp != null ? `RTP ${s.rtp}%` : ''}${s.volatility ? `, ${s.volatility} volatility` : ''}${s.maxWin ? `, max win ${s.maxWin}` : ''}. Play without registration.`;
 const url = new URL(localePath(locale, `/slots/${s.slug}/`), Astro.site).href;
 const ld = { '@context': 'https://schema.org', '@type': 'WebPage', name: title, url, description, inLanguage: locale, dateModified: site.lastVerified,
@@ -40,7 +40,7 @@ const ld = { '@context': 'https://schema.org', '@type': 'WebPage', name: title, 
 
     <div class="cta-row">
       <a href={top.url} rel="nofollow sponsored" target="_blank" class="btn-go">{t.slots.playReal}</a>
-      <span class="verified">{top.minDeposit != null ? fmt(t.slots.playRealNote, { dep: formatMoney(top.minDeposit) }) : (ru ? 'Ведёт на казино №1 рейтинга:' : 'Goes to the #1 casino in the rating:')} <a href={localePath(locale, `/casino/${top.slug}/`)}>{top.name}</a></span>
+      <span class="verified">{top.minDeposit != null ? fmt(t.slots.playRealNote, { dep: formatMoney(top.minDeposit) }) : (ru ? 'Ссылка ведёт на первое казино рейтинга:' : 'Goes to the #1 casino in the rating:')} <a href={localePath(locale, `/casino/${top.slug}/`)}>{top.name}</a></span>
     </div>
 
     {sim.length > 0 && <section style="padding:16px 0 48px">

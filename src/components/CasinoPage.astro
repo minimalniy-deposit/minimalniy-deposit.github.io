@@ -35,11 +35,11 @@ const g = (slug: string) => localePath(locale, '/glossary/') + '#' + slug;
 
 const full = c.minDeposit != null && c.withdrawMin != null;
 const title = ru
-  ? (full ? `${c.name} — минимальный депозит ${formatMoney(c.minDeposit!)}, вывод от ${c.withdrawMin} мин, ${c.rank}-е место в рейтинге 2026` : `${c.name} — ${c.rank}-е место в рейтинге казино с минимальным депозитом 2026`)
+  ? (full ? `${c.name}: минимальный депозит ${formatMoney(c.minDeposit!)}, вывод от ${c.withdrawMin} минут — ${c.rank}-е место в рейтинге 2026 года` : `${c.name} — ${c.rank}-е место в рейтинге казино с минимальным депозитом 2026 года`)
   : (full ? `${c.name} — minimum deposit ${formatMoney(c.minDeposit!)}, withdrawal from ${c.withdrawMin} min, #${c.rank} in the 2026 rating` : `${c.name} — #${c.rank} in the 2026 minimum-deposit casino rating`);
 const bonusText = (ru ? c.bonus : c.bonusEn)?.replace(/<[^>]+>/g, '');
 const description = ru
-  ? [full ? `${c.name}: депозит от ${formatMoney(c.minDeposit!)} через ${payLabel}, вывод от ${c.withdrawMin} минут, лицензия ${c.licenseShort ?? licenseLabel}` : `${c.name}: лицензия ${licenseLabel}, ${c.rank}-е место в рейтинге`, c.rating != null ? `Оценка ${c.rating.toFixed(1)}/10` : null, bonusText].filter(Boolean).join('. ') + '.'
+  ? [full ? `${c.name} принимает депозит от ${formatMoney(c.minDeposit!)} (${payLabel}) и выплачивает выигрыш в среднем за ${c.withdrawMin} минут; лицензия ${c.licenseShort ?? licenseLabel}` : `${c.name} работает по лицензии ${licenseLabel} и занимает ${c.rank}-е место в рейтинге`, c.rating != null ? `Оценка — ${c.rating.toFixed(1)} из 10` : null, bonusText].filter(Boolean).join('. ') + '.'
   : [full ? `${c.name}: deposit from ${formatMoney(c.minDeposit!)} via ${payLabel}, withdrawal from ${c.withdrawMin} minutes, ${c.licenseShort ?? licenseLabel} licence` : `${c.name}: ${licenseLabel} licence, #${c.rank} in the rating`, c.rating != null ? `Score ${c.rating.toFixed(1)}/10` : null, bonusText].filter(Boolean).join('. ') + '.';
 
 const pageUrl = new URL(localePath(locale, `/casino/${c.slug}/`), Astro.site).href;
@@ -136,7 +136,7 @@ const verifiedHuman = new Date(site.lastVerified).toLocaleDateString(ru ? 'ru-RU
     </section>
 
     <div class="disclaimer" style="margin-bottom:48px" set:html={ru
-      ? '<strong>⚠️ Важно:</strong> Азартные игры предназначены только для лиц старше 18 лет. Игра на деньги сопряжена с риском финансовых потерь. Все ссылки на казино являются партнёрскими (rel="nofollow sponsored"). Данный сайт не несёт ответственности за действия третьих лиц. Если вы ощущаете признаки игровой зависимости — обратитесь на горячую линию помощи игрокам. Материал носит информационный характер и не является офертой или рекламой.'
+      ? '<strong>Важно.</strong> Азартные игры предназначены только для совершеннолетних. Игра на деньги связана с риском финансовых потерь. Ссылки на казино — партнёрские: если вы регистрируетесь по ним, сайт получает вознаграждение. За действия операторов сайт ответственности не несёт. Если вы замечаете у себя признаки игровой зависимости, обратитесь на горячую линию помощи игрокам. Материал носит справочный характер и не является офертой или рекламой.'
       : '<strong>⚠️ Important:</strong> Gambling is for adults 18+ only. Playing for money carries a risk of financial loss. All casino links are affiliate links (rel="nofollow sponsored"). This site is not responsible for the actions of third parties. If you notice signs of gambling addiction, contact a gambling helpline. This material is informational and is not an offer or advertisement.'} />
   </div>
 </Base>

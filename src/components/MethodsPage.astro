@@ -68,7 +68,7 @@ const ld = {
     <p class="section-sub" style="margin-top:10px">{t.methods.note}</p>
 
     <h2 class="section-title" style="font-size:1.2rem;margin-top:32px">{t.facts2.limits}</h2>
-    <div class="tbl-wrap"><table class="tbl"><thead><tr><th>{ru ? 'Метод' : 'Method'}</th><th>{ru ? 'Скорость вывода' : 'Withdrawal speed'}</th><th>{ru ? 'Лимит' : 'Limit'}</th></tr></thead>
+    <div class="tbl-wrap"><table class="tbl"><thead><tr><th>{ru ? 'Способ' : 'Method'}</th><th>{ru ? 'Скорость вывода' : 'Withdrawal speed'}</th><th>{ru ? 'Лимит в сутки' : 'Limit'}</th></tr></thead>
       <tbody>{limits.map((l) => <tr><td>{ru ? l.name : l.nameEn}</td><td>{ru ? l.time : l.timeEn}</td><td>{ru ? l.limit : l.limitEn}</td></tr>)}</tbody></table></div>
     <p class="section-sub" style="margin-top:10px">{t.facts2.limitsNote}</p>
 
@@ -84,11 +84,11 @@ const ld = {
 
     {ru && (
       <section style="padding:32px 0 48px">
-        <h2 class="section-title" style="font-size:1.2rem">Скорость по типу метода</h2>
+        <h2 class="section-title" style="font-size:1.2rem">Скорость по типу способа</h2>
         <div class="method-groups">
           {methods.map((m) => <div class="method-group"><h3>{m.icon} {m.name}</h3><p class="section-sub" style="margin:0">{m.speed}</p></div>)}
         </div>
-        <p style="margin-top:16px;font-size:.9rem"><a href={home + '#methods'}>Подробные описания методов — на главной →</a></p>
+        <p style="margin-top:16px;font-size:.9rem"><a href={home + '#methods'}>Подробнее о каждом способе — на главной странице →</a></p>
       </section>
     )}
     {!ru && <p style="padding:24px 0 48px"><a href={home + '#rating'}>{t.casino.backToRating}</a></p>}

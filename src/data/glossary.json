@@ -1,38 +1,86 @@
 [
-  { "slug": "rtp", "term": "Пэйаут / RTP", "termEn": "Payout / RTP",
-    "def": "Доля ставок, которая в долгой перспективе возвращается игрокам. Нормой считается 95–98%; при маленьком депозите разница между 95% и 97% заметна быстрее, потому что банкролл короче.",
-    "defEn": "The share of bets returned to players over the long run. 95–98% is the norm; with a small deposit the gap between 95% and 97% shows sooner because the bankroll is shorter." },
-  { "slug": "wager", "term": "Вейджер / отыгрыш", "termEn": "Wagering requirement",
-    "def": "Множитель, на который нужно прокрутить бонус до вывода. Вейджер x35 при бонусе 200 ₽ означает 7 000 ₽ ставок. Чем ниже вейджер, тем реальнее вывести бонус с минимального депозита.",
-    "defEn": "The multiplier a bonus must be played through before withdrawal. 35x on a 200 ₽ bonus means 7,000 ₽ in bets. The lower the wager, the more realistic cashing out a bonus from a minimum deposit is." },
-  { "slug": "min-deposit", "term": "Лимит пополнения / порог входа", "termEn": "Minimum deposit",
-    "def": "Наименьшая сумма, которую казино принимает одним платежом. Именно по этому полю строится наш рейтинг: от 100 ₽ у большинства площадок, от 500–1 000 ₽ у остальных.",
-    "defEn": "The smallest amount a casino accepts in one payment. Our rating is built around this field: from 100 ₽ at most casinos, from 500–1,000 ₽ at the rest." },
-  { "slug": "low-roller", "term": "Лоу-роллер", "termEn": "Low roller",
-    "def": "Игрок с минимальными ставками и микродепозитами. Для лоу-роллера важнее не размер бонуса, а вейджер, скорость вывода и то, принимает ли касса 100 ₽.",
-    "defEn": "A player who bets small and deposits little. For a low roller the wager, withdrawal speed and whether the cashier takes 100 ₽ matter more than the bonus size." },
-  { "slug": "cashback", "term": "Кэшбэк", "termEn": "Cashback",
-    "def": "Возврат части проигрыша за период, обычно за неделю. «Без вейджера» означает, что возврат сразу доступен к выводу — это самый честный вариант.",
-    "defEn": "A refund of part of your losses over a period, usually a week. \"Wager-free\" means the refund can be withdrawn immediately — the fairest variant." },
-  { "slug": "reload", "term": "Релоад-бонус", "termEn": "Reload bonus",
-    "def": "Бонус за повторное пополнение, а не за первое. Обычно 25–50% по определённым дням недели.",
-    "defEn": "A bonus on a repeat deposit rather than the first one. Usually 25–50% on certain days of the week." },
-  { "slug": "sticky", "term": "Sticky-бонус", "termEn": "Sticky bonus",
-    "def": "«Залипающий» бонус: сам он не выводится, но выигрыш с него после отыгрыша становится реальными деньгами.",
-    "defEn": "A bonus that cannot itself be withdrawn; winnings made with it become real money after wagering." },
-  { "slug": "sbp", "term": "СБП", "termEn": "SBP (Faster Payments System)",
-    "def": "Система быстрых платежей: пополнение за секунды по QR-коду, вывод обратно в тот же банк за 10–30 минут. Самый быстрый рублёвый метод в нашей таблице.",
-    "defEn": "Russia's Faster Payments System: deposits in seconds via QR code, withdrawals back to the same bank in 10–30 minutes. The fastest rouble method in our table." },
-  { "slug": "kyc", "term": "Верификация / KYC", "termEn": "Verification / KYC",
-    "def": "Подтверждение личности перед выводом крупных сумм. При игре с минимальным депозитом обычно не требуется: первые выводы до 15 000–50 000 ₽ проходят без документов.",
-    "defEn": "Identity confirmation before withdrawing large sums. Rarely needed when playing with a minimum deposit: first withdrawals up to 15,000–50,000 ₽ usually go through without documents." },
-  { "slug": "processing", "term": "Processing-время", "termEn": "Processing time",
-    "def": "Сколько оператор рассматривает заявку на вывод до отправки денег. Именно оно, а не банк, отличает «вывод от 10 мин» от «1–3 дня».",
-    "defEn": "How long the operator reviews a withdrawal request before sending the money. This, not the bank, is what separates \"withdrawal from 10 min\" from \"1–3 days\"." },
-  { "slug": "volatility", "term": "Волатильность слота", "termEn": "Slot volatility",
-    "def": "Как часто и как крупно платит слот. Низкая — частые мелкие выигрыши, длинная сессия; высокая — редкие крупные. С маленьким депозитом безопаснее низкая и средняя.",
-    "defEn": "How often and how big a slot pays. Low — frequent small wins, long sessions; high — rare big ones. With a small deposit, low and medium are safer." },
-  { "slug": "free-spins", "term": "Фриспины (FS)", "termEn": "Free spins (FS)",
-    "def": "Бесплатные вращения на конкретном слоте по фиксированной ставке. Выигрыш с них почти всегда идёт под вейджер.",
-    "defEn": "Free spins on a specific slot at a fixed bet. Winnings from them almost always carry a wagering requirement." }
+  {
+    "slug": "rtp",
+    "term": "Пэйаут / RTP",
+    "termEn": "Payout / RTP",
+    "def": "Доля ставок, которую слот в долгой перспективе возвращает игрокам. Нормой считаются 95–98%. При небольшом депозите разница между 95 и 97% проявляется быстрее: банкролл короче, и каждый процент на счету.",
+    "defEn": "The share of bets returned to players over the long run. 95–98% is the norm; with a small deposit the gap between 95% and 97% shows sooner because the bankroll is shorter."
+  },
+  {
+    "slug": "wager",
+    "term": "Вейджер / отыгрыш",
+    "termEn": "Wagering requirement",
+    "def": "Множитель, на который нужно прокрутить бонус, прежде чем его можно будет вывести. При бонусе 200 рублей и вейджере x35 придётся сделать ставок на 7 000 рублей. Чем ниже вейджер, тем реальнее вывести бонус с минимального депозита.",
+    "defEn": "The multiplier a bonus must be played through before withdrawal. 35x on a 200 ₽ bonus means 7,000 ₽ in bets. The lower the wager, the more realistic cashing out a bonus from a minimum deposit is."
+  },
+  {
+    "slug": "min-deposit",
+    "term": "Лимит пополнения / порог входа",
+    "termEn": "Minimum deposit",
+    "def": "Наименьшая сумма, которую казино принимает одним платежом. Именно по этому показателю построен рейтинг: у большинства площадок порог — 100 рублей, у остальных — от 500 до 1 000.",
+    "defEn": "The smallest amount a casino accepts in one payment. Our rating is built around this field: from 100 ₽ at most casinos, from 500–1,000 ₽ at the rest."
+  },
+  {
+    "slug": "low-roller",
+    "term": "Лоу-роллер",
+    "termEn": "Low roller",
+    "def": "Игрок, который делает небольшие ставки и вносит небольшие суммы. Для него важнее не размер бонуса, а вейджер, скорость вывода и то, примет ли касса 100 рублей.",
+    "defEn": "A player who bets small and deposits little. For a low roller the wager, withdrawal speed and whether the cashier takes 100 ₽ matter more than the bonus size."
+  },
+  {
+    "slug": "cashback",
+    "term": "Кэшбэк",
+    "termEn": "Cashback",
+    "def": "Возврат части проигрыша за период, обычно за неделю. Кешбэк «без вейджера» можно вывести сразу — это самый выгодный для игрока вариант.",
+    "defEn": "A refund of part of your losses over a period, usually a week. \"Wager-free\" means the refund can be withdrawn immediately — the fairest variant."
+  },
+  {
+    "slug": "reload",
+    "term": "Релоад-бонус",
+    "termEn": "Reload bonus",
+    "def": "Бонус за повторное пополнение, а не за первое. Как правило, 25–50% от суммы в определённые дни недели.",
+    "defEn": "A bonus on a repeat deposit rather than the first one. Usually 25–50% on certain days of the week."
+  },
+  {
+    "slug": "sticky",
+    "term": "Sticky-бонус",
+    "termEn": "Sticky bonus",
+    "def": "«Прилипающий» бонус: сам он не выводится, но выигрыш с него после отыгрыша становится реальными деньгами.",
+    "defEn": "A bonus that cannot itself be withdrawn; winnings made with it become real money after wagering."
+  },
+  {
+    "slug": "sbp",
+    "term": "СБП",
+    "termEn": "SBP (Faster Payments System)",
+    "def": "Система быстрых платежей: пополнение за секунды по QR-коду, вывод обратно в тот же банк за 10–30 минут. Самый быстрый рублёвый способ в нашей таблице.",
+    "defEn": "Russia's Faster Payments System: deposits in seconds via QR code, withdrawals back to the same bank in 10–30 minutes. The fastest rouble method in our table."
+  },
+  {
+    "slug": "kyc",
+    "term": "Верификация / KYC",
+    "termEn": "Verification / KYC",
+    "def": "Подтверждение личности перед выводом крупной суммы. При игре с минимальным депозитом обычно не требуется: первые выводы до 15 000–50 000 рублей проходят без документов.",
+    "defEn": "Identity confirmation before withdrawing large sums. Rarely needed when playing with a minimum deposit: first withdrawals up to 15,000–50,000 ₽ usually go through without documents."
+  },
+  {
+    "slug": "processing",
+    "term": "Processing-время",
+    "termEn": "Processing time",
+    "def": "Время, за которое оператор рассматривает заявку на вывод, прежде чем отправить деньги. Именно оно, а не банк, отличает «вывод от 10 минут» от «одного–трёх дней».",
+    "defEn": "How long the operator reviews a withdrawal request before sending the money. This, not the bank, is what separates \"withdrawal from 10 min\" from \"1–3 days\"."
+  },
+  {
+    "slug": "volatility",
+    "term": "Волатильность слота",
+    "termEn": "Slot volatility",
+    "def": "Как часто и как крупно платит слот. При низкой волатильности выигрыши частые и небольшие, сессия долгая; при высокой — редкие и крупные. С небольшим депозитом безопаснее низкая и средняя.",
+    "defEn": "How often and how big a slot pays. Low — frequent small wins, long sessions; high — rare big ones. With a small deposit, low and medium are safer."
+  },
+  {
+    "slug": "free-spins",
+    "term": "Фриспины (FS)",
+    "termEn": "Free spins (FS)",
+    "def": "Бесплатные вращения на определённом слоте с фиксированной ставкой. Выигрыш с них почти всегда подпадает под вейджер.",
+    "defEn": "Free spins on a specific slot at a fixed bet. Winnings from them almost always carry a wagering requirement."
+  }
 ]
