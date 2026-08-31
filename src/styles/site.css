@@ -131,3 +131,18 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; }
 .demo-wrap .demo-note { position: absolute; bottom: 10px; z-index: 1; font-size: .75rem; color: var(--muted); }
 .demo-wrap.playing::before, .demo-wrap.playing .demo-start, .demo-wrap.playing .demo-note { display: none; }
 .demo-wrap.playing .demo-frame { visibility: visible; }
+
+/* Hero backdrop: frosted-glass artwork, warm side for RU, cool side for EN.
+   Gradient fades into --bg so the seam with the page is invisible. */
+.hero {
+  background:
+    linear-gradient(180deg, rgba(13,17,23,.78) 0%, rgba(13,17,23,.62) 45%, var(--bg) 96%),
+    var(--bg) url(/img/hero-bg.webp) no-repeat;
+  background-size: auto, cover;
+  background-position: center, left 38%;
+}
+html[lang="en"] .hero { background-position: center, right 38%; }
+@media (max-width: 720px) {
+  .hero { background-image: linear-gradient(180deg, rgba(13,17,23,.8) 0%, rgba(13,17,23,.66) 45%, var(--bg) 96%), url(/img/hero-bg-m.webp); }
+}
+@media (prefers-reduced-data: reduce) { .hero { background-image: none; } }

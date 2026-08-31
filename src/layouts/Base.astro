@@ -45,6 +45,10 @@ const verifiedHuman = new Date(site.lastVerified).toLocaleDateString(locale === 
 <meta property="og:type" content="website">
 <meta property="og:url" content={url}>
 <meta property="og:locale" content={locale === 'ru' ? 'ru_RU' : 'en_US'}>
+<meta property="og:image" content={new URL(locale === 'ru' ? '/img/og-ru.jpg' : '/img/og-en.jpg', Astro.site).href}>
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0d1117">
 <meta name="google-site-verification" content="B4wbvtosJqPbtLJHawxrKPE5A9w1ORhppvNccsXIf5I" />
 <meta name="yandex-verification" content="4e519904d8845bcc" />
