@@ -1,1 +1,12 @@
-{ "date": null, "cbrDate": null, "usd": null, "eur": null, "usdt": null, "btc": null, "sources": [] }
+{
+  "date": "2026-08-31",
+  "cbrDate": "2026-09-01",
+  "usd": 86.3793,
+  "eur": 100.5714,
+  "usdt": 86.28,
+  "btc": 6768882,
+  "sources": [
+    "ЦБ РФ (cbr-xml-daily.ru)",
+    "CoinGecko"
+  ]
+}
