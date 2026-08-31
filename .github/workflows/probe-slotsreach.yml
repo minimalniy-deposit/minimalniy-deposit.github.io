@@ -1,11 +1,13 @@
 name: Probe SlotsReach API
-on: { workflow_dispatch: {} }
+on:
+  workflow_dispatch:
 jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
       - name: Try candidate endpoints
-        env: { KEY: ${{ secrets.SLOTSREACH_API_KEY }} }
+        env:
+          KEY: ${{ secrets.SLOTSREACH_API_KEY }}
         run: |
           try() { # $1=url $2=auth-mode
             case "$2" in
