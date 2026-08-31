@@ -4,7 +4,7 @@
   "logoSuffix": ".рейтинг",
   "updated": "Обновлено: май 2026",
   "nav": {
-    "rating": "Рейтинг ТОП-10",
+    "rating": "Рейтинг ТОП-12",
     "methods": "Методы пополнения",
     "howto": "Как выбрать",
     "faq": "FAQ",
@@ -28,7 +28,7 @@
   },
   "casino": {
     "breadcrumbHome": "Главная",
-    "breadcrumbRating": "Рейтинг ТОП-10",
+    "breadcrumbRating": "Рейтинг ТОП-12",
     "rankIn": "Место в рейтинге",
     "of10": "из {n}",
     "facts": "Ключевые условия",
