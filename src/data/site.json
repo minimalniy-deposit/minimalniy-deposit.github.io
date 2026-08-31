@@ -2,9 +2,12 @@
   "domain": "minimalniy-deposit.github.io",
   "lastVerified": "2026-08-31",
   "contentUpdated": "2026-08-31",
-  "metrikaId": "109239629",
   "source": {
     "name": "don8play.ru — рейтинг казино с минимальным депозитом",
     "url": "https://www.don8play.ru/ratings/minimalny-depozit/"
-  }
+  },
+  "metrikaIds": [
+    "109239629",
+    "112115015"
+  ]
 }
