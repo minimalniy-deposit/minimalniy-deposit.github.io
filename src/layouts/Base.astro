@@ -51,7 +51,7 @@ const verifiedHuman = new Date(site.lastVerified).toLocaleDateString(locale === 
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <slot name="head" />
 <script type="speculationrules" set:html={JSON.stringify({
-  prerender: [{ where: { and: [{ href_matches: '/*' }, { not: { selector_matches: '[rel~=sponsored]' } }] }, eagerness: 'moderate' }],
+  prerender: [{ where: { and: [{ href_matches: '/*' }, { not: { selector_matches: '[target=_blank]' } }] }, eagerness: 'moderate' }],
 })}></script>
 </head>
 <body>

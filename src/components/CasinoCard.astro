@@ -37,7 +37,7 @@ const detailsHref = localePath(locale, `/casino/${c.slug}/`);
     {bonus && <div class="card-bonus" set:html={bonus} />}
   </div>
   <div class="card-cta">
-    <a href={c.url} rel="nofollow sponsored" target="_blank" class="btn-go">{t.card.play}</a>
+    <a href={c.url} rel="nofollow noopener" target="_blank" class="btn-go">{t.card.play}</a>
     {ctaLines.map((l) => <span class="cta-min">{l}</span>)}
     {c.promo && <span class="promo-tag">{ru ? c.promo : `${t.card.promo}: ${c.promoCode}`}</span>}
     <a class="card-more" href={detailsHref}>{t.card.details}</a>

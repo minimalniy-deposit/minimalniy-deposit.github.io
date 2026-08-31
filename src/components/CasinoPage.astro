@@ -94,7 +94,7 @@ const verifiedHuman = new Date(site.lastVerified).toLocaleDateString(ru ? 'ru-RU
     </div>}
 
     <div class="cta-row">
-      <a href={c.url} rel="nofollow sponsored" target="_blank" class="btn-go">{fmt(t.casino.goto, { name: c.name })}</a>
+      <a href={c.url} rel="nofollow noopener" target="_blank" class="btn-go">{fmt(t.casino.goto, { name: c.name })}</a>
       <span class="verified">{t.casino.verified}: <time datetime={site.lastVerified}>{verifiedHuman}</time></span>
     </div>
 
@@ -136,7 +136,7 @@ const verifiedHuman = new Date(site.lastVerified).toLocaleDateString(ru ? 'ru-RU
     </section>
 
     <div class="disclaimer" style="margin-bottom:48px" set:html={ru
-      ? '<strong>Важно.</strong> Азартные игры предназначены только для совершеннолетних. Игра на деньги связана с риском финансовых потерь. Ссылки на казино — партнёрские: если вы регистрируетесь по ним, сайт получает вознаграждение. За действия операторов сайт ответственности не несёт. Если вы замечаете у себя признаки игровой зависимости, обратитесь на горячую линию помощи игрокам. Материал носит справочный характер и не является офертой или рекламой.'
-      : '<strong>⚠️ Important:</strong> Gambling is for adults 18+ only. Playing for money carries a risk of financial loss. All casino links are affiliate links (rel="nofollow sponsored"). This site is not responsible for the actions of third parties. If you notice signs of gambling addiction, contact a gambling helpline. This material is informational and is not an offer or advertisement.'} />
+      ? '<strong>Важно.</strong> Азартные игры предназначены только для совершеннолетних. Игра на деньги связана с риском финансовых потерь. Ссылки на казино — трекинговые: по ним подсчитываются переходы для исследования, вознаграждения от казино сайт не получает. За действия операторов сайт ответственности не несёт. Если вы замечаете у себя признаки игровой зависимости, обратитесь на горячую линию помощи игрокам. Материал носит справочный характер и не является офертой или рекламой.'
+      : '<strong>⚠️ Important:</strong> Gambling is for adults 18+ only. Playing for money carries a risk of financial loss. Casino links are tracking links used to count click-throughs for research; the site receives no payment from casinos. This site is not responsible for the actions of third parties. If you notice signs of gambling addiction, contact a gambling helpline. This material is informational and is not an offer or advertisement.'} />
   </div>
 </Base>
