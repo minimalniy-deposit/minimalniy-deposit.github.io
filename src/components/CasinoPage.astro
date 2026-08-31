@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import site from '../data/site.json';
 import { casinos, mentionsOf, type Casino } from '../lib/casinos';
+import { changesFor, observedSince } from '../lib/history';
 import { useT, fmt, localePath, formatMoney, type Locale } from '../i18n';
 
 import intro from '../content/home/intro.html?raw';
@@ -29,6 +30,10 @@ const mentions = mentionsOf(c.name, {
 const highlight = (s: string) => s.replace(new RegExp(`(${short})`, 'gi'), '<mark>$1</mark>');
 
 const neighbours = casinos.filter((x) => Math.abs(x.rank - c.rank) <= 1);
+const hist = changesFor(c.slug);
+const since = observedSince(c.slug);
+const fmtD = (d: string) => new Date(d).toLocaleDateString(ru ? 'ru-RU' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' }).replace(' г.', '');
+const fmtV = (k: string, v: number | null) => v == null ? '—' : k === 'rtp' ? `${v}%` : k === 'cashback' ? `${v}%` : k === 'wager' ? `x${v}` : k === 'minDeposit' ? `${v.toLocaleString('ru-RU')} ₽` : String(v);
 const payLabel = ru ? c.paymentsLabel : c.paymentsLabelEn;
 const licenseLabel = c.license === 'Anjouan' ? 'Anjouan' : (ru ? 'Кюрасао' : 'Curaçao');
 const g = (slug: string) => localePath(locale, '/glossary/') + '#' + slug;
@@ -109,6 +114,28 @@ const verifiedHuman = new Date(site.lastVerified).toLocaleDateString(ru ? 'ru-RU
               <cite><a href={home + (m.block === 'faq' ? '#faq' : m.block === 'howto' ? '#howto' : '#rating')}>{blockNames[m.block]}</a></cite>
             </blockquote>
           ))}
+        </div>
+      </section>
+    )}
+
+    {since && (
+      <section style="padding:24px 0 0">
+        <h2 class="section-title" style="font-size:1.2rem">{t.history.h}</h2>
+        <p class="section-sub">{fmt(t.history.since, { d: fmtD(since) })}{hist.length <= 1 ? ` — ${t.history.noChanges}.` : '.'} {t.history.weekly}</p>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <tbody>
+              {hist.map((h, i) => (
+                <tr>
+                  <td class="num" style="white-space:nowrap"><time datetime={h.date}>{fmtD(h.date)}</time></td>
+                  <td style="white-space:normal">{i === 0
+                    ? h.diffs.map((d) => `${(t.history.k as any)[d.key]}: ${fmtV(d.key, d.to)}`).join(' · ') + ` (${t.history.first})`
+                    : h.diffs.map((d) => d.from == null ? `${(t.history.k as any)[d.key]}: ${fmtV(d.key, d.to)} (${t.history.added})` : `${(t.history.k as any)[d.key]}: ${fmtV(d.key, d.from)} → ${fmtV(d.key, d.to)}`).join(' · ')}</td>
+                  <td style="white-space:normal;color:var(--muted);font-size:.8rem">{h.source}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </section>
     )}

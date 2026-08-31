@@ -1,0 +1,308 @@
+{
+ "tracked": [
+  "minDeposit",
+  "withdrawMin",
+  "wager",
+  "rtp",
+  "rating",
+  "cashback"
+ ],
+ "lastChecked": "2026-08-31",
+ "entries": [
+  {
+   "date": "2026-02-20",
+   "source": "don8play.ru, архив рейтинга (февраль 2026)",
+   "casino": "joycasino",
+   "metrics": {
+    "withdrawMin": 15,
+    "minDeposit": 100,
+    "rtp": 97,
+    "wager": 35
+   }
+  },
+  {
+   "date": "2026-02-20",
+   "source": "don8play.ru, архив рейтинга (февраль 2026)",
+   "casino": "norm",
+   "metrics": {
+    "withdrawMin": 15,
+    "minDeposit": 100,
+    "rtp": 96.9,
+    "wager": 35
+   }
+  },
+  {
+   "date": "2026-02-20",
+   "source": "don8play.ru, архив рейтинга (февраль 2026)",
+   "casino": "7k",
+   "metrics": {
+    "withdrawMin": 12,
+    "minDeposit": 100,
+    "rtp": 96.5,
+    "wager": 30
+   }
+  },
+  {
+   "date": "2026-02-20",
+   "source": "don8play.ru, архив рейтинга (февраль 2026)",
+   "casino": "gizbo",
+   "metrics": {
+    "withdrawMin": 20,
+    "minDeposit": 500,
+    "rtp": 95.4,
+    "wager": 35
+   }
+  },
+  {
+   "date": "2026-02-20",
+   "source": "don8play.ru, архив рейтинга (февраль 2026)",
+   "casino": "flagman",
+   "metrics": {
+    "withdrawMin": 30,
+    "minDeposit": 200,
+    "rtp": 95.9,
+    "wager": 38
+   }
+  },
+  {
+   "date": "2026-05-15",
+   "source": "страница рейтинга от 15.05.2026 (ветка legacy-v1)",
+   "casino": "7k",
+   "metrics": {
+    "minDeposit": 100,
+    "withdrawMin": 10,
+    "rating": 9.9,
+    "wager": 30
+   }
+  },
+  {
+   "date": "2026-05-15",
+   "source": "страница рейтинга от 15.05.2026 (ветка legacy-v1)",
+   "casino": "fugu",
+   "metrics": {
+    "minDeposit": 500,
+    "withdrawMin": 15,
+    "rating": 9.8
+   }
+  },
+  {
+   "date": "2026-05-15",
+   "source": "страница рейтинга от 15.05.2026 (ветка legacy-v1)",
+   "casino": "melbet",
+   "metrics": {
+    "minDeposit": 500,
+    "withdrawMin": 20,
+    "rating": 9.7
+   }
+  },
+  {
+   "date": "2026-05-15",
+   "source": "страница рейтинга от 15.05.2026 (ветка legacy-v1)",
+   "casino": "jetton",
+   "metrics": {
+    "minDeposit": 100,
+    "withdrawMin": 10,
+    "rating": 9.6
+   }
+  },
+  {
+   "date": "2026-05-15",
+   "source": "страница рейтинга от 15.05.2026 (ветка legacy-v1)",
+   "casino": "dragon",
+   "metrics": {
+    "minDeposit": 100,
+    "withdrawMin": 15,
+    "rating": 9.6
+   }
+  },
+  {
+   "date": "2026-05-15",
+   "source": "страница рейтинга от 15.05.2026 (ветка legacy-v1)",
+   "casino": "gizbo",
+   "metrics": {
+    "minDeposit": 500,
+    "withdrawMin": 10,
+    "rating": 9.5,
+    "wager": 35
+   }
+  },
+  {
+   "date": "2026-05-15",
+   "source": "страница рейтинга от 15.05.2026 (ветка legacy-v1)",
+   "casino": "spinbetter",
+   "metrics": {
+    "minDeposit": 500,
+    "withdrawMin": 15,
+    "rating": 9.5
+   }
+  },
+  {
+   "date": "2026-05-15",
+   "source": "страница рейтинга от 15.05.2026 (ветка legacy-v1)",
+   "casino": "twin",
+   "metrics": {
+    "minDeposit": 500,
+    "withdrawMin": 20,
+    "rating": 9.4,
+    "wager": 30
+   }
+  },
+  {
+   "date": "2026-05-15",
+   "source": "страница рейтинга от 15.05.2026 (ветка legacy-v1)",
+   "casino": "slott",
+   "metrics": {
+    "minDeposit": 500,
+    "withdrawMin": 30,
+    "rating": 9.3,
+    "wager": 35
+   }
+  },
+  {
+   "date": "2026-05-15",
+   "source": "страница рейтинга от 15.05.2026 (ветка legacy-v1)",
+   "casino": "flagman",
+   "metrics": {
+    "minDeposit": 1000,
+    "withdrawMin": 30,
+    "rating": 9.5,
+    "wager": 38
+   }
+  },
+  {
+   "date": "2026-08-31",
+   "source": "сверка условий 31.08.2026",
+   "casino": "joycasino",
+   "metrics": {
+    "minDeposit": 100,
+    "withdrawMin": 15,
+    "rating": 9.6,
+    "wager": 35,
+    "rtp": 97,
+    "cashback": 12
+   }
+  },
+  {
+   "date": "2026-08-31",
+   "source": "сверка условий 31.08.2026",
+   "casino": "norm",
+   "metrics": {
+    "minDeposit": 100,
+    "withdrawMin": 15,
+    "rating": 9.5,
+    "wager": 35,
+    "rtp": 96.9,
+    "cashback": 12
+   }
+  },
+  {
+   "date": "2026-08-31",
+   "source": "сверка условий 31.08.2026",
+   "casino": "7k",
+   "metrics": {
+    "minDeposit": 100,
+    "withdrawMin": 10,
+    "rating": 9.9,
+    "wager": 30,
+    "rtp": 96.5
+   }
+  },
+  {
+   "date": "2026-08-31",
+   "source": "сверка условий 31.08.2026",
+   "casino": "fugu",
+   "metrics": {
+    "minDeposit": 500,
+    "withdrawMin": 15,
+    "rating": 9.8
+   }
+  },
+  {
+   "date": "2026-08-31",
+   "source": "сверка условий 31.08.2026",
+   "casino": "melbet",
+   "metrics": {
+    "minDeposit": 500,
+    "withdrawMin": 20,
+    "rating": 9.7
+   }
+  },
+  {
+   "date": "2026-08-31",
+   "source": "сверка условий 31.08.2026",
+   "casino": "jetton",
+   "metrics": {
+    "minDeposit": 100,
+    "withdrawMin": 10,
+    "rating": 9.6
+   }
+  },
+  {
+   "date": "2026-08-31",
+   "source": "сверка условий 31.08.2026",
+   "casino": "dragon",
+   "metrics": {
+    "minDeposit": 100,
+    "withdrawMin": 15,
+    "rating": 9.6,
+    "cashback": 15
+   }
+  },
+  {
+   "date": "2026-08-31",
+   "source": "сверка условий 31.08.2026",
+   "casino": "gizbo",
+   "metrics": {
+    "minDeposit": 500,
+    "withdrawMin": 10,
+    "rating": 9.5,
+    "wager": 35,
+    "rtp": 95.4
+   }
+  },
+  {
+   "date": "2026-08-31",
+   "source": "сверка условий 31.08.2026",
+   "casino": "spinbetter",
+   "metrics": {
+    "minDeposit": 500,
+    "withdrawMin": 15,
+    "rating": 9.5
+   }
+  },
+  {
+   "date": "2026-08-31",
+   "source": "сверка условий 31.08.2026",
+   "casino": "twin",
+   "metrics": {
+    "minDeposit": 500,
+    "withdrawMin": 20,
+    "rating": 9.4,
+    "wager": 30
+   }
+  },
+  {
+   "date": "2026-08-31",
+   "source": "сверка условий 31.08.2026",
+   "casino": "slott",
+   "metrics": {
+    "minDeposit": 500,
+    "withdrawMin": 30,
+    "rating": 9.3,
+    "wager": 35
+   }
+  },
+  {
+   "date": "2026-08-31",
+   "source": "сверка условий 31.08.2026",
+   "casino": "flagman",
+   "metrics": {
+    "minDeposit": 1000,
+    "withdrawMin": 30,
+    "rating": 9.5,
+    "wager": 38,
+    "rtp": 95.9
+   }
+  }
+ ]
+}

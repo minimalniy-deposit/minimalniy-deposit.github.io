@@ -127,5 +127,22 @@
     "features": "Features",
     "limits": "Limits by method",
     "limitsNote": "Typical speed and daily limits for rouble methods. Check a specific casino's cashier for exact figures."
+  },
+  "history": {
+    "h": "Conditions history",
+    "since": "Observed since {d}",
+    "noChanges": "no condition changes recorded over this period",
+    "was": "was",
+    "first": "first record",
+    "weekly": "The ledger is updated on Mondays; every record cites its source.",
+    "k": {
+      "minDeposit": "min. deposit",
+      "withdrawMin": "withdrawal, min",
+      "wager": "wagering",
+      "rtp": "RTP",
+      "rating": "score",
+      "cashback": "cashback"
+    },
+    "added": "added to the ledger"
   }
 }
