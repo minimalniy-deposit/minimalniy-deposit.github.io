@@ -31,7 +31,7 @@ const picked = all
 // Thumbnails: download once, resize to 480px WebP, serve from our own domain.
 mkdirSync(imgDir, { recursive: true });
 const keep = new Set();
-let downloaded = 0, failed = 0;
+let downloaded = 0, failed = 0; const errors = {};
 async function thumb(g) {
   const file = `${g.slug}.webp`;
   const path = new URL(file, imgDir);
@@ -39,13 +39,13 @@ async function thumb(g) {
   if (existsSync(path)) return `/slots/img/${file}`;
   if (!g.thumbnail_url) return null;
   try {
-    const r = await fetch(g.thumbnail_url, { headers: { 'User-Agent': 'Mozilla/5.0', Referer: 'https://slotsreach.com/' } });
-    if (!r.ok) throw new Error(String(r.status));
+    const r = await fetch(g.thumbnail_url, { headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0 Safari/537.36', Accept: 'image/avif,image/webp,image/*,*/*;q=0.8' } });
+    if (!r.ok) throw new Error(`HTTP ${r.status} ${(await r.text()).slice(0, 80)}`);
     const buf = Buffer.from(await r.arrayBuffer());
     await sharp(buf).resize({ width: 480, withoutEnlargement: true }).webp({ quality: 78 }).toFile(path);
     downloaded++;
     return `/slots/img/${file}`;
-  } catch (e) { failed++; return null; }
+  } catch (e) { failed++; const k = String(e.message).slice(0, 60); errors[k] = (errors[k] ?? 0) + 1; return g.thumbnail_url; } // fall back to the remote URL
 }
 // modest concurrency to stay under the image host's limits
 const images = new Map();
@@ -53,7 +53,7 @@ for (let i = 0; i < picked.length; i += 6) {
   await Promise.all(picked.slice(i, i + 6).map(async (g) => images.set(g.slug, await thumb(g))));
 }
 for (const f of readdirSync(imgDir)) if (!keep.has(f)) unlinkSync(new URL(f, imgDir));
-console.log('thumbnails: downloaded', downloaded, 'failed', failed, 'kept', keep.size);
+console.log('thumbnails: downloaded', downloaded, 'failed', failed, 'kept', keep.size, errors);
 
 const games = picked.map((g) => ({
   slug: g.slug, name: g.title, provider: g.provider, providerSlug: g.provider_slug,
@@ -69,5 +69,5 @@ const games = picked.map((g) => ({
 
 const prev = JSON.parse(readFileSync(out, 'utf8'));
 if (JSON.stringify(prev.games) === JSON.stringify(games)) { console.log('no changes'); process.exit(0); }
-writeFileSync(out, JSON.stringify({ fetchedAt: new Date().toISOString().slice(0, 10), source: 'slotsreach', total: all.length, games }, null, 2) + '\n');
+writeFileSync(out, JSON.stringify({ fetchedAt: new Date().toISOString().slice(0, 10), source: 'slotsreach', total: all.length, thumbs: { downloaded, failed, errors }, games }, null, 2) + '\n');
 console.log('slots.json updated:', games.length, 'of', all.length);
