@@ -1,0 +1,21 @@
+name: Probe SlotsReach API
+on: { workflow_dispatch: {} }
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Try candidate endpoints
+        env: { KEY: ${{ secrets.SLOTSREACH_API_KEY }} }
+        run: |
+          try() { # $1=url $2=auth-mode
+            case "$2" in
+              bearer) R=$(curl -sS -m 20 -o /tmp/b -w "%{http_code} %{content_type}" -H "Authorization: Bearer $KEY" -H "Accept: application/json" "$1");;
+              xkey)   R=$(curl -sS -m 20 -o /tmp/b -w "%{http_code} %{content_type}" -H "X-API-Key: $KEY" -H "Accept: application/json" "$1");;
+              query)  SEP='?'; case "$1" in *\?*) SEP='&';; esac; R=$(curl -sS -m 20 -o /tmp/b -w "%{http_code} %{content_type}" -H "Accept: application/json" "$1${SEP}api_key=$KEY");;
+            esac
+            echo "== $2 $1 -> $R"; head -c 500 /tmp/b | tr '\n' ' ' | sed "s/$KEY/***/g"; echo; echo
+          }
+          for u in https://slotsreach.com/api/games https://slotsreach.com/api/v1/games https://slotsreach.com/api/plugin/games https://slotsreach.com/demo-plugin/api/games https://slotsreach.com/api/demo-plugin/games https://api.slotsreach.com/games https://api.slotsreach.com/v1/games https://slotsreach.com/api/v1/plugin/games https://slotsreach.com/api/partner/games https://slotsreach.com/api/v1/partner/games; do
+            for m in bearer xkey query; do try "$u" "$m"; done
+          done
+          echo "== also plain pages"; for u in https://slotsreach.com/api https://slotsreach.com/api/v1 https://slotsreach.com/demo-plugin/api https://slotsreach.com/demo-plugin/docs https://slotsreach.com/docs; do try "$u" bearer; done
