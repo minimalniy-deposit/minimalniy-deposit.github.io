@@ -30,7 +30,7 @@
       },
       {
         "cls": "",
-        "text": "СБП"
+        "text": "Карта · СБП · USDT · BTC"
       },
       {
         "cls": "",
@@ -45,10 +45,14 @@
     ],
     "promo": null,
     "payments": [
-      "sbp"
+      "card",
+      "sbp",
+      "usdt",
+      "btc",
+      "crypto"
     ],
-    "paymentsLabel": "СБП",
-    "paymentsLabelEn": "SBP",
+    "paymentsLabel": "Карта · СБП · USDT · BTC",
+    "paymentsLabelEn": "Card · SBP · USDT · BTC",
     "withdrawMin": 15,
     "license": "Кюрасао",
     "reviews": null,
@@ -68,11 +72,11 @@
     "wager": 35,
     "cashback": 12,
     "features": [
-      "Вывод на СБП",
       "Моментально",
       "Лицензионный софт",
       "Релоад-бонус",
-      "Live 24/7"
+      "Live 24/7",
+      "Карта · СБП · крипта"
     ],
     "d8cats": [
       "all",
@@ -112,7 +116,7 @@
       },
       {
         "cls": "",
-        "text": "СБП · Крипта"
+        "text": "Карта · СБП · USDT · BTC"
       },
       {
         "cls": "",
@@ -127,11 +131,14 @@
     ],
     "promo": null,
     "payments": [
+      "card",
       "sbp",
+      "usdt",
+      "btc",
       "crypto"
     ],
-    "paymentsLabel": "СБП · Крипта",
-    "paymentsLabelEn": "SBP · Crypto",
+    "paymentsLabel": "Карта · СБП · USDT · BTC",
+    "paymentsLabelEn": "Card · SBP · USDT · BTC",
     "withdrawMin": 15,
     "license": "Anjouan",
     "reviews": null,
@@ -151,11 +158,10 @@
     "wager": 35,
     "cashback": 12,
     "features": [
-      "Вывод на СБП",
-      "Крипто 5–20 мин",
       "Лицензионный софт",
       "Live 24/7",
-      "Мин. верификация"
+      "Мин. верификация",
+      "Карта · СБП · крипта"
     ],
     "d8cats": [
       "all",

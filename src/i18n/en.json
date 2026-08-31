@@ -72,8 +72,8 @@
     "note": "Values are taken from the rating cards. Casino-side terms can change — check the cashier before depositing."
   },
   "methodology": {
-    "title": "How the rating is built — methodology",
-    "metaDesc": "Selection criteria for minimum-deposit casinos: SBP withdrawal speed, wagering transparency, licence. What excludes a casino, data sources and how often we verify.",
+    "title": "How the rating is built: criteria weights, check day, what gets a casino removed",
+    "metaDesc": "Five weighted criteria (withdrawal speed 35%, bonus fairness 25%, licence 20%), a real 100 ₽ deposit and a stopwatch on withdrawal. What removes a casino and where the numbers come from.",
     "h1": "How the rating is built"
   },
   "footer": {
