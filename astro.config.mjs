@@ -1,6 +1,22 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import site from './src/data/site.json' with { type: 'json' };
+import slots from './src/data/slots.json' with { type: 'json' };
+
+// lastmod per section: what actually changed, not when the site was last built.
+const lastmodFor = (path) => {
+  if (path.startsWith('/slots/')) return slots.fetchedAt ?? site.lastVerified;
+  if (path === '/') return site.contentUpdated;
+  return site.lastVerified;
+};
+const priorityFor = (path) => {
+  if (path === '/') return 1.0;
+  if (path.startsWith('/casino/')) return 0.8;
+  if (path === '/slots/') return 0.6;
+  if (path.startsWith('/slots/')) return 0.4;
+  return 0.7;
+};
 
 export default defineConfig({
   site: 'https://minimalniy-deposit.github.io',
@@ -15,7 +31,14 @@ export default defineConfig({
   integrations: [
     sitemap({
       i18n: { defaultLocale: 'ru', locales: { ru: 'ru', en: 'en' } },
-      lastmod: new Date(),
+      serialize(item) {
+        const u = new URL(item.url);
+        const en = u.pathname.startsWith('/en/');
+        const path = en ? u.pathname.slice(3) : u.pathname;
+        item.lastmod = new Date(lastmodFor(path)).toISOString();
+        item.priority = Math.max(0.1, priorityFor(path) - (en ? 0.1 : 0));
+        return item;
+      },
     }),
   ],
 });
