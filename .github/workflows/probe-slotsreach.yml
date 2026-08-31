@@ -32,14 +32,10 @@ jobs:
               print('sample:', json.dumps(items[0],ensure_ascii=False)[:1500])
           PY
           echo >> $OUT; }
-          q "https://slotsreach.com/api/partner/games"
-          q "https://slotsreach.com/api/partner/games?page=2"
-          q "https://slotsreach.com/api/partner/games?per_page=100&page=1"
-          q "https://slotsreach.com/api/partner/games?limit=100&offset=100"
-          q "https://slotsreach.com/api/partner/games/gates-of-olympus-pragmatic-play"
-          q "https://slotsreach.com/api/partner/games/1"
-          q "https://slotsreach.com/api/partner/providers"
-          q "https://slotsreach.com/api/partner"
-          q "https://slotsreach.com/api/partner/me"
+          S=gates-of-olympus-pragmatic-play
+          { echo "== game page iframe/embed hints"; curl -sS -m 30 -A "Mozilla/5.0" "https://slotsreach.com/games/$S" | grep -o -i '<iframe[^>]*>\|https://[a-z0-9./_-]*\(demo\|embed\|play\|launch\|game\)[a-z0-9./_?=&-]*' | sort -u | head -40; echo; } >> $OUT
+          for u in "https://slotsreach.com/api/partner/games?slug=$S" "https://slotsreach.com/api/partner/games?search=gates" "https://slotsreach.com/api/partner/games?provider=pragmatic-play&per_page=2" "https://slotsreach.com/api/partner/games?updated_since=2026-08-01&per_page=2" "https://slotsreach.com/api/partner/demo?slug=$S" "https://slotsreach.com/api/partner/games/$S/demo" "https://slotsreach.com/api/partner/embed?slug=$S" "https://slotsreach.com/embed/$S" "https://slotsreach.com/play/$S" "https://slotsreach.com/demo/$S" "https://slotsreach.com/api/partner/games?include=demo&per_page=1"; do
+            echo "== $u" >> $OUT; curl -sS -m 30 -H "$H" -A "Mozilla/5.0" "$u" -o /tmp/b -w "%{http_code} %{content_type}\n" >> $OUT; head -c 600 /tmp/b | tr '\n' ' ' | sed "s/$KEY/***/g" >> $OUT; echo >> $OUT; echo >> $OUT
+          done
           git config user.name "github-actions[bot]"; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout -B probe-result && git add $OUT && git commit -qm "probe result" && git push -f origin probe-result
