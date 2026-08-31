@@ -10,6 +10,8 @@ const t = useT(locale); const ru = locale === 'ru';
 const home = localePath(locale, '/');
 const top = casinos[0];
 const sim = similar(s);
+const KEY = process.env.SLOTSREACH_API_KEY;
+const demoUrl = (s as any).demoUrl ?? (KEY ? `https://slotsreach.com/api/embed/${s.slug}?token=${encodeURIComponent(KEY)}&o=wp` : null);
 const title = ru ? `${s.name}: демоверсия слота от ${s.provider}${s.rtp != null ? `, RTP ${s.rtp}%` : ''}` : `${s.name} — demo slot by ${s.provider}${s.rtp != null ? `, RTP ${s.rtp}%` : ''}`;
 const description = ru
   ? `Бесплатная демоверсия слота ${s.name} от ${s.provider}${s.rtp != null ? `: RTP ${s.rtp}%` : ''}${s.volatility ? `, волатильность — ${vol(s.volatility, true)}` : ''}${s.maxWin ? `, максимальный выигрыш — ${s.maxWin}` : ''}. Играть можно без регистрации.`
@@ -27,8 +29,12 @@ const ld = { '@context': 'https://schema.org', '@type': 'WebPage', name: title, 
     <nav class="crumbs" aria-label="breadcrumb"><ol><li><a href={home}>{t.casino.breadcrumbHome}</a></li><li><a href={localePath(locale, '/slots/')}>{t.slots.breadcrumb}</a></li><li aria-current="page">{s.name}</li></ol></nav>
     <div class="page-head"><span class="rank-chip">{s.provider}</span><h1>{s.name}</h1><p class="lede">{description}</p></div>
 
-    {s.demoUrl
-      ? <iframe class="demo-frame" src={s.demoUrl} title={`${s.name} demo`} loading="lazy" allow="fullscreen" sandbox="allow-scripts allow-same-origin allow-popups"></iframe>
+    {demoUrl
+      ? <div class="demo-wrap" style={(s as any).image ? `background-image:url(${(s as any).image})` : undefined}>
+          <iframe class="demo-frame" data-src={demoUrl} title={`${s.name} — ${ru ? 'демо' : 'demo'}`} allowfullscreen allow="autoplay; fullscreen"></iframe>
+          <button type="button" class="btn-go demo-start">{ru ? '▶ Запустить демо' : '▶ Start the demo'}</button>
+          <span class="demo-note">18+ · {ru ? 'демо, без реальных ставок' : 'demo, no real bets'}</span>
+        </div>
       : <div class="demo-empty">{t.slots.demoSoon}{(s as any).sourceUrl && <> · <a href={(s as any).sourceUrl} rel="nofollow noopener" target="_blank">{ru ? 'Открыть демо на SlotsReach' : 'Open the demo on SlotsReach'}</a></>}</div>}
 
     <dl class="facts">
@@ -55,4 +61,13 @@ const ld = { '@context': 'https://schema.org', '@type': 'WebPage', name: title, 
           <div class="slot-meta"><span>{x.provider}</span>{x.rtp != null && <span>RTP <b>{x.rtp}%</b></span>}{x.maxWin && <span>max <b>{x.maxWin}</b></span>}</div></div></article>))}
       </div></section>}
   </div>
+  <script>
+    // Load the game only when the reader asks for it — the plugin does the same via data-src.
+    const btn = document.querySelector<HTMLButtonElement>('.demo-start');
+    btn?.addEventListener('click', () => {
+      const f = document.querySelector<HTMLIFrameElement>('.demo-frame')!;
+      f.src = f.dataset.src!;
+      btn.closest('.demo-wrap')!.classList.add('playing');
+    });
+  </script>
 </Base>

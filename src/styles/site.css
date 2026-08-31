@@ -122,3 +122,12 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; }
 .gloss dt a:hover { color: var(--gold); text-decoration: none; }
 .gloss dd { color: var(--muted); font-size: .92rem; margin-top: 4px; line-height: 1.6; }
 .gloss-used { font-size: .8rem; }
+
+/* Demo player: poster + click-to-play */
+.demo-wrap { position: relative; aspect-ratio: 16 / 9; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; background: var(--bg2) center/cover no-repeat; display: grid; place-items: center; }
+.demo-wrap::before { content: ""; position: absolute; inset: 0; background: rgba(13,17,23,.55); }
+.demo-wrap .demo-frame { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; visibility: hidden; }
+.demo-wrap .demo-start { position: relative; z-index: 1; }
+.demo-wrap .demo-note { position: absolute; bottom: 10px; z-index: 1; font-size: .75rem; color: var(--muted); }
+.demo-wrap.playing::before, .demo-wrap.playing .demo-start, .demo-wrap.playing .demo-note { display: none; }
+.demo-wrap.playing .demo-frame { visibility: visible; }
