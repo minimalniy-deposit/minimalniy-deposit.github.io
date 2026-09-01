@@ -28,12 +28,12 @@ const isCrypto = (c: (typeof casinos)[number]) => c.payments.some((p) => ['usdt'
       <div class="pane kpi"><Icon name="tabler:chart-line" /><b>375 <em>₽</em></b><span>индекс минимального депозита</span></div>
       <div class="pane kpi"><Icon name="tabler:database" /><b>{entries.length}</b><span>записей в истории условий с февраля</span></div>
     </div>
+    <div class="g-divider"></div>
   </div></section>
 
-  <section class="g-sec"><div class="container">
-    <h2>Рейтинг</h2>
-    <p class="sub">12 площадок по скорости вывода, условиям бонуса и лицензии — с весами, которые можно проверить</p>
-    <div class="g-filters"><button class="active">Все</button><button>до 100 ₽</button><button>до 500 ₽</button><button>до 1 000 ₽</button><a href="/deposit/100/" style="margin-left:auto">Разбор по сумме →</a></div>
+  <section class="g-sec first"><div class="container">
+    <div class="g-bar"><h2>Рейтинг</h2><p class="sub">по скорости вывода, условиям бонуса и лицензии — веса можно проверить</p></div>
+    <div class="g-filters"><button class="active">Все 12</button><button>до 100 ₽</button><button>до 500 ₽</button><button>до 1 000 ₽</button><a href="/deposit/100/">Разбор по сумме →</a></div>
     <div style="display:grid;gap:12px">
       {top.map((c) => (
         <article class:list={['pane', 'g-card', { top: c.rank === 1 }]}>
