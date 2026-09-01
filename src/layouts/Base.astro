@@ -27,6 +27,17 @@ const alt = translated ? alternates(path) : [];
 const other = otherLocale(locale);
 const switchHref = translated ? localePath(other, path) : localePath(other, '/');
 const anchor = (id: string) => (home ? `#${id}` : `${localePath(locale, '/')}#${id}`);
+const ids: string[] = site.metrikaIds;
+const metrika = `<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=${ids[ids.length - 1]}', 'ym');
+${ids.map((id) => `    ym(${id}, 'init', {ssr:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});`).join('\n')}
+</script>
+<noscript><div>${ids.map((id) => `<img src="https://mc.yandex.ru/watch/${id}" style="position:absolute; left:-9999px;" alt="" />`).join('')}</div></noscript>`;
 const verifiedHuman = new Date(site.lastVerified).toLocaleDateString(locale === 'ru' ? 'ru-RU' : 'en-GB');
 ---
 <!DOCTYPE html>
@@ -103,16 +114,7 @@ const verifiedHuman = new Date(site.lastVerified).toLocaleDateString(locale === 
 </footer>
 
 <!-- Yandex.Metrika counter -->
-<script is:inline type="text/javascript" define:vars={{ ids: site.metrikaIds }}>
-    (function(m,e,t,r,i,k,a){
-        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-        m[i].l=1*new Date();
-        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js', 'ym');
-    ids.forEach(function(id){ ym(Number(id), 'init', {ssr:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true}); });
-</script>
-<noscript><div>{site.metrikaIds.map((id) => <img src={`https://mc.yandex.ru/watch/${id}`} style="position:absolute; left:-9999px;" alt="" />)}</div></noscript>
+<Fragment set:html={metrika} />
 <!-- /Yandex.Metrika counter -->
 
 </body>

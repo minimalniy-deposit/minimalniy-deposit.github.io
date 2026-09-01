@@ -32,7 +32,7 @@ const description = 'Лучшие казино с минимальным деп�
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify({ ...ldWebPage, dateModified: updated.iso })} />
     <script type="application/ld+json" set:html={JSON.stringify(ldFaq)} />
-    <script type="application/ld+json" set:html={JSON.stringify(ldList)} />
+    <script type="application/ld+json" set:html={JSON.stringify({ ...ldList, itemListElement: casinos.map((c) => ({ '@type': 'ListItem', position: c.rank, name: c.name, url: c.url })) })} />
   </Fragment>
 
   <!-- HERO -->
