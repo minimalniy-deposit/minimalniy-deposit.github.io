@@ -10,6 +10,11 @@ const lastmodFor = (path) => {
   if (path === '/') return site.contentUpdated;
   return site.lastVerified;
 };
+const changefreqFor = (path) => {
+  if (path === '/' || path.startsWith('/casino/') || path === '/methods/') return 'weekly';
+  if (path.startsWith('/slots/')) return 'monthly';
+  return 'monthly';
+};
 const priorityFor = (path) => {
   if (path === '/') return 1.0;
   if (path.startsWith('/casino/')) return 0.8;
@@ -37,6 +42,7 @@ export default defineConfig({
         const path = en ? u.pathname.slice(3) : u.pathname;
         item.lastmod = new Date(lastmodFor(path)).toISOString();
         item.priority = Math.max(0.1, priorityFor(path) - (en ? 0.1 : 0));
+        item.changefreq = changefreqFor(path);
         return item;
       },
     }),

@@ -4,7 +4,7 @@
   "logoSuffix": ".rating",
   "updated": "Updated: May 2026",
   "nav": {
-    "rating": "Top 13 rating",
+    "rating": "Top 12 rating",
     "methods": "Payment methods",
     "howto": "How to choose",
     "faq": "FAQ",
@@ -22,13 +22,13 @@
   },
   "card": {
     "play": "Play →",
-    "details": "Details",
+    "details": "{name} terms: deposit, withdrawal, bonus",
     "minDep": "Min. deposit",
     "promo": "Promo"
   },
   "casino": {
     "breadcrumbHome": "Home",
-    "breadcrumbRating": "Top 13 rating",
+    "breadcrumbRating": "Top 12 rating",
     "rankIn": "Rank",
     "of10": "of {n}",
     "facts": "Key terms",

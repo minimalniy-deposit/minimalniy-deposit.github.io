@@ -45,6 +45,6 @@ const usdtLine = hasRates && crypto && c.minDeposit != null ? fmt(t.rates.line, 
     {ctaLines.map((l) => <span class="cta-min">{l}</span>)}
     {usdtLine && <span class="cta-min" style="color:var(--muted)">{usdtLine}</span>}
     {c.promo && <span class="promo-tag">{ru ? c.promo : `${t.card.promo}: ${c.promoCode}`}</span>}
-    <a class="card-more" href={detailsHref}>{t.card.details}</a>
+    <a class="card-more" href={detailsHref}>{fmt(t.card.details, { name: c.name })}</a>
   </div>
 </div>
