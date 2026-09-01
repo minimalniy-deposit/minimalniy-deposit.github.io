@@ -2,6 +2,7 @@
 /* Design gallery — four directions on real data. Unlinked, noindex. */
 import Base from '../../layouts/Base.astro';
 import { Icon } from 'astro-icon/components';
+import StormBg from '../../components/StormBg.astro';
 import { casinos } from '../../lib/casinos';
 import { series, svgLine } from '../../lib/charts';
 import { rates, bc } from '../../lib/rates';
@@ -31,7 +32,7 @@ const money = (n: number) => rub(n) + ' ₽';
     .pv { --ui: 'Golos Text Variable', system-ui, sans-serif; --mono: 'JetBrains Mono', ui-monospace, monospace; --disp: 'Unbounded Variable', var(--ui); --serif: 'Cormorant Variable', Georgia, serif; }
     .dir { margin: 40px 0 56px; border-radius: 20px; overflow: hidden; border: 1px solid var(--border); }
     .dir-head { padding: 14px 22px; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--border); background: var(--bg2); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
-    .dir-body { padding: 28px 22px; display: grid; gap: 22px; }
+    .dir-body { padding: 28px 22px; display: grid; gap: 22px; position: relative; z-index: 1; }
     .row { display: grid; grid-template-columns: 1.4fr 1fr; gap: 20px; align-items: start; } @media (max-width: 760px) { .row { grid-template-columns: 1fr; } }
     .mini-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; } @media (max-width: 560px) { .mini-grid { grid-template-columns: 1fr 1fr; } }
     .ill { display: grid; place-items: center; } .ill svg { width: 100%; max-width: 260px; height: auto; }
@@ -113,7 +114,8 @@ const money = (n: number) => rub(n) + ' ₽';
 
     <!-- ===== E ===== -->
     <section class="dir E">
-      <div class="dir-head" style="background:rgba(20,23,28,.6);border-color:rgba(255,255,255,.1);color:#9aa3b0;backdrop-filter:blur(12px)"><span>E · Дымчатое стекло — ваш кадр за стеклом, свет только по краям</span><span>Golos Text + JetBrains Mono · Tabler</span></div>
+      <StormBg />
+      <div class="dir-head" style="position:relative;z-index:1;background:rgba(20,23,28,.6);border-color:rgba(255,255,255,.1);color:#9aa3b0;backdrop-filter:blur(12px)"><span>E · Дымчатое стекло — ваш кадр за стеклом, живой шторм: свечения дрейфуют, молнии вспыхивают раз в полминуты</span><span>Golos Text + JetBrains Mono · Tabler</span></div>
       <div class="dir-body">
         <div class="row">
           <div><h2>Что происходит за стеклом — видно по цифрам</h2><p class="lead">Фон — ваш кадр, размытый до пятен; панели — толстое серое стекло с бликом по верхней кромке и тенью толщины снизу. Синий и янтарный не красят элементы, а просвечивают сквозь них: холодный — у иконок и графиков, тёплый — у первого места и кнопки. Центр спокойный, свет живёт по краям.</p></div>

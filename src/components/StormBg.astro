@@ -1,0 +1,32 @@
+---
+/** Animated storm behind smoked glass: two drifting glows + rare lightning flashes.
+ *  CSS-only, animates transform/opacity exclusively (GPU-composited, ~0 CPU). Honors prefers-reduced-motion. */
+interface Props { class?: string }
+const { class: cls = '' } = Astro.props;
+---
+<div class:list={['storm', cls]} aria-hidden="true">
+  <div class="glow glow-blue"></div>
+  <div class="glow glow-amber"></div>
+  <div class="glow glow-amber2"></div>
+  <svg class="bolt bolt-a" viewBox="0 0 200 400" preserveAspectRatio="none"><path d="M120 0 L96 118 L128 124 L82 262 L104 268 L60 400" /></svg>
+  <svg class="bolt bolt-b" viewBox="0 0 200 400" preserveAspectRatio="none"><path d="M70 0 L92 96 L64 104 L118 226 L94 234 L150 400" /></svg>
+  <svg class="bolt bolt-c" viewBox="0 0 200 400" preserveAspectRatio="none"><path d="M100 0 L110 70 L84 80 L126 180 L98 190 L140 300 L120 310 L150 400" /></svg>
+</div>
+<style>
+  .storm { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+  .glow { position: absolute; border-radius: 50%; filter: blur(60px); will-change: transform, opacity; mix-blend-mode: screen; }
+  .glow-blue { width: 46vw; height: 46vw; min-width: 420px; min-height: 420px; left: -12%; top: -18%; background: radial-gradient(circle, rgba(90,168,255,.55), rgba(90,168,255,.12) 45%, transparent 70%); animation: driftA 38s ease-in-out infinite alternate; }
+  .glow-amber { width: 40vw; height: 40vw; min-width: 380px; min-height: 380px; right: -14%; bottom: -22%; background: radial-gradient(circle, rgba(232,163,58,.55), rgba(232,163,58,.12) 45%, transparent 70%); animation: driftB 46s ease-in-out infinite alternate; }
+  .glow-amber2 { width: 22vw; height: 22vw; min-width: 220px; min-height: 220px; right: 18%; top: 8%; opacity: .5; background: radial-gradient(circle, rgba(255,190,90,.45), transparent 65%); animation: pulse 9s ease-in-out infinite; }
+  .bolt { position: absolute; top: -6%; height: 70%; width: auto; opacity: 0; fill: none; stroke: #cfe6ff; stroke-width: 1.6; stroke-linejoin: round; stroke-linecap: round; filter: drop-shadow(0 0 6px rgba(120,190,255,.9)) drop-shadow(0 0 18px rgba(90,168,255,.6)); will-change: opacity; }
+  .bolt-a { left: 6%; animation: flash 31s linear infinite; }
+  .bolt-b { left: 14%; height: 55%; animation: flash 47s linear 13s infinite; stroke-width: 1.2; }
+  .bolt-c { right: 10%; top: 10%; height: 60%; stroke: #ffd9a0; filter: drop-shadow(0 0 6px rgba(255,190,90,.9)) drop-shadow(0 0 18px rgba(232,163,58,.6)); animation: flash 59s linear 27s infinite; }
+  @keyframes driftA { from { transform: translate3d(0,0,0) scale(1); } 50% { transform: translate3d(6vw, 4vh, 0) scale(1.12); } to { transform: translate3d(-3vw, 8vh, 0) scale(.95); } }
+  @keyframes driftB { from { transform: translate3d(0,0,0) scale(1); } 50% { transform: translate3d(-7vw, -5vh, 0) scale(1.15); } to { transform: translate3d(4vw, -9vh, 0) scale(.92); } }
+  @keyframes pulse { 0%, 100% { transform: scale(.9); opacity: .35; } 50% { transform: scale(1.15); opacity: .6; } }
+  /* a flash is two quick strobes inside a long silent cycle */
+  @keyframes flash { 0%, 91.6% { opacity: 0; } 92% { opacity: .9; } 92.4% { opacity: .15; } 92.9% { opacity: 1; } 93.6% { opacity: .35; } 95% { opacity: 0; } 100% { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .glow, .bolt { animation: none; } .bolt { display: none; } }
+  @media (max-width: 720px) { .glow { filter: blur(40px); } .bolt-b { display: none; } }
+</style>
