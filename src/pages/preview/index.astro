@@ -1,21 +1,31 @@
 ---
-/* Home-page mock in the "smoked glass" theme, on real data. Unlinked, noindex. */
+/* Design polygon, "smoked glass" theme on real data: home mock + the ornament
+   vocabulary projected onto every page type. Unlinked, noindex. */
 import Base from '../../layouts/Base.astro';
 import StormBg from '../../components/StormBg.astro';
+import Gauge from '../../components/ui/Gauge.astro';
+import Medallion from '../../components/ui/Medallion.astro';
+import Stamp from '../../components/ui/Stamp.astro';
+import WagerBand from '../../components/ui/WagerBand.astro';
+import Reels from '../../components/ui/Reels.astro';
 import { Icon } from 'astro-icon/components';
 import { casinos } from '../../lib/casinos';
 import { series, svgLine } from '../../lib/charts';
 import { entries } from '../../lib/history';
+import { bySlug, vol } from '../../lib/slots';
 import '@fontsource-variable/golos-text';
 import '../../styles/glass.css';
+import '../../styles/ornaments.css';
 const top = casinos.slice(0, 5);
 const fastest = [...casinos].sort((a, b) => a.withdrawMin! - b.withdrawMin!)[0];
 const within15 = casinos.filter((c) => c.withdrawMin! <= 15).length;
 const n = (x: number) => x.toLocaleString('ru-RU').replace(/\u00a0/g, ' ');
 const spark = svgLine(series('joycasino', 'withdrawMin'), { unit: ' мин', invert: true, w: 260, h: 64 }).replace(/var\(--gold\)/g, '#6fb0ff');
 const isCrypto = (c: (typeof casinos)[number]) => c.payments.some((p) => ['usdt', 'btc', 'crypto'].includes(p));
+const c1 = top[0];
+const slot = bySlug('fire-in-the-hole-3-nolimit-city');
 ---
-<Base locale="ru" path="/preview/" title="Превью: дымчатое стекло" description="Макет главной в выбранном стиле" translated={false} noindex theme="theme-glass">
+<Base locale="ru" path="/preview/" title="Превью: дымчатое стекло" description="Макет главной и проекция деталей на все разделы" translated={false} noindex theme="theme-glass">
   <div class="backdrop" aria-hidden="true"></div>
   <StormBg />
 
@@ -37,7 +47,7 @@ const isCrypto = (c: (typeof casinos)[number]) => c.payments.some((p) => ['usdt'
     <div style="display:grid;gap:12px">
       {top.map((c) => (
         <article class:list={['pane', 'g-card', { top: c.rank === 1 }]}>
-          <div class="g-rank">{c.rank}</div>
+          {c.rank === 1 ? <Medallion n={c.rank} /> : <div class="g-rank">{c.rank}</div>}
           <div>
             <div class="g-name">{c.name}{c.rank === 1 && <span class="g-tag">выбор №1</span>}</div>
             <div class="g-facts">
@@ -47,9 +57,17 @@ const isCrypto = (c: (typeof casinos)[number]) => c.payments.some((p) => ['usdt'
               {c.rtp != null ? <div class="g-fact"><Icon name="tabler:percentage" />RTP <b class="tab">{c.rtp.toFixed(1)}%</b></div> : <div class="g-fact"><Icon name="tabler:star" />оценка <b class="tab">{c.rating}</b></div>}
             </div>
             <div class="g-chips"><span class="g-chip">карта «Мир»</span><span class="g-chip">СБП</span>{c.payments.includes('usdt') && <span class="g-chip">USDT</span>}{c.payments.includes('btc') && <span class="g-chip">BTC</span>}{isCrypto(c) && !c.payments.includes('usdt') && !c.payments.includes('btc') && <span class="g-chip">крипта</span>}</div>
-            <p class="g-bonus" set:html={c.bonus} />
+            {c.rank === 1
+              ? <div class="o-ticket" style="margin-top:12px">бонус-купон: <b>200% и 200 фриспинов</b> от 100 ₽ · вейджер x35</div>
+              : <p class="g-bonus" set:html={c.bonus} />}
+            {c.rank === 1 && <div style="margin-top:12px;max-width:340px"><WagerBand min={30} max={38} value={35} /></div>}
           </div>
-          <div class="g-cta"><a class="g-btn" href={c.url} rel="nofollow noopener" target="_blank">Играть</a><a class="g-btn ghost" href={`/casino/${c.slug}/`}>Условия и история</a><span class="g-meta">проверено 31 августа</span></div>
+          <div class="g-cta">
+            {c.rank === 1 && <Gauge value={Number(c.rating) || 9.6} class="cta-gauge" />}
+            <a class="g-btn" href={c.url} rel="nofollow noopener" target="_blank">Играть</a>
+            <a class="g-btn ghost" href={`/casino/${c.slug}/`}>Условия и история</a>
+            <span class="g-meta"><Stamp date="31.08" tilt={-3} /></span>
+          </div>
         </article>
       ))}
     </div>
@@ -75,6 +93,63 @@ const isCrypto = (c: (typeof casinos)[number]) => c.payments.some((p) => ['usdt'
     </tbody></table></div>
   </div></section>
 
+  <div class="container"><div class="o-pipdiv" aria-hidden="true"><span class="ln"></span><span class="pips"><b></b><b></b><b></b><b></b></span><span class="ln"></span></div></div>
+
+  <section class="g-sec first"><div class="container">
+    <p class="o-spec">проекция · <code>/casino/{c1.slug}/</code></p>
+    <div class="pane" style="padding:var(--s-5)">
+      <div style="display:flex;align-items:center;gap:var(--s-4);flex-wrap:wrap">
+        <Medallion n={1} />
+        <div style="flex:1;min-width:200px">
+          <div class="g-name" style="font-size:var(--fs-4)">{c1.name}<span class="g-tag">выбор №1</span></div>
+          <p class="sub" style="margin:2px 0 0">{c1.licenseShort} · депозит от {n(c1.minDeposit!)} ₽ · вывод от {c1.withdrawMin} мин</p>
+        </div>
+        <Gauge value={Number(c1.rating) || 9.6} />
+      </div>
+      <div style="margin-top:var(--s-4);max-width:360px"><WagerBand min={30} max={38} value={35} /></div>
+      <div class="o-pipdiv" style="margin:var(--s-4) 0" aria-hidden="true"><span class="ln"></span><span class="pips"><b></b><b></b><b></b><b></b></span><span class="ln"></span></div>
+      <p class="o-spec" style="margin-bottom:var(--s-2)">история изменений</p>
+      <div class="o-ledger">
+        <div class="row"><span class="d">31.08</span><span>вывод через СБП: <b>20 → 15 мин</b></span><span class="delta">быстрее</span></div>
+        <div class="row"><span class="d">17.08</span><span>порог бонуса: <b>300 → 500 ₽</b></span><span class="delta up">выше</span></div>
+        <div class="row"><span class="d">03.08</span><span>минимальный депозит: <b>без изменений</b></span><span class="delta" style="color:var(--muted)">—</span></div>
+      </div>
+      <div style="display:flex;justify-content:flex-end;margin-top:var(--s-4)"><Stamp date="31.08" /></div>
+    </div>
+  </div></section>
+
+  <section class="g-sec"><div class="container">
+    <p class="o-spec">проекция · <code>/deposit/100/</code></p>
+    <div class="pane" style="padding:var(--s-5)">
+      <h2 style="font-size:var(--fs-4)">Что даёт депозит</h2>
+      <p class="sub">барабаны пересчитываются под вашу сумму</p>
+      <div class="o-seg" id="dep-seg" style="max-width:360px;margin:var(--s-3) 0 var(--s-4)">
+        <button class="on" data-v="100">100 ₽</button><button data-v="500">500 ₽</button><button data-v="1000">1 000 ₽</button>
+      </div>
+      <div style="display:flex;align-items:center;gap:var(--s-2);font-size:var(--fs-2);color:#b9c1cc;flex-wrap:wrap">
+        <Icon name="tabler:dice-5" style="width:18px;height:18px;color:var(--blue)" />
+        <span>хватит на ≈</span> <Reels value={100} id="dep-reel" /> <b style="color:var(--text)">спинов</b> <span>при ставке 1 ₽</span>
+      </div>
+      <div class="o-ticket" style="margin-top:var(--s-4)">бонусы открываются <b>от 500 ₽</b> · на сотне выгоднее кешбэк</div>
+    </div>
+  </div></section>
+
+  <section class="g-sec"><div class="container">
+    <p class="o-spec">проекция · <code>/slots/{slot?.slug}/</code></p>
+    {slot && <div class="pane o-artpane" style="padding:var(--s-5);min-height:190px">
+      <img class="art" src={slot.image} alt="" width="640" height="360" loading="lazy" />
+      <div style="max-width:55%">
+        <div class="g-name" style="font-size:var(--fs-4)">{slot.name}</div>
+        <p class="sub" style="margin:2px 0 var(--s-3)">{slot.provider} · {vol(slot.volatility, true)?.toLowerCase()} волатильность</p>
+        <div class="g-facts" style="grid-template-columns:1fr">
+          <div class="g-fact"><Icon name="tabler:percentage" />RTP <b class="tab">{slot.rtp?.toFixed(2)}%</b></div>
+          <div class="g-fact warm"><Icon name="tabler:trophy" />макс. выигрыш <b class="tab">{slot.maxWin}</b></div>
+        </div>
+        <div style="margin-top:var(--s-4)"><Stamp date="03.06" label="в каталоге" muted /></div>
+      </div>
+    </div>}
+  </div></section>
+
   <section class="g-sec" style="padding-bottom:64px"><div class="container">
     <h2>Разборы</h2>
     <p class="sub">Те же 12 площадок под конкретный вопрос</p>
@@ -85,4 +160,21 @@ const isCrypto = (c: (typeof casinos)[number]) => c.payments.some((p) => ['usdt'
       <a class="pane g-guide" href="/archive/"><Icon name="tabler:database" /><div><b>Архив данных</b><span>история условий, снимки правил</span></div></a>
     </div>
   </div></section>
+
+  <style>
+    .g-cta .o-gauge.cta-gauge { justify-self: center; width: 84px; margin-bottom: 2px; }
+    .g-meta .o-stamp { transform: rotate(-3deg) scale(.92); }
+    @media (max-width: 719px) { .g-cta .o-gauge.cta-gauge { grid-column: 1 / -1; } }
+  </style>
+  <script>
+    const seg = document.getElementById('dep-seg');
+    const reel = document.getElementById('dep-reel');
+    seg?.addEventListener('click', (e) => {
+      const b = (e.target as HTMLElement).closest('button');
+      if (!b || !reel) return;
+      seg.querySelectorAll('button').forEach((x) => x.classList.remove('on'));
+      b.classList.add('on');
+      (window as any).oReel?.(reel, b.dataset.v);
+    });
+  </script>
 </Base>

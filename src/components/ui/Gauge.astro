@@ -1,0 +1,13 @@
+---
+/** Score arc: value out of max, reads in a glance. */
+interface Props { value: number; max?: number; unit?: string; class?: string }
+const { value, max = 10, unit = 'из 10', class: cls } = Astro.props;
+const v = Math.max(0, Math.min(1, value / max));
+const shown = value.toLocaleString('ru-RU', { maximumFractionDigits: 1 });
+---
+<svg class:list={['o-gauge', cls]} viewBox="0 0 96 58" style={`--v:${v.toFixed(3)}`} role="img" aria-label={`${shown} ${unit}`}>
+  <path class="track" d="M10 52 A38 38 0 0 1 86 52" fill="none" stroke-width="7" stroke-linecap="round" />
+  <path class="val" d="M10 52 A38 38 0 0 1 86 52" fill="none" stroke-width="7" stroke-linecap="round" />
+  <text x="48" y="46" text-anchor="middle" class="n">{shown}</text>
+  <text x="48" y="56" text-anchor="middle" class="u">{unit.toUpperCase()}</text>
+</svg>

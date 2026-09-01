@@ -1,0 +1,29 @@
+---
+/** Digits that roll like a drum. Update via window.oReel(el, value). */
+interface Props { value: number | string; id?: string }
+const { value, id } = Astro.props;
+---
+<span class="o-reel" id={id} data-value={String(value)}></span>
+<script>
+  function build(el: Element, s: string) {
+    el.innerHTML = '';
+    for (const ch of s) {
+      const col = document.createElement('span'); col.className = 'col';
+      const stk = document.createElement('span'); stk.className = 'stk';
+      for (let d = 0; d <= 9; d++) { const x = document.createElement('span'); x.textContent = String(d); stk.appendChild(x); }
+      col.appendChild(stk); el.appendChild(col);
+    }
+  }
+  function set(el: Element, val: number | string, instant = false) {
+    const s = String(val);
+    if (el.querySelectorAll('.col').length !== s.length) build(el, s);
+    el.querySelectorAll('.col').forEach((c, i) => {
+      const stk = c.firstChild as HTMLElement;
+      if (instant) stk.style.transition = 'none';
+      stk.style.transform = `translateY(calc(-${s[i]} * 1.35em))`;
+      if (instant) { void stk.offsetWidth; stk.style.transition = ''; }
+    });
+  }
+  (window as any).oReel = set;
+  document.querySelectorAll('.o-reel[data-value]').forEach((el) => set(el, el.getAttribute('data-value')!, true));
+</script>

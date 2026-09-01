@@ -1,0 +1,99 @@
+/* ===== Ornaments: the thematic detail vocabulary of the smoked-glass theme. =====
+   Casino rendered as material — minted medallion, coupon, revision stamp, reel digits —
+   never neon. Every piece doubles as a usability unit. Requires .theme-glass tokens. */
+
+/* rank medallion: chip-edge ring + minted core; reserved for №1 */
+.o-medal { width: 56px; height: 56px; border-radius: 50%; flex: none; display: grid; place-items: center;
+  background: repeating-conic-gradient(rgba(246,196,100,.95) 0 11deg, rgba(26,20,8,.95) 11deg 22deg);
+  box-shadow: 0 8px 22px -8px rgba(240,170,60,.65), inset 0 1px 1px rgba(255,255,255,.4); }
+.o-medal i { width: 41px; height: 41px; border-radius: 50%; font-style: normal; font-weight: 700; font-size: var(--fs-4);
+  display: grid; place-items: center; color: #2c1e05; text-shadow: 0 1px 0 rgba(255,255,255,.45), 0 -1px 0 rgba(0,0,0,.35);
+  background: radial-gradient(circle at 35% 30%, #f6c464, #d9922a 62%, #a8690f);
+  box-shadow: inset 0 -2px 4px rgba(0,0,0,.35), inset 0 2px 3px rgba(255,255,255,.35); }
+
+/* score gauge: the number reads in a glance; arc length set inline via --v (0..1) */
+.o-gauge { width: 96px; }
+.o-gauge .track { stroke: rgba(255,255,255,.09); }
+.o-gauge .val { stroke: var(--gold2); stroke-dasharray: 114.6; stroke-dashoffset: calc(114.6 * (1 - var(--v, .9))); }
+.o-gauge .n { font-weight: 700; font-size: 1.2rem; fill: var(--gold2); font-variant-numeric: tabular-nums; }
+.o-gauge .u { font-size: .55rem; fill: var(--muted); letter-spacing: .08em; }
+
+/* revision stamp: verification made physical */
+.o-stamp { display: inline-block; transform: rotate(var(--tilt, -5deg)); padding: 6px 12px; position: relative;
+  border: 1.5px solid rgba(240,170,60,.75); border-radius: 8px; color: rgba(240,170,60,.85);
+  font-weight: 700; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; background: rgba(240,170,60,.05); white-space: nowrap; }
+.o-stamp::before { content: ""; position: absolute; inset: 3px; border: 1px solid rgba(240,170,60,.75); border-radius: 5px; opacity: .55; }
+.o-stamp b { font-variant-numeric: tabular-nums; }
+.o-stamp.mut { border-color: rgba(152,162,179,.55); color: rgba(152,162,179,.8); background: rgba(152,162,179,.05); }
+.o-stamp.mut::before { border-color: rgba(152,162,179,.55); }
+
+/* reel digits: numbers roll like a drum on update (JS: window.oReel) */
+.o-reel { display: inline-flex; gap: 2px; vertical-align: -6px; }
+.o-reel .col { width: .72em; height: 1.35em; overflow: hidden; border-radius: 4px; background: rgba(255,255,255,.06);
+  box-shadow: inset 0 2px 3px rgba(0,0,0,.5), inset 0 -2px 3px rgba(0,0,0,.5), inset 0 0 0 1px rgba(255,255,255,.08); }
+.o-reel .stk { display: flex; flex-direction: column; transition: transform .55s cubic-bezier(.3,1.2,.4,1);
+  font-weight: 700; color: var(--gold2); line-height: 1.35em; text-align: center; font-variant-numeric: tabular-nums; }
+.o-reel .stk span { height: 1.35em; }
+@media (prefers-reduced-motion: reduce) { .o-reel .stk { transition: none; } }
+
+/* market band: a value positioned against the market range, not a bare number */
+.o-band .tr { position: relative; height: 4px; border-radius: 2px; background: rgba(255,255,255,.1); margin: 10px 0 4px; }
+.o-band .fill { position: absolute; inset: 0 auto 0 0; border-radius: 2px; background: linear-gradient(90deg, var(--green), var(--gold2) 70%, var(--red)); }
+.o-band .dot { position: absolute; top: 50%; width: 10px; height: 10px; border-radius: 50%; background: var(--gold2);
+  transform: translate(-50%, -50%); box-shadow: 0 0 0 3px rgba(240,170,60,.25), 0 0 12px rgba(240,170,60,.7); }
+.o-band .lb { display: flex; justify-content: space-between; font-size: .68rem; color: var(--muted); }
+.o-band .lb b { color: #ffe0a3; font-weight: 600; }
+
+/* coupon: a bonus looks like what it is — a ticket with terms */
+.o-ticket { position: relative; padding: 9px 18px; border-radius: 10px; font-size: var(--fs-1); color: var(--gold2);
+  background: linear-gradient(160deg, rgba(240,170,60,.16), rgba(240,170,60,.06)); border: 1px solid rgba(240,170,60,.35);
+  -webkit-mask: radial-gradient(circle 6px at 0 50%, transparent 96%, #000), radial-gradient(circle 6px at 100% 50%, transparent 96%, #000);
+  -webkit-mask-composite: source-in; mask: radial-gradient(circle 6px at 0 50%, transparent 96%, #000), radial-gradient(circle 6px at 100% 50%, transparent 96%, #000); mask-composite: intersect; }
+.o-ticket b { color: #ffe0a3; }
+
+/* pip divider: dice pips between sections instead of a bare rule */
+.o-pipdiv { display: flex; align-items: center; gap: 10px; margin: var(--s-5) 0; }
+.o-pipdiv .ln { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,.16)); }
+.o-pipdiv .ln:last-child { background: linear-gradient(90deg, rgba(255,255,255,.16), transparent); }
+.o-pipdiv .pips { display: grid; grid-template-columns: repeat(2, 4px); gap: 3px; }
+.o-pipdiv .pips b { width: 4px; height: 4px; border-radius: 50%; background: rgba(240,170,60,.7); }
+
+/* segmented control (deposit sums, filters with one active) */
+.o-seg { display: flex; border: 1px solid rgba(255,255,255,.14); border-radius: var(--r-md); overflow: hidden; }
+.o-seg button { flex: 1; font: inherit; font-weight: 600; font-size: var(--fs-1); padding: 9px 0; background: transparent; border: 0; color: var(--muted); cursor: pointer; }
+.o-seg button + button { border-left: 1px solid rgba(255,255,255,.12); }
+.o-seg .on { background: linear-gradient(180deg, rgba(246,196,100,.22), rgba(217,146,42,.14)); color: #ffe0a3; }
+
+/* art pane: real slot artwork dissolving into the glass (masked, no runtime blur) */
+.o-artpane { overflow: hidden; }
+.o-artpane .art { position: absolute; top: 0; right: 0; bottom: 0; width: 62%; object-fit: cover; opacity: .9; pointer-events: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 45%); mask-image: linear-gradient(90deg, transparent, #000 45%); }
+.o-artpane::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, transparent 55%, rgba(11,13,17,.55)); }
+
+/* ledger: the growing archive as visible rows with per-row date stamps */
+.o-ledger { display: grid; gap: 8px; }
+.o-ledger .row { display: flex; align-items: center; gap: var(--s-3); padding: 9px 12px; border-radius: var(--r-md);
+  background: rgba(255,255,255,.045); border: 1px solid rgba(255,255,255,.09); font-size: var(--fs-1); color: #b9c1cc; }
+.o-ledger .row b { color: var(--text); font-variant-numeric: tabular-nums; }
+.o-ledger .d { font-size: .68rem; letter-spacing: .06em; color: rgba(240,170,60,.8); border: 1px solid rgba(240,170,60,.45); border-radius: 6px; padding: 2px 7px; font-weight: 700; font-variant-numeric: tabular-nums; flex: none; }
+.o-ledger .delta { margin-left: auto; color: var(--green); font-weight: 600; white-space: nowrap; }
+.o-ledger .delta.up { color: var(--red); }
+
+/* spec label for the /preview/ polygon */
+.o-spec { font-size: .68rem; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); margin: 0 0 var(--s-2); }
+.o-spec code { color: var(--blue); font-family: inherit; }
+
+/* ===== Stage A: mobile identity without backdrop-filter ===== */
+@media (max-width: 719px) {
+  .theme-glass header, .theme-glass .nav-drop, .theme-glass footer { backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .theme-glass header { background: rgba(12,14,19,.94); }
+  .theme-glass .nav-drop { background: rgba(18,21,27,.97); }
+  .theme-glass footer { background: rgba(12,14,19,.94); }
+  .theme-glass .pane { backdrop-filter: none; -webkit-backdrop-filter: none;
+    background: linear-gradient(160deg, rgba(140,146,158,.15), rgba(70,75,84,.09)), rgba(16,19,25,.9); }
+  .theme-glass .backdrop { filter: none; background: radial-gradient(340px 260px at -8% -6%, rgba(111,176,255,.12), transparent 62%),
+    radial-gradient(320px 260px at 108% 104%, rgba(240,170,60,.11), transparent 60%), linear-gradient(180deg, #0b0d11, #12151b 55%, #0d1015); }
+  .theme-glass .storm .glow { filter: none; opacity: .55; }
+  .theme-glass .storm .bolt .halo { filter: none; opacity: .35; }
+}

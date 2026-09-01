@@ -1,0 +1,10 @@
+---
+/** Value positioned against the market range. */
+interface Props { min: number; max: number; value: number; prefix?: string }
+const { min, max, value, prefix = 'x' } = Astro.props;
+const p = Math.max(0, Math.min(100, ((value - min) / (max - min)) * 100));
+---
+<div class="o-band">
+  <div class="tr"><span class="fill" style={`width:${p.toFixed(1)}%`}></span><span class="dot" style={`left:${p.toFixed(1)}%`}></span></div>
+  <div class="lb"><span>рынок {prefix}{min}</span><b>у них {prefix}{value}</b><span>{prefix}{max}</span></div>
+</div>

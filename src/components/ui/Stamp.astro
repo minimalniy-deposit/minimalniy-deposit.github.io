@@ -1,0 +1,5 @@
+---
+interface Props { date: string; label?: string; tilt?: number; muted?: boolean }
+const { date, label = 'проверено', tilt = -5, muted = false } = Astro.props;
+---
+<span class:list={['o-stamp', { mut: muted }]} style={`--tilt:${tilt}deg`}>{label} · <b>{date}</b></span>
