@@ -7,13 +7,13 @@ import site from '../../data/site.json';
 import { casinos } from '../../lib/casinos';
 import { updated } from '../../lib/dates';
 
-const title = 'Casinos with a Minimum Deposit 2026 — Top 12 Rating from 10 Roubles';
-const description = 'The best casinos with a minimum deposit from 10 roubles: a top-12 rating comparing bonuses, deposit methods and withdrawal speed. Verified in 2026.';
+const title = 'Casinos with a Minimum Deposit 2026 — Top 13 Rating from 10 Roubles';
+const description = 'The best casinos with a minimum deposit from 10 roubles: a top-13 rating comparing bonuses, deposit methods and withdrawal speed. Verified in 2026.';
 const url = new URL('/en/', Astro.site).href;
 const ld = [
   { '@context': 'https://schema.org', '@type': 'WebPage', name: title, url, description, inLanguage: 'en', dateModified: updated.iso,
     breadcrumb: { '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: url }] } },
-  { '@context': 'https://schema.org', '@type': 'ItemList', name: 'Top 12 casinos with a minimum deposit 2026', url,
+  { '@context': 'https://schema.org', '@type': 'ItemList', name: 'Top 13 casinos with a minimum deposit 2026', url,
     itemListElement: casinos.map((c) => ({ '@type': 'ListItem', position: c.rank, name: c.name, url: c.url })) },
 ];
 const methodsEn = [
@@ -29,7 +29,7 @@ const methodsEn = [
   <section class="hero">
     <HeroVideo />
     <div class="container">
-      <h1>Casinos with a <span class="accent">minimum deposit</span> 2026 —<br>Top 12 verified sites from 100 roubles</h1>
+      <h1>Casinos with a <span class="accent">minimum deposit</span> 2026 —<br>Top 13 verified sites from 100 roubles</h1>
       <p class="hero-desc">Top casinos with a minimum deposit in roubles: we compared 60+ online casinos and picked the best licensed ones by withdrawal speed, bonus size and slot RTP. Every small-deposit casino was checked by hand in {updated.en}.</p>
       <div class="hero-stats">
         <div class="stat"><span class="stat-num">{casinos.length}</span><span class="stat-label">casinos in the rating</span></div>
@@ -50,7 +50,7 @@ const methodsEn = [
         <p>The rating below uses three criteria: first-withdrawal speed via SBP (target under 15 minutes), wagering transparency (no more than 40x within 7 days) and a valid Curaçao eGaming or MGA licence. Full details are on the <a href="/en/methodology/">methodology page</a>; data was cross-checked against the independent portal <a href={site.source.url} rel="nofollow" target="_blank">don8play.ru</a>. The full Russian review, FAQ and guides are on the <a href="/" hreflang="ru">Russian version</a>.</p>
       </div>
 
-      <h2 class="section-title">Top 12 casinos with a minimum deposit</h2>
+      <h2 class="section-title">Top 13 casinos with a minimum deposit</h2>
       <p class="section-sub">The best small-deposit online casinos of 2026 — from 100 to 1,000 roubles, with fast withdrawals and bonuses</p>
 
       <div class="casino-grid" id="casinoGrid">

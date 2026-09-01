@@ -4,7 +4,7 @@
   "logoSuffix": ".rating",
   "updated": "Updated: May 2026",
   "nav": {
-    "rating": "Top 12 rating",
+    "rating": "Top 13 rating",
     "methods": "Payment methods",
     "howto": "How to choose",
     "faq": "FAQ",
@@ -28,7 +28,7 @@
   },
   "casino": {
     "breadcrumbHome": "Home",
-    "breadcrumbRating": "Top 12 rating",
+    "breadcrumbRating": "Top 13 rating",
     "rankIn": "Rank",
     "of10": "of {n}",
     "facts": "Key terms",
