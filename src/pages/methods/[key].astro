@@ -1,0 +1,213 @@
+---
+import Base from '../../layouts/Base.astro';
+import { casinos, type Casino } from '../../lib/casinos';
+import { lastChecked } from '../../lib/history';
+import { rates, bc, hasRates, toUsdt, rateDate, spread, fmtRub } from '../../lib/rates';
+import limits from '../../data/payment-limits.json';
+import { formatMoney } from '../../i18n';
+
+export function getStaticPaths() {
+  return (['sbp', 'card', 'crypto'] as const).map((key) => ({ params: { key }, props: { key } }));
+}
+type Key = 'sbp' | 'card' | 'crypto';
+const { key } = Astro.props as { key: Key };
+
+/* ---------- data ---------- */
+const accepts = (c: Casino) => key === 'crypto' ? c.payments.some((p) => ['usdt', 'btc', 'crypto'].includes(p)) : c.payments.includes(key);
+const list = casinos.filter(accepts).sort((a, b) => a.rank - b.rank);
+const notList = casinos.filter((c) => !accepts(c));
+const fastest = [...list].sort((a, b) => a.withdrawMin! - b.withdrawMin! || a.rank - b.rank)[0];
+const lowest = [...list].sort((a, b) => a.minDeposit! - b.minDeposit! || a.rank - b.rank)[0];
+const within15 = list.filter((c) => c.withdrawMin! <= 15).length;
+const lim = limits.find((l) => l.key === key)!;
+const rub = (n: number, d = 0) => n.toLocaleString('ru-RU', { maximumFractionDigits: d, minimumFractionDigits: d }).replace(/\u00a0/g, ' ').replace(/^-/, '−');
+const names = (l: Casino[]) => l.map((c) => c.name.replace(' Casino', '')).join(', ');
+const fmtD = (d: string) => new Date(d).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' }).replace(' г.', '');
+const NV = 'не проверено';
+const wdVerified = list.filter((c) => c.withdrawMinAmount != null);
+const usd = rates.usd ?? null;
+const trcFee = usd ? [1.95 * usd, 3.9 * usd] : null;
+const casinoCryptoMin = bc ? 10 * bc.rubPerUsdt : null;
+const withCashier = list.filter((c) => c.cashierUsdtRate != null);
+const usdtOnly = list.filter((c) => c.payments.includes('usdt'));
+const btcOnly = list.filter((c) => c.payments.includes('btc'));
+
+/* ---------- copy ---------- */
+const META: Record<Key, { h1: string; title: string; crumb: string; q: string }> = {
+  sbp: { h1: 'Пополнение и вывод через СБП: как это работает в казино и где быстрее', crumb: 'СБП',
+    title: `Казино с пополнением через СБП: все ${list.length} площадок рейтинга, вывод от ${fastest.withdrawMin} минут, лимиты и что СБП не умеет`,
+    q: 'Какие казино принимают СБП и как быстро выводят обратно?' },
+  card: { h1: 'Карта «Мир» в казино: пополнение мгновенно, вывод — дни', crumb: 'Карта «Мир»',
+    title: `Казино с пополнением с карты «Мир»: ${list.length} площадок рейтинга, почему вывод на карту идёт 1–3 дня и как этого избежать`,
+    q: 'Какие казино принимают карту «Мир» и сколько идёт вывод на карту?' },
+  crypto: { h1: 'Криптовалюта в казино: когда USDT выгоднее рубля, а когда нет', crumb: 'Криптовалюта',
+    title: `Казино с крипто-депозитом: ${list.length} из ${casinos.length} площадок принимают USDT или BTC, курс касс против обменников, сбор сети и минимумы`,
+    q: 'Какие казино принимают USDT и Bitcoin и выгодно ли вносить криптой?' },
+};
+const m = META[key];
+
+const answer = key === 'sbp'
+  ? `СБП принимают все ${list.length} площадок рейтинга. Пополнение проходит за секунды по QR-коду, вывод возвращается в тот же банк: быстрее всех — ${fastest.name}, от ${fastest.withdrawMin} минут; ${within15} из ${list.length} укладываются в 15. Минимальный депозит по СБП — от ${formatMoney(lowest.minDeposit!)} у ${names(list.filter((c) => c.minDeposit === lowest.minDeposit))}. Переводы через СБП до 100 000 ₽ в месяц банки проводят без комиссии по решению Банка России; комиссию за пополнение казино тоже не берут. Условия проверены ${fmtD(lastChecked)}.`
+  : key === 'card'
+    ? `Карту «Мир» принимают все ${list.length} площадок рейтинга, и пополнение с неё проходит мгновенно. Обратный путь медленнее: вывод на карту идёт через межбанковский клиринг один–три рабочих дня — это не задержка казино, а свойство карточных переводов. Минимальный депозит с карты — от ${formatMoney(lowest.minDeposit!)}${notList.length ? '' : ''}. Если важна скорость выплаты, пополняйте картой, а выводите через СБП — там же, где счёт карты. Условия проверены ${fmtD(lastChecked)}.`
+    : `Криптовалюту принимают ${list.length} из ${casinos.length} площадок рейтинга: ${names(list)}. USDT в TRC-20 — у ${usdtOnly.length}, Bitcoin — у ${btcOnly.length}. ${hasRates && bc ? `Купить USDT у обменника с BestChange сегодня можно по ${fmtRub(bc.rubPerUsdt)} ₽ (для небольших сумм — от ${rub(bc.minSum)} ₽), на бирже — по ${fmtRub(rates.usdt!)} ₽; ` : ''}${trcFee ? `сетевой сбор при переводе — ${rub(trcFee[0])}–${rub(trcFee[1])} ₽, ` : ''}${casinoCryptoMin ? `минимум кассы обычно 10 USDT ≈ ${rub(casinoCryptoMin)} ₽. ` : ''}Выгода появляется только от тысячи рублей и только если касса меняет рубли не хуже обменника — курс касс мы ${withCashier.length ? `проверили у ${names(withCashier)}` : 'ещё не проверяли'}. Условия проверены ${fmtD(lastChecked)}.`;
+
+const description = key === 'sbp'
+  ? `Все ${list.length} площадок с СБП: минимальный депозит, минуты на вывод, лимиты банков, что СБП не умеет — анонимность, отмена платежа, другой банк на выводе.`
+  : key === 'card'
+    ? `${list.length} площадок с картой «Мир»: пополнение мгновенно, вывод 1–3 дня через клиринг, минимумы, почему не работают Visa и Mastercard российских банков и как ускорить вывод.`
+    : `${list.length} площадок с USDT и Bitcoin: курс обменников и биржи на сегодня, сбор сети TRC-20, минимум кассы 10 USDT, курс касс против рынка, когда крипта выгоднее рубля.`;
+
+/* ---------- FAQ ---------- */
+const faq: { q: string; a: string }[] = key === 'sbp' ? [
+  { q: 'Есть ли минимальная сумма перевода по СБП?', a: 'У Банка России её нет — минимум задаёт касса казино: у площадок рейтинга это от ' + formatMoney(lowest.minDeposit!) + '. Технически некоторые банки не проводят переводы меньше 10–15 рублей, но к казино это не относится: ниже сотни касса не примет.' },
+  { q: 'Вывод по СБП приходит в тот же банк?', a: 'Да: вывод идёт по номеру телефона в банк, который вы выбрали для получения. Большинство касс возвращают деньги только тем же способом, каким пополняли, — это требование правил против отмывания денег, а не ограничение СБП.' },
+  { q: 'Берёт ли казино комиссию за СБП?', a: 'За пополнение — нет ни у одной площадки рейтинга. Банк переводы до 100 000 ₽ в месяц тоже проводит бесплатно; выше — не более 0,5%, но не больше 1 500 ₽ за перевод.' },
+  { q: 'Может ли банк заблокировать перевод в казино?', a: 'Может: перевод физлицу с непонятным назначением иногда попадает под проверку антифрода, особенно первый или крупный. Сумма при этом не теряется — платёж либо проходит после подтверждения, либо возвращается. Помогает пополнять небольшими суммами и не дробить один платёж на много мелких подряд.' },
+] : key === 'card' ? [
+  { q: 'Почему вывод на карту идёт 1–3 дня?', a: 'Зачисление на карту проходит через межбанковский клиринг с обработкой на стороне банка-эмитента — это свойство карточных переводов, а не задержка казино. Заявку сама площадка обычно одобряет за те же минуты, что и СБП; дальше деньги идут по банковскому маршруту.' },
+  { q: 'Работают ли Visa и Mastercard российских банков?', a: 'Нет: карты Visa и Mastercard, выпущенные в России, с 2022 года не работают за пределами страны, а платёжные шлюзы казино находятся за её пределами. Работает «Мир» и — в части касс — карты иностранных банков. Проверяйте логотипы на странице пополнения.' },
+  { q: 'Можно ли отменить платёж с карты?', a: 'Нет. Пополнение казино — это покупка услуги, и оспорить его через банк по правилам платёжных систем практически невозможно; на этом строятся многие мошеннические «возвраты», обещающие вернуть проигрыш. Единственная защита — лимит на карте и отдельный счёт для игры.' },
+  { q: 'Как получить деньги быстрее, если пополнял картой?', a: 'Выберите на выводе СБП в тот же банк, где выпущена карта: касса видит, что владелец тот же, и большинство площадок это допускают. Если касса требует вывод строго на карту — ждать клиринга придётся.' },
+] : [
+  { q: 'Какая сеть для USDT — TRC-20 или ERC-20?', a: `TRC-20 (сеть Tron): сетевой сбор ${trcFee ? `${rub(trcFee[0])}–${rub(trcFee[1])} ₽` : 'около 2–4 долларов'} и зачисление за 1–3 минуты. В ERC-20 (Ethereum) сбор в разы выше и зависит от загрузки сети — для сумм в тысячи рублей она не имеет смысла.` },
+  { q: 'Сколько минимум можно внести криптой?', a: `Касса обычно принимает от 10 USDT${casinoCryptoMin ? ` — по курсу обменника это около ${rub(casinoCryptoMin)} ₽` : ''}. Плюс сбор сети и спред обменника: реальный нижний порог для крипто-депозита — тысяча рублей. Сто и пятьсот через криптовалюту не проходят арифметически.` },
+  { q: 'Bitcoin или USDT?', a: 'USDT: курс привязан к доллару, и сумма на счёте казино не изменится за время депозита и вывода. Bitcoin за час может подорожать или подешеветь на 2–5% — при депозите в тысячу рублей это заметнее любой комиссии.' },
+  { q: 'Нужен ли паспорт при крипто-депозите?', a: 'Для пополнения — нет. Для вывода действуют те же правила лицензии, что и для рублей: небольшие суммы обычно проходят без документов, при достижении порога операций казино обязано проверить личность.' },
+];
+
+/* ---------- structured data ---------- */
+const path = `/methods/${key}/`;
+const url = new URL(path, Astro.site).href;
+const ld = [
+  { '@context': 'https://schema.org', '@type': 'WebPage', '@id': url + '#webpage', name: m.title, url, description, inLanguage: 'ru', dateModified: lastChecked,
+    breadcrumb: { '@type': 'BreadcrumbList', itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Главная', item: new URL('/', Astro.site).href },
+      { '@type': 'ListItem', position: 2, name: 'Способы пополнения и вывода', item: new URL('/methods/', Astro.site).href },
+      { '@type': 'ListItem', position: 3, name: m.crumb, item: url } ] },
+    mainEntity: { '@id': url + '#question' }, hasPart: [{ '@id': url + '#list' }, { '@id': url + '#faq' }],
+    speakable: { '@type': 'SpeakableSpecification', cssSelector: ['.answer-first'] } },
+  { '@context': 'https://schema.org', '@type': 'QAPage', '@id': url + '#qa', url,
+    mainEntity: { '@type': 'Question', '@id': url + '#question', name: m.q, answerCount: 1, dateModified: lastChecked,
+      acceptedAnswer: { '@type': 'Answer', text: answer, url, dateModified: lastChecked } } },
+  { '@context': 'https://schema.org', '@type': 'ItemList', '@id': url + '#list', name: `Казино рейтинга: ${m.crumb}`, url, numberOfItems: list.length,
+    itemListElement: list.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.name, url: new URL(`/casino/${c.slug}/`, Astro.site).href })) },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', '@id': url + '#faq', url,
+    mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+];
+const KEYS: { key: Key; label: string }[] = [{ key: 'sbp', label: 'СБП' }, { key: 'card', label: 'Карта «Мир»' }, { key: 'crypto', label: 'Криптовалюта' }];
+---
+<Base locale="ru" {path} title={m.title} {description} translated={false}>
+  <Fragment slot="head">{ld.map((x) => <script type="application/ld+json" set:html={JSON.stringify(x)} />)}</Fragment>
+  <div class="container">
+    <nav class="crumbs" aria-label="breadcrumb"><ol><li><a href="/">Главная</a></li><li><a href="/methods/">Способы пополнения и вывода</a></li><li aria-current="page">{m.crumb}</li></ol></nav>
+    <div class="page-head">
+      <h1>{m.h1}</h1>
+      <p class="lede answer-first">{answer}</p>
+    </div>
+
+    <nav class="filters" role="group" aria-label="Способ оплаты" style="margin-bottom:24px">
+      {KEYS.map((k) => <a class:list={['filter-btn', { active: k.key === key }]} href={`/methods/${k.key}/`} aria-current={k.key === key ? 'page' : undefined}>{k.label}</a>)}
+      <a class="filter-btn" href="/methods/">сводная таблица</a>
+    </nav>
+
+    <div class="callouts">
+      <div class="callout">Принимают: <b>{list.length}</b> из {casinos.length}</div>
+      <div class="callout">Быстрее всех выводит: <b><a href={`/casino/${fastest.slug}/`}>{fastest.name}</a></b> — от {fastest.withdrawMin} мин</div>
+      <div class="callout">Самый низкий порог: <b><a href={`/casino/${lowest.slug}/`}>{lowest.name}</a></b> — {formatMoney(lowest.minDeposit!)}</div>
+      <div class="callout">Скорость и лимит способа: <b>{lim.time}</b>, {lim.limit}</div>
+    </div>
+
+    <section id="casinos">
+      <h2 class="section-title" style="font-size:1.25rem">Кто принимает {m.crumb.toLowerCase()} и на каких условиях</h2>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>#</th><th>Казино</th><th>Мин. депозит</th>{key === 'crypto' && hasRates && <th>в USDT</th>}<th>Вывод</th><th>Мин. вывод</th>{key === 'crypto' && <th>Курс кассы, ₽/USDT</th>}{key === 'crypto' && <th>Наценка к обменнику</th>}<th>Все способы</th></tr></thead>
+          <tbody>{list.map((c) => (
+            <tr>
+              <td class="num">{c.rank}</td>
+              <td><a href={`/casino/${c.slug}/`}>{c.name}</a></td>
+              <td class="num">{formatMoney(c.minDeposit!)}</td>
+              {key === 'crypto' && hasRates && <td class="num">≈ {toUsdt(c.minDeposit!)}</td>}
+              <td class="num">от {c.withdrawMin} мин</td>
+              <td class="num">{c.withdrawMinAmount != null ? formatMoney(c.withdrawMinAmount) : <span class="verified">{NV}</span>}</td>
+              {key === 'crypto' && <td class="num">{c.cashierUsdtRate != null ? `${fmtRub(c.cashierUsdtRate)} ₽` : <span class="verified">{NV}</span>}</td>}
+              {key === 'crypto' && <td class:list={['num', { no: spread(c.cashierUsdtRate) != null && spread(c.cashierUsdtRate)! > 3 }]}>{c.cashierUsdtRate != null ? `${spread(c.cashierUsdtRate)! > 0 ? '+' : ''}${spread(c.cashierUsdtRate)}%` : '—'}</td>}
+              <td>{c.paymentsLabel}</td>
+            </tr>))}</tbody>
+        </table>
+      </div>
+      <p class="section-sub" style="margin-top:10px">«Мин. вывод» {key === 'crypto' ? 'и курс кассы ' : ''}мы снимаем в кассе каждой площадки при понедельничной проверке; «не проверено» значит, что до площадки ещё не дошли, и мы не подставляем среднее по рынку.{notList.length ? ` Не принимают ${m.crumb.toLowerCase()}: ${names(notList)}.` : ''}</p>
+    </section>
+
+    {key === 'sbp' && (
+      <div class="prose" style="padding:24px 0 8px">
+        <h2>Как проходит депозит и вывод</h2>
+        <p>В кассе выбираете СБП и сумму, получаете QR-код или ссылку в банковское приложение, подтверждаете — деньги на счёте казино через несколько секунд. На выводе указываете номер телефона и банк; заявку одобряет площадка (это и есть те минуты из таблицы), после чего перевод приходит мгновенно. Никакого клиринга и «рабочих дней» — отсюда и разрыв со скоростью вывода на карту.</p>
+        <h2>Пять вещей, которые СБП не умеет</h2>
+        <ul>
+          <li><strong>Быть анонимным.</strong> Банк видит получателя — юрлицо платёжного шлюза — и назначение. Для банка это обычный перевод физлицу или оплата, но история хранится.</li>
+          <li><strong>Отменить платёж.</strong> Перевод по СБП безотзывный: ошиблись суммой или площадкой — вернуть можно только через поддержку казино.</li>
+          <li><strong>Вывести в другой банк.</strong> Большинство касс возвращают деньги тем же путём, каким пополняли, — на тот же телефон и банк. Это правило против отмывания денег, не каприз.</li>
+          <li><strong>Обойти лимит банка.</strong> Суточный лимит переводов задаёт ваш банк, обычно 100 000–200 000 ₽; со стороны казино ограничений на СБП нет.</li>
+          <li><strong>Проходить в любой банк.</strong> Часть банков блокирует переводы на шлюзы азартных игр по антифроду; если платёж не проходит второй раз подряд — сменить банк проще, чем спорить с поддержкой.</li>
+        </ul>
+        <h2>Где СБП выгоднее всего</h2>
+        <p>На маленьких суммах. Для депозита в 100–500 ₽ это единственный способ без потерь: комиссии нет, минимум кассы — {formatMoney(lowest.minDeposit!)}, а обратный перевод укладывается в минуты у {within15} площадок из {list.length}. Что даёт каждая из сумм — на страницах про <a href="/deposit/100/">100</a>, <a href="/deposit/500/">500</a> и <a href="/deposit/1000/">1 000 ₽</a>; кто выводит быстрее — <a href="/fast-withdrawal/">по минутам</a>.</p>
+      </div>
+    )}
+
+    {key === 'card' && (
+      <div class="prose" style="padding:24px 0 8px">
+        <h2>Пополнение: мгновенно и без комиссии</h2>
+        <p>Депозит с карты «Мир» зачисляется сразу; комиссию за пополнение площадки рейтинга не берут. Ограничения — на стороне банка: 3-D Secure на первом платеже, дневной лимит на онлайн-покупки и антифрод, который иногда просит подтвердить перевод. Минимум кассы — от {formatMoney(lowest.minDeposit!)}; у части касс для карт он выше, чем для СБП, — 200–300 ₽.</p>
+        <h2>Вывод: почему дни, а не минуты</h2>
+        <p>Площадка одобряет заявку за те же минуты, что указаны в таблице, — а дальше деньги идут через межбанковский клиринг: один–три рабочих дня, в выходные не считается. Это устройство карточных переводов, и никакое казино его не ускорит. Отсюда простое правило для тех, кому важна скорость: <strong>пополнять картой, выводить через СБП в тот же банк</strong> — большинство касс это допускают, потому что владелец счёта тот же.</p>
+        <h2>Что не работает и почему</h2>
+        <ul>
+          <li><strong>Visa и Mastercard российских банков.</strong> С 2022 года они не проводят операции за пределами России, а шлюзы казино — за её пределами. Работает «Мир»; в части касс — карты иностранных банков.</li>
+          <li><strong>Чужая карта.</strong> Депозит с карты, оформленной не на игрока, — гарантированный отказ в выводе по правилам против отмывания денег; поддержка попросит документы на владельца.</li>
+          <li><strong>Возврат платежа через банк.</strong> Оспорить пополнение казино как покупку почти невозможно, и на этом строятся мошеннические «сервисы возврата проигрышей». Защита — лимит на карте, а не спор после.</li>
+        </ul>
+        <p>Отдельная карта с лимитом для игры — это не только дисциплина, но и практика: банк реже блокирует привычные переводы с одной и той же карты на одного и того же получателя. О самих суммах — <a href="/deposit/100/">100</a>, <a href="/deposit/500/">500</a>, <a href="/deposit/1000/">1 000 ₽</a>.</p>
+      </div>
+    )}
+
+    {key === 'crypto' && (
+      <div class="prose" style="padding:24px 0 8px">
+        <h2>Сколько стоит крипто-депозит на самом деле</h2>
+        {hasRates && bc ? (
+          <div class="callouts">
+            <div class="callout">Обменники (BestChange): <b>{fmtRub(bc.rubPerUsdt)} ₽</b> / USDT <span class="verified">(лучший для сумм до {rub(bc.maxMinSum)} ₽, {bc.offersSmall} предложений, {rateDate(true)})</span></div>
+            <div class="callout">Биржевой курс: <b>{fmtRub(rates.usdt!)} ₽</b></div>
+            {trcFee && <div class="callout">Сбор сети TRC-20: <b>{rub(trcFee[0])}–{rub(trcFee[1])} ₽</b> за перевод</div>}
+            {casinoCryptoMin && <div class="callout">Минимум кассы 10 USDT: <b>≈ {rub(casinoCryptoMin)} ₽</b></div>}
+          </div>
+        ) : <p class="section-sub">Курсы появятся после ближайшего обновления.</p>}
+        <p>Путь рубля в USDT состоит из трёх потерь: спред обменника (разница между курсом BestChange и биржей — {hasRates && bc ? `сегодня ${rub((bc.rubPerUsdt / rates.usdt! - 1) * 100, 1)}%` : 'обычно 0,5–3%'}), сбор сети при переводе на адрес кассы и — самое незаметное — курс, по которому сама касса переводит USDT обратно в рубли на балансе. Третью цифру мы снимаем в кассе {withCashier.length ? `у ${names(withCashier)} (см. таблицу)` : 'по понедельникам; пока ни у одной площадки она не проверена'}. Наценка кассы выше 3% к обменнику означает, что крипта обходится дороже карты.</p>
+        <h2>Когда крипта оправдана</h2>
+        <ul>
+          <li><strong>От тысячи рублей.</strong> Ниже не сходится арифметика: минимум кассы 10 USDT{casinoCryptoMin ? ` ≈ ${rub(casinoCryptoMin)} ₽` : ''}, сбор сети{trcFee ? ` ${rub(trcFee[0])}–${rub(trcFee[1])} ₽` : ''}, минимумы обменников{bc ? ` от ${rub(bc.minSum)} ₽` : ''}. Разбор — на странице про <a href="/deposit/1000/">1 000 ₽</a>.</li>
+          <li><strong>Нет рублёвой карты или СБП</strong> — например, за пределами России. Тогда крипта не «выгоднее», а единственно возможна.</li>
+          <li><strong>Вывод крупных сумм.</strong> У крипты нет суточного банковского лимита, а зачисление занимает минуты вне зависимости от суммы.</li>
+        </ul>
+        <h2>USDT против Bitcoin</h2>
+        <p>Для депозита — только USDT: курс привязан к доллару, и сумма не изменится, пока идёт перевод и одобрение вывода. Bitcoin за час колеблется на проценты — при тысяче рублей это больше любой комиссии. Сеть — TRC-20: дешёвая и быстрая; ERC-20 для таких сумм не имеет смысла. Из площадок рейтинга USDT принимают {names(usdtOnly)}, Bitcoin — {names(btcOnly)}.</p>
+      </div>
+    )}
+
+    <section id="faq" style="padding-top:16px">
+      <h2 class="section-title" style="font-size:1.25rem">Вопросы про {m.crumb.toLowerCase()}</h2>
+      <div class="faq-list">
+        {faq.map((f) => (
+          <details class="faq-item" name="faq-method">
+            <summary class="faq-q">{f.q}<span class="faq-arrow">▼</span></summary>
+            <div class="faq-a"><div class="faq-a-inner">{f.a}</div></div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <p class="section-sub" style="margin:24px 0 48px">Курсы — на {rateDate(true)}; условия площадок — на {fmtD(lastChecked)}. Описания всех способов и лимиты — в <a href="/methods/">сводной таблице</a>; термины — в <a href="/glossary/#sbp">словаре</a>.</p>
+  </div>
+</Base>

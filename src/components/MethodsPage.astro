@@ -72,7 +72,7 @@ const ld = {
     <p class="section-sub" style="margin-top:10px">{t.methods.note}</p>
 
     {hasRates && (
-      <section style="margin-top:32px">
+      <section id="crypto" style="margin-top:32px">
         <h2 class="section-title" style="font-size:1.2rem">{t.rates.h}</h2>
         <p class="section-sub">{t.rates.lede}</p>
         <div class="callouts">
@@ -106,6 +106,7 @@ const ld = {
     <p class="section-sub" style="margin-top:10px">{t.facts2.limitsNote}</p>
 
     <h2 class="section-title" style="font-size:1.2rem;margin-top:32px">{t.methods.byMethod}</h2>
+    {ru && <p class="section-sub">Подробно о каждом способе: <a href="/methods/sbp/">СБП</a> · <a href="/methods/card/">карта «Мир»</a> · <a href="/methods/crypto/">криптовалюта</a> — как проходит депозит и вывод, что не работает и почему.</p>}
     <div class="method-groups">
       {paymentKeys.map((k) => (
         <div class="method-group">
