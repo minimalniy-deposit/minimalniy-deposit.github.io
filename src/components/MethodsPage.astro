@@ -40,7 +40,7 @@ const ld = {
     </div>
 
     <div class="callouts">
-      <div class="callout">{t.methods.fastest}: <b><a href={localePath(locale, `/casino/${fastest.slug}/`)}>{fastest.name}</a></b> — {fmt(t.casino.withdrawFrom, { n: fastest.withdrawMin! })}</div>
+      <div class="callout">{t.methods.fastest}: <b><a href={localePath(locale, `/casino/${fastest.slug}/`)}>{fastest.name}</a></b> — {fmt(t.casino.withdrawFrom, { n: fastest.withdrawMin! })}{ru && <> · <a href="/fast-withdrawal/">все по минутам →</a></>}</div>
       <div class="callout">{t.methods.lowest}: <b><a href={localePath(locale, `/casino/${lowest.slug}/`)}>{lowest.name}</a></b> — {formatMoney(lowest.minDeposit!)}</div>
     </div>
 

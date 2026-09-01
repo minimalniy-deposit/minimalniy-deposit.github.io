@@ -84,7 +84,7 @@ const verifiedHuman = new Date(site.lastVerified).toLocaleDateString(ru ? 'ru-RU
     <h2 class="section-title" style="font-size:1.2rem">{t.casino.facts}</h2>
     <dl class="facts">
       <div class="fact"><dt>{t.casino.minDeposit}</dt><dd class="gold">{c.minDeposit != null ? formatMoney(c.minDeposit) : '—'}</dd></div>
-      <div class="fact"><dt>{t.casino.withdraw}</dt><dd>{c.withdrawMin != null ? fmt(t.casino.withdrawFrom, { n: c.withdrawMin }) : '—'}</dd></div>
+      <div class="fact"><dt>{t.casino.withdraw}</dt><dd>{c.withdrawMin != null ? fmt(t.casino.withdrawFrom, { n: c.withdrawMin }) : '—'}{ru && c.withdrawMin != null && <> <a class="verified" href="/fast-withdrawal/">сравнить →</a></>}</dd></div>
       <div class="fact"><dt>{t.casino.payments}</dt><dd>{payLabel ?? '—'}</dd></div>
       <div class="fact"><dt>{t.casino.license}</dt><dd>{c.licenseShort ?? licenseLabel}</dd></div>
       {c.rtp != null && <div class="fact"><dt><a href={g('rtp')}>{t.facts2.rtp}</a></dt><dd class="gold">{c.rtp.toFixed(1)}%</dd></div>}

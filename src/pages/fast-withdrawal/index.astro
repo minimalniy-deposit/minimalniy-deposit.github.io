@@ -1,0 +1,103 @@
+---
+import Base from '../../layouts/Base.astro';
+import site from '../../data/site.json';
+import { casinos } from '../../lib/casinos';
+import { changesFor, observedSince, lastChecked } from '../../lib/history';
+import { formatMoney } from '../../i18n';
+
+const ru = true;
+const withTime = casinos.filter((c) => c.withdrawMin != null);
+const sorted = [...withTime].sort((a, b) => a.withdrawMin! - b.withdrawMin! || a.rank - b.rank);
+const groups = [...new Set(sorted.map((c) => c.withdrawMin!))].map((m) => ({ min: m, list: sorted.filter((c) => c.withdrawMin === m) }));
+const fastest = groups[0];
+const within15 = withTime.filter((c) => c.withdrawMin! <= 15).length;
+const slowest = groups[groups.length - 1];
+const fmtD = (d: string) => new Date(d).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' }).replace(' г.', '');
+const plural = (n: number) => { const m10 = n % 10, m100 = n % 100; return n === 1 ? 'одна площадка' : (m10 >= 2 && m10 <= 4 && (m100 < 10 || m100 >= 20)) ? `${n} площадки` : `${n} площадок`; };
+const pill = (c: (typeof casinos)[number]) => c.pills.find((p) => p.cls === 'fast')?.text ?? `вывод от ${c.withdrawMin} мин`;
+const changed = withTime.map((c) => ({ c, h: changesFor(c.slug).filter((e) => e.diffs.some((d) => d.key === 'withdrawMin')) }));
+const everChanged = changed.filter((x) => x.h.length > 1);
+const sinceMin = withTime.map((c) => observedSince(c.slug)).filter(Boolean).sort()[0]!;
+
+const title = `Кто из ${withTime.length} казино рейтинга выводит быстрее: ${fastest.min} минут у ${fastest.list.length} площадок, до 15 минут — у ${within15}`;
+const description = `Сравнение скорости первого вывода через СБП по площадкам рейтинга: ${fastest.list.map((c) => c.name.replace(' Casino', '')).join(', ')} — от ${fastest.min} минут; медленнее всех — ${slowest.list.map((c) => c.name.replace(' Casino', '')).join(' и ')}, от ${slowest.min}. Что именно измеряется и когда скорость не действует.`;
+const answer = `Из ${withTime.length} площадок рейтинга ${fastest.list.length} выплачивают первый вывод через СБП за ${fastest.min} минут — ${fastest.list.map((c) => c.name).join(', ')}. Ещё ${within15 - fastest.list.length} укладываются в 15 минут. Медленнее всех ${slowest.list.map((c) => c.name).join(' и ')} — от ${slowest.min} минут. Данные сверены ${fmtD(lastChecked)}; каждое значение ведётся в журнале с ${fmtD(sinceMin)}.`;
+
+const url = new URL('/fast-withdrawal/', Astro.site).href;
+const ld = [
+  { '@context': 'https://schema.org', '@type': 'WebPage', '@id': url + '#webpage', name: title, url, description, inLanguage: 'ru', dateModified: lastChecked,
+    breadcrumb: { '@type': 'BreadcrumbList', itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Главная', item: new URL('/', Astro.site).href },
+      { '@type': 'ListItem', position: 2, name: 'Скорость вывода', item: url } ] },
+    mainEntity: { '@id': url + '#question' }, speakable: { '@type': 'SpeakableSpecification', cssSelector: ['.answer-first'] } },
+  { '@context': 'https://schema.org', '@type': 'QAPage', '@id': url + '#qa', url,
+    mainEntity: { '@type': 'Question', '@id': url + '#question', name: 'Какое казино с минимальным депозитом выводит деньги быстрее всех?', answerCount: 1, dateModified: lastChecked,
+      acceptedAnswer: { '@type': 'Answer', text: answer, url, dateModified: lastChecked } } },
+  { '@context': 'https://schema.org', '@type': 'ItemList', '@id': url + '#list', name: 'Казино рейтинга по скорости вывода', url, itemListOrder: 'https://schema.org/ItemListOrderAscending', numberOfItems: sorted.length,
+    itemListElement: sorted.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: `${c.name} — от ${c.withdrawMin} минут`, url: new URL(`/casino/${c.slug}/`, Astro.site).href })) },
+];
+---
+<Base locale="ru" path="/fast-withdrawal/" {title} {description} translated={false}>
+  <Fragment slot="head">{ld.map((x) => <script type="application/ld+json" set:html={JSON.stringify(x)} />)}</Fragment>
+  <div class="container">
+    <nav class="crumbs" aria-label="breadcrumb"><ol><li><a href="/">Главная</a></li><li aria-current="page">Скорость вывода</li></ol></nav>
+    <div class="page-head">
+      <h1>Кто выводит быстрее: {withTime.length} площадок рейтинга по минутам</h1>
+      <p class="lede answer-first">{answer}</p>
+    </div>
+
+    <div class="callouts">
+      <div class="callout">Быстрее всех: <b>{fastest.list.map((c) => c.name.replace(' Casino', '')).join(', ')}</b> — {fastest.min} мин</div>
+      <div class="callout">Укладываются в 15 минут: <b>{within15}</b> из {withTime.length}</div>
+      <div class="callout">Медленнее всех: <b>{slowest.list.map((c) => c.name.replace(' Casino', '')).join(', ')}</b> — от {slowest.min} мин</div>
+      <div class="callout">Изменяли скорость с начала наблюдений: <b>{everChanged.length}</b></div>
+    </div>
+
+    <div class="prose">
+      <h2>Что именно измеряется</h2>
+      <p>Минуты в карточках — это время от нажатия «Вывести» до поступления денег на счёт через СБП при первом выводе небольшой суммы. Не среднее по отзывам и не обещание из рекламы: цифра снимается при проверке и попадает в журнал условий каждой площадки. Она описывает <a href="/glossary/#processing">время обработки заявки оператором</a> — банк на стороне игрока к нему почти ничего не добавляет, перевод по СБП идёт секунды.</p>
+    </div>
+
+    {groups.map((g) => (
+      <section style="padding:20px 0 0">
+        <h2 class="section-title" style="font-size:1.2rem">От {g.min} минут — {plural(g.list.length)}</h2>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>#</th><th>Казино</th><th>Вывод</th><th>Куда</th><th>Мин. депозит</th><th>История</th></tr></thead>
+            <tbody>{g.list.map((c) => {
+              const h = changesFor(c.slug).filter((e) => e.diffs.some((d) => d.key === 'withdrawMin'));
+              const since = observedSince(c.slug);
+              return (
+              <tr>
+                <td class="num">{c.rank}</td>
+                <td><a href={`/casino/${c.slug}/`}>{c.name}</a></td>
+                <td>{pill(c)}</td>
+                <td>{c.paymentsLabel}</td>
+                <td class="num">{c.minDeposit != null ? formatMoney(c.minDeposit) : '—'}</td>
+                <td style="white-space:normal;color:var(--muted);font-size:.85rem">{h.length > 1
+                  ? h.slice(1).map((e) => { const d = e.diffs.find((x) => x.key === 'withdrawMin')!; return `${fmtD(e.date)}: ${d.from} → ${d.to} мин`; }).join('; ')
+                  : since ? `без изменений с ${fmtD(since)}` : '—'}</td>
+              </tr>);
+            })}</tbody>
+          </table>
+        </div>
+      </section>
+    ))}
+
+    <div class="prose" style="padding:32px 0 48px">
+      <h2>Когда скорость не действует</h2>
+      <p>Четыре ситуации, в которых даже «от 10 минут» превращается в часы или дни, и ни одна из них не считается нарушением условий.</p>
+      <ul>
+        <li><strong>Вывод на банковскую карту.</strong> Минуты относятся к СБП и криптовалюте. Перевод на карту «Мир» идёт через межбанковский клиринг — один–три рабочих дня, и это не зависит от казино.</li>
+        <li><strong>Сумма выше порога автоматической обработки.</strong> Заявки примерно до 30 000 рублей проходят без участия человека. Всё, что выше, смотрит финансовый отдел: плюс от часа до суток.</li>
+        <li><strong>Первый вывод после бонуса.</strong> Пока бонус не отыгран, заявку либо отклонят, либо задержат до завершения отыгрыша — <a href="/glossary/#wager">вейджер</a> считается по всему обороту.</li>
+        <li><strong>Запрос верификации.</strong> При игре с минимальным депозитом документы обычно не спрашивают: первые выводы до 5 000–15 000 рублей проходят без паспорта. Но если запрос пришёл, часы пойдут заново после проверки — обычно это сутки.</li>
+      </ul>
+
+      <h2>Как проверить самому за один вывод</h2>
+      <p>Внесите минимальную сумму через СБП, сделайте несколько ставок и сразу подайте заявку на вывод обратно в тот же банк — на ту же сумму или чуть меньше. Засеките время до уведомления банка. Если результат отличается от таблицы больше чем на десять минут — <a href="/methodology/">сообщите нам</a>, значение перепроверим при ближайшей сверке и запишем в журнал.</p>
+
+      <p class="section-sub">Скорость вывода — один из пяти критериев рейтинга с весом 35%. Как считаются остальные — на странице <a href="/methodology/">методологии</a>. Способы пополнения и лимиты по каждому — в <a href="/methods/">сводной таблице</a>.</p>
+    </div>
+  </div>
+</Base>
