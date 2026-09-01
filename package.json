@@ -11,9 +11,12 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
+    "@fontsource-variable/cormorant": "^5.3.0",
     "@fontsource-variable/golos-text": "^5.3.0",
     "@fontsource-variable/unbounded": "^5.3.0",
     "@fontsource/jetbrains-mono": "^5.3.0",
+    "@fontsource/pt-serif": "^5.3.0",
+    "@iconify-json/ph": "^1.2.2",
     "@iconify-json/tabler": "^1.2.38",
     "astro": "^7.2.9",
     "astro-icon": "^1.2.0",

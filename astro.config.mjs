@@ -35,7 +35,7 @@ export default defineConfig({
     routing: { prefixDefaultLocale: false },
   },
   integrations: [
-    icon({ include: { tabler: ['clock-bolt', 'shield-check', 'coin', 'bolt', 'qrcode', 'credit-card', 'wallet', 'calculator', 'database', 'history', 'chart-line', 'scale', 'list-check', 'trophy', 'arrow-down-circle', 'building-bank', 'gift', 'percentage', 'dice-5', 'device-mobile', 'external-link', 'check', 'alert-triangle', 'archive'] } }),
+    icon({ include: { ph: ['dice-five-duotone', 'coins-duotone', 'lightning-duotone', 'shield-check-duotone', 'qr-code-duotone', 'credit-card-duotone', 'wallet-duotone', 'trophy-duotone', 'chart-line-up-duotone', 'timer-duotone', 'sparkle-duotone', 'bank-duotone'], tabler: ['clock-bolt', 'shield-check', 'coin', 'bolt', 'qrcode', 'credit-card', 'wallet', 'calculator', 'database', 'history', 'chart-line', 'scale', 'list-check', 'trophy', 'arrow-down-circle', 'building-bank', 'gift', 'percentage', 'dice-5', 'device-mobile', 'external-link', 'check', 'alert-triangle', 'archive'] } }),
     sitemap({
       filter: (page) => !page.includes('/preview/'),
       i18n: { defaultLocale: 'ru', locales: { ru: 'ru', en: 'en' } },
