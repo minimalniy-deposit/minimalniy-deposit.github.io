@@ -25,14 +25,14 @@ const read = (f) => dec.decode(readFileSync(join(dir, f))).split('\n').filter(Bo
 
 const cy = Object.fromEntries(read('bm_cy.dat').map((r) => [r[0], r[2] ?? r[1]]));      // id;pos;name
 const ex = Object.fromEntries(read('bm_exch.dat').map((r) => [r[0], r[1]]));            // id;name;...
-const rates = read('bm_rates.dat');                                                       // from;to;exch;give;get;reserve;reviews;minsum;maxsum;city
+const rates = read('bm_rates.dat');   // observed format: from;to;exch;give;get;reserve;?;?;minsum;maxsum                                                       // from;to;exch;give;get;reserve;reviews;minsum;maxsum;city
 const findIds = (re) => Object.entries(cy).filter(([, n]) => re.test(n)).map(([id]) => id);
 const fromIds = findIds(/(Сбербанк|Т-Банк|Тинькофф|СБП|Альфа|ВТБ).*RUB|RUB.*(Сбербанк|Т-Банк|Тинькофф|СБП)/i);
 const toIds = findIds(/Tether\s*TRC.?20|USDT\s*TRC/i);
 console.log('from ids', fromIds.map((i) => cy[i]), '| to ids', toIds.map((i) => cy[i]));
 
 const rows = rates.filter((r) => fromIds.includes(r[0]) && toIds.includes(r[1]))
-  .map((r) => ({ from: cy[r[0]], exchanger: ex[r[2]] ?? r[2], give: +r[3], get: +r[4], reviews: 0, minSum: +r[8] || 0, maxSum: +r[9] || 0 }  // observed format: from;to;exch;give;get;reserve;?;?;minsum;maxsum))
+  .map((r) => ({ from: cy[r[0]], exchanger: ex[r[2]] ?? r[2], give: +r[3], get: +r[4], reviews: 0, minSum: +r[8] || 0, maxSum: +r[9] || 0 }))
   .filter((r) => r.give > 0 && r.get > 0)
   .map((r) => ({ ...r, rubPerUsdt: +(r.give / r.get).toFixed(2) }));
 const small = rows.filter((r) => r.minSum <= MAX_MIN_SUM).sort((a, b) => a.rubPerUsdt - b.rubPerUsdt);
