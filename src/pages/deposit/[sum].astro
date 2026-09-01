@@ -1,4 +1,5 @@
 ---
+import GuidesGrid from '../../components/GuidesGrid.astro';
 import Base from '../../layouts/Base.astro';
 import { casinos, type Casino } from '../../lib/casinos';
 import { lastChecked } from '../../lib/history';
@@ -269,6 +270,7 @@ const ld = [
     </section>
 
     <!-- 8. FAQ -->
+    <GuidesGrid locale="ru" compact exclude={path} />
     <section id="faq" style="padding-top:24px">
       <h2 class="section-title" style="font-size:1.25rem">Вопросы про депозит {rub(sum)} ₽</h2>
       <div class="faq-list">

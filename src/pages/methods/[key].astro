@@ -1,4 +1,5 @@
 ---
+import GuidesGrid from '../../components/GuidesGrid.astro';
 import Base from '../../layouts/Base.astro';
 import { casinos, type Casino } from '../../lib/casinos';
 import { lastChecked } from '../../lib/history';
@@ -209,5 +210,6 @@ const KEYS: { key: Key; label: string }[] = [{ key: 'sbp', label: 'СБП' }, { 
     </section>
 
     <p class="section-sub" style="margin:24px 0 48px">Курсы — на {rateDate(true)}; условия площадок — на {fmtD(lastChecked)}. Описания всех способов и лимиты — в <a href="/methods/">сводной таблице</a>; термины — в <a href="/glossary/#sbp">словаре</a>.</p>
+    <GuidesGrid locale="ru" compact exclude={path} />
   </div>
 </Base>

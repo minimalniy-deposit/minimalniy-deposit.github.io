@@ -168,3 +168,18 @@ html[lang="en"] .hero { background-position: right 38%; }
 .week-card { display: grid; grid-template-columns: minmax(200px, 320px) 1fr; }
 .week-card .slot-thumb { aspect-ratio: 4 / 3; }
 @media (max-width: 640px) { .week-card { grid-template-columns: 1fr; } }
+
+/* Guides grid — visible cross-links */
+.guides { margin: 8px 0 24px; }
+.guides-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; }
+.guide { display: grid; gap: 4px; background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 14px; color: var(--text); text-decoration: none; }
+.guide b { color: var(--gold); font-size: .95rem; }
+.guide span { color: var(--muted); font-size: .8rem; line-height: 1.4; }
+.guide:hover { border-color: var(--gold); text-decoration: none; transform: translateY(-1px); }
+.guides.compact { margin: 24px 0 8px; }
+.guides.compact .guides-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; }
+.guides.compact .guide { padding: 8px 10px; } .guides.compact .guide span { display: none; }
+/* Make in-content links visible */
+.filters-label a, .section-sub a, .prose a, .fact dd a.verified, .card-more { color: var(--gold); }
+.card-more { font-size: .84rem; }
+.fact dd a.verified { text-decoration: underline; text-decoration-color: var(--border); }

@@ -4,6 +4,7 @@ import site from '../data/site.json';
 import { casinos, mentionsOf, type Casino } from '../lib/casinos';
 import { changesFor, observedSince, snapshotsFor } from '../lib/history';
 import { series, svgLine } from '../lib/charts';
+import GuidesGrid from './GuidesGrid.astro';
 import { hasRates, toUsdt, rateDate, spread, fmtRub } from '../lib/rates';
 import { useT, fmt, localePath, formatMoney, type Locale } from '../i18n';
 
@@ -171,6 +172,7 @@ const verifiedHuman = new Date(site.lastVerified).toLocaleDateString(ru ? 'ru-RU
       <p style="margin-top:16px"><a href={home + '#rating'}>{t.casino.backToRating}</a></p>
     </section>
 
+    <GuidesGrid {locale} compact />
     <div class="disclaimer" style="margin-bottom:48px" set:html={ru
       ? '<strong>Важно.</strong> Азартные игры предназначены только для совершеннолетних. Игра на деньги связана с риском финансовых потерь. Ссылки на казино — трекинговые: по ним подсчитываются переходы для исследования, вознаграждения от казино сайт не получает. За действия операторов сайт ответственности не несёт. Если вы замечаете у себя признаки игровой зависимости, обратитесь на горячую линию помощи игрокам. Материал носит справочный характер и не является офертой или рекламой. В Российской Федерации организация азартных игр в интернете запрещена законом. Сайт предназначен для читателей из других стран СНГ, где онлайн-казино разрешены и работают легально; перед игрой убедитесь, что это допускает законодательство вашей страны.'
       : '<strong>⚠️ Important:</strong> Gambling is for adults 18+ only. Playing for money carries a risk of financial loss. Casino links are tracking links used to count click-throughs for research; the site receives no payment from casinos. This site is not responsible for the actions of third parties. If you notice signs of gambling addiction, contact a gambling helpline. This material is informational and is not an offer or advertisement. Online gambling is prohibited by law in the Russian Federation. This site is intended for readers in other CIS countries where online casinos are permitted and operate legally; make sure the laws of your country allow it before playing.'} />

@@ -1,4 +1,5 @@
 ---
+import GuidesGrid from '../../components/GuidesGrid.astro';
 import Base from '../../layouts/Base.astro';
 import site from '../../data/site.json';
 import { casinos } from '../../lib/casinos';
@@ -99,5 +100,6 @@ const ld = [
 
       <p class="section-sub">Скорость вывода — один из пяти критериев рейтинга с весом 35%. Как считаются остальные — на странице <a href="/methodology/">методологии</a>. Способы пополнения и лимиты по каждому — в <a href="/methods/">сводной таблице</a>.</p>
     </div>
+    <GuidesGrid locale="ru" compact exclude="/fast-withdrawal/" />
   </div>
 </Base>

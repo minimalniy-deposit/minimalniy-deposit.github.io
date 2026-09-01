@@ -1,4 +1,5 @@
 ---
+import GuidesGrid from '../../../components/GuidesGrid.astro';
 import Base from '../../../layouts/Base.astro';
 import { casinos, type Casino } from '../../../lib/casinos';
 import { lastChecked } from '../../../lib/history';
@@ -114,5 +115,6 @@ const ld = [
       <div class="faq-list">{faq.map((f) => (<details class="faq-item" name="faq-deposit"><summary class="faq-q">{f.q}<span class="faq-arrow">▼</span></summary><div class="faq-a"><div class="faq-a-inner">{f.a}</div></div></details>))}</div>
     </section>
     <p class="section-sub" style="margin:24px 0 48px">Rates as of {rateDate(false)}; casino terms as of {fmtD(lastChecked)}. Sources and assumptions are listed on the <a href="/deposit/100/#sources" hreflang="ru">Russian 100 ₽ page</a>. Payout speed — <a href="/en/fast-withdrawal/">by the minute</a>; methods — <a href="/en/methods/">summary table</a>; terms — <a href="/en/glossary/">glossary</a>.</p>
+    <GuidesGrid locale="en" compact exclude={path} />
   </div>
 </Base>

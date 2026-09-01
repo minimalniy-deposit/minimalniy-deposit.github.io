@@ -5,6 +5,7 @@ import HeroVideo from '../components/HeroVideo.astro';
 import Filters from '../components/Filters.astro';
 import Faq from '../components/Faq.astro';
 import MethodsGrid from '../components/MethodsGrid.astro';
+import GuidesGrid from '../components/GuidesGrid.astro';
 import { casinos } from '../lib/casinos';
 import s from '../data/home-strings.json';
 import { homeLd } from '../lib/homeLd';
@@ -55,6 +56,9 @@ const description = 'Лучшие казино с минимальным деп�
       <Fragment set:html={otherCasinos} />
     </div>
   </section>
+
+  <!-- GUIDES (links only) -->
+  <section style="padding:0 0 32px"><div class="container"><GuidesGrid locale="ru" /></div></section>
 
   <!-- TEXT BLOCK: ЧТО ТАКОЕ КАЗИНО С МИНИМАЛЬНЫМ ДЕПОЗИТОМ -->
   <section style="padding:0 0 48px">

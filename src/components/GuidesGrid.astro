@@ -1,0 +1,28 @@
+---
+/** Visible cross-links to the guide pages: a grid of cards, not a grey line of text. */
+import { casinos } from '../lib/casinos';
+import { localePath, type Locale } from '../i18n';
+interface Props { locale: Locale; compact?: boolean; exclude?: string }
+const { locale, compact = false, exclude } = Astro.props;
+const ru = locale === 'ru';
+const n100 = casinos.filter((c) => c.minDeposit === 100).length, n500 = casinos.filter((c) => c.minDeposit != null && c.minDeposit <= 500).length;
+const fastest = [...casinos].sort((a, b) => a.withdrawMin! - b.withdrawMin!)[0];
+const crypto = casinos.filter((c) => c.payments.some((p) => ['usdt', 'btc', 'crypto'].includes(p))).length;
+const items = [
+  { path: '/deposit/100/', t: ru ? 'Депозит 100 ₽' : 'Deposit 100 ₽', d: ru ? `${n100} площадок · сколько спинов, брать ли бонус` : `${n100} casinos · spins, bonus or not` },
+  { path: '/deposit/500/', t: ru ? 'Депозит 500 ₽' : 'Deposit 500 ₽', d: ru ? `${n500} площадок · первая сумма для игры по правилам` : `${n500} casinos · first sum to play by the rules` },
+  { path: '/deposit/1000/', t: ru ? 'Депозит 1 000 ₽' : 'Deposit 1,000 ₽', d: ru ? 'все площадки · бонус как расчёт, крипта' : 'all casinos · bonus by the numbers, crypto' },
+  { path: '/fast-withdrawal/', t: ru ? 'Кто выводит быстрее' : 'Who pays out fastest', d: ru ? `от ${fastest.withdrawMin} минут у ${fastest.name.replace(' Casino', '')} · все по минутам` : `from ${fastest.withdrawMin} min at ${fastest.name.replace(' Casino', '')} · by the minute` },
+  { path: '/methods/sbp/', t: ru ? 'СБП' : 'SBP', d: ru ? 'секунды на вход, минуты на выход, что не умеет' : 'seconds in, minutes out, what it cannot do' },
+  { path: '/methods/card/', t: ru ? 'Карта «Мир»' : 'MIR card', d: ru ? 'мгновенно внести, 1–3 дня вывести' : 'instant deposit, 1–3 days out' },
+  { path: '/methods/crypto/', t: ru ? 'Криптовалюта' : 'Crypto', d: ru ? `${crypto} площадок · курс касс против обменников` : `${crypto} casinos · cashier rates vs exchangers` },
+  { path: '/archive/', t: ru ? 'Архив данных' : 'Data archive', d: ru ? 'история условий, курсы, снимки правил' : 'terms history, rates, rule snapshots' },
+].filter((i) => i.path !== exclude);
+---
+<nav class:list={['guides', { compact }]} aria-label={ru ? 'Разборы' : 'Guides'}>
+  {!compact && <h2 class="section-title" style="font-size:1.2rem">{ru ? 'Разборы: сумма, скорость, способ' : 'Guides: sum, speed, method'}</h2>}
+  {!compact && <p class="section-sub">{ru ? 'Те же 12 площадок под конкретный вопрос — с цифрами из еженедельной проверки.' : 'The same 12 casinos, one question at a time — with figures from the weekly check.'}</p>}
+  <div class="guides-grid">
+    {items.map((i) => <a class="guide" href={localePath(locale, i.path)}><b>{i.t}</b><span>{i.d}</span></a>)}
+  </div>
+</nav>
