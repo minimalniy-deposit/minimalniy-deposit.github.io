@@ -1,7 +1,7 @@
 name: Sync demo-slot catalog
 on:
   schedule:
-    - cron: '30 5 * * *'   # daily 05:30 UTC
+    - cron: '0 5 * * *'   # daily 05:30 UTC
   workflow_dispatch:
 permissions:
   contents: write

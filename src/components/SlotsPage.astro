@@ -1,7 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import site from '../data/site.json';
-import { slots, slotsMeta, providers, providerSlug, vol } from '../lib/slots';
+import { slots, slotsMeta, providers, providerSlug, vol, newSlots, slotOfTheWeek } from '../lib/slots';
+import { fmt as f2 } from '../i18n';
 import { casinos } from '../lib/casinos';
 import { useT, fmt, localePath, formatMoney, type Locale } from '../i18n';
 interface Props { locale: Locale }
@@ -9,6 +10,9 @@ const { locale } = Astro.props;
 const t = useT(locale); const ru = locale === 'ru';
 const home = localePath(locale, '/');
 const top = casinos[0];
+const fresh = newSlots(14).slice(0, 8);
+const week = slotOfTheWeek();
+const fmtD = (d: string) => new Date(d).toLocaleDateString(ru ? 'ru-RU' : 'en-GB', { day: 'numeric', month: 'long' });
 const url = new URL(localePath(locale, '/slots/'), Astro.site).href;
 const ld = { '@context': 'https://schema.org', '@type': 'CollectionPage', name: t.slots.title, url, description: t.slots.metaDesc, inLanguage: locale, dateModified: slotsMeta.fetchedAt ?? site.lastVerified,
   breadcrumb: { '@type': 'BreadcrumbList', itemListElement: [
@@ -21,6 +25,31 @@ const ld = { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 
     <nav class="crumbs" aria-label="breadcrumb"><ol><li><a href={home}>{t.casino.breadcrumbHome}</a></li><li aria-current="page">{t.slots.breadcrumb}</li></ol></nav>
     <div class="page-head"><h1>{t.slots.h1}</h1><p class="lede">{t.slots.lede}</p></div>
 
+    {week && (
+      <section class="week" style="margin-bottom:24px">
+        <h2 class="section-title" style="font-size:1.2rem">{t.fresh.week}</h2>
+        <p class="section-sub">{t.fresh.weekSub}</p>
+        <article class="slot-card week-card">
+          <a class="slot-thumb" href={localePath(locale, `/slots/${week.slug}/`)}>{week.image ? <img src={week.image} alt={week.name} width="480" height="360" loading="eager" /> : <span>{week.provider}</span>}</a>
+          <div class="slot-body">
+            <a class="slot-name" href={localePath(locale, `/slots/${week.slug}/`)} style="font-size:1.15rem">{week.name}</a>
+            <div class="slot-meta"><span>{week.provider}</span>{week.rtp != null && <span>RTP <b>{week.rtp}%</b></span>}{week.volatility && <span><b>{vol(week.volatility, ru)}</b></span>}{week.maxWin && <span>max <b>{week.maxWin}</b></span>}{week.releaseDate && <span>{fmtD(week.releaseDate)}</span>}</div>
+            <p style="margin-top:8px"><a class="btn-go" href={localePath(locale, `/slots/${week.slug}/`)}>{t.fresh.play}</a></p>
+          </div>
+        </article>
+      </section>
+    )}
+    {fresh.length > 0 && (
+      <section style="margin-bottom:24px">
+        <h2 class="section-title" style="font-size:1.2rem">{t.fresh.h}</h2>
+        <p class="section-sub">{f2(t.fresh.sub, { d: fmtD(slotsMeta.fetchedAt ?? new Date().toISOString()) })}</p>
+        <div class="slot-grid">{fresh.map((s) => (
+          <article class="slot-card">
+            <a class="slot-thumb" href={localePath(locale, `/slots/${s.slug}/`)}>{s.image ? <img src={s.image} alt={s.name} width="480" height="360" loading="lazy" decoding="async" /> : <span>{s.provider}</span>}</a>
+            <div class="slot-body"><a class="slot-name" href={localePath(locale, `/slots/${s.slug}/`)}>{s.name}</a><div class="slot-meta"><span>{s.provider}</span>{s.releaseDate && <span>{fmtD(s.releaseDate)}</span>}{s.rtp != null && <span>RTP <b>{s.rtp}%</b></span>}</div></div>
+          </article>))}</div>
+      </section>
+    )}
     <div class="filters-section" style="margin:0 -16px;padding:16px">
       <div class="filters-label">{t.slots.provider}: <span style="color:var(--text)">{slots.length} {t.slots.games}</span></div>
       <div class="filters" role="group">

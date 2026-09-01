@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import site from '../data/site.json';
 import { casinos } from '../lib/casinos';
 import { useT, localePath, type Locale } from '../i18n';
+import { minDepositIndex, svgLine } from '../lib/charts';
 
 interface Props { locale: Locale }
 const { locale } = Astro.props;
@@ -37,6 +38,8 @@ const weights: [string, number, string][] = ru
     ['Support and mobile', 10, 'A chat reply in Russian within five minutes, live tables on 4G, an app or PWA that deposits from a phone without errors.'],
   ];
 
+const idx = minDepositIndex();
+const idxSvg = svgLine(idx.map((p) => [p.date, p.avg]), { unit: ' ₽', title: t.fresh.index });
 const url = new URL(localePath(locale, '/methodology/'), Astro.site).href;
 const ld = {
   '@context': 'https://schema.org', '@type': 'WebPage', name: t.methodology.title, url, description: t.methodology.metaDesc, inLanguage: locale, dateModified: site.lastVerified,
@@ -64,6 +67,7 @@ const ld = {
       {bestRtp && <div class="callout"><b>{bestRtp.rtp!.toFixed(1)}%</b> {ru ? 'самый высокий заявленный RTP — ' : 'best declared RTP — '}<a href={localePath(locale, `/casino/${bestRtp.slug}/`)}>{bestRtp.name}</a></div>}
     </div>
 
+    {idxSvg && <section style="margin:8px 0 8px"><h2 class="section-title" style="font-size:1.1rem">{t.fresh.index}: {idx[idx.length - 1].avg} ₽</h2><p class="section-sub">{t.fresh.indexSub} ({idx[idx.length - 1].n} {ru ? 'площадок' : 'casinos'})</p><Fragment set:html={idxSvg} /></section>}
     <div class="prose" style="padding-bottom:48px">
       <h2>{ru ? 'Из чего складывается оценка' : 'What makes up the score'}</h2>
       <p>{ru

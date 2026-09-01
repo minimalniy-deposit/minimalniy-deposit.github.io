@@ -4,7 +4,7 @@ on:
     branches: [main]
   workflow_dispatch:
   workflow_run:
-    workflows: ["Sync demo-slot catalog", "Weekly data check", "Daily exchange rates"]
+    workflows: ["Weekly data check"]
     types: [completed]
 permissions:
   contents: read

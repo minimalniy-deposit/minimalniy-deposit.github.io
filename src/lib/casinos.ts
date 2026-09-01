@@ -16,6 +16,7 @@ export interface Casino {
   maxBetWagering: number | null;    // ₽, max bet allowed while wagering
   wagerDays: number | null;         // days to complete wagering
   withdrawMinAmount: number | null; // ₽, minimum withdrawal
+  licenseVerifyUrl: string | null; termsUrl: string | null; siteDomain: string | null;
 }
 export const casinos: Casino[] = ([...data] as Casino[]).sort((a, b) => a.rank - b.rank);
 export const bySlug = (slug: string) => casinos.find((c) => c.slug === slug);

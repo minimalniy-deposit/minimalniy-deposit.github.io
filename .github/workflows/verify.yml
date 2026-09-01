@@ -1,7 +1,7 @@
 name: Weekly data check
 on:
   schedule:
-    - cron: '0 6 * * 1'   # Mondays 06:00 UTC
+    - cron: '30 6 * * 1'   # Mondays 06:00 UTC
   workflow_dispatch:
 permissions:
   contents: write
@@ -13,6 +13,7 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
       - run: node scripts/update-verified.mjs
+      - run: node scripts/snapshot-terms.mjs
       - name: Commit if changed
         run: |
           git config user.name "github-actions[bot]"

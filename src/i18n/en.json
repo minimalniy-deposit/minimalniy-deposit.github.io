@@ -164,5 +164,20 @@
     "bcBest": "Exchangers (BestChange)",
     "bcNote": "best rate among exchangers accepting {min} ₽ or less; {n} offers",
     "bcAttr": "Exchanger rates by"
+  },
+  "fresh": {
+    "h": "New releases",
+    "sub": "Released in the last two weeks — catalogue as of {d}",
+    "week": "Slot of the week",
+    "weekSub": "Highest-rated release of the last two months",
+    "play": "Open demo",
+    "index": "Minimum-deposit index",
+    "indexSub": "Average entry threshold across the rated casinos on each check date",
+    "speedH": "Withdrawal speed over time",
+    "speedSub": "Minutes to first SBP withdrawal by check date",
+    "snap": "Terms snapshot",
+    "snapSub": "Copies of the rules page in the Web Archive — independent evidence of the terms on that day",
+    "verify": "verify in the registry",
+    "verifyHow": "The licence seal in the casino's footer should link to the regulator's site and show this same domain."
   }
 }

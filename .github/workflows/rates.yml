@@ -1,7 +1,7 @@
 name: Daily exchange rates
 on:
   schedule:
-    - cron: '15 6 * * *'   # daily 06:15 UTC (after Bank of Russia publishes)
+    - cron: '30 5 * * *'   # daily 06:15 UTC (after Bank of Russia publishes)
   workflow_dispatch:
 permissions:
   contents: write

@@ -22,4 +22,8 @@ export function changesFor(slug: string): { date: string; source: string; diffs:
   return out;
 }
 
+export interface Snapshot { date: string; casino: string; url: string; snapshot: string }
+export const snapshots: Snapshot[] = ((data as any).snapshots ?? []) as Snapshot[];
+export const snapshotsFor = (slug: string) => snapshots.filter((s) => s.casino === slug);
+
 export const observedSince = (slug: string) => forCasino(slug)[0]?.date ?? null;

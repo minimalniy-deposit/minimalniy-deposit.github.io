@@ -90,7 +90,10 @@
     "bonusMinDeposit": null,
     "maxBetWagering": null,
     "wagerDays": null,
-    "withdrawMinAmount": null
+    "withdrawMinAmount": null,
+    "licenseVerifyUrl": null,
+    "termsUrl": null,
+    "siteDomain": null
   },
   {
     "slug": "norm",
@@ -186,7 +189,10 @@
     "bonusMinDeposit": null,
     "maxBetWagering": null,
     "wagerDays": null,
-    "withdrawMinAmount": null
+    "withdrawMinAmount": null,
+    "licenseVerifyUrl": "https://verification.anjouangamingboard.org/validate?domain=autumn-ice.com",
+    "termsUrl": "https://autumn-ice.com/",
+    "siteDomain": "autumn-ice.com"
   },
   {
     "slug": "7k",
@@ -273,7 +279,10 @@
     "bonusMinDeposit": null,
     "maxBetWagering": null,
     "wagerDays": null,
-    "withdrawMinAmount": null
+    "withdrawMinAmount": null,
+    "licenseVerifyUrl": null,
+    "termsUrl": "https://7k-casino.ru/",
+    "siteDomain": "7k-casino.ru"
   },
   {
     "slug": "fugu",
@@ -348,7 +357,10 @@
     "bonusMinDeposit": null,
     "maxBetWagering": null,
     "wagerDays": null,
-    "withdrawMinAmount": null
+    "withdrawMinAmount": null,
+    "licenseVerifyUrl": null,
+    "termsUrl": null,
+    "siteDomain": null
   },
   {
     "slug": "melbet",
@@ -421,7 +433,10 @@
     "bonusMinDeposit": null,
     "maxBetWagering": null,
     "wagerDays": null,
-    "withdrawMinAmount": null
+    "withdrawMinAmount": null,
+    "licenseVerifyUrl": null,
+    "termsUrl": null,
+    "siteDomain": null
   },
   {
     "slug": "jetton",
@@ -496,7 +511,10 @@
     "bonusMinDeposit": null,
     "maxBetWagering": null,
     "wagerDays": null,
-    "withdrawMinAmount": null
+    "withdrawMinAmount": null,
+    "licenseVerifyUrl": null,
+    "termsUrl": null,
+    "siteDomain": null
   },
   {
     "slug": "dragon",
@@ -571,7 +589,10 @@
     "bonusMinDeposit": null,
     "maxBetWagering": null,
     "wagerDays": null,
-    "withdrawMinAmount": null
+    "withdrawMinAmount": null,
+    "licenseVerifyUrl": null,
+    "termsUrl": null,
+    "siteDomain": null
   },
   {
     "slug": "gizbo",
@@ -654,7 +675,10 @@
     "bonusMinDeposit": null,
     "maxBetWagering": null,
     "wagerDays": null,
-    "withdrawMinAmount": null
+    "withdrawMinAmount": null,
+    "licenseVerifyUrl": null,
+    "termsUrl": null,
+    "siteDomain": null
   },
   {
     "slug": "spinbetter",
@@ -728,7 +752,10 @@
     "bonusMinDeposit": null,
     "maxBetWagering": null,
     "wagerDays": null,
-    "withdrawMinAmount": null
+    "withdrawMinAmount": null,
+    "licenseVerifyUrl": null,
+    "termsUrl": null,
+    "siteDomain": null
   },
   {
     "slug": "twin",
@@ -796,7 +823,10 @@
     "bonusMinDeposit": null,
     "maxBetWagering": null,
     "wagerDays": null,
-    "withdrawMinAmount": null
+    "withdrawMinAmount": null,
+    "licenseVerifyUrl": null,
+    "termsUrl": null,
+    "siteDomain": null
   },
   {
     "slug": "slott",
@@ -871,7 +901,10 @@
     "bonusMinDeposit": null,
     "maxBetWagering": null,
     "wagerDays": null,
-    "withdrawMinAmount": null
+    "withdrawMinAmount": null,
+    "licenseVerifyUrl": null,
+    "termsUrl": null,
+    "siteDomain": null
   },
   {
     "slug": "flagman",
@@ -948,6 +981,9 @@
     "bonusMinDeposit": null,
     "maxBetWagering": null,
     "wagerDays": null,
-    "withdrawMinAmount": null
+    "withdrawMinAmount": null,
+    "licenseVerifyUrl": null,
+    "termsUrl": null,
+    "siteDomain": null
   }
 ]
