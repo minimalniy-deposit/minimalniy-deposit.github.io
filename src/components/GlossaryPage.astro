@@ -28,7 +28,7 @@ const ldPage = { '@context': 'https://schema.org', '@type': 'WebPage', name: t.g
       {glossary.map((g) => (
         <div class="gloss-item" id={g.slug}>
           <dt><a href={`#${g.slug}`}>{ru ? g.term : g.termEn}</a></dt>
-          <dd>{ru ? g.def : g.defEn}</dd>
+          <dd>{ru ? g.def : g.defEn}{ru && (g as any).more && <> <a href={(g as any).more}>Подробнее →</a></>}</dd>
           {usedIn[g.slug]?.length > 0 && <dd class="gloss-used">{t.glossary.usedIn}: {usedIn[g.slug].slice(0, 6).map((c, i) => <><a href={localePath(locale, `/casino/${c.slug}/`)}>{c.name}</a>{i < Math.min(usedIn[g.slug].length, 6) - 1 ? ', ' : ''}</>)}</dd>}
         </div>
       ))}

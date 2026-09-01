@@ -1,6 +1,11 @@
 import data from '../data/slots.json';
-export type Slot = (typeof data)['games'][number];
-export const slots: Slot[] = data.games;
+export interface Slot {
+  slug: string; name: string; provider: string; providerSlug?: string;
+  rtp: number | null; volatility: string | null; maxWin: string | null;
+  grid?: string | null; hitFrequency?: number | null; releaseDate?: string | null; rating?: number | null; payType?: string | null; isNew?: boolean;
+  themes?: string[]; features?: string[]; image: string | null; screenshot?: string | null; sourceUrl?: string; demoUrl: string | null;
+}
+export const slots: Slot[] = data.games as Slot[];
 export const slotsMeta = { fetchedAt: data.fetchedAt, source: data.source };
 export const providers = [...new Set(slots.map((s) => s.provider))].sort();
 export const providerSlug = (p: string) => p.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');

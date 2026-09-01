@@ -1,11 +1,13 @@
 {
-  "fetchedAt": "2026-09-01",
+  "fetchedAt": "2026-08-31",
   "source": "slotsreach",
-  "total": 5994,
+  "total": 5984,
   "thumbs": {
-    "downloaded": 8,
-    "failed": 0,
-    "errors": {}
+    "downloaded": 296,
+    "failed": 4,
+    "errors": {
+      "HTTP 404 Image not found": 4
+    }
   },
   "games": [
     {
@@ -1708,7 +1710,7 @@
       "releaseDate": "2026-07-02",
       "rating": 8,
       "payType": "megaways",
-      "isNew": false,
+      "isNew": true,
       "themes": [
         "Fairytale",
         "Fantasy",
@@ -6653,7 +6655,7 @@
         "Symbol Transformation",
         "Expanding Wilds"
       ],
-      "image": "/slots/img/katmandu-x-elk-studios.webp",
+      "image": "https://img.slotsreach.com/thumbnails/katmandu-x.jpg",
       "screenshot": "https://img.slotsreach.com/slot-images/katmandu-x-elk-studios/gameplay-1.webp",
       "sourceUrl": "https://slotsreach.com/games/katmandu-x-elk-studios",
       "demoUrl": null
@@ -6920,7 +6922,7 @@
         "Symbol Collection",
         "Symbol Transformation"
       ],
-      "image": "/slots/img/gronks-gems-hacksaw-gaming.webp",
+      "image": "https://img.slotsreach.com/thumbnails/gronks-gems.jpg",
       "screenshot": "https://img.slotsreach.com/screenshots/gronks-gems-gameplay.webp",
       "sourceUrl": "https://slotsreach.com/games/gronks-gems-hacksaw-gaming",
       "demoUrl": null
@@ -7247,7 +7249,7 @@
         "Tumble",
         "Ways"
       ],
-      "image": "/slots/img/evil-goblins-xbomb-nolimit-city.webp",
+      "image": "https://img.slotsreach.com/thumbnails/evil-goblins.jpg",
       "screenshot": "https://img.slotsreach.com/screenshots/evil-goblins-nolimit-city-gameplay.webp",
       "sourceUrl": "https://slotsreach.com/games/evil-goblins-xbomb-nolimit-city",
       "demoUrl": null
@@ -7281,7 +7283,7 @@
         "Free Spins",
         "Buy Bonus"
       ],
-      "image": "/slots/img/apollo-pays-big-time-gaming.webp",
+      "image": "https://img.slotsreach.com/thumbnails/apollo-pays.jpg",
       "screenshot": "https://img.slotsreach.com/slot-images/apollo-pays-big-time-gaming/gameplay-1.webp",
       "sourceUrl": "https://slotsreach.com/games/apollo-pays-big-time-gaming",
       "demoUrl": null
@@ -8303,40 +8305,6 @@
       "demoUrl": null
     },
     {
-      "slug": "demonic-dolls-hacksaw-gaming",
-      "name": "Demonic Dolls",
-      "provider": "Hacksaw Gaming",
-      "providerSlug": "hacksaw-gaming",
-      "rtp": 96.26,
-      "volatility": "medium",
-      "maxWin": "10,000x",
-      "grid": "5x5",
-      "hitFrequency": 39.8,
-      "releaseDate": "2026-10-06",
-      "rating": 7,
-      "payType": "cluster",
-      "isNew": true,
-      "themes": [
-        "Horror",
-        "Voodoo",
-        "Cartoon",
-        "Dark"
-      ],
-      "features": [
-        "Cluster Pays",
-        "Multiplier",
-        "Respins",
-        "Big Symbols",
-        "Free Spins",
-        "Buy Bonus",
-        "Scatter"
-      ],
-      "image": "/slots/img/demonic-dolls-hacksaw-gaming.webp",
-      "screenshot": "https://img.slotsreach.com/slot-images/demonic-dolls-hacksaw-gaming/gameplay-1.webp",
-      "sourceUrl": "https://slotsreach.com/games/demonic-dolls-hacksaw-gaming",
-      "demoUrl": null
-    },
-    {
       "slug": "power-of-hercules-bonanza-10-000-booming-games",
       "name": "Power of Hercules Bonanza 10,000",
       "provider": "Booming Games",
@@ -9083,40 +9051,6 @@
       "demoUrl": null
     },
     {
-      "slug": "spicy-sixsixsix-hacksaw-gaming",
-      "name": "Spicy SixSixSix",
-      "provider": "Hacksaw Gaming",
-      "providerSlug": "hacksaw-gaming",
-      "rtp": 96.15,
-      "volatility": "very-high",
-      "maxWin": "16,666x",
-      "grid": "5x4",
-      "hitFrequency": null,
-      "releaseDate": "2026-08-23",
-      "rating": 7,
-      "payType": "lines",
-      "isNew": true,
-      "themes": [
-        "Devil",
-        "Horror",
-        "Cartoon",
-        "Dark",
-        "Fire"
-      ],
-      "features": [
-        "Free Spins",
-        "Buy Bonus",
-        "Multiplier",
-        "Gamble",
-        "Scatter",
-        "Bonus Game"
-      ],
-      "image": "/slots/img/spicy-sixsixsix-hacksaw-gaming.webp",
-      "screenshot": "https://img.slotsreach.com/slot-images/spicy-sixsixsix-hacksaw-gaming/gameplay-1.webp",
-      "sourceUrl": "https://slotsreach.com/games/spicy-sixsixsix-hacksaw-gaming",
-      "demoUrl": null
-    },
-    {
       "slug": "cursed-moon-power-collection-playn-go",
       "name": "Cursed Moon Power Collection",
       "provider": "Play'n GO",
@@ -9215,75 +9149,6 @@
       "image": "/slots/img/4-supercharged-clovers-super-wheel-playson.webp",
       "screenshot": "https://img.slotsreach.com/slot-images/4-supercharged-clovers-super-wheel-playson/gameplay-1.webp",
       "sourceUrl": "https://slotsreach.com/games/4-supercharged-clovers-super-wheel-playson",
-      "demoUrl": null
-    },
-    {
-      "slug": "decay-hacksaw-gaming",
-      "name": "Decay",
-      "provider": "Hacksaw Gaming",
-      "providerSlug": "hacksaw-gaming",
-      "rtp": 96.27,
-      "volatility": "very-high",
-      "maxWin": "10,000x",
-      "grid": "6x5",
-      "hitFrequency": null,
-      "releaseDate": "2026-08-20",
-      "rating": 7,
-      "payType": "lines",
-      "isNew": true,
-      "themes": [
-        "Zombies",
-        "Horror",
-        "Post Apocalyptic",
-        "Dark"
-      ],
-      "features": [
-        "Lines",
-        "Free Spins",
-        "Buy Bonus",
-        "Scatter",
-        "Respins",
-        "Symbol Transformation",
-        "Symbol Collection",
-        "Retrigger"
-      ],
-      "image": "/slots/img/decay-hacksaw-gaming.webp",
-      "screenshot": "https://img.slotsreach.com/slot-images/decay-hacksaw-gaming/gameplay-1.webp",
-      "sourceUrl": "https://slotsreach.com/games/decay-hacksaw-gaming",
-      "demoUrl": null
-    },
-    {
-      "slug": "mega-fire-blaze-coyol-diosa-de-la-luna-playtech",
-      "name": "Mega Fire Blaze: Coyol, Diosa de la Luna",
-      "provider": "Playtech",
-      "providerSlug": "playtech",
-      "rtp": 96.49,
-      "volatility": "high",
-      "maxWin": "20,000x",
-      "grid": "5x3",
-      "hitFrequency": null,
-      "releaseDate": "2026-08-20",
-      "rating": 7,
-      "payType": "lines",
-      "isNew": true,
-      "themes": [
-        "Aztec",
-        "Jungle",
-        "Gold",
-        "Treasure"
-      ],
-      "features": [
-        "Hold And Win",
-        "Respins",
-        "Free Spins",
-        "Expanding Wilds",
-        "Jackpot",
-        "Scatter",
-        "Mega Fire Blaze"
-      ],
-      "image": "/slots/img/mega-fire-blaze-coyol-diosa-de-la-luna-playtech.webp",
-      "screenshot": "https://img.slotsreach.com/slot-images/mega-fire-blaze-coyol-diosa-de-la-luna-playtech/gameplay-1.webp",
-      "sourceUrl": "https://slotsreach.com/games/mega-fire-blaze-coyol-diosa-de-la-luna-playtech",
       "demoUrl": null
     },
     {
@@ -9986,6 +9851,139 @@
       "image": "/slots/img/crypto-genesys-pragmatic-play.webp",
       "screenshot": "https://img.slotsreach.com/slot-images/crypto-genesys-pragmatic-play/gameplay-1.webp",
       "sourceUrl": "https://slotsreach.com/games/crypto-genesys-pragmatic-play",
+      "demoUrl": null
+    },
+    {
+      "slug": "monopoly-megapots-big-time-gaming",
+      "name": "Monopoly Megapots",
+      "provider": "Big Time Gaming",
+      "providerSlug": "big-time-gaming",
+      "rtp": 96.45,
+      "volatility": "high",
+      "maxWin": "98,850x",
+      "grid": "6x2-7",
+      "hitFrequency": null,
+      "releaseDate": "2026-07-03",
+      "rating": 7,
+      "payType": "megaways",
+      "isNew": true,
+      "themes": [
+        "Board Game",
+        "Money",
+        "Luxury"
+      ],
+      "features": [
+        "Megaways",
+        "Tumble",
+        "Hold And Win",
+        "Jackpot",
+        "Multiplier",
+        "Free Spins",
+        "Buy Bonus",
+        "Cash Collect"
+      ],
+      "image": "/slots/img/monopoly-megapots-big-time-gaming.webp",
+      "screenshot": "https://img.slotsreach.com/slot-images/monopoly-megapots-big-time-gaming/gameplay-1.webp",
+      "sourceUrl": "https://slotsreach.com/games/monopoly-megapots-big-time-gaming",
+      "demoUrl": null
+    },
+    {
+      "slug": "the-gem-master-betsoft",
+      "name": "The Gem Master",
+      "provider": "Betsoft",
+      "providerSlug": "betsoft",
+      "rtp": 96.18,
+      "volatility": "high",
+      "maxWin": "10,000x",
+      "grid": "5x4",
+      "hitFrequency": null,
+      "releaseDate": "2026-07-02",
+      "rating": 7,
+      "payType": "lines",
+      "isNew": true,
+      "themes": [
+        "Gems",
+        "Luxury"
+      ],
+      "features": [
+        "Hold And Win",
+        "Cash Collect",
+        "Multiplier",
+        "Free Spins",
+        "Wild",
+        "Buy Bonus",
+        "Ante Bet",
+        "Respins"
+      ],
+      "image": "/slots/img/the-gem-master-betsoft.webp",
+      "screenshot": "https://img.slotsreach.com/slot-images/the-gem-master-betsoft/gameplay-1.webp",
+      "sourceUrl": "https://slotsreach.com/games/the-gem-master-betsoft",
+      "demoUrl": null
+    },
+    {
+      "slug": "fruit-shop-grand-re-opening-netent",
+      "name": "Fruit Shop Grand Re-Opening",
+      "provider": "NetEnt",
+      "providerSlug": "netent",
+      "rtp": 96.37,
+      "volatility": "very-high",
+      "maxWin": "5,000x",
+      "grid": "5x3-5x6",
+      "hitFrequency": 21.93,
+      "releaseDate": "2026-07-02",
+      "rating": 7,
+      "payType": "lines",
+      "isNew": true,
+      "themes": [
+        "Fruit",
+        "Food"
+      ],
+      "features": [
+        "Expanding Grid",
+        "Respins",
+        "Multiplier",
+        "Free Spins",
+        "Sticky Wilds",
+        "Wild",
+        "Buy Bonus"
+      ],
+      "image": "/slots/img/fruit-shop-grand-re-opening-netent.webp",
+      "screenshot": "https://img.slotsreach.com/slot-images/fruit-shop-grand-re-opening-netent/gameplay-1.webp",
+      "sourceUrl": "https://slotsreach.com/games/fruit-shop-grand-re-opening-netent",
+      "demoUrl": null
+    },
+    {
+      "slug": "the-goonies-cash-inferno-blueprint-gaming",
+      "name": "The Goonies Cash Inferno",
+      "provider": "Blueprint Gaming",
+      "providerSlug": "blueprint-gaming",
+      "rtp": 94,
+      "volatility": "high",
+      "maxWin": "10,500x",
+      "grid": "6x5",
+      "hitFrequency": null,
+      "releaseDate": "2026-07-02",
+      "rating": 7,
+      "payType": "ways",
+      "isNew": true,
+      "themes": [
+        "Tv Movie",
+        "Adventure",
+        "Treasure"
+      ],
+      "features": [
+        "Cash Collect",
+        "Instant Prize",
+        "Free Spins",
+        "Random Features",
+        "Symbol Collection",
+        "Wild",
+        "Scatter",
+        "Multiplier"
+      ],
+      "image": "/slots/img/the-goonies-cash-inferno-blueprint-gaming.webp",
+      "screenshot": "https://img.slotsreach.com/slot-images/the-goonies-cash-inferno-blueprint-gaming/gameplay-1.webp",
+      "sourceUrl": "https://slotsreach.com/games/the-goonies-cash-inferno-blueprint-gaming",
       "demoUrl": null
     }
   ]

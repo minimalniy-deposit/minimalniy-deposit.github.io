@@ -11,7 +11,7 @@ const home = localePath(locale, '/');
 const top = casinos[0];
 const sim = similar(s);
 const KEY = process.env.SLOTSREACH_API_KEY;
-const demoUrl = (s as any).demoUrl ?? (KEY ? `https://slotsreach.com/api/embed/${s.slug}?token=${encodeURIComponent(KEY)}&o=wp` : null);
+const demoUrl = s.demoUrl ?? (KEY ? `https://slotsreach.com/api/embed/${s.slug}?token=${encodeURIComponent(KEY)}&o=wp` : null);
 const title = ru ? `${s.name}: демоверсия слота от ${s.provider}${s.rtp != null ? `, RTP ${s.rtp}%` : ''}` : `${s.name} — demo slot by ${s.provider}${s.rtp != null ? `, RTP ${s.rtp}%` : ''}`;
 const description = ru
   ? `Бесплатная демоверсия слота ${s.name} от ${s.provider}${s.rtp != null ? `: RTP ${s.rtp}%` : ''}${s.volatility ? `, волатильность — ${vol(s.volatility, true)}` : ''}${s.maxWin ? `, максимальный выигрыш — ${s.maxWin}` : ''}. Играть можно без регистрации.`
@@ -30,24 +30,24 @@ const ld = { '@context': 'https://schema.org', '@type': 'WebPage', name: title, 
     <div class="page-head"><span class="rank-chip">{s.provider}</span><h1>{s.name}</h1><p class="lede">{description}</p></div>
 
     {demoUrl
-      ? <div class="demo-wrap" style={(s as any).image ? `background-image:url(${(s as any).image})` : undefined}>
+      ? <div class="demo-wrap" style={s.image ? `background-image:url(${s.image})` : undefined}>
           <iframe class="demo-frame" data-src={demoUrl} title={`${s.name} — ${ru ? 'демо' : 'demo'}`} allowfullscreen allow="autoplay; fullscreen"></iframe>
           <button type="button" class="btn-go demo-start">{ru ? '▶ Запустить демо' : '▶ Start the demo'}</button>
           <span class="demo-note">18+ · {ru ? 'демо, без реальных ставок' : 'demo, no real bets'}</span>
         </div>
-      : <div class="demo-empty">{t.slots.demoSoon}{(s as any).sourceUrl && <> · <a href={(s as any).sourceUrl} rel="nofollow noopener" target="_blank">{ru ? 'Открыть демо на SlotsReach' : 'Open the demo on SlotsReach'}</a></>}</div>}
+      : <div class="demo-empty">{t.slots.demoSoon}{s.sourceUrl && <> · <a href={s.sourceUrl} rel="nofollow noopener" target="_blank">{ru ? 'Открыть демо на SlotsReach' : 'Open the demo on SlotsReach'}</a></>}</div>}
 
     <dl class="facts">
       <div class="fact"><dt>{t.slots.provider}</dt><dd>{s.provider}</dd></div>
       <div class="fact"><dt>{t.slots.rtp}</dt><dd class="gold">{s.rtp != null ? `${s.rtp}%` : t.slots.noData}</dd></div>
       <div class="fact"><dt>{t.slots.volatility}</dt><dd>{vol(s.volatility, ru) ?? t.slots.noData}</dd></div>
       <div class="fact"><dt>{t.slots.maxWin}</dt><dd>{s.maxWin ?? t.slots.noData}</dd></div>
-      {(s as any).grid && <div class="fact"><dt>{ru ? 'Сетка' : 'Grid'}</dt><dd>{(s as any).grid}</dd></div>}
-      {(s as any).hitFrequency != null && <div class="fact"><dt>{ru ? 'Частота выигрышей' : 'Hit frequency'}</dt><dd>{(s as any).hitFrequency}%</dd></div>}
-      {(s as any).releaseDate && <div class="fact"><dt>{ru ? 'Выпущен' : 'Released'}</dt><dd>{new Date((s as any).releaseDate).toLocaleDateString(ru ? 'ru-RU' : 'en-GB', { month: 'long', year: 'numeric' })}</dd></div>}
+      {s.grid && <div class="fact"><dt>{ru ? 'Сетка' : 'Grid'}</dt><dd>{s.grid}</dd></div>}
+      {s.hitFrequency != null && <div class="fact"><dt>{ru ? 'Частота выигрышей' : 'Hit frequency'}</dt><dd>{s.hitFrequency}%</dd></div>}
+      {s.releaseDate && <div class="fact"><dt>{ru ? 'Выпущен' : 'Released'}</dt><dd>{new Date(s.releaseDate).toLocaleDateString(ru ? 'ru-RU' : 'en-GB', { month: 'long', year: 'numeric' })}</dd></div>}
     </dl>
-    {((s as any).features?.length > 0 || (s as any).themes?.length > 0) && <div class="card-pills" style="margin:4px 0 8px">{[...((s as any).features ?? []), ...((s as any).themes ?? [])].map((f: string) => <span class="pill">{f}</span>)}</div>}
-    {(s as any).screenshot && <p style="margin:8px 0 16px"><img src={(s as any).screenshot} alt={`${s.name} — ${ru ? 'скриншот игры' : 'gameplay screenshot'}`} loading="lazy" decoding="async" style="border-radius:var(--radius);border:1px solid var(--border)" onerror="this.parentElement.remove()" /></p>}
+    {(s.features?.length > 0 || s.themes?.length > 0) && <div class="card-pills" style="margin:4px 0 8px">{[...(s.features ?? []), ...(s.themes ?? [])].map((f) => <span class="pill">{f}</span>)}</div>}
+    {s.screenshot && <p style="margin:8px 0 16px"><img src={s.screenshot} alt={`${s.name} — ${ru ? 'скриншот игры' : 'gameplay screenshot'}`} loading="lazy" decoding="async" style="border-radius:var(--radius);border:1px solid var(--border)" onerror="this.parentElement.remove()" /></p>}
 
     <div class="cta-row">
       <a href={top.url} rel="nofollow noopener" target="_blank" class="btn-go">{t.slots.playReal}</a>

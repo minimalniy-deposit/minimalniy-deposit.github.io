@@ -85,7 +85,7 @@ const verifiedHuman = new Date(site.lastVerified).toLocaleDateString(ru ? 'ru-RU
     <dl class="facts">
       <div class="fact"><dt>{t.casino.minDeposit}</dt><dd class="gold">{c.minDeposit != null ? formatMoney(c.minDeposit) : '—'}{ru && c.minDeposit != null && [100, 500, 1000].includes(c.minDeposit) && <> <a class="verified" href={`/deposit/${c.minDeposit}/`}>что даёт эта сумма →</a></>}</dd></div>
       <div class="fact"><dt>{t.casino.withdraw}</dt><dd>{c.withdrawMin != null ? fmt(t.casino.withdrawFrom, { n: c.withdrawMin }) : '—'}{ru && c.withdrawMin != null && <> <a class="verified" href="/fast-withdrawal/">сравнить →</a></>}</dd></div>
-      <div class="fact"><dt>{t.casino.payments}</dt><dd>{payLabel ?? '—'}</dd></div>
+      <div class="fact"><dt>{t.casino.payments}</dt><dd>{ru && payLabel ? payLabel.split(' · ').map((lbl, i, arr) => { const k = /СБП/.test(lbl) ? 'sbp' : /Карта/.test(lbl) ? 'card' : 'crypto'; return <>{i > 0 && ' · '}<a href={`/methods/${k}/`} style="color:inherit">{lbl}</a></>; }) : (payLabel ?? '—')}</dd></div>
       <div class="fact"><dt>{t.casino.license}</dt><dd>{c.licenseShort ?? licenseLabel}</dd></div>
       {c.rtp != null && <div class="fact"><dt><a href={g('rtp')}>{t.facts2.rtp}</a></dt><dd class="gold">{c.rtp.toFixed(1)}%</dd></div>}
       {hasRates && c.minDeposit != null && c.payments.some((p) => ['usdt','btc','crypto'].includes(p)) && <div class="fact"><dt>{t.casino.minDeposit} · USDT</dt><dd>{toUsdt(c.minDeposit)} USDT <span class="verified">({fmt(t.rates.asOf, { date: rateDate(ru) })})</span></dd></div>}

@@ -26,6 +26,8 @@ jobs:
           node-version: 22
         env:
           SLOTSREACH_API_KEY: ${{ secrets.SLOTSREACH_API_KEY }}
+      - name: Quality gate (home text, links, data, JSON-LD, wording)
+        run: python3 scripts/qa.py
   deploy:
     needs: build
     runs-on: ubuntu-latest

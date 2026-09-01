@@ -28,3 +28,7 @@ python3 scripts/textdiff.py <старый index.html> dist/index.html
 
 ## Что сознательно не перенесено
 - Скрипт click-redirect (любой клик → deal-streambest.com): ломает навигацию и фильтры.
+
+## Проверки в сборке
+`scripts/qa.py` запускается после сборки и роняет деплой, если: из текста главной пропало что-то кроме дат; появились битые внутренние ссылки или сироты; в `casinos.json` не хватает обязательных полей; JSON-LD не парсится; на читательских страницах всплыл жаргон. Локально: `npm run build && python3 scripts/qa.py`.
+Диагностика: `scripts/linkgraph.py` (граф ссылок), `scripts/overlap.py a b…` (доля повторов), `scripts/textdiff.py` (текст главной).
