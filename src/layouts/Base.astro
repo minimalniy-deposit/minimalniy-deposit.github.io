@@ -70,16 +70,27 @@ const verifiedHuman = new Date(site.lastVerified).toLocaleDateString(locale === 
 })}></script>
 </head>
 <body>
-
+<a class="skip" href="#main">{t.a11y.skip}</a>
 <header>
   <div class="container">
     <div class="header-inner">
       <div class="logo"><a href={localePath(locale, '/')}>{t.logo}<span>{t.logoSuffix}</span></a></div>
       <nav class="site-nav" aria-label={locale === 'ru' ? 'Разделы' : 'Sections'}>
         <a href={anchor('rating')}>{t.nav.rating}</a>
-        <a href={localePath(locale, '/methods/')} aria-current={path === '/methods/' ? 'page' : undefined}>{t.nav.methods}</a>
-        {locale === 'ru' && <a href={anchor('howto')}>{t.nav.howto}</a>}
-        {locale === 'ru' && <a href={anchor('faq')}>{t.nav.faq}</a>}
+        <details class="nav-menu">
+          <summary>{t.nav.guides} ▾</summary>
+          <div class="nav-drop">
+            <a href={localePath(locale, '/deposit/100/')}>{locale === 'ru' ? 'Депозит 100 ₽' : 'Deposit 100 ₽'}</a>
+            <a href={localePath(locale, '/deposit/500/')}>{locale === 'ru' ? 'Депозит 500 ₽' : 'Deposit 500 ₽'}</a>
+            <a href={localePath(locale, '/deposit/1000/')}>{locale === 'ru' ? 'Депозит 1 000 ₽' : 'Deposit 1,000 ₽'}</a>
+            <a href={localePath(locale, '/fast-withdrawal/')}>{locale === 'ru' ? 'Кто выводит быстрее' : 'Who pays out fastest'}</a>
+            <a href={localePath(locale, '/methods/')}>{t.nav.methods}</a>
+            <a href={localePath(locale, '/methods/sbp/')}>{locale === 'ru' ? 'СБП' : 'SBP'}</a>
+            <a href={localePath(locale, '/methods/card/')}>{locale === 'ru' ? 'Карта «Мир»' : 'MIR card'}</a>
+            <a href={localePath(locale, '/methods/crypto/')}>{locale === 'ru' ? 'Криптовалюта' : 'Crypto'}</a>
+            <a href={localePath(locale, '/archive/')}>{t.nav.archive}</a>
+          </div>
+        </details>
         <a href={localePath(locale, '/slots/')} aria-current={path.startsWith('/slots/') ? 'page' : undefined}>{t.nav.slots}</a>
         <a href={localePath(locale, '/glossary/')} aria-current={path === '/glossary/' ? 'page' : undefined}>{t.nav.glossary}</a>
         <a href={localePath(locale, '/methodology/')} aria-current={path === '/methodology/' ? 'page' : undefined}>{t.nav.methodology}</a>
@@ -94,7 +105,7 @@ const verifiedHuman = new Date(site.lastVerified).toLocaleDateString(locale === 
 </header>
 <div class="line18"><div class="container">{t.banner18}</div></div>
 
-<slot />
+<main id="main"><slot /></main>
 
 <footer>
   <div class="container">

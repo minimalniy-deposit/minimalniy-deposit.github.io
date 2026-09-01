@@ -62,7 +62,7 @@ const ld = [
     {groups.map((g) => (
       <section style="padding:20px 0 0">
         <h2 class="section-title" style="font-size:1.2rem">От {g.min} минут — {plural(g.list.length)}</h2>
-        <div class="tbl-wrap">
+        <div class="tbl-wrap" data-hint='таблица прокручивается →'>
           <table class="tbl">
             <thead><tr><th>#</th><th>Казино</th><th>Вывод</th><th><a href="/methods/sbp/">Куда</a></th><th>Мин. депозит</th><th>История</th></tr></thead>
             <tbody>{g.list.map((c) => {

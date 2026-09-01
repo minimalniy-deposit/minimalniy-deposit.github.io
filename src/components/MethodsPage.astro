@@ -41,11 +41,11 @@ const ld = {
 
     <div class="callouts">
       <div class="callout">{t.methods.fastest}: <b><a href={localePath(locale, `/casino/${fastest.slug}/`)}>{fastest.name}</a></b> — {fmt(t.casino.withdrawFrom, { n: fastest.withdrawMin! })}{ru && <> · <a href="/fast-withdrawal/">все по минутам →</a></>}</div>
-      <div class="callout">{t.methods.lowest}: <b><a href={localePath(locale, `/casino/${lowest.slug}/`)}>{lowest.name}</a></b> — {formatMoney(lowest.minDeposit!)}</div>
+      <div class="callout">{t.methods.lowest}: <b><a href={localePath(locale, `/casino/${lowest.slug}/`)}>{lowest.name}</a></b> — {formatMoney(lowest.minDeposit!, locale)}</div>
     </div>
 
     <h2 class="section-title" style="font-size:1.2rem">{t.methods.matrix}</h2>
-    <div class="tbl-wrap">
+    <div class="tbl-wrap" data-hint={ru ? 'таблица прокручивается →' : 'scroll the table →'}>
       <table class="tbl">
         <thead>
           <tr>
@@ -58,7 +58,7 @@ const ld = {
             <tr>
               <td class="num">{c.rank}</td>
               <td><a href={localePath(locale, `/casino/${c.slug}/`)}>{c.name}</a></td>
-              <td class="num">{c.minDeposit != null ? formatMoney(c.minDeposit) : '—'}</td>
+              <td class="num">{c.minDeposit != null ? formatMoney(c.minDeposit, locale) : '—'}</td>
               <td class="num">{c.withdrawMin != null ? fmt(t.casino.withdrawFrom, { n: c.withdrawMin }) : '—'}</td>
               <td class="num">{c.rtp != null ? `${c.rtp.toFixed(1)}%` : '—'}</td>
               {paymentKeys.map((k) => acceptsMethod(c, k)
@@ -82,14 +82,14 @@ const ld = {
           <div class="callout">{t.rates.btc}: <b>{fmtRub(rates.btc!)} ₽</b></div>
           {bestCashier && <div class="callout">{t.rates.bestSpread}: <b><a href={localePath(locale, `/casino/${bestCashier.slug}/`)}>{bestCashier.name}</a></b> — +{spread(bestCashier.cashierUsdtRate)}%</div>}
         </div>
-        <div class="tbl-wrap">
+        <div class="tbl-wrap" data-hint={ru ? 'таблица прокручивается →' : 'scroll the table →'}>
           <table class="tbl">
             <thead><tr><th>#</th><th>{t.casino.colName}</th><th>{t.rates.colMin}</th><th>{t.rates.colUsdt}</th><th>{t.rates.colCashier}</th><th>{t.rates.colSpread}</th></tr></thead>
             <tbody>{cryptoCasinos.map((c) => (
               <tr>
                 <td class="num">{c.rank}</td>
                 <td><a href={localePath(locale, `/casino/${c.slug}/`)}>{c.name}</a></td>
-                <td class="num">{formatMoney(c.minDeposit!)}</td>
+                <td class="num">{formatMoney(c.minDeposit!, locale)}</td>
                 <td class="num">{toUsdt(c.minDeposit!)} USDT</td>
                 <td class="num">{c.cashierUsdtRate != null ? `${fmtRub(c.cashierUsdtRate)} ₽` : <span class="verified">— {t.rates.pending}</span>}</td>
                 <td class="num">{c.cashierUsdtRate != null ? `${spread(c.cashierUsdtRate)! > 0 ? '+' : ''}${spread(c.cashierUsdtRate)}%` : '—'}</td>
@@ -101,7 +101,7 @@ const ld = {
     )}
 
     <h2 class="section-title" style="font-size:1.2rem;margin-top:32px">{t.facts2.limits}</h2>
-    <div class="tbl-wrap"><table class="tbl"><thead><tr><th>{ru ? 'Способ' : 'Method'}</th><th>{ru ? 'Скорость вывода' : 'Withdrawal speed'}</th><th>{ru ? 'Лимит в сутки' : 'Limit'}</th></tr></thead>
+    <div class="tbl-wrap" data-hint={ru ? 'таблица прокручивается →' : 'scroll the table →'}><table class="tbl"><thead><tr><th>{ru ? 'Способ' : 'Method'}</th><th>{ru ? 'Скорость вывода' : 'Withdrawal speed'}</th><th>{ru ? 'Лимит в сутки' : 'Limit'}</th></tr></thead>
       <tbody>{limits.map((l) => <tr><td>{ru ? l.name : l.nameEn}</td><td>{ru ? l.time : l.timeEn}</td><td>{ru ? l.limit : l.limitEn}</td></tr>)}</tbody></table></div>
     <p class="section-sub" style="margin-top:10px">{t.facts2.limitsNote}</p>
 

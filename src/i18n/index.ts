@@ -35,6 +35,6 @@ export function otherLocale(l: Locale): Locale {
   return l === 'ru' ? 'en' : 'ru';
 }
 
-export function formatMoney(n: number): string {
-  return n.toLocaleString('ru-RU').replace(/\u00a0/g, ' ') + ' ₽';
+export function formatMoney(n: number, locale: Locale = 'ru'): string {
+  return (locale === 'en' ? n.toLocaleString('en-US') : n.toLocaleString('ru-RU').replace(/\u00a0/g, ' ')) + ' ₽';
 }

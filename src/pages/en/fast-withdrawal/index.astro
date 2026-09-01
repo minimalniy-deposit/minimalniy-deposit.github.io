@@ -17,7 +17,7 @@ const sinceMin = withTime.map((c) => observedSince(c.slug)).filter(Boolean).sort
 
 const title = `Which of the ${withTime.length} rated casinos pays out fastest: ${fastest.min} minutes at ${fastest.list.length}, under 15 minutes at ${within15}`;
 const description = `First SBP withdrawal speed compared across the rated casinos: ${fastest.list.map(short).join(', ')} from ${fastest.min} minutes; slowest ${slowest.list.map(short).join(' and ')} from ${slowest.min}. What is measured and when speed does not apply.`;
-const answer = `${fastest.list.length} of the ${withTime.length} rated casinos pay a first SBP withdrawal within ${fastest.min} minutes — ${fastest.list.map((c) => c.name).join(', ')}. Another ${within15 - fastest.list.length} stay within 15 minutes. Slowest are ${slowest.list.map((c) => c.name).join(' and ')} at ${slowest.min}+ minutes. Terms checked ${fmtD(lastChecked)}; we have tracked every value since ${fmtD(sinceMin)}.`;
+const answer = `${fastest.list.length} of the ${withTime.length} rated casinos pay out a first withdrawal via SBP (Russia's Faster Payments System) within ${fastest.min} minutes — ${fastest.list.map((c) => c.name).join(', ')}. Another ${within15 - fastest.list.length} stay within 15 minutes. Slowest are ${slowest.list.map((c) => c.name).join(' and ')} at ${slowest.min}+ minutes. Terms checked ${fmtD(lastChecked)}; we have tracked every value since ${fmtD(sinceMin)}.`;
 const url = new URL('/en/fast-withdrawal/', Astro.site).href;
 const ld = [
   { '@context': 'https://schema.org', '@type': 'WebPage', '@id': url + '#webpage', name: title, url, description, inLanguage: 'en', dateModified: lastChecked,
@@ -41,15 +41,15 @@ const ld = [
     </div>
     <div class="prose">
       <h2>What is measured</h2>
-      <p>The minutes in the cards are the time from tapping "Withdraw" to the money arriving via SBP on a first, small withdrawal. Not a review average and not an advert: we time it during checks and keep it in each casino's terms history. It describes the operator's <a href="/en/glossary/#processing">processing time</a> — the player's bank adds almost nothing, an <a href="/en/methods/sbp/">SBP transfer</a> takes seconds; a card takes <a href="/en/methods/card/">one to three days of clearing</a>.</p>
+      <p>The minutes in the cards are the time from tapping "Withdraw" to the money arriving via SBP on a first, small withdrawal. Not an average of reviews and not an advertising claim: we time it during our checks and keep it in each casino's terms history. It describes the operator's <a href="/en/glossary/#processing">processing time</a> — the player's bank adds almost nothing, an <a href="/en/methods/sbp/">SBP transfer</a> takes seconds; a card takes <a href="/en/methods/card/">one to three days of clearing</a>.</p>
     </div>
     {groups.map((g) => (
       <section style="padding:20px 0 0">
         <h2 class="section-title" style="font-size:1.2rem">From {g.min} minutes — {g.list.length} {g.list.length === 1 ? 'casino' : 'casinos'}</h2>
-        <div class="tbl-wrap"><table class="tbl">
+        <div class="tbl-wrap" data-hint='scroll the table →'><table class="tbl">
           <thead><tr><th>#</th><th>Casino</th><th>Withdrawal</th><th>Via</th><th>Min. deposit</th><th>History</th></tr></thead>
           <tbody>{g.list.map((c) => { const h = changesFor(c.slug).filter((e) => e.diffs.some((d) => d.key === 'withdrawMin')); const since = observedSince(c.slug); return (
-            <tr><td class="num">{c.rank}</td><td><a href={`/en/casino/${c.slug}/`}>{c.name}</a></td><td>from {c.withdrawMin} min</td><td>{c.paymentsLabelEn}</td><td class="num">{c.minDeposit != null ? formatMoney(c.minDeposit) : '—'}</td>
+            <tr><td class="num">{c.rank}</td><td><a href={`/en/casino/${c.slug}/`}>{c.name}</a></td><td>from {c.withdrawMin} min</td><td>{c.paymentsLabelEn}</td><td class="num">{c.minDeposit != null ? formatMoney(c.minDeposit, 'en') : '—'}</td>
             <td style="white-space:normal;color:var(--muted);font-size:.85rem">{h.length > 1 ? h.slice(1).map((e) => { const d = e.diffs.find((x) => x.key === 'withdrawMin')!; return `${fmtD(e.date)}: ${d.from} → ${d.to} min`; }).join('; ') : since ? `unchanged since ${fmtD(since)}` : '—'}</td></tr>); })}</tbody>
         </table></div>
       </section>))}

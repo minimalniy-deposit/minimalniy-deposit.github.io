@@ -183,3 +183,31 @@ html[lang="en"] .hero { background-position: right 38%; }
 .filters-label a, .section-sub a, .prose a, .fact dd a.verified, .card-more { color: var(--gold); }
 .card-more { font-size: .84rem; }
 .fact dd a.verified { text-decoration: underline; text-decoration-color: var(--border); }
+
+/* Skip link */
+.skip { position: absolute; left: -9999px; top: 8px; background: var(--gold); color: #000; padding: 8px 12px; border-radius: 6px; z-index: 100; }
+.skip:focus { left: 8px; }
+
+/* Header dropdown (native <details>, no JS) */
+.nav-menu { position: relative; }
+.nav-menu > summary { list-style: none; cursor: pointer; color: var(--muted); }
+.nav-menu > summary::-webkit-details-marker { display: none; }
+.nav-menu[open] > summary { color: var(--text); }
+.nav-drop { position: absolute; top: 100%; left: 0; z-index: 50; min-width: 220px; margin-top: 8px; background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 8px; display: grid; gap: 2px; box-shadow: 0 12px 30px rgba(0,0,0,.4); }
+.nav-drop a { padding: 7px 10px; border-radius: 6px; color: var(--text); }
+.nav-drop a:hover { background: var(--bg3); text-decoration: none; }
+@media (max-width: 680px) { .nav-drop { position: static; margin: 6px 0 0; box-shadow: none; grid-template-columns: 1fr 1fr; } }
+
+/* On-page table of contents */
+.toc { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: center; font-size: .82rem; margin: -8px 0 20px; padding: 10px 14px; background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); }
+.toc-label { color: var(--muted); }
+.toc a { color: var(--text); white-space: nowrap; }
+.toc a:hover { color: var(--gold); }
+
+/* Wide tables: keep the casino name visible while scrolling, hint on small screens */
+.tbl th:nth-child(2), .tbl td:nth-child(2) { position: sticky; left: 0; background: var(--bg2); z-index: 1; }
+.tbl thead th:nth-child(2) { background: var(--bg3); }
+@media (max-width: 720px) {
+  .tbl-wrap { position: relative; }
+  .tbl-wrap::after { content: attr(data-hint); display: block; font-size: .72rem; color: var(--muted); padding: 6px 12px; border-top: 1px solid var(--border); }
+}

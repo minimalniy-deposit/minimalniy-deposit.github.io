@@ -1,0 +1,9 @@
+---
+import { useT, type Locale } from '../i18n';
+interface Props { locale: Locale; items: { id: string; label: string }[] }
+const { locale, items } = Astro.props; const t = useT(locale);
+---
+<nav class="toc" aria-label={t.nav.onPage}>
+  <span class="toc-label">{t.nav.onPage}:</span>
+  {items.map((i) => <a href={`#${i.id}`}>{i.label}</a>)}
+</nav>

@@ -74,7 +74,7 @@ const ld = { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 
     <p class="section-sub" style="margin:16px 0 0">{slotsMeta.fetchedAt ? `${t.slots.fetched}: ${slotsMeta.fetchedAt}` : t.slots.sample}</p>
     <div class="cta-row" style="margin-bottom:48px">
       <a href={top.url} rel="nofollow noopener" target="_blank" class="btn-go">{t.slots.playReal}</a>
-      <span class="verified">{top.minDeposit != null ? fmt(t.slots.playRealNote, { dep: formatMoney(top.minDeposit) }) : (ru ? 'Ссылка ведёт на первое казино рейтинга:' : 'Goes to the #1 casino in the rating:')} <a href={localePath(locale, `/casino/${top.slug}/`)}>{top.name}</a></span>
+      <span class="verified">{top.minDeposit != null ? fmt(t.slots.playRealNote, { dep: formatMoney(top.minDeposit, locale) }) : (ru ? 'Ссылка ведёт на первое казино рейтинга:' : 'Goes to the #1 casino in the rating:')} <a href={localePath(locale, `/casino/${top.slug}/`)}>{top.name}</a></span>
     </div>
   </div>
   <script>

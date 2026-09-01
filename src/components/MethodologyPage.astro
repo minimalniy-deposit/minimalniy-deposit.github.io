@@ -73,7 +73,7 @@ const ld = {
       <p>{ru
         ? 'Пять критериев, и у каждого свой вес. Оценка в карточке — взвешенная сумма по десятибалльной шкале. Поэтому казино с щедрым бонусом, но медленными выплатами не обгонит площадку со скромным бонусом и быстрым выводом.'
         : 'Five criteria with different weights. The score in a card is the weighted sum on a 10-point scale, so a casino with a generous bonus but slow payouts never overtakes a modest but fast one.'}</p>
-      <div class="tbl-wrap">
+      <div class="tbl-wrap" data-hint={ru ? 'таблица прокручивается →' : 'scroll the table →'}>
         <table class="tbl">
           <thead><tr><th>{ru ? 'Критерий' : 'Criterion'}</th><th>{ru ? 'Вес' : 'Weight'}</th><th>{ru ? 'Что проверяем' : 'What exactly we check'}</th></tr></thead>
           <tbody>{weights.map(([name, w, desc]) => <tr><td><b>{name}</b></td><td class="num"><b style="color:var(--gold)">{w}%</b></td><td style="white-space:normal;color:var(--muted);min-width:260px">{desc}</td></tr>)}</tbody>

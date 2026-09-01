@@ -1,5 +1,6 @@
 ---
 import GuidesGrid from '../../components/GuidesGrid.astro';
+import Toc from '../../components/Toc.astro';
 import Base from '../../layouts/Base.astro';
 import { casinos, type Casino } from '../../lib/casinos';
 import { lastChecked } from '../../lib/history';
@@ -111,6 +112,7 @@ const KEYS: { key: Key; label: string }[] = [{ key: 'sbp', label: 'СБП' }, { 
       {KEYS.map((k) => <a class:list={['filter-btn', { active: k.key === key }]} href={`/methods/${k.key}/`} aria-current={k.key === key ? 'page' : undefined}>{k.label}</a>)}
       <a class="filter-btn" href="/methods/">сводная таблица</a>
     </nav>
+    <Toc locale="ru" items={[{ id: 'casinos', label: 'Кто принимает' }, { id: 'how', label: 'Как это работает' }, { id: 'faq', label: 'Вопросы' }]} />
 
     <div class="callouts">
       <div class="callout">Принимают: <b>{list.length}</b> из {casinos.length}</div>
@@ -121,7 +123,7 @@ const KEYS: { key: Key; label: string }[] = [{ key: 'sbp', label: 'СБП' }, { 
 
     <section id="casinos">
       <h2 class="section-title" style="font-size:1.25rem">Кто принимает {m.crumb.toLowerCase()} и на каких условиях</h2>
-      <div class="tbl-wrap">
+      <div class="tbl-wrap" data-hint="таблица прокручивается →">
         <table class="tbl">
           <thead><tr><th>#</th><th>Казино</th><th>Мин. депозит</th>{key === 'crypto' && hasRates && <th>в USDT</th>}<th>Вывод</th><th>Мин. вывод</th>{key === 'crypto' && <th>Курс кассы, ₽/USDT</th>}{key === 'crypto' && <th>Наценка к обменнику</th>}<th>Все способы</th></tr></thead>
           <tbody>{list.map((c) => (
@@ -142,7 +144,7 @@ const KEYS: { key: Key; label: string }[] = [{ key: 'sbp', label: 'СБП' }, { 
     </section>
 
     {key === 'sbp' && (
-      <div class="prose" style="padding:24px 0 8px">
+      <div id="how" class="prose" style="padding:24px 0 8px">
         <h2>Как проходит депозит и вывод</h2>
         <p>В кассе выбираете СБП и сумму, получаете QR-код или ссылку в банковское приложение, подтверждаете — деньги на счёте казино через несколько секунд. На выводе указываете номер телефона и банк; заявку одобряет площадка (это и есть те минуты из таблицы), после чего перевод приходит мгновенно. Никакого клиринга и «рабочих дней» — отсюда и разрыв со скоростью вывода на карту.</p>
         <h2>Пять вещей, которые СБП не умеет</h2>
@@ -159,7 +161,7 @@ const KEYS: { key: Key; label: string }[] = [{ key: 'sbp', label: 'СБП' }, { 
     )}
 
     {key === 'card' && (
-      <div class="prose" style="padding:24px 0 8px">
+      <div id="how" class="prose" style="padding:24px 0 8px">
         <h2>Пополнение: мгновенно и без комиссии</h2>
         <p>Депозит с карты «Мир» зачисляется сразу; комиссию за пополнение площадки рейтинга не берут. Ограничения — на стороне банка: 3-D Secure на первом платеже, дневной лимит на онлайн-покупки и антифрод, который иногда просит подтвердить перевод. Минимум кассы — от {formatMoney(lowest.minDeposit!)}; у части касс для карт он выше, чем для СБП, — 200–300 ₽.</p>
         <h2>Вывод: почему дни, а не минуты</h2>
@@ -175,7 +177,7 @@ const KEYS: { key: Key; label: string }[] = [{ key: 'sbp', label: 'СБП' }, { 
     )}
 
     {key === 'crypto' && (
-      <div class="prose" style="padding:24px 0 8px">
+      <div id="how" class="prose" style="padding:24px 0 8px">
         <h2>Сколько стоит крипто-депозит на самом деле</h2>
         {hasRates && bc ? (
           <div class="callouts">

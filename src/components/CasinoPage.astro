@@ -46,12 +46,12 @@ const g = (slug: string) => localePath(locale, '/glossary/') + '#' + slug;
 
 const full = c.minDeposit != null && c.withdrawMin != null;
 const title = ru
-  ? (full ? `${c.name}: минимальный депозит ${formatMoney(c.minDeposit!)}, вывод от ${c.withdrawMin} минут — ${c.rank}-е место в рейтинге 2026 года` : `${c.name} — ${c.rank}-е место в рейтинге казино с минимальным депозитом 2026 года`)
-  : (full ? `${c.name} — minimum deposit ${formatMoney(c.minDeposit!)}, withdrawal from ${c.withdrawMin} min, #${c.rank} in the 2026 rating` : `${c.name} — #${c.rank} in the 2026 minimum-deposit casino rating`);
+  ? (full ? `${c.name}: минимальный депозит ${formatMoney(c.minDeposit!, locale)}, вывод от ${c.withdrawMin} минут — ${c.rank}-е место в рейтинге 2026 года` : `${c.name} — ${c.rank}-е место в рейтинге казино с минимальным депозитом 2026 года`)
+  : (full ? `${c.name} — minimum deposit ${formatMoney(c.minDeposit!, locale)}, withdrawal from ${c.withdrawMin} min, #${c.rank} in the 2026 rating` : `${c.name} — #${c.rank} in the 2026 minimum-deposit casino rating`);
 const bonusText = (ru ? c.bonus : c.bonusEn)?.replace(/<[^>]+>/g, '');
 const description = ru
-  ? [full ? `${c.name} принимает депозит от ${formatMoney(c.minDeposit!)} (${payLabel}) и выплачивает выигрыш в среднем за ${c.withdrawMin} минут; лицензия ${c.licenseShort ?? licenseLabel}` : `${c.name} работает по лицензии ${licenseLabel} и занимает ${c.rank}-е место в рейтинге`, c.rating != null ? `Оценка — ${c.rating.toFixed(1)} из 10` : null, bonusText].filter(Boolean).join('. ') + '.'
-  : [full ? `${c.name}: deposit from ${formatMoney(c.minDeposit!)} via ${payLabel}, withdrawal from ${c.withdrawMin} minutes, ${c.licenseShort ?? licenseLabel} licence` : `${c.name}: ${licenseLabel} licence, #${c.rank} in the rating`, c.rating != null ? `Score ${c.rating.toFixed(1)}/10` : null, bonusText].filter(Boolean).join('. ') + '.';
+  ? [full ? `${c.name} принимает депозит от ${formatMoney(c.minDeposit!, locale)} (${payLabel}) и выплачивает выигрыш в среднем за ${c.withdrawMin} минут; лицензия ${c.licenseShort ?? licenseLabel}` : `${c.name} работает по лицензии ${licenseLabel} и занимает ${c.rank}-е место в рейтинге`, c.rating != null ? `Оценка — ${c.rating.toFixed(1)} из 10` : null, bonusText].filter(Boolean).join('. ') + '.'
+  : [full ? `${c.name}: deposit from ${formatMoney(c.minDeposit!, locale)} via ${payLabel}, withdrawal from ${c.withdrawMin} minutes, ${c.licenseShort ?? licenseLabel} licence` : `${c.name}: ${licenseLabel} licence, #${c.rank} in the rating`, c.rating != null ? `Score ${c.rating.toFixed(1)}/10` : null, bonusText].filter(Boolean).join('. ') + '.';
 
 const pageUrl = new URL(localePath(locale, `/casino/${c.slug}/`), Astro.site).href;
 const ld = {
@@ -88,7 +88,7 @@ const verifiedHuman = new Date(site.lastVerified).toLocaleDateString(ru ? 'ru-RU
 
     <h2 class="section-title" style="font-size:1.2rem">{t.casino.facts}</h2>
     <dl class="facts">
-      <div class="fact"><dt>{t.casino.minDeposit}</dt><dd class="gold">{c.minDeposit != null ? formatMoney(c.minDeposit) : '—'}{c.minDeposit != null && [100, 500, 1000].includes(c.minDeposit) && <> <a class="verified" href={localePath(locale, `/deposit/${c.minDeposit}/`)}>{ru ? 'что даёт эта сумма →' : 'what this sum buys →'}</a></>}</dd></div>
+      <div class="fact"><dt>{t.casino.minDeposit}</dt><dd class="gold">{c.minDeposit != null ? formatMoney(c.minDeposit, locale) : '—'}{c.minDeposit != null && [100, 500, 1000].includes(c.minDeposit) && <> <a class="verified" href={localePath(locale, `/deposit/${c.minDeposit}/`)}>{ru ? 'что даёт эта сумма →' : 'what this sum buys →'}</a></>}</dd></div>
       <div class="fact"><dt>{t.casino.withdraw}</dt><dd>{c.withdrawMin != null ? fmt(t.casino.withdrawFrom, { n: c.withdrawMin }) : '—'}{c.withdrawMin != null && <> <a class="verified" href={localePath(locale, '/fast-withdrawal/')}>{ru ? 'сравнить →' : 'compare →'}</a></>}</dd></div>
       <div class="fact"><dt>{t.casino.payments}</dt><dd>{payLabel ? payLabel.split(' · ').map((lbl, i) => { const k = /СБП|SBP/.test(lbl) ? 'sbp' : /Карта|Card/.test(lbl) ? 'card' : 'crypto'; return <>{i > 0 && ' · '}<a href={localePath(locale, `/methods/${k}/`)} style="color:inherit">{lbl}</a></>; }) : '—'}</dd></div>
       <div class="fact"><dt>{t.casino.license}</dt><dd>{c.licenseShort ?? licenseLabel}{c.licenseVerifyUrl ? <> <a class="verified" href={c.licenseVerifyUrl} rel="noopener" target="_blank">{t.fresh.verify} →</a></> : <> <a class="verified" href={c.license === 'Anjouan' ? 'https://anjouangaming.com/public-register/' : 'https://www.cga.cw/en/133i348441001'} rel="noopener" target="_blank" title={t.fresh.verifyHow}>{t.fresh.verify} →</a></>}</dd></div>
@@ -131,7 +131,7 @@ const verifiedHuman = new Date(site.lastVerified).toLocaleDateString(ru ? 'ru-RU
         <h2 class="section-title" style="font-size:1.2rem">{t.history.h}</h2>
         <p class="section-sub">{fmt(t.history.since, { d: fmtD(since) })}{hist.length <= 1 ? ` — ${t.history.noChanges}.` : '.'} {t.history.weekly}</p>
         {speedSvg && <div style="margin:8px 0 12px"><p class="section-sub" style="margin-bottom:4px">{t.fresh.speedH} — {t.fresh.speedSub}</p><Fragment set:html={speedSvg} /></div>}
-        <div class="tbl-wrap">
+        <div class="tbl-wrap" data-hint={ru ? 'таблица прокручивается →' : 'scroll the table →'}>
           <table class="tbl">
             <tbody>
               {hist.map((h, i) => (
@@ -152,7 +152,7 @@ const verifiedHuman = new Date(site.lastVerified).toLocaleDateString(ru ? 'ru-RU
 
     <section style="padding:24px 0 48px">
       <h2 class="section-title" style="font-size:1.2rem">{t.casino.compare}</h2>
-      <div class="tbl-wrap">
+      <div class="tbl-wrap" data-hint={ru ? 'таблица прокручивается →' : 'scroll the table →'}>
         <table class="tbl">
           <thead><tr><th>#</th><th>{t.casino.colName}</th><th>{t.casino.colDep}</th><th>{t.casino.colWithdraw}</th><th>{t.casino.colPay}</th><th>{t.casino.rating}</th></tr></thead>
           <tbody>
@@ -160,7 +160,7 @@ const verifiedHuman = new Date(site.lastVerified).toLocaleDateString(ru ? 'ru-RU
               <tr class:list={{ me: n.slug === c.slug }}>
                 <td class="num">{n.rank}</td>
                 <td>{n.slug === c.slug ? n.name : <a href={localePath(locale, `/casino/${n.slug}/`)}>{n.name}</a>}</td>
-                <td class="num">{n.minDeposit != null ? formatMoney(n.minDeposit) : '—'}</td>
+                <td class="num">{n.minDeposit != null ? formatMoney(n.minDeposit, locale) : '—'}</td>
                 <td class="num">{n.withdrawMin != null ? fmt(t.casino.withdrawFrom, { n: n.withdrawMin }) : '—'}</td>
                 <td>{(ru ? n.paymentsLabel : n.paymentsLabelEn) ?? '—'}</td>
                 <td class="num">{n.rating != null ? n.rating.toFixed(1) : '—'}</td>

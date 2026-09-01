@@ -1,5 +1,6 @@
 ---
 import GuidesGrid from '../../components/GuidesGrid.astro';
+import Toc from '../../components/Toc.astro';
 import Base from '../../layouts/Base.astro';
 import { casinos, type Casino } from '../../lib/casinos';
 import { lastChecked } from '../../lib/history';
@@ -138,9 +139,10 @@ const ld = [
     </nav>
 
     <!-- 1. Площадки -->
+    <Toc locale="ru" items={[{ id: 'casinos', label: 'Площадки' }, { id: 'session', label: 'Сколько спинов' }, { id: 'calc', label: 'Калькулятор' }, { id: 'bonus', label: 'Бонус' }, { id: 'pay', label: 'Чем платить' }, { id: 'withdraw', label: 'Вывод' }, { id: 'rg', label: 'Риски' }, { id: 'faq', label: 'Вопросы' }]} />
     <section id="casinos">
       <h2 class="section-title" style="font-size:1.25rem">Кто принимает {rub(sum)} ₽ и на каких условиях</h2>
-      <div class="tbl-wrap">
+      <div class="tbl-wrap" data-hint="таблица прокручивается →">
         <table class="tbl">
           <thead><tr><th>#</th><th>Казино</th><th>Мин. депозит</th><th>Вывод</th><th>Пополнение</th><th>RTP</th><th>Бонус на {rub(sum)} ₽</th><th>Бонус от</th><th>Оборот</th><th>Потолок ставки</th><th>Ставка от (Starburst / Gates)</th><th title="Сколько бонус в среднем принесёт или отнимет после полного отыгрыша">Бонус в среднем</th></tr></thead>
           <tbody>{fits.map((c) => (
@@ -169,7 +171,7 @@ const ld = [
       {sum === 100
         ? <p>Каждый спин стоит долю ставки, которую слот оставляет себе: при отдаче 96% это 4 копейки с рубля. Это не прогноз вашей сессии, а среднее по миллиардам вращений — сто спинов могут закончиться как угодно. Зато это честная цена развлечения: столько вы платите за час игры, что бы ни выпало.</p>
         : <p>Цена спина — доля ставки, которую слот оставляет себе (4% при отдаче 96%); почему это средняя цена, а не прогноз сессии, — <a href="/deposit/100/#session">разобрано на странице про 100 ₽</a>. Здесь — только цифры для {rub(sum)} ₽.</p>}
-      <div class="tbl-wrap">
+      <div class="tbl-wrap" data-hint="таблица прокручивается →">
         <table class="tbl">
           <thead><tr><th>Ставка</th><th>Доля от депозита</th><th>Спинов хватит</th><th>Цена спина в среднем</th><th>Цена 100 спинов</th></tr></thead>
           <tbody>{sessionRows.map((r) => (
@@ -227,7 +229,7 @@ const ld = [
     <!-- 5. Платежи -->
     <section id="pay" class="prose" style="padding-top:24px">
       <h2>Чем платить {rub(sum)} ₽ — и чем не платить</h2>
-      <div class="tbl-wrap">
+      <div class="tbl-wrap" data-hint="таблица прокручивается →">
         <table class="tbl">
           <thead><tr><th>Способ</th><th>Комиссия</th><th>Зачисление</th><th>Вывод</th><th>Вердикт для {rub(sum)} ₽</th></tr></thead>
           <tbody>

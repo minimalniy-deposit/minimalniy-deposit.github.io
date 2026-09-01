@@ -11,7 +11,9 @@
     "methodology": "Methodology",
     "slots": "Demo slots",
     "glossary": "Glossary",
-    "archive": "Archive"
+    "archive": "Archive",
+    "guides": "Guides",
+    "onPage": "On this page"
   },
   "switchLang": "Русский",
   "switchLangHref": "/",
@@ -32,9 +34,9 @@
     "breadcrumbRating": "Top 12 rating",
     "rankIn": "Rank",
     "of10": "of {n}",
-    "facts": "Key terms",
+    "facts": "Key terms at a glance",
     "minDeposit": "Minimum deposit",
-    "withdraw": "Withdrawal speed",
+    "withdraw": "Withdrawal",
     "withdrawFrom": "from {n} min",
     "payments": "Deposit methods",
     "license": "License",
@@ -44,9 +46,9 @@
     "promoCode": "Promo code",
     "mentions": "What the main review says",
     "mentionsNote": "Excerpts from the main (Russian) review that mention {name}.",
-    "compare": "Compare with neighbours in the rating",
+    "compare": "Neighbours in the rating",
     "backToRating": "← Back to the full rating",
-    "verified": "Data verified",
+    "verified": "Terms checked",
     "goto": "Go to {name} →",
     "colName": "Casino",
     "colDep": "Min. deposit",
@@ -68,9 +70,9 @@
     "usdt": "USDT",
     "btc": "BTC",
     "crypto": "Crypto",
-    "fastest": "Fastest withdrawal",
-    "lowest": "Lowest deposit threshold",
-    "note": "Values are taken from the rating cards. Casino-side terms can change — check the cashier before depositing."
+    "fastest": "Fastest payout",
+    "lowest": "Lowest entry threshold",
+    "note": "Figures match the rating cards. A casino may change its terms before our next check — look at the cashier before depositing."
   },
   "methodology": {
     "title": "How the rating is built: criteria weights, check day, what gets a casino removed",
@@ -83,7 +85,7 @@
     "source": "Data source:",
     "verified": "Data verified:"
   },
-  "banner18": "Gambling is for adults 18+ only. Playing for money carries a risk of losing funds.",
+  "banner18": "Gambling is for adults only. Playing for money carries a risk of losing it.",
   "notFound": {
     "title": "Page not found",
     "text": "There is no such page. Go back to the rating.",
@@ -131,11 +133,11 @@
   },
   "history": {
     "h": "Conditions history",
-    "since": "Observed since {d}",
-    "noChanges": "no condition changes recorded over this period",
+    "since": "Tracked since {d}",
+    "noChanges": "no changes to the terms have been recorded in this period",
     "was": "was",
     "first": "first record",
-    "weekly": "The ledger is updated on Mondays; every record cites its source.",
+    "weekly": "Updated on Mondays; every record cites its source.",
     "k": {
       "minDeposit": "min. deposit",
       "withdrawMin": "withdrawal, min",
@@ -153,13 +155,13 @@
     "btc": "BTC",
     "asOf": "as of {date}",
     "h": "Where a crypto deposit costs less",
-    "lede": "Minimum deposit in USDT at the best small-sum exchanger rate from BestChange — and the rate at which each casino's cashier converts roubles. The gap between them is a hidden conversion fee.",
+    "lede": "Minimum deposit in USDT at the best small-sum exchanger rate on BestChange — and the rate at which each casino's cashier converts roubles. The gap between the two is a hidden conversion fee.",
     "colMin": "Min. deposit",
     "colUsdt": "in USDT (exchanger rate)",
     "colCashier": "Cashier rate, ₽/USDT",
     "colSpread": "Markup vs exchanger",
     "pending": "checked on Mondays",
-    "note": "The cashier rate is recorded by hand during the weekly check — before confirming a payment, without depositing. Until recorded, the cell shows a dash.",
+    "note": "The cashier rate is recorded by hand during the weekly check — before confirming a payment, without depositing. Until it is recorded, the cell shows a dash.",
     "bestSpread": "Lowest markup",
     "sources": "Sources: {s}",
     "bcBest": "Exchangers (BestChange)",
@@ -177,8 +179,12 @@
     "speedH": "Withdrawal speed over time",
     "speedSub": "Minutes to first SBP withdrawal by check date",
     "snap": "Terms snapshot",
-    "snapSub": "Copies of the rules page in the Web Archive — independent evidence of the terms on that day",
+    "snapSub": "Copies of the rules page in the Wayback Machine — independent evidence of the terms on that day",
     "verify": "verify in the registry",
     "verifyHow": "The licence seal in the casino's footer should link to the regulator's site and show this same domain."
+  },
+  "a11y": {
+    "skip": "Skip to content",
+    "scrollHint": "scroll the table →"
   }
 }
