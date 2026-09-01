@@ -1,263 +1,88 @@
 ---
-/* Design gallery — four directions on real data. Unlinked, noindex. */
+/* Home-page mock in the "smoked glass" theme, on real data. Unlinked, noindex. */
 import Base from '../../layouts/Base.astro';
-import { Icon } from 'astro-icon/components';
 import StormBg from '../../components/StormBg.astro';
+import { Icon } from 'astro-icon/components';
 import { casinos } from '../../lib/casinos';
 import { series, svgLine } from '../../lib/charts';
-import { rates, bc } from '../../lib/rates';
+import { entries } from '../../lib/history';
 import '@fontsource-variable/golos-text';
-import '@fontsource/jetbrains-mono/cyrillic-400.css';
-import '@fontsource/jetbrains-mono/latin-400.css';
-import '@fontsource-variable/unbounded';
-import '@fontsource-variable/cormorant';
-import btc from 'cryptocurrency-icons/svg/color/btc.svg?raw';
-import usdt from 'cryptocurrency-icons/svg/color/usdt.svg?raw';
-import illWallet from '../../assets/undraw/wallet.svg?raw';
-import illSafe from '../../assets/undraw/safe.svg?raw';
-import illAnalytics from '../../assets/undraw/analytics.svg?raw';
-import illCalc from '../../assets/undraw/calculator.svg?raw';
-import illBitcoin from '../../assets/undraw/bitcoin.svg?raw';
-import illChoose from '../../assets/undraw/choose.svg?raw';
-import illSecurity from '../../assets/undraw/security_on.svg?raw';
-import illData from '../../assets/undraw/all_the_data.svg?raw';
-import doodle from '../../assets/doodles/FloatDoodle.svg?raw';
-const c1 = casinos[0], c3 = casinos[2];
-const spark = svgLine(series('joycasino', 'withdrawMin'), { unit: ' мин', invert: true, w: 280, h: 70 });
-const rub = (n: number) => n.toLocaleString('ru-RU').replace(/\u00a0/g, ' ');
-const money = (n: number) => rub(n) + ' ₽';
+import '../../styles/glass.css';
+const top = casinos.slice(0, 5);
+const fastest = [...casinos].sort((a, b) => a.withdrawMin! - b.withdrawMin!)[0];
+const within15 = casinos.filter((c) => c.withdrawMin! <= 15).length;
+const n = (x: number) => x.toLocaleString('ru-RU').replace(/\u00a0/g, ' ');
+const spark = svgLine(series('joycasino', 'withdrawMin'), { unit: ' мин', invert: true, w: 260, h: 64 }).replace(/var\(--gold\)/g, '#6fb0ff');
+const isCrypto = (c: (typeof casinos)[number]) => c.payments.some((p) => ['usdt', 'btc', 'crypto'].includes(p));
 ---
-<Base locale="ru" path="/preview/" title="Галерея оформления — четыре направления" description="Черновики визуального стиля на реальных данных" translated={false} noindex>
-  <style is:global>
-    .pv { --ui: 'Golos Text Variable', system-ui, sans-serif; --mono: 'JetBrains Mono', ui-monospace, monospace; --disp: 'Unbounded Variable', var(--ui); --serif: 'Cormorant Variable', Georgia, serif; }
-    .dir { margin: 40px 0 56px; border-radius: 20px; overflow: hidden; border: 1px solid var(--border); }
-    .dir-head { padding: 14px 22px; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--border); background: var(--bg2); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
-    .dir-body { padding: 28px 22px; display: grid; gap: 22px; position: relative; z-index: 1; }
-    .row { display: grid; grid-template-columns: 1.4fr 1fr; gap: 20px; align-items: start; } @media (max-width: 760px) { .row { grid-template-columns: 1fr; } }
-    .mini-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; } @media (max-width: 560px) { .mini-grid { grid-template-columns: 1fr 1fr; } }
-    .ill { display: grid; place-items: center; } .ill svg { width: 100%; max-width: 260px; height: auto; }
-    .gal { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; } .gal figure { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 12px; margin: 0; display: grid; gap: 8px; place-items: center; } .gal svg { width: 100%; height: 110px; } .gal figcaption { font-size: .72rem; color: var(--muted); }
-    .icons { display: flex; flex-wrap: wrap; gap: 14px; } .icons span { display: grid; place-items: center; gap: 4px; font-size: .7rem; color: var(--muted); width: 72px; } .icons svg { width: 30px; height: 30px; }
+<Base locale="ru" path="/preview/" title="Превью: дымчатое стекло" description="Макет главной в выбранном стиле" translated={false} noindex theme="theme-glass">
+  <div class="backdrop" aria-hidden="true"></div>
+  <StormBg />
 
+  <section class="g-hero"><div class="container">
+    <h1>Казино с минимальным депозитом: <em>12 площадок</em>, проверенных по минутам и рублям</h1>
+    <p>Депозит от 100 ₽, вывод через СБП от {fastest.withdrawMin} минут, условия каждой площадки — с историей изменений и датой проверки. Ни одной цифры из рекламы.</p>
+    <div class="kpis">
+      <div class="pane kpi"><Icon name="tabler:coin" /><b>от 100 <em>₽</em></b><span>минимальный депозит у 5 площадок</span></div>
+      <div class="pane kpi"><Icon name="tabler:clock-bolt" /><b>от {fastest.withdrawMin} <em>мин</em></b><span>вывод через СБП, {within15} из 12 — до 15 минут</span></div>
+      <div class="pane kpi"><Icon name="tabler:chart-line" /><b>375 <em>₽</em></b><span>индекс минимального депозита</span></div>
+      <div class="pane kpi"><Icon name="tabler:database" /><b>{entries.length}</b><span>записей в истории условий с февраля</span></div>
+    </div>
+  </div></section>
 
-    /* ===== E · Дымчатое стекло ===== */
-    .E { position: relative; isolation: isolate; font-family: var(--ui); color: #dfe3ea; --g1: rgba(140,146,158,.16); --g2: rgba(70,75,84,.10); --edge: rgba(255,255,255,.14); --amber: #e8a33a; --blue: #5aa8ff; --mute: #9aa3b0; overflow: hidden; }
-    .E::before { content: ""; position: absolute; inset: -40px; z-index: -2; background: #0b0d11 url(/img/hero-bg.webp) center/cover no-repeat; filter: blur(26px) saturate(1.15) brightness(.55); }
-    .E::after { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(ellipse 60% 50% at 50% 55%, rgba(11,13,17,.55), transparent 70%); }
-    .E h2 { font-family: var(--ui); font-weight: 600; font-size: clamp(1.5rem, 3.2vw, 2.2rem); letter-spacing: -.02em; line-height: 1.15; color: #eef1f5; }
-    .E .lead { color: var(--mute); max-width: 560px; margin-top: 10px; font-size: .98rem; }
-    .E .pane { position: relative; border-radius: 18px; padding: 20px 22px;
-      background: linear-gradient(160deg, var(--g1), var(--g2)); border: 1px solid var(--edge); backdrop-filter: blur(18px) saturate(1.2);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.22), inset 0 -24px 48px rgba(0,0,0,.28), 0 30px 60px -40px rgba(0,0,0,.9); }
-    .E .pane::before { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; background: linear-gradient(115deg, rgba(90,168,255,.10), transparent 35%, transparent 65%, rgba(232,163,58,.10)); }
-    .E .pane::after { content: ""; position: absolute; left: 12%; right: 12%; top: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent); pointer-events: none; }
-    .E .card { display: grid; grid-template-columns: 56px 1fr auto; gap: 18px; align-items: start; }
-    .E .rank { width: 56px; height: 56px; border-radius: 14px; display: grid; place-items: center; font-family: var(--mono); font-size: 1.3rem; color: #eef1f5; background: rgba(255,255,255,.06); border: 1px solid var(--edge); box-shadow: inset 0 1px 0 rgba(255,255,255,.2), inset 0 -10px 20px rgba(0,0,0,.3); }
-    .E .rank.top { color: var(--amber); box-shadow: inset 0 1px 0 rgba(255,255,255,.2), inset 0 -10px 20px rgba(0,0,0,.3), 0 0 32px -6px rgba(232,163,58,.45); }
-    .E .name { font-size: 1.15rem; font-weight: 600; color: #eef1f5; }
-    .E .facts { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 8px; font-size: .86rem; color: var(--mute); } .E .facts span { display: inline-flex; gap: 6px; align-items: center; } .E .facts svg { width: 15px; height: 15px; color: var(--blue); opacity: .9; } .E .facts b { color: #eef1f5; font-family: var(--mono); font-weight: 500; }
-    .E .facts span.warm svg { color: var(--amber); }
-    .E .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; } .E .chip { padding: 4px 10px; border-radius: 999px; font-size: .76rem; color: #cfd5de; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); box-shadow: inset 0 1px 0 rgba(255,255,255,.12); }
-    .E .btn { display: inline-block; padding: 11px 22px; border-radius: 12px; color: #1a1408; font-weight: 700; background: linear-gradient(180deg, #f2b85a, #d9922a); box-shadow: inset 0 1px 0 rgba(255,255,255,.45), 0 10px 30px -12px rgba(232,163,58,.7); }
-    .E .btn.ghost { color: #eef1f5; background: rgba(255,255,255,.07); border: 1px solid var(--edge); box-shadow: inset 0 1px 0 rgba(255,255,255,.2); font-weight: 600; }
-    .E .stat { padding: 16px 18px; } .E .stat .l { font-size: .78rem; color: var(--mute); display: flex; gap: 7px; align-items: center; } .E .stat .l svg { width: 15px; height: 15px; color: var(--blue); } .E .stat .v { font-family: var(--mono); font-size: 1.55rem; color: #eef1f5; margin-top: 4px; } .E .stat .v em { font-style: normal; color: var(--amber); }
-    .E .tbl-e { width: 100%; border-collapse: separate; border-spacing: 0 6px; font-size: .88rem; } .E .tbl-e th { text-align: left; font-weight: 500; color: var(--mute); font-size: .74rem; letter-spacing: .05em; text-transform: uppercase; padding: 4px 12px; }
-    .E .tbl-e td { padding: 11px 12px; background: rgba(255,255,255,.045); border-top: 1px solid rgba(255,255,255,.09); border-bottom: 1px solid rgba(0,0,0,.35); } .E .tbl-e td:first-child { border-left: 1px solid rgba(255,255,255,.09); border-radius: 10px 0 0 10px; } .E .tbl-e td:last-child { border-right: 1px solid rgba(255,255,255,.09); border-radius: 0 10px 10px 0; }
-    .E .tbl-e td.n { font-family: var(--mono); } .E .ok { color: #7fd3a5; } .E .no { color: #f19a9a; }
-    .E .guide { display: grid; grid-template-columns: 34px 1fr; gap: 12px; padding: 14px 16px; color: #eef1f5; } .E .guide svg { width: 24px; height: 24px; color: var(--blue); } .E .guide b { display: block; font-weight: 600; } .E .guide span { color: var(--mute); font-size: .8rem; } .E .guide:hover { text-decoration: none; } .E .guide:hover svg { color: var(--amber); }
-
-    /* ===== A · Обсерватория (glass + gold) ===== */
-    .A { font-family: var(--ui); background: radial-gradient(ellipse at 20% 0%, rgba(245,166,35,.10), transparent 50%), radial-gradient(ellipse at 100% 100%, rgba(60,120,255,.10), transparent 50%), var(--bg); }
-    .A h2 { font-family: var(--disp); font-weight: 600; font-size: clamp(1.4rem, 3vw, 2rem); letter-spacing: -.02em; line-height: 1.15; }
-    .A .card { display: grid; grid-template-columns: 60px 1fr; gap: 16px; padding: 18px; background: linear-gradient(160deg, rgba(255,255,255,.06), rgba(255,255,255,.015)); border: 1px solid rgba(245,166,35,.35); border-radius: 16px; backdrop-filter: blur(8px); box-shadow: 0 24px 60px -36px rgba(245,166,35,.45); }
-    .A .rank { font-family: var(--disp); font-size: 1.5rem; color: var(--gold); display: grid; place-items: center; width: 60px; height: 60px; border-radius: 14px; background: radial-gradient(circle at 30% 30%, rgba(245,166,35,.3), rgba(245,166,35,.06)); border: 1px solid rgba(245,166,35,.3); }
-    .A .facts { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 8px; font-size: .86rem; color: var(--muted); } .A .facts span { display: inline-flex; gap: 6px; align-items: center; } .A .facts svg { width: 16px; height: 16px; color: var(--gold); } .A .facts b { color: var(--text); font-family: var(--mono); font-weight: 500; }
-    .A .btn { display: inline-block; margin-top: 12px; background: linear-gradient(135deg, var(--gold2), var(--gold)); color: #1a1200; font-weight: 700; padding: 10px 20px; border-radius: 12px; }
-    .A .stat { padding: 14px 16px; border-radius: 14px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); } .A .stat .v { font-family: var(--mono); font-size: 1.5rem; } .A .stat .l { font-size: .78rem; color: var(--muted); display: flex; gap: 6px; align-items: center; } .A .stat svg { width: 16px; height: 16px; color: var(--gold); }
-
-    /* ===== B · Неон-аркада ===== */
-    .B { font-family: var(--ui); background: #0a0616; color: #efe9ff; --nb: #7c3aed; --nc: #22d3ee; --np: #f472b6; }
-    .B h2 { font-family: var(--disp); font-weight: 700; font-size: clamp(1.5rem, 3.4vw, 2.3rem); line-height: 1.1; background: linear-gradient(90deg, #fff, var(--nc) 45%, var(--np)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .B .card { position: relative; padding: 20px; border-radius: 18px; background: linear-gradient(#120b26, #120b26) padding-box, linear-gradient(120deg, var(--nb), var(--nc), var(--np)) border-box; border: 1.5px solid transparent; display: grid; grid-template-columns: 56px 1fr; gap: 16px; }
-    .B .rank { width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; font-family: var(--disp); font-weight: 700; background: conic-gradient(var(--np), var(--nb), var(--nc), var(--np)); color: #fff; box-shadow: 0 0 24px rgba(124,58,237,.6); }
-    .B .facts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; } .B .facts span { display: inline-flex; gap: 6px; align-items: center; padding: 5px 10px; border-radius: 999px; background: rgba(255,255,255,.06); font-size: .8rem; } .B .facts svg { width: 16px; height: 16px; color: var(--nc); }
-    .B .btn { display: inline-block; margin-top: 12px; background: linear-gradient(135deg, var(--np), var(--nb)); color: #fff; font-weight: 700; padding: 10px 22px; border-radius: 999px; box-shadow: 0 0 30px rgba(244,114,182,.45); }
-    .B .stat { padding: 14px; border-radius: 14px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); text-align: center; } .B .stat .v { font-family: var(--disp); font-size: 1.5rem; color: var(--nc); text-shadow: 0 0 18px rgba(34,211,238,.5); } .B .stat .l { font-size: .75rem; color: #b8a9e6; } .B .stat svg { width: 26px; height: 26px; color: var(--np); margin-bottom: 4px; }
-
-    /* ===== C · Редакция (светлая) ===== */
-    .C { font-family: var(--ui); background: #f5f0e6; color: #1c1917; --ink: #1c1917; --paper: #f5f0e6; --gold-c: #b7791f; }
-    .C h2 { font-family: var(--serif); font-weight: 600; font-size: clamp(1.7rem, 3.8vw, 2.6rem); line-height: 1.1; letter-spacing: -.01em; }
-    .C .card { padding: 20px 0; border-top: 2px solid var(--ink); border-bottom: 1px solid #d6cfc2; display: grid; grid-template-columns: 48px 1fr auto; gap: 16px; align-items: start; }
-    .C .rank { font-family: var(--serif); font-size: 2.2rem; line-height: 1; color: var(--gold-c); }
-    .C .name { font-family: var(--serif); font-size: 1.5rem; font-weight: 600; }
-    .C .facts { display: flex; flex-wrap: wrap; gap: 4px 18px; margin-top: 6px; font-size: .9rem; color: #57534e; } .C .facts b { color: var(--ink); font-family: var(--mono); font-weight: 500; }
-    .C .btn { display: inline-block; border: 1.5px solid var(--ink); color: var(--ink); padding: 8px 18px; border-radius: 4px; font-weight: 600; } .C .btn:hover { background: var(--ink); color: var(--paper); text-decoration: none; }
-    .C .stat { border-left: 3px solid var(--gold-c); padding: 4px 14px; } .C .stat .v { font-family: var(--serif); font-size: 1.9rem; line-height: 1; } .C .stat .l { font-size: .78rem; color: #57534e; margin-top: 4px; }
-    .C .tbl-c { width: 100%; border-collapse: collapse; font-size: .9rem; } .C .tbl-c th { text-align: left; font-weight: 600; border-bottom: 2px solid var(--ink); padding: 8px 6px; font-size: .78rem; text-transform: uppercase; letter-spacing: .06em; } .C .tbl-c td { padding: 9px 6px; border-bottom: 1px solid #d6cfc2; } .C .tbl-c td.n { font-family: var(--mono); }
-    .C a { color: var(--gold-c); }
-
-    /* ===== D · Терминал данных ===== */
-    .D { font-family: var(--mono); background: #07090c; color: #d7dde3; --line: #1f2a33; --acc: #f5a623; --ok: #3ddc84; }
-    .D h2 { font-family: var(--mono); font-weight: 500; font-size: clamp(1.2rem, 2.6vw, 1.6rem); color: var(--acc); }
-    .D h2::before { content: "▮ "; color: var(--ok); }
-    .D .ticker { display: flex; flex-wrap: wrap; gap: 16px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 6px; font-size: .8rem; color: #8b98a5; } .D .ticker b { color: #d7dde3; font-weight: 500; }
-    .D .card { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; } .D .card header { display: flex; justify-content: space-between; padding: 8px 12px; background: #0d1218; border-bottom: 1px solid var(--line); font-size: .8rem; } .D .card header b { color: var(--acc); }
-    .D dl { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); margin: 0; } .D dl div { padding: 10px 12px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); } .D dt { font-size: .7rem; color: #8b98a5; text-transform: uppercase; letter-spacing: .06em; } .D dd { margin: 2px 0 0; font-size: 1.05rem; } .D dd.ok { color: var(--ok); } .D dd.acc { color: var(--acc); }
-    .D .btn { display: inline-block; margin: 12px; border: 1px solid var(--acc); color: var(--acc); padding: 6px 14px; border-radius: 4px; font-size: .85rem; } .D .btn::before { content: "> "; }
-    .D .log { font-size: .8rem; color: #8b98a5; line-height: 1.7; } .D .log b { color: var(--ok); font-weight: 500; }
-  </style>
-
-  <div class="container pv" style="padding:24px 0 48px">
-    <h1 style="font-size:1.4rem;font-weight:700">Галерея оформления: пять направлений на реальных данных</h1>
-    <p class="section-sub">Не в меню и не в индексе. Каждое направление — свои шрифты, цвет, ритм и иконки; карточка №1, блок фактов и заголовок собраны из живых данных сайта. Ниже — библиотека материалов, из которой всё это сделано.</p>
-
-
-    <!-- ===== E ===== -->
-    <section class="dir E">
-      <StormBg />
-      <div class="dir-head" style="position:relative;z-index:1;background:rgba(20,23,28,.6);border-color:rgba(255,255,255,.1);color:#9aa3b0;backdrop-filter:blur(12px)"><span>E · Дымчатое стекло — ваш кадр за стеклом, живой шторм: свечения дрейфуют, молнии вспыхивают раз в полминуты</span><span>Golos Text + JetBrains Mono · Tabler</span></div>
-      <div class="dir-body">
-        <div class="row">
-          <div><h2>Что происходит за стеклом — видно по цифрам</h2><p class="lead">Фон — ваш кадр, размытый до пятен; панели — толстое серое стекло с бликом по верхней кромке и тенью толщины снизу. Синий и янтарный не красят элементы, а просвечивают сквозь них: холодный — у иконок и графиков, тёплый — у первого места и кнопки. Центр спокойный, свет живёт по краям.</p></div>
-          <div class="pane stat" style="align-self:center"><div class="l"><Icon name="tabler:history" />JoyCasino · вывод, минуты</div><Fragment set:html={spark.replace(/var\(--gold\)/g, '#5aa8ff')} /></div>
-        </div>
-        <div class="pane card">
-          <div class="rank top">{c1.rank}</div>
+  <section class="g-sec"><div class="container">
+    <h2>Рейтинг</h2>
+    <p class="sub">12 площадок по скорости вывода, условиям бонуса и лицензии — с весами, которые можно проверить</p>
+    <div class="g-filters"><button class="active">Все</button><button>до 100 ₽</button><button>до 500 ₽</button><button>до 1 000 ₽</button><a href="/deposit/100/" style="margin-left:auto">Разбор по сумме →</a></div>
+    <div style="display:grid;gap:12px">
+      {top.map((c) => (
+        <article class:list={['pane', 'g-card', { top: c.rank === 1 }]}>
+          <div class="g-rank">{c.rank}</div>
           <div>
-            <div class="name">{c1.name}</div>
-            <div class="facts"><span class="warm"><Icon name="tabler:coin" />депозит от <b>{money(c1.minDeposit!)}</b></span><span><Icon name="tabler:clock-bolt" />вывод <b>от {c1.withdrawMin} мин</b></span><span><Icon name="tabler:shield-check" />{c1.licenseShort}</span><span><Icon name="tabler:percentage" />RTP <b>{c1.rtp}%</b></span></div>
-            <div class="chips"><span class="chip">карта «Мир»</span><span class="chip">СБП</span><span class="chip">USDT</span><span class="chip">BTC</span></div>
-            <p style="margin-top:10px;font-size:.88rem;color:#b9c1cc" set:html={c1.bonus} />
+            <div class="g-name">{c.name}{c.rank === 1 && <span class="g-tag">выбор №1</span>}</div>
+            <div class="g-facts">
+              <div class="g-fact warm"><Icon name="tabler:coin" />депозит от <b class="tab">{n(c.minDeposit!)} ₽</b></div>
+              <div class="g-fact"><Icon name="tabler:clock-bolt" />вывод <b class="tab">от {c.withdrawMin} мин</b></div>
+              <div class="g-fact"><Icon name="tabler:shield-check" />{c.licenseShort ?? 'лицензия ' + c.license}</div>
+              {c.rtp != null ? <div class="g-fact"><Icon name="tabler:percentage" />RTP <b class="tab">{c.rtp.toFixed(1)}%</b></div> : <div class="g-fact"><Icon name="tabler:star" />оценка <b class="tab">{c.rating}</b></div>}
+            </div>
+            <div class="g-chips"><span class="g-chip">карта «Мир»</span><span class="g-chip">СБП</span>{c.payments.includes('usdt') && <span class="g-chip">USDT</span>}{c.payments.includes('btc') && <span class="g-chip">BTC</span>}{isCrypto(c) && !c.payments.includes('usdt') && !c.payments.includes('btc') && <span class="g-chip">крипта</span>}</div>
+            <p class="g-bonus" set:html={c.bonus} />
           </div>
-          <div style="display:grid;gap:8px;justify-items:end"><a class="btn" href="#">Играть</a><a class="btn ghost" href="#" style="font-size:.85rem;padding:8px 14px">условия и история</a></div>
-        </div>
-        <div class="mini-grid">
-          <div class="pane stat"><div class="l"><Icon name="tabler:bolt" />Быстрее всех выводят</div><div class="v">10 <em>мин</em></div><div style="font-size:.78rem;color:var(--mute);margin-top:4px">7K, Jetton, Gizbo · СБП</div></div>
-          <div class="pane stat"><div class="l"><Icon name="tabler:chart-line" />Индекс минимального депозита</div><div class="v">375 <em>₽</em></div><div style="font-size:.78rem;color:var(--mute);margin-top:4px">среднее по 12 площадкам</div></div>
-          <div class="pane stat"><div class="l"><Icon name="tabler:database" />В истории условий</div><div class="v">27</div><div style="font-size:.78rem;color:var(--mute);margin-top:4px">записей с 20 февраля 2026</div></div>
-        </div>
-        <div class="pane" style="padding:14px 10px">
-          <table class="tbl-e"><thead><tr><th>Способ</th><th>Комиссия</th><th>Зачисление</th><th>Вывод</th><th>Для 100 ₽</th></tr></thead><tbody>
-            <tr><td>СБП</td><td class="n">0 ₽</td><td>секунды</td><td class="n">10–40 мин</td><td class="ok">подходит</td></tr>
-            <tr><td>Карта «Мир»</td><td class="n">0 ₽</td><td>мгновенно</td><td>1–3 дня</td><td class="ok">подходит</td></tr>
-            <tr><td>USDT TRC-20</td><td class="n">168–337 ₽</td><td class="n">1–3 мин</td><td>от $20</td><td class="no">невозможно</td></tr>
-          </tbody></table>
-        </div>
-        <div class="mini-grid">
-          <a class="pane guide" href="#"><Icon name="tabler:arrow-down-circle" /><div><b>Депозит 100 ₽</b><span>5 площадок · сколько спинов, брать ли бонус</span></div></a>
-          <a class="pane guide" href="#"><Icon name="tabler:bolt" /><div><b>Кто выводит быстрее</b><span>от 10 минут · все по минутам</span></div></a>
-          <a class="pane guide" href="#"><Icon name="tabler:scale" /><div><b>Методология</b><span>пять критериев, веса, день проверки</span></div></a>
-        </div>
-      </div>
-    </section>
+          <div class="g-cta"><a class="g-btn" href={c.url} rel="nofollow noopener" target="_blank">Играть</a><a class="g-btn ghost" href={`/casino/${c.slug}/`}>Условия и история</a><span class="g-meta">проверено 31 августа</span></div>
+        </article>
+      ))}
+    </div>
+  </div></section>
 
-    <!-- ===== A ===== -->
-    <section class="dir A">
-      <div class="dir-head"><span>A · Обсерватория — стекло, золото, зерно</span><span>Unbounded + Golos Text + JetBrains Mono · Tabler</span></div>
-      <div class="dir-body">
-        <div class="row">
-          <div><h2>Двенадцать площадок под наблюдением — <span style="color:var(--gold)">по минутам</span> и рублям</h2><p style="color:var(--muted);margin-top:10px">Тон нашего hero, перенесённый на элементы: матовое стекло, тонкая золотая кромка, тёплое и холодное пятно фона.</p></div>
-          <div class="ill"><Fragment set:html={illSafe} /></div>
-        </div>
-        <div class="card">
-          <div class="rank">{c1.rank}</div>
-          <div>
-            <div style="font-size:1.15rem;font-weight:700">{c1.name} <span style="font-size:.72rem;color:var(--gold);border:1px solid rgba(245,166,35,.4);border-radius:999px;padding:2px 8px;margin-left:6px">выбор №1</span></div>
-            <div class="facts"><span><Icon name="tabler:coin" />депозит от <b>{money(c1.minDeposit!)}</b></span><span><Icon name="tabler:clock-bolt" />вывод <b>от {c1.withdrawMin} мин</b></span><span><Icon name="tabler:shield-check" />{c1.licenseShort}</span><span><Icon name="tabler:percentage" />RTP <b>{c1.rtp}%</b></span></div>
-            <p style="margin-top:8px;font-size:.88rem;color:var(--muted)" set:html={c1.bonus} />
-            <a class="btn" href="#">Играть</a>
-          </div>
-        </div>
-        <div class="mini-grid">
-          <div class="stat"><div class="l"><Icon name="tabler:bolt" />Быстрее всех</div><div class="v">10 мин</div></div>
-          <div class="stat"><div class="l"><Icon name="tabler:chart-line" />Индекс депозита</div><div class="v">375 ₽</div></div>
-          <div class="stat"><div class="l"><Icon name="tabler:history" />JoyCasino, вывод</div><Fragment set:html={spark} /></div>
-        </div>
-      </div>
-    </section>
+  <section class="g-sec"><div class="container">
+    <h2>Что изменилось и что мы считаем</h2>
+    <p class="sub">Три цифры, которые пересчитываются после каждой понедельничной проверки</p>
+    <div class="g-stats">
+      <div class="pane g-stat"><div class="l"><Icon name="tabler:bolt" />Быстрее всех выводят</div><div class="v">10 <em>мин</em></div><div class="s">7K, Jetton, Gizbo · через СБП</div></div>
+      <div class="pane g-stat"><div class="l"><Icon name="tabler:history" />JoyCasino, скорость вывода</div><div style="margin-top:6px"><Fragment set:html={spark} /></div></div>
+      <div class="pane g-stat"><div class="l"><Icon name="tabler:scale" />Разброс вейджера</div><div class="v">x30–x38</div><div class="s">по площадкам, где он раскрыт</div></div>
+    </div>
+  </div></section>
 
-    <!-- ===== B ===== -->
-    <section class="dir B">
-      <div class="dir-head" style="background:#120b26;border-color:#2a1d4d;color:#b8a9e6"><span>B · Неон-аркада — градиентные рамки, свечение, дуотон-иконки</span><span>Unbounded · Phosphor duotone</span></div>
-      <div class="dir-body">
-        <div class="row">
-          <div><h2>Крути на сто рублей — и знай, сколько это спинов</h2><p style="color:#b8a9e6;margin-top:10px">Язык игровых лобби, но в наших цифрах. Ярко, для мобильного, с ощущением казино — и с риском выглядеть как сами казино.</p></div>
-          <div class="icons" style="align-content:start"><span><Icon name="ph:dice-five-duotone" />слоты</span><span><Icon name="ph:coins-duotone" />депозит</span><span><Icon name="ph:lightning-duotone" />вывод</span><span><Icon name="ph:shield-check-duotone" />лицензия</span><span><Icon name="ph:qr-code-duotone" />СБП</span><span><Icon name="ph:credit-card-duotone" />карта</span><span><Icon name="ph:wallet-duotone" />крипта</span><span><Icon name="ph:trophy-duotone" />№1</span><span><Icon name="ph:timer-duotone" />минуты</span><span><Icon name="ph:sparkle-duotone" />новинки</span></div>
-        </div>
-        <div class="card">
-          <div class="rank">{c3.rank}</div>
-          <div>
-            <div style="font-size:1.2rem;font-weight:700">{c3.name}</div>
-            <div class="facts"><span><Icon name="ph:coins-duotone" />от {money(c3.minDeposit!)}</span><span><Icon name="ph:lightning-duotone" />вывод от {c3.withdrawMin} мин</span><span><Icon name="ph:shield-check-duotone" />{c3.licenseShort}</span><span><Icon name="ph:qr-code-duotone" />СБП</span><span><Fragment set:html={btc} />BTC</span></div>
-            <p style="margin-top:8px;font-size:.88rem;color:#b8a9e6" set:html={c3.bonus} />
-            <a class="btn" href="#">Играть →</a>
-          </div>
-        </div>
-        <div class="mini-grid">
-          <div class="stat"><Icon name="ph:lightning-duotone" /><div class="v">10 мин</div><div class="l">быстрее всех</div></div>
-          <div class="stat"><Icon name="ph:coins-duotone" /><div class="v">100 ₽</div><div class="l">порог входа у 5</div></div>
-          <div class="stat"><Icon name="ph:trophy-duotone" /><div class="v">9.6</div><div class="l">оценка JoyCasino</div></div>
-        </div>
-      </div>
-    </section>
+  <section class="g-sec"><div class="container">
+    <h2>Чем платить сто рублей</h2>
+    <p class="sub">Комиссии, скорость и вердикт для маленькой суммы</p>
+    <div class="pane g-tbl-wrap"><table class="g-tbl"><thead><tr><th>Способ</th><th>Комиссия</th><th>Зачисление</th><th>Вывод</th><th>Для 100 ₽</th></tr></thead><tbody>
+      <tr><td>СБП</td><td class="tab">0 ₽</td><td>секунды</td><td class="tab">10–40 мин</td><td class="ok">подходит</td></tr>
+      <tr><td>Карта «Мир»</td><td class="tab">0 ₽</td><td>мгновенно</td><td>1–3 дня</td><td class="ok">подходит</td></tr>
+      <tr><td>USDT TRC-20</td><td class="tab">168–337 ₽</td><td class="tab">1–3 мин</td><td>от $20</td><td class="no">невозможно</td></tr>
+    </tbody></table></div>
+  </div></section>
 
-    <!-- ===== C ===== -->
-    <section class="dir C">
-      <div class="dir-head" style="background:#ece5d6;border-color:#d6cfc2;color:#57534e"><span>C · Редакция — светлая, «бумага», антиква</span><span>Cormorant + Golos Text · unDraw</span></div>
-      <div class="dir-body">
-        <div class="row">
-          <div><h2>Сколько стоит спин на сто рублей — и почему бонус не стоит брать</h2><p style="color:#57534e;margin-top:10px">Полная противоположность нише: журнальная вёрстка, линейки вместо рамок, иллюстрация вместо неона. Так выглядит «исследование», а не «оффер». Самый рискованный вариант для привычной аудитории — и самый непохожий на конкурентов.</p></div>
-          <div class="ill"><Fragment set:html={illCalc} /></div>
-        </div>
-        <div class="card">
-          <div class="rank">{c1.rank}</div>
-          <div><div class="name">{c1.name}</div><div class="facts"><span>депозит от <b>{money(c1.minDeposit!)}</b></span><span>вывод <b>от {c1.withdrawMin} мин</b></span><span>лицензия <b>{c1.licenseShort}</b></span><span>RTP <b>{c1.rtp}%</b></span></div><p style="margin-top:8px;font-size:.92rem;color:#44403c" set:html={c1.bonus} /></div>
-          <a class="btn" href="#">Играть</a>
-        </div>
-        <div class="mini-grid">
-          <div class="stat"><div class="v">10 мин</div><div class="l">быстрее всех выводят 7K, Jetton, Gizbo</div></div>
-          <div class="stat"><div class="v">375 ₽</div><div class="l">средний порог входа по рейтингу</div></div>
-          <div class="stat"><div class="v">x30–x38</div><div class="l">разброс вейджера</div></div>
-        </div>
-        <table class="tbl-c"><thead><tr><th>Способ</th><th>Комиссия</th><th>Зачисление</th><th>Вывод</th><th>Для 100 ₽</th></tr></thead><tbody>
-          <tr><td>СБП</td><td class="n">0 ₽</td><td>секунды</td><td class="n">10–40 мин</td><td>подходит</td></tr>
-          <tr><td>Карта «Мир»</td><td class="n">0 ₽</td><td>мгновенно</td><td>1–3 дня</td><td>подходит</td></tr>
-          <tr><td>USDT TRC-20</td><td class="n">168–337 ₽</td><td class="n">1–3 мин</td><td>от $20</td><td><span style="color:#b91c1c">невозможно</span></td></tr>
-        </tbody></table>
-      </div>
-    </section>
-
-    <!-- ===== D ===== -->
-    <section class="dir D">
-      <div class="dir-head" style="background:#0d1218;border-color:#1f2a33;color:#8b98a5"><span>D · Терминал данных — моно, сетка, тикер</span><span>JetBrains Mono · линии вместо карточек</span></div>
-      <div class="dir-body">
-        <div class="ticker"><span>USD/ЦБ <b>{rates.usd}</b></span><span>USDT/BestChange <b>{bc?.rubPerUsdt}</b></span><span>USDT/биржа <b>{rates.usdt}</b></span><span>индекс мин. депозита <b>375 ₽</b></span><span>сверка <b>{rates.date}</b></span></div>
-        <h2>joycasino · условия · история с 2026-02-20</h2>
-        <div class="card">
-          <header><b>#{c1.rank} {c1.name}</b><span>{c1.licenseFull}</span></header>
-          <dl><div><dt>депозит от</dt><dd class="acc">{money(c1.minDeposit!)}</dd></div><div><dt>вывод СБП</dt><dd class="ok">{c1.withdrawMin} мин</dd></div><div><dt>вейджер</dt><dd>x{c1.wager}</dd></div><div><dt>RTP</dt><dd>{c1.rtp}%</dd></div><div><dt>кешбэк</dt><dd>{c1.cashback}%</dd></div><div><dt>курс кассы</dt><dd style="color:#8b98a5">не проверено</dd></div></dl>
-          <a class="btn" href="#">открыть кассу</a>
-        </div>
-        <div class="log">2026-02-20 <b>+</b> вывод 15 мин · депозит 100 ₽ · RTP 97% · вейджер x35 — don8play<br>2026-08-31 <b>+</b> оценка 9.6 · кешбэк 12% — сверка условий<br>2026-09-08 <b>·</b> ожидается понедельничная проверка</div>
-      </div>
-    </section>
-
-    <!-- ===== library ===== -->
-    <section style="margin-top:8px">
-      <h2 class="section-title" style="font-size:1.2rem">Библиотека материалов — что уже лежит в проекте</h2>
-      <p class="section-sub">unDraw (MIT-подобная, без атрибуции), перекрашены под наше золото автоматически; Open Doodles (CC0); Tabler (MIT) и Phosphor (MIT); монеты — cryptocurrency-icons (CC0). Логотипов СБП/«Мир»/провайдеров нет по праву.</p>
-      <div class="gal">
-        <figure><Fragment set:html={illWallet} /><figcaption>wallet</figcaption></figure>
-        <figure><Fragment set:html={illSafe} /><figcaption>safe</figcaption></figure>
-        <figure><Fragment set:html={illAnalytics} /><figcaption>analytics</figcaption></figure>
-        <figure><Fragment set:html={illCalc} /><figcaption>calculator</figcaption></figure>
-        <figure><Fragment set:html={illBitcoin} /><figcaption>bitcoin</figcaption></figure>
-        <figure><Fragment set:html={illChoose} /><figcaption>choose</figcaption></figure>
-        <figure><Fragment set:html={illSecurity} /><figcaption>security</figcaption></figure>
-        <figure><Fragment set:html={illData} /><figcaption>all the data</figcaption></figure>
-        <figure><Fragment set:html={doodle} /><figcaption>open doodles · float</figcaption></figure>
-      </div>
-      <div class="icons" style="margin-top:18px"><span><Icon name="tabler:coin" />coin</span><span><Icon name="tabler:clock-bolt" />clock-bolt</span><span><Icon name="tabler:shield-check" />shield</span><span><Icon name="tabler:qrcode" />qrcode</span><span><Icon name="tabler:credit-card" />card</span><span><Icon name="tabler:wallet" />wallet</span><span><Icon name="tabler:calculator" />calc</span><span><Icon name="tabler:database" />database</span><span><Icon name="tabler:scale" />scale</span><span><Icon name="tabler:trophy" />trophy</span><span><Icon name="tabler:dice-5" />dice</span><span><Icon name="tabler:gift" />gift</span><span><Fragment set:html={btc} />BTC</span><span><Fragment set:html={usdt} />USDT</span></div>
-    </section>
-  </div>
+  <section class="g-sec" style="padding-bottom:64px"><div class="container">
+    <h2>Разборы</h2>
+    <p class="sub">Те же 12 площадок под конкретный вопрос</p>
+    <div class="g-guides">
+      <a class="pane g-guide" href="/deposit/100/"><Icon name="tabler:arrow-down-circle" /><div><b>Депозит 100 ₽</b><span>сколько спинов, брать ли бонус</span></div></a>
+      <a class="pane g-guide" href="/fast-withdrawal/"><Icon name="tabler:bolt" /><div><b>Кто выводит быстрее</b><span>все площадки по минутам</span></div></a>
+      <a class="pane g-guide" href="/methods/crypto/"><Icon name="tabler:wallet" /><div><b>Криптовалюта</b><span>курс касс против обменников</span></div></a>
+      <a class="pane g-guide" href="/archive/"><Icon name="tabler:database" /><div><b>Архив данных</b><span>история условий, снимки правил</span></div></a>
+    </div>
+  </div></section>
 </Base>

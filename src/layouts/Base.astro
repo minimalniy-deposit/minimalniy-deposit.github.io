@@ -18,9 +18,11 @@ interface Props {
   ogTitle?: string;
   ogDescription?: string;
   noindex?: boolean;
+  /** Optional body class for a theme (e.g. 'theme-glass'). */
+  theme?: string;
 }
 
-const { locale, path, title, description, translated = true, home = false, ogTitle, ogDescription, noindex = false } = Astro.props;
+const { locale, path, title, description, translated = true, home = false, ogTitle, ogDescription, noindex = false, theme } = Astro.props;
 const t = useT(locale);
 const url = new URL(localePath(locale, path), Astro.site).href;
 const alt = translated ? alternates(path) : [];
@@ -69,7 +71,7 @@ const verifiedHuman = new Date(site.lastVerified).toLocaleDateString(locale === 
   prerender: [{ where: { and: [{ href_matches: '/*' }, { not: { selector_matches: '[target=_blank]' } }] }, eagerness: 'moderate' }],
 })}></script>
 </head>
-<body>
+<body class={theme}>
 <a class="skip" href="#main">{t.a11y.skip}</a>
 <header>
   <div class="container">
