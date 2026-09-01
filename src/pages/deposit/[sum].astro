@@ -1,0 +1,300 @@
+---
+import Base from '../../layouts/Base.astro';
+import { casinos, type Casino } from '../../lib/casinos';
+import { lastChecked } from '../../lib/history';
+import { rates, bc, hasRates, toUsdt, rateDate, fmtRub } from '../../lib/rates';
+import { formatMoney } from '../../i18n';
+
+export function getStaticPaths() {
+  return [100, 500, 1000].map((sum) => ({ params: { sum: String(sum) }, props: { sum } }));
+}
+const { sum } = Astro.props as { sum: number };
+const SUMS = [100, 500, 1000] as const;
+
+/* ---------- data ---------- */
+const fits = casinos.filter((c) => c.minDeposit != null && c.minDeposit <= sum).sort((a, b) => a.rank - b.rank);
+const exact = fits.filter((c) => c.minDeposit === sum);
+const fastest = [...fits].sort((a, b) => a.withdrawMin! - b.withdrawMin! || a.rank - b.rank)[0];
+const isCrypto = (c: Casino) => c.payments.some((p) => ['usdt', 'btc', 'crypto'].includes(p));
+const cryptoFits = fits.filter(isCrypto);
+
+const rub = (n: number, d = 0) => n.toLocaleString('ru-RU', { maximumFractionDigits: d, minimumFractionDigits: d }).replace(/\u00a0/g, ' ').replace(/^-/, '−');
+const plural = (n: number, one: string, few: string, many: string) => { const a = n % 10, b = n % 100; return n === 1 ? one : (a >= 2 && a <= 4 && (b < 10 || b >= 20)) ? few : many; };
+const names = (l: Casino[]) => l.map((c) => c.name.replace(' Casino', '')).join(', ');
+const fmtD = (d: string) => new Date(d).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' }).replace(' г.', '');
+
+/* ---------- session maths (RTP 96% baseline; casino RTP where known) ---------- */
+const RTP = 0.96;
+const bets = sum === 100 ? [1, 2, 5, 10] : sum === 500 ? [2, 5, 10, 25] : [5, 10, 25, 50];
+const sessionRows = bets.map((b) => ({ bet: b, spins: Math.floor(sum / b), lossPerSpin: b * (1 - RTP), loss100: 100 * b * (1 - RTP), pctBank: (b / sum) * 100 }));
+const stake1pct = sum / 100;
+const usd = rates.usd ?? null;
+const minBetPragmatic = usd ? 0.2 * usd : null;   // Gates of Olympus / Sweet Bonanza: $0.20
+const minBetStarburst = usd ? 0.1 * usd : null;   // Starburst / Book of Dead: $0.10
+
+/* ---------- bonus economics ---------- */
+const pct = (c: Casino) => { const m = (c.bonus ?? '').match(/(\d{2,3})%/); return m && +m[1] >= 50 ? +m[1] : null; };
+const fs = (c: Casino) => { const m = (c.bonus ?? '').match(/(\d+)\s*фриспин/); return m ? +m[1] : null; };
+const bonusRub = (c: Casino) => (pct(c) != null ? Math.round(sum * pct(c)! / 100) : null);
+const turnover = (c: Casino) => (bonusRub(c) != null && c.wager != null ? bonusRub(c)! * c.wager : null);
+const turnoverDB = (c: Casino) => (bonusRub(c) != null && c.wager != null ? (sum + bonusRub(c)!) * c.wager : null);
+const edge = (c: Casino) => 1 - ((c.rtp ?? 96) / 100);
+const ev = (c: Casino) => (turnover(c) != null ? Math.round(bonusRub(c)! - turnover(c)! * edge(c)) : null);
+const withMath = fits.filter((c) => turnover(c) != null);
+const MAX_BET = 500; // typical max bet while wagering, ₽ (≈ $5)
+const spinsAtMaxBet = (c: Casino) => Math.ceil(turnover(c)! / MAX_BET);
+const spinsAt1pct = (c: Casino) => Math.ceil(turnover(c)! / stake1pct);
+const w0 = withMath[0];
+
+/* ---------- payments ---------- */
+const trcFeeRub = usd ? [1.95 * usd, 3.9 * usd] : null;        // TRC-20 fee after Tron Proposal #104 (Aug 2025): ~$1.95–3.90
+const casinoCryptoMinRub = bc ? 10 * bc.rubPerUsdt : null;      // typical casino minimum 10 USDT
+const cryptoVerdict = sum === 100 ? 'невозможно' : sum === 500 ? 'на грани' : 'работает';
+const sumUsdt = hasRates ? toUsdt(sum) : null;
+
+/* ---------- copy ---------- */
+const H1: Record<number, string> = {
+  100: 'Депозит 100 рублей: тест площадки, а не игровая сессия',
+  500: 'Депозит 500 рублей: минимальный рабочий банкролл',
+  1000: 'Депозит 1 000 рублей: порог, на котором включается всё',
+};
+const TITLE: Record<number, string> = {
+  100: `Депозит 100 рублей в казино: ${exact.length} ${plural(exact.length, 'площадка', 'площадки', 'площадок')} рейтинга, сколько это спинов, почему бонус не брать и чем платить`,
+  500: `Депозит 500 рублей в казино: ${fits.length} из ${casinos.length} площадок, расчёт бонуса и оборота, крипта на грани, чем платить`,
+  1000: `Депозит 1 000 рублей в казино: все ${fits.length} площадок, EV бонуса, крипто-депозит, лимиты вывода и KYC`,
+};
+const LEDE: Record<number, string> = {
+  100: 'Сто рублей — это возможность проверить кассу, скорость вывода и слоты площадки за цену чашки кофе. Игровой сессией это становится только при ставке в рубль и слоте с низкой волатильностью.',
+  500: 'Пятьсот рублей — первая сумма, на которой работает банкролл-менеджмент: ставка 5 рублей, сто спинов, часть бонусов открыта — и математика бонуса впервые заслуживает расчёта.',
+  1000: 'Тысяча снимает последний порог: принимает каждая площадка рейтинга, доступен крипто-депозит, а бонус — вопрос расчёта оборота против правила максимальной ставки.',
+};
+
+const lead = sum === 1000
+  ? `На ${rub(sum)} рублей принимают все ${fits.length} площадок рейтинга; порог ровно ${rub(sum)} — только у ${names(exact)}`
+  : exact.length === fits.length
+    ? `${rub(sum)} рублей — минимальный порог у ${fits.length} из ${casinos.length} площадок рейтинга: ${names(exact)}`
+    : `${rub(sum)} рублей принимают ${fits.length} из ${casinos.length} площадок рейтинга; для ${exact.length} из них это минимальный порог — ${names(exact)}`;
+const answer = `${lead}. При ставке 1% банкролла (${rub(stake1pct)} ₽) это ${rub(Math.floor(sum / stake1pct))} спинов, а математическое ожидание проигрыша на слоте с RTP 96% — ${rub(stake1pct * (1 - RTP), 2)} ₽ за спин. ${w0 ? `Бонус у ${w0.name.replace(' Casino', '')} — ${rub(bonusRub(w0)!)} ₽ при обороте ${rub(turnover(w0)!)} ₽; его математическое ожидание ${ev(w0)! < 0 ? `отрицательно (${rub(ev(w0)!)} ₽)` : `${rub(ev(w0)!)} ₽`}${sum === 100 ? ' — на сотне бонус не брать' : sum === 500 ? ' — брать только при регулярной игре на низкой волатильности' : ' — решает правило максимальной ставки, а не размер бонуса'}.` : ''} Крипто-депозит на эту сумму ${sum === 100 ? 'невозможен' : cryptoVerdict}${sum === 100 ? ': сетевой сбор и минимумы обменников больше самого депозита' : sum === 500 ? ': сбор сети съедает до 7%, а обменники меняют от бо́льших сумм' : casinoCryptoMinRub ? `: минимум кассы 10 USDT ≈ ${rub(casinoCryptoMinRub)} ₽ укладывается` : ''}. Быстрее всех выводит ${fastest.name} — от ${fastest.withdrawMin} минут через СБП. Сверено ${fmtD(lastChecked)}.`;
+
+const description = `${LEDE[sum]} ${fits.length} площадок с условиями, ожидаемый проигрыш по ставкам, EV бонуса, СБП против карты и крипты, минимумы вывода, инструменты ответственной игры.`;
+
+/* ---------- FAQ (also marked up) ---------- */
+const faq: { q: string; a: string }[] = sum === 100 ? [
+  { q: 'Сколько спинов даёт депозит 100 рублей?', a: `При ставке 1 ₽ — около 100 вращений по номиналу, при 2 ₽ — 50, при 5 ₽ — 20. На слотах Pragmatic Play минимальная ставка $0,20${minBetPragmatic ? ` (≈ ${rub(minBetPragmatic)} ₽)` : ''}, поэтому Gates of Olympus или Sweet Bonanza дадут лишь 5–6 спинов. Для сотни подходят слоты с минимумом $0,10 и низкой волатильностью — Starburst, Blood Suckers.` },
+  { q: 'Стоит ли брать бонус на 100 рублей?', a: w0 ? `Нет. ${w0.name.replace(' Casino', '')} даёт ${rub(bonusRub(w0)!)} ₽ бонуса при обороте ${rub(turnover(w0)!)} ₽ — это ${rub(spinsAt1pct(w0))} спинов по 1 ₽, а ожидаемая стоимость отыгрыша ${rub(turnover(w0)! * edge(w0))} ₽ превышает сам бонус. К тому же у большинства площадок порог бонуса — 500–1 000 ₽. Откажитесь от бонуса в кассе и, если предлагают, возьмите кешбэк.` : 'Нет: порог бонуса у большинства площадок 500–1 000 ₽, а оборот по вейджеру в десятки раз превышает сотню.' },
+  { q: 'Можно ли внести 100 рублей криптовалютой?', a: `Практически нет. Сетевой сбор USDT TRC-20 — ${trcFeeRub ? `${rub(trcFeeRub[0])}–${rub(trcFeeRub[1])} ₽` : 'около 2–4 долларов'}, обменники на BestChange меняют от ${bc ? `${rub(bc.minSum)} ₽` : 'тысячи рублей'}, а кассы казино принимают крипту обычно от 10 USDT${casinoCryptoMinRub ? ` (≈ ${rub(casinoCryptoMinRub)} ₽)` : ''}. Для сотни — только СБП или карта «Мир».` },
+  { q: 'Сколько можно вывести с депозита 100 рублей?', a: 'Минимум вывода у площадок обычно 300–1 000 ₽ — он выше минимума пополнения. Выигрыш меньше порога останется на балансе. Выводить можно только тем же способом, которым пополняли, — это требование по борьбе с отмыванием, а не прихоть казино.' },
+] : sum === 500 ? [
+  { q: 'Какую ставку выбрать на 500 рублей?', a: `Правило 1–2% банкролла даёт 5–10 ₽ за спин: 50–100 вращений. При ставке 5 ₽ ожидаемый проигрыш — 0,20 ₽ за спин, 20 ₽ на сотню спинов при RTP 96%. На высокой волатильности та же сумма может закончиться вдвое быстрее — сессию определяет дисперсия, а не RTP.` },
+  { q: 'Выгоден ли бонус на 500 рублей?', a: withMath.length ? `Считайте: ${withMath.slice(0, 2).map((c) => `${c.name.replace(' Casino', '')} — бонус ${rub(bonusRub(c)!)} ₽, оборот ${rub(turnover(c)!)} ₽, математическое ожидание ${rub(ev(c)!)} ₽`).join('; ')}. При вейджере x30–x40 бонус почти всегда в минусе на дистанции; он оправдан только для регулярной игры на низкой волатильности и при ставке не выше разрешённой во время отыгрыша (обычно ${rub(MAX_BET)} ₽).` : 'При вейджере x30–x40 бонус почти всегда в минусе на дистанции.' },
+  { q: 'Можно ли внести 500 рублей в USDT?', a: `На грани. Сетевой сбор TRC-20 — ${trcFeeRub ? `${rub(trcFeeRub[0])}–${rub(trcFeeRub[1])} ₽ (до ${rub(trcFeeRub[1] / sum * 100)}% от суммы)` : 'около 2–4 долларов'}, лучший обменник для небольших сумм на BestChange меняет от ${bc ? `${rub(bc.minSum)} ₽` : 'тысячи рублей'}. Практичнее СБП: без комиссии и за секунды.` },
+  { q: 'Что открывается на 500 рублей, чего нет на 100?', a: `У ${names(exact)} порог входа — ровно 500: здесь турниры и увеличенные пакеты. Это же обычный порог активации бонусов у площадок, которые кассой принимают и 100.` },
+] : [
+  { q: 'Сколько спинов даёт 1 000 рублей и какая ставка правильная?', a: `Ставка 1% — 10 ₽ — даёт 100 спинов при ожидаемом проигрыше 0,40 ₽ за спин; ставка 5 ₽ — 200 спинов. Это первая сумма, на которой можно осознанно выбирать волатильность под цель: низкую для долгой сессии, высокую — ради шанса на крупный множитель.` },
+  { q: 'Брать ли бонус на 1 000 рублей?', a: withMath.length ? `Решает не размер, а правило максимальной ставки. ${w0!.name.replace(' Casino', '')}: бонус ${rub(bonusRub(w0!)!)} ₽, оборот ${rub(turnover(w0!)!)} ₽ — при потолке ${rub(MAX_BET)} ₽ за спин это минимум ${rub(spinsAtMaxBet(w0!))} спинов, при ставке 10 ₽ — ${rub(spinsAt1pct(w0!))}. Математическое ожидание — ${rub(ev(w0!)!)} ₽. Если вейджер считается от суммы «депозит + бонус», оборот вырастает до ${rub(turnoverDB(w0!)!)} ₽ — уточняйте в правилах.` : 'Решает правило максимальной ставки и срок отыгрыша.' },
+  { q: 'Как внести 1 000 рублей криптовалютой?', a: `Купить USDT у обменника с BestChange (лучший курс для небольших сумм — ${bc ? `${rub(bc.rubPerUsdt, 2)} ₽, от ${rub(bc.minSum)} ₽` : 'см. таблицу способов'}), учесть сетевой сбор TRC-20 ${trcFeeRub ? `${rub(trcFeeRub[0])}–${rub(trcFeeRub[1])} ₽` : ''} и минимум кассы 10 USDT${casinoCryptoMinRub ? ` ≈ ${rub(casinoCryptoMinRub)} ₽` : ''}. Тысяча укладывается впритык; СБП по-прежнему дешевле и быстрее.` },
+  { q: 'Потребуют ли документы при выводе?', a: 'Первые выводы небольших сумм — обычно до 5 000–15 000 ₽ — проходят без паспорта. По правилам лицензии Кюрасао оператор обязан провести верификацию при достижении порога транзакций (отраслевая оценка — около 2 000–2 500 евро) и вправе запросить документы раньше при подозрительной активности. Тысяча депозита к порогу не приближает.' },
+];
+
+/* ---------- structured data ---------- */
+const path = `/deposit/${sum}/`;
+const url = new URL(path, Astro.site).href;
+const ld = [
+  { '@context': 'https://schema.org', '@type': 'WebPage', '@id': url + '#webpage', name: TITLE[sum], url, description, inLanguage: 'ru', dateModified: lastChecked,
+    breadcrumb: { '@type': 'BreadcrumbList', itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Главная', item: new URL('/', Astro.site).href },
+      { '@type': 'ListItem', position: 2, name: `Депозит ${rub(sum)} ₽`, item: url } ] },
+    mainEntity: { '@id': url + '#question' }, hasPart: [{ '@id': url + '#list' }, { '@id': url + '#faq' }],
+    speakable: { '@type': 'SpeakableSpecification', cssSelector: ['.answer-first'] } },
+  { '@context': 'https://schema.org', '@type': 'QAPage', '@id': url + '#qa', url,
+    mainEntity: { '@type': 'Question', '@id': url + '#question', name: `Какие казино принимают депозит ${rub(sum)} рублей и что он реально даёт?`, answerCount: 1, dateModified: lastChecked,
+      acceptedAnswer: { '@type': 'Answer', text: answer, url, dateModified: lastChecked } } },
+  { '@context': 'https://schema.org', '@type': 'ItemList', '@id': url + '#list', name: `Казино с депозитом от ${rub(sum)} ₽`, url, numberOfItems: fits.length,
+    itemListElement: fits.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: `${c.name} — от ${rub(c.minDeposit!)} ₽`, url: new URL(`/casino/${c.slug}/`, Astro.site).href })) },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', '@id': url + '#faq', url,
+    mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+];
+---
+<Base locale="ru" {path} title={TITLE[sum]} {description} translated={false}>
+  <Fragment slot="head">{ld.map((x) => <script type="application/ld+json" set:html={JSON.stringify(x)} />)}</Fragment>
+  <div class="container">
+    <nav class="crumbs" aria-label="breadcrumb"><ol><li><a href="/">Главная</a></li><li aria-current="page">Депозит {rub(sum)} ₽</li></ol></nav>
+    <div class="page-head">
+      <h1>{H1[sum]}</h1>
+      <p class="lede answer-first">{answer}</p>
+    </div>
+
+    <nav class="filters" role="group" aria-label="Порог депозита" style="margin-bottom:24px">
+      {SUMS.map((s) => <a class:list={['filter-btn', { active: s === sum }]} href={`/deposit/${s}/`} aria-current={s === sum ? 'page' : undefined}>{rub(s)} ₽</a>)}
+      <a class="filter-btn" href="/#rating">весь рейтинг</a>
+    </nav>
+
+    <!-- 1. Площадки -->
+    <section id="casinos">
+      <h2 class="section-title" style="font-size:1.25rem">Кто принимает {rub(sum)} ₽ и на каких условиях</h2>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>#</th><th>Казино</th><th>Мин. депозит</th><th>Вывод</th><th>Пополнение</th><th>RTP</th><th>Бонус на {rub(sum)} ₽</th><th>Оборот</th><th title="Математическое ожидание бонуса после отыгрыша">EV бонуса</th></tr></thead>
+          <tbody>{fits.map((c) => (
+            <tr class:list={{ me: c.minDeposit === sum }}>
+              <td class="num">{c.rank}</td>
+              <td><a href={`/casino/${c.slug}/`}>{c.name}</a></td>
+              <td class="num">{formatMoney(c.minDeposit!)}</td>
+              <td class="num">от {c.withdrawMin} мин</td>
+              <td>{c.paymentsLabel}</td>
+              <td class="num">{c.rtp != null ? `${c.rtp.toFixed(1)}%` : '—'}</td>
+              <td class="num">{bonusRub(c) != null ? `${pct(c)}% → ${rub(bonusRub(c)!)} ₽` : fs(c) ? `${fs(c)} FS` : '—'}</td>
+              <td class="num">{turnover(c) != null ? `${rub(turnover(c)!)} ₽ · x${c.wager}` : c.wager ? `x${c.wager}` : '—'}</td>
+              <td class:list={['num', { ok: ev(c) != null && ev(c)! > 0, no: ev(c) != null && ev(c)! <= 0 }]} style="color:var(--text)">{ev(c) != null ? `${ev(c)! > 0 ? '+' : ''}${rub(ev(c)!)} ₽` : '—'}</td>
+            </tr>))}</tbody>
+        </table>
+      </div>
+      <p class="section-sub" style="margin-top:10px">Выделены площадки, у которых {rub(sum)} ₽ — минимальный порог кассы. Оборот = бонус × вейджер. EV = бонус − оборот × (1 − RTP): сколько бонус в среднем принесёт или отнимет после полного отыгрыша; RTP площадки, где он не раскрыт, принят за 96%. Прочерк — площадка не публикует размер бонуса или вейджер в открытых правилах.</p>
+    </section>
+
+    <!-- 2. Сессия -->
+    <section id="session" class="prose" style="padding-top:32px">
+      <h2>Сколько это спинов — и сколько стоит каждый</h2>
+      <p>Ожидаемый проигрыш за спин равен ставке, умноженной на долю, которую слот оставляет себе: при RTP 96% это 4% ставки. Цифра описывает не вашу сессию, а среднее по миллиардам вращений — на дистанции в сто спинов результат определяет дисперсия. Но именно она задаёт честную цену развлечения: сколько вы платите за час игры.</p>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Ставка</th><th>% банкролла</th><th>Спинов по номиналу</th><th>Ожидаемый проигрыш за спин</th><th>За 100 спинов</th></tr></thead>
+          <tbody>{sessionRows.map((r) => (
+            <tr class:list={{ me: r.bet === stake1pct }}>
+              <td class="num">{rub(r.bet)} ₽</td>
+              <td class="num">{rub(r.pctBank, 1)}%</td>
+              <td class="num">{rub(r.spins)}</td>
+              <td class="num">{rub(r.lossPerSpin, 2)} ₽</td>
+              <td class="num">{rub(r.loss100)} ₽</td>
+            </tr>))}</tbody>
+        </table>
+      </div>
+      <p>Выделена ставка в 1% банкролла — нижняя граница общепринятого диапазона 1–5%; для маленькой суммы и высокой волатильности берут именно её. «Спинов по номиналу» — это банкролл, делённый на ставку; реальная сессия при низкой волатильности длиннее (часть ставок возвращается), при высокой — часто короче из-за длинных серий пустых вращений.</p>
+      <p><strong>Минимальная ставка слота может быть выше вашей.</strong> У Gates of Olympus и Sweet Bonanza от Pragmatic Play минимум — $0,20{minBetPragmatic && `, по сегодняшнему курсу ≈ ${rub(minBetPragmatic)} ₽`}{sum === 100 && minBetPragmatic ? `: на сотню это ${Math.floor(100 / minBetPragmatic)} спинов` : ''}. Starburst от NetEnt и Book of Dead от Play'n GO ставят от $0,10{minBetStarburst && ` (≈ ${rub(minBetStarburst)} ₽)`}. {sum === 100 ? 'Для ста рублей это не деталь, а главный выбор: слот с низкой волатильностью и минимумом $0,10 даст сессию, высоковолатильный — пять спинов.' : sum === 500 ? 'На пятистах минимум Pragmatic уже не мешает, но 4% банкролла за спин — это верхняя граница разумного.' : 'На тысяче доступна любая ставка провайдерских минимумов; выбор волатильности становится выбором цели, а не вынужденной мерой.'}</p>
+      <p>Действующий RTP конкретной сборки слота у конкретного казино показан в меню «i» самой игры: у Gates of Olympus, например, существуют версии 96,5%, 95,5% и 94,5% — оператор выбирает одну. Разница в два процента RTP — это полуторакратная разница в цене каждого спина.</p>
+    </section>
+
+    <!-- 3. Калькулятор -->
+    <section id="calc" style="padding-top:8px">
+      <h2 class="section-title" style="font-size:1.25rem">Калькулятор: ставка, бонус, оборот</h2>
+      <p class="section-sub">Подставьте свои цифры — считается в браузере, ничего не отправляется.</p>
+      <form class="calc" onsubmit="return false">
+        <label>Депозит, ₽ <input type="number" name="dep" value={sum} min="10" step="10"></label>
+        <label>Ставка, ₽ <input type="number" name="bet" value={stake1pct} min="0.1" step="0.1"></label>
+        <label>RTP, % <input type="number" name="rtp" value="96" min="85" max="99.9" step="0.1"></label>
+        <label>Бонус, % от депозита <input type="number" name="pct" value={w0 ? pct(w0) : 100} min="0" step="5"></label>
+        <label>Вейджер, x <input type="number" name="wager" value={w0?.wager ?? 35} min="0" step="1"></label>
+        <label>Макс. ставка при отыгрыше, ₽ <input type="number" name="maxbet" value={MAX_BET} min="1" step="10"></label>
+        <output class="calc-out" aria-live="polite"></output>
+      </form>
+    </section>
+
+    <!-- 4. Бонус -->
+    <section id="bonus" class="prose" style="padding-top:32px">
+      <h2>Бонус: считать, а не верить</h2>
+      <p>Бонус — не подарок, а оборот: чтобы вывести деньги, сумму бонуса нужно прокрутить столько раз, сколько указано в вейджере. Каждая прокрученная сотня рублей в среднем оставляет площадке 4% (при RTP 96%). Отсюда математическое ожидание бонуса: <em>EV = бонус − оборот × (1 − RTP)</em>. {w0 ? `Для ${w0.name.replace(' Casino', '')} на ${rub(sum)} ₽: бонус ${rub(bonusRub(w0)!)} ₽, оборот ${rub(turnover(w0)!)} ₽, ожидаемая стоимость отыгрыша ${rub(turnover(w0)! * edge(w0))} ₽ — итог ${rub(ev(w0)!)} ₽.` : ''} {sum === 100 ? 'На сотне это приговор бонусу: оборот в десятки раз больше всего банкролла, и вероятность дойти до конца отыгрыша ничтожна.' : sum === 500 ? 'На пятистах отрицательный EV — ещё не запрет: часть игроков берёт бонус ради длинной сессии, сознательно оплачивая её. Важно только знать цену.' : 'На тысяче размер EV сопоставим с ценой одного вечера игры — решение переходит из области арифметики в область правил.'}</p>
+      <h3>Четыре правила, которые обнуляют бонус чаще, чем вейджер</h3>
+      <ul>
+        <li><strong>Максимальная ставка во время отыгрыша</strong> — обычно {rub(MAX_BET)} ₽ (около $5) или 10–20% от бонуса. Одна ставка выше лимита аннулирует и бонус, и выигрыш с него.{w0 && sum >= 500 ? ` Оборот ${rub(turnover(w0)!)} ₽ при потолке ${rub(MAX_BET)} ₽ — это не меньше ${rub(spinsAtMaxBet(w0))} спинов, а при вашей ставке ${rub(stake1pct)} ₽ — ${rub(spinsAt1pct(w0))}.` : ''}</li>
+        <li><strong>База вейджера.</strong> «x35 от бонуса» и «x35 от депозита и бонуса» — разные суммы.{w0 ? ` Для ${w0.name.replace(' Casino', '')}: ${rub(turnover(w0)!)} ₽ против ${rub(turnoverDB(w0)!)} ₽.` : ''} Ищите в правилах слово «депозит» рядом с вейджером.</li>
+        <li><strong>Срок отыгрыша</strong> — как правило, 7–14 дней. Оборот, который не успели прокрутить, сгорает вместе с бонусом.</li>
+        <li><strong>Вклад игр.</strong> Слоты считаются на 100%, настольные и лайв-игры — на 5–10% или не считаются вовсе. Отыгрывать бонус в блэкджеке — значит прокрутить в десять раз больше.</li>
+      </ul>
+      <h3>Порог кассы и порог бонуса — разные цифры</h3>
+      <p>{sum === 100 ? `Сто рублей принимают все ${fits.length} площадок этого списка, но приветственный пакет у большинства активируется от 500–1 000 ₽. Внесённая сотня бонуса не даст — и это к лучшему.` : sum === 500 ? `Пятьсот — обычный порог активации бонуса у площадок, чья касса принимает и 100. У ${names(exact)} это одновременно и минимум кассы: здесь турниры и увеличенные пакеты, недоступные ниже.` : `На тысяче порог бонуса пройден почти везде. Остаётся проверить обратное: не выше ли минимальный депозит для конкретной акции — у некоторых пакетов второй и третий депозит требуют больше первого.`} Условия приветственного бонуса обычно лежат в отдельном разделе правил, на один клик дальше кассы.</p>
+      <h3>Что брать вместо бонуса</h3>
+      <p>Кешбэк. Возврат 5–20% от недельного проигрыша не требует оборота — либо совсем (без вейджера), либо с символическим. Для {sum === 100 ? 'сотни' : sum === 500 ? 'пятисот' : 'тысячи'} это единственная акция, которая не увеличивает риск, а уменьшает его. {casinos.filter((c) => c.cashback != null && fits.includes(c)).length > 0 ? `В списке кешбэк заявлен у ${names(casinos.filter((c) => c.cashback != null && fits.includes(c)))} — до ${Math.max(...casinos.filter((c) => c.cashback != null && fits.includes(c)).map((c) => c.cashback!))}%.` : ''} Проверяйте, начисляется ли он «без вейджера»: это самый честный вариант.</p>
+    </section>
+
+    <!-- 5. Платежи -->
+    <section id="pay" class="prose" style="padding-top:24px">
+      <h2>Чем платить {rub(sum)} ₽ — и чем не платить</h2>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Способ</th><th>Комиссия</th><th>Зачисление</th><th>Вывод</th><th>Вердикт для {rub(sum)} ₽</th></tr></thead>
+          <tbody>
+            <tr class="me"><td><a href="/glossary/#sbp">СБП</a></td><td>0 ₽ (переводы до 100 000 ₽ в месяц без комиссии по решению Банка России)</td><td>секунды</td><td>в тот же банк, {fastest.withdrawMin}–40 мин</td><td class="ok">подходит</td></tr>
+            <tr><td>Карта «Мир»</td><td>обычно 0 ₽</td><td>мгновенно</td><td>1–3 рабочих дня (клиринг)</td><td>{sum === 100 ? 'подходит, но минимум у части касс 200–300 ₽' : 'подходит'}</td></tr>
+            <tr><td>USDT TRC-20</td><td>{trcFeeRub ? `сбор сети ${rub(trcFeeRub[0])}–${rub(trcFeeRub[1])} ₽ (${rub(trcFeeRub[0] / sum * 100, 1)}–${rub(trcFeeRub[1] / sum * 100, 1)}% от суммы)` : 'сбор сети ≈ $2–4'}{bc ? ` + курс обменника ${rub(bc.rubPerUsdt, 2)} ₽` : ''}</td><td>1–3 мин</td><td>от $20, сбор 1–3 USDT</td><td class:list={{ no: sum === 100, ok: sum === 1000 }}>{cryptoVerdict}{casinoCryptoMinRub ? `: минимум кассы 10 USDT ≈ ${rub(casinoCryptoMinRub)} ₽` : ''}</td></tr>
+            <tr><td>Электронный кошелёк</td><td>0–2%</td><td>минуты</td><td>15–60 мин</td><td>{sum === 100 ? 'редко: минимум обычно от 500 ₽' : 'подходит, где доступен'}</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>{sum === 100
+        ? `Для ста рублей выбор один — СБП. У криптовалюты арифметика не сходится трижды: сетевой сбор ${trcFeeRub ? `${rub(trcFeeRub[0])}–${rub(trcFeeRub[1])} ₽` : '$2–4'} сопоставим с депозитом, обменники на BestChange для небольших сумм меняют от ${bc ? `${rub(bc.minSum)} ₽` : 'тысячи рублей'}, а касса казино принимает крипту обычно от 10 USDT.`
+        : sum === 500
+          ? `Пятьсот рублей криптой — на грани: сбор сети съедает до ${trcFeeRub ? rub(trcFeeRub[1] / sum * 100, 1) : '7'}% суммы, а минимум кассы в 10 USDT${casinoCryptoMinRub ? ` (≈ ${rub(casinoCryptoMinRub)} ₽)` : ''} выше самого депозита. Через СБП те же пятьсот приходят за секунды и без потерь.`
+          : `Тысяча — первая сумма, на которой крипто-депозит формально работает: минимум кассы 10 USDT${casinoCryptoMinRub ? ` ≈ ${rub(casinoCryptoMinRub)} ₽` : ''} укладывается, ${sumUsdt ? `по курсу обменника тысяча — это ${sumUsdt} USDT` : ''}. Но сетевой сбор${trcFeeRub ? ` ${rub(trcFeeRub[0])}–${rub(trcFeeRub[1])} ₽` : ''} и спред обменника — это 3–5% против нуля у СБП. Крипта оправдана не экономией, а анонимностью или отсутствием рублёвой карты.`}{cryptoFits.length ? ` Крипту из этого списка принимают ${names(cryptoFits)}; курс касс мы сверяем по понедельникам — см. <a href="/methods/#crypto">таблицу способов</a>.` : ''}</p>
+      <p><strong>Правило одного канала.</strong> Вывести деньги можно только тем способом, которым пополняли, и на счёт на своё имя — это требование антиотмывочных правил лицензий Кюрасао и MGA, а не прихоть площадки. Депозит с чужой карты закончится блокировкой вывода. Второе правило из той же области: депозит нужно прокрутить хотя бы один раз до заявки на вывод.</p>
+    </section>
+
+    <!-- 6. Вывод и KYC -->
+    <section id="withdraw" class="prose" style="padding-top:8px">
+      <h2>Вывод: минимум выше, чем на входе</h2>
+      <p>Минимальный депозит и минимальный вывод — разные параметры, и второй почти всегда больше: обычно 300–1 000 ₽. {sum === 100 ? 'Со ста рублей это означает, что небольшой выигрыш останется на балансе до следующей сессии — заложите это в ожидания.' : sum === 500 ? 'Пятьсот проходят большинство порогов, но не все — уточняйте в кассе до депозита.' : 'Тысяча выше любого стандартного порога вывода.'} Скорость по площадкам этого списка — от {fastest.withdrawMin} минут у {fastest.name}; полное сравнение по минутам — на странице <a href="/fast-withdrawal/">«Кто выводит быстрее»</a>.</p>
+      <p><strong>Документы.</strong> Первые выводы небольших сумм — обычно до 5 000–15 000 ₽ — проходят без паспорта. По правилам лицензии Кюрасао оператор обязан верифицировать игрока при достижении порога транзакций (отраслевая оценка — около 2 000–2 500 евро) и вправе запросить документы раньше, если что-то в активности кажется подозрительным. {rub(sum)} ₽ депозита к этому порогу не приближают.</p>
+    </section>
+
+    <!-- 7. Ответственная игра -->
+    <section id="rg" class="prose" style="padding-top:8px">
+      <h2>Почему маленький депозит — не маленький риск</h2>
+      <p>Опасность {sum === 100 ? 'сотни' : sum === 500 ? 'пятисот' : 'тысячи'} — не в сумме, а в лёгкости повторения. Быстрая потеря небольшого депозита подталкивает внести ещё «отыграться»; десять депозитов по {rub(sum)} ₽ — это {rub(sum * 10)} ₽, которые никто не планировал. Три инструмента против этого работают лучше силы воли:</p>
+      <ul>
+        <li><strong>Лимит депозита в настройках аккаунта</strong> — дневной, недельный или месячный. Лицензия Кюрасао в редакции 2024 года обязывает операторов предоставлять его; ставьте до первого пополнения, а не после.</li>
+        <li><strong>Отдельная карта или счёт с лимитом</strong> — общий принцип банкролл-менеджмента: играть только на деньги, которые заранее отделены от остальных.</li>
+        <li><strong>Самоисключение.</strong> С 1 сентября 2026 года в России действует федеральный самозапрет на азартные игры через «Госуслуги» и МФЦ (Федеральный закон № 575-ФЗ): минимальный срок — год, отозвать заявление нельзя; для легальных букмекеров работает сервис «Ответственная игра» в ЦУПИС. У офшорных площадок самоисключение — в настройках аккаунта.</li>
+      </ul>
+      <p>Помощь, если игра перестала быть развлечением: Московская служба психологической помощи — <strong>051</strong> с городского и <strong>8 (495) 051</strong> с мобильного, круглосуточно и анонимно; сообщество «Анонимные Игроки» — <a href="https://gamblersanonymous.ru" rel="noopener" target="_blank">gamblersanonymous.ru</a>; бесплатная онлайн-поддержка на русском — <a href="https://www.gamblingtherapy.org" rel="noopener" target="_blank">Gambling Therapy</a>. Сайт предназначен только для совершеннолетних.</p>
+    </section>
+
+    <!-- 8. FAQ -->
+    <section id="faq" style="padding-top:24px">
+      <h2 class="section-title" style="font-size:1.25rem">Вопросы про депозит {rub(sum)} ₽</h2>
+      <div class="faq-list">
+        {faq.map((f) => (
+          <details class="faq-item" name="faq-deposit">
+            <summary class="faq-q">{f.q}<span class="faq-arrow">▼</span></summary>
+            <div class="faq-a"><div class="faq-a-inner">{f.a}</div></div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <div class="prose" style="padding:24px 0 8px">
+      <h2>Куда смотреть дальше</h2>
+      <p>Скорость выплат по всем площадкам — <a href="/fast-withdrawal/">«Кто выводит быстрее»</a>; способы, лимиты и курс кассы для крипто-депозита — <a href="/methods/">сводная таблица</a>; термины — <a href="/glossary/#wager">вейджер</a>, <a href="/glossary/#volatility">волатильность</a>, <a href="/glossary/#low-roller">лоу-роллер</a> — в <a href="/glossary/">словаре</a>; как площадки попадают в рейтинг и за что покидают его — в <a href="/methodology/">методологии</a>. Демоверсии слотов с низкой волатильностью — в <a href="/slots/">каталоге</a>.</p>
+    </div>
+
+    <details class="sources" style="margin:8px 0 48px">
+      <summary>Источники и допущения</summary>
+      <ul>
+        <li>Формулы ожидаемого проигрыша и риска разорения — <a href="https://wizardofodds.com/games/risk-of-ruin/calculator/" rel="noopener" target="_blank">Wizard of Odds</a>; природа RTP как долгосрочного среднего — <a href="https://slotcatalog.com/en/read/guides/All-you-need-to-know-about-the-slot-game-metrics-RTP-Variance-Hit-Frequency" rel="noopener" target="_blank">SlotCatalog</a>.</li>
+        <li>Минимальные ставки и версии RTP слотов — официальные страницы <a href="https://www.pragmaticplay.com" rel="noopener" target="_blank">Pragmatic Play</a> и NetEnt; пересчёт в рубли по курсу ЦБ РФ на {rateDate(true)} ({usd ? `${rub(usd, 2)} ₽/$` : ''}).</li>
+        <li>Математическое ожидание бонуса — формула EV = бонус − оборот × (1 − RTP), см. <a href="https://www.playusa.com/tools/casino-bonus-calculator/" rel="noopener" target="_blank">PlayUSA</a>; типичный лимит ставки при отыгрыше ≈ $5.</li>
+        <li>СБП: лимит бесплатных переводов 100 000 ₽/мес — решение Банка России (<a href="https://sbp.nspk.ru" rel="noopener" target="_blank">НСПК</a>). Сбор сети TRC-20 после Tron Proposal #104 (август 2025) — $1,95–3,90; курс и минимумы обменников — <a href="https://www.bestchange.ru/" rel="noopener" target="_blank">BestChange</a> на {rateDate(true)}.</li>
+        <li>Верификация и лимиты — Landsverordening op de kansspelen (Кюрасао, в силе с 24.12.2024); самозапрет — Федеральный закон от 29.12.2025 № 575-ФЗ.</li>
+        <li>Условия площадок — из <a href="/methodology/">журнала сверок</a>, дата последней — {fmtD(lastChecked)}. Расчёты обновляются автоматически вместе с данными.</li>
+      </ul>
+    </details>
+  </div>
+
+  <script>
+    // Bankroll & bonus calculator — runs locally, no network.
+    const form = document.querySelector<HTMLFormElement>('form.calc');
+    const out = form?.querySelector<HTMLOutputElement>('.calc-out');
+    const fmt = (n: number, d = 0) => n.toLocaleString('ru-RU', { maximumFractionDigits: d, minimumFractionDigits: d });
+    const calc = () => {
+      if (!form || !out) return;
+      const v = (n: string) => parseFloat((form.elements.namedItem(n) as HTMLInputElement).value) || 0;
+      const dep = v('dep'), bet = v('bet'), rtp = v('rtp') / 100, pct = v('pct'), wager = v('wager'), maxbet = v('maxbet');
+      if (dep <= 0 || bet <= 0) { out.textContent = ''; return; }
+      const spins = Math.floor(dep / bet), lossSpin = bet * (1 - rtp), share = (bet / dep) * 100;
+      const bonus = dep * pct / 100, turn = bonus * wager, cost = turn * (1 - rtp), ev = bonus - cost;
+      const spinsMax = maxbet > 0 ? Math.ceil(turn / maxbet) : 0, spinsBet = Math.ceil(turn / bet);
+      out.innerHTML =
+        `<b>Сессия:</b> ${fmt(spins)} спинов по номиналу, ставка ${fmt(share, 1)}% банкролла, ожидаемый проигрыш ${fmt(lossSpin, 2)} ₽ за спин (${fmt(lossSpin * 100)} ₽ на 100 спинов).` +
+        (bonus > 0 ? `<br><b>Бонус:</b> ${fmt(bonus)} ₽, оборот ${fmt(turn)} ₽, ожидаемая стоимость отыгрыша ${fmt(cost)} ₽ → EV ${ev >= 0 ? '+' : ''}${fmt(ev)} ₽. Спинов до конца отыгрыша: ${fmt(spinsBet)} при вашей ставке, не меньше ${fmt(spinsMax)} при потолке ${fmt(maxbet)} ₽.` : '');
+    };
+    form?.addEventListener('input', calc); calc();
+  </script>
+</Base>
