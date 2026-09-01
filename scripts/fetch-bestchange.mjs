@@ -32,10 +32,10 @@ const toIds = findIds(/Tether\s*TRC.?20|USDT\s*TRC/i);
 console.log('from ids', fromIds.map((i) => cy[i]), '| to ids', toIds.map((i) => cy[i]));
 
 const rows = rates.filter((r) => fromIds.includes(r[0]) && toIds.includes(r[1]))
-  .map((r) => ({ from: cy[r[0]], exchanger: ex[r[2]] ?? r[2], give: +r[3], get: +r[4], reviews: +r[6] || 0, minSum: +r[7] || 0, maxSum: +r[8] || 0 }))
+  .map((r) => ({ from: cy[r[0]], exchanger: ex[r[2]] ?? r[2], give: +r[3], get: +r[4], reviews: parseInt(String(r[6]).split('.')[0]) || 0, minSum: +r[7] || 0, maxSum: +r[8] || 0 }))
   .filter((r) => r.give > 0 && r.get > 0)
   .map((r) => ({ ...r, rubPerUsdt: +(r.give / r.get).toFixed(2) }));
-const small = rows.filter((r) => r.minSum <= MAX_MIN_SUM && r.reviews >= 5).sort((a, b) => a.rubPerUsdt - b.rubPerUsdt);
+const small = rows.filter((r) => r.minSum <= MAX_MIN_SUM && r.reviews >= 3).sort((a, b) => a.rubPerUsdt - b.rubPerUsdt);
 const all = [...rows].sort((a, b) => a.rubPerUsdt - b.rubPerUsdt);
 if (!small.length && !all.length) { console.log('no RUB→USDT rows found'); process.exit(0); }
 const best = small[0] ?? all[0];
