@@ -14,14 +14,13 @@
     "rubPerUsdt": 86.82,
     "exchanger": "SkyCapital",
     "from": "Сбербанк RUB",
-    "minSum": 1,
-    "medianSmall": 88.62,
+    "minSum": 1300.95,
+    "medianSmall": 89.49,
     "bestAny": 86.82,
-    "offersSmall": 1060,
-    "offersAll": 1060,
+    "offersSmall": 218,
+    "offersAll": 1056,
     "maxMinSum": 3000,
-    "rawSample": "42;10;79;89.48545861;1;133648.45;0.2512;1;10000;500000",
-    "checkedAt": "2026-09-01T08:08Z",
+    "checkedAt": "2026-09-01T08:11Z",
     "url": "https://www.bestchange.ru/"
   }
 }
