@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import CasinoCard from '../../components/CasinoCard.astro';
+import HeroVideo from '../../components/HeroVideo.astro';
 import Filters from '../../components/Filters.astro';
 import site from '../../data/site.json';
 import { casinos } from '../../lib/casinos';
@@ -26,6 +27,7 @@ const methodsEn = [
   <Fragment slot="head">{ld.map((x) => <script type="application/ld+json" set:html={JSON.stringify(x)} />)}</Fragment>
 
   <section class="hero">
+    <HeroVideo />
     <div class="container">
       <h1>Casinos with a <span class="accent">minimum deposit</span> 2026 —<br>Top 12 verified sites from 100 roubles</h1>
       <p class="hero-desc">Top casinos with a minimum deposit in roubles: we compared 60+ online casinos and picked the best licensed ones by withdrawal speed, bonus size and slot RTP. Every small-deposit casino was checked by hand in {updated.en}.</p>

@@ -1,0 +1,18 @@
+---
+/** Background video for the hero: 10-second seamless loop, no audio, loaded only when it makes sense
+ *  (desktop-ish viewport, no reduced-motion, no Save-Data). Poster is the static artwork, so nothing breaks without it. */
+---
+<video class="hero-video" muted loop playsinline autoplay preload="none" poster="/img/hero-bg.webp" aria-hidden="true" tabindex="-1"
+  data-webm="/video/hero.webm" data-mp4="/video/hero.mp4" data-webm-m="/video/hero-m.webm"></video>
+<script>
+  const v = document.querySelector<HTMLVideoElement>('.hero-video');
+  const ok = v && matchMedia('(prefers-reduced-motion: no-preference)').matches && !(navigator as any).connection?.saveData;
+  if (ok && v) {
+    const wide = matchMedia('(min-width: 720px)').matches;
+    const add = (src: string, type: string) => { const s = document.createElement('source'); s.src = src; s.type = type; v.appendChild(s); };
+    add(wide ? v.dataset.webm! : v.dataset.webmM!, 'video/webm');
+    add(v.dataset.mp4!, 'video/mp4');
+    v.addEventListener('canplay', () => v.classList.add('ready'), { once: true });
+    v.load(); v.play().catch(() => {});
+  }
+</script>

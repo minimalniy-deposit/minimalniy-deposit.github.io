@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import CasinoCard from '../components/CasinoCard.astro';
+import HeroVideo from '../components/HeroVideo.astro';
 import Filters from '../components/Filters.astro';
 import Faq from '../components/Faq.astro';
 import MethodsGrid from '../components/MethodsGrid.astro';
@@ -36,6 +37,7 @@ const description = 'Лучшие казино с минимальным деп�
 
   <!-- HERO -->
   <section class="hero">
+    <HeroVideo />
     <div class="container" set:html={applyDates(hero).replace('<span class="stat-num">10</span>', `<span class="stat-num">${casinos.length}</span>`)} />
   </section>
 
