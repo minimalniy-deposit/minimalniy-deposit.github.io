@@ -97,7 +97,7 @@ const ld = [
 ];
 const KEYS: { key: Key; label: string }[] = [{ key: 'sbp', label: 'СБП' }, { key: 'card', label: 'Карта «Мир»' }, { key: 'crypto', label: 'Криптовалюта' }];
 ---
-<Base locale="ru" {path} title={m.title} {description} translated={false}>
+<Base locale="ru" {path} title={m.title} {description}>
   <Fragment slot="head">{ld.map((x) => <script type="application/ld+json" set:html={JSON.stringify(x)} />)}</Fragment>
   <div class="container">
     <nav class="crumbs" aria-label="breadcrumb"><ol><li><a href="/">Главная</a></li><li><a href="/methods/">Способы пополнения и вывода</a></li><li aria-current="page">{m.crumb}</li></ol></nav>

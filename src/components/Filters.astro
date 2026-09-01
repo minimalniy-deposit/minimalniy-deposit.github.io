@@ -14,6 +14,7 @@ const t = useT(locale);
       <button class="filter-btn" data-filter="500">{t.filters.to500}</button>
       <button class="filter-btn" data-filter="1000">{t.filters.to1000}</button>
     </div>
+    {locale === 'en' && <p class="filters-label" style="margin-top:10px">By sum: <a href="/en/deposit/100/">100 ₽</a> · <a href="/en/deposit/500/">500 ₽</a> · <a href="/en/deposit/1000/">1,000 ₽</a> — how many spins, whether to take the bonus, how to pay.</p>}
     {locale === 'ru' && <p class="filters-label" style="margin-top:10px">Разбор по сумме: <a href="/deposit/100/">100 ₽</a> · <a href="/deposit/500/">500 ₽</a> · <a href="/deposit/1000/">1 000 ₽</a> — сколько это спинов, стоит ли брать бонус, чем платить.</p>}
   </div>
 </div>

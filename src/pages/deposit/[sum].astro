@@ -122,7 +122,7 @@ const ld = [
     mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
 ];
 ---
-<Base locale="ru" {path} title={TITLE[sum]} {description} translated={false}>
+<Base locale="ru" {path} title={TITLE[sum]} {description}>
   <Fragment slot="head">{ld.map((x) => <script type="application/ld+json" set:html={JSON.stringify(x)} />)}</Fragment>
   <div class="container">
     <nav class="crumbs" aria-label="breadcrumb"><ol><li><a href="/">Главная</a></li><li aria-current="page">Депозит {rub(sum)} ₽</li></ol></nav>

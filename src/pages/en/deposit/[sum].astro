@@ -1,0 +1,118 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { casinos, type Casino } from '../../../lib/casinos';
+import { lastChecked } from '../../../lib/history';
+import { rates, bc, hasRates, toUsdt, rateDate } from '../../../lib/rates';
+import { formatMoney } from '../../../i18n';
+
+export function getStaticPaths() { return [100, 500, 1000].map((sum) => ({ params: { sum: String(sum) }, props: { sum } })); }
+const { sum } = Astro.props as { sum: number };
+const SUMS = [100, 500, 1000] as const;
+const fits = casinos.filter((c) => c.minDeposit != null && c.minDeposit <= sum).sort((a, b) => a.rank - b.rank);
+const exact = fits.filter((c) => c.minDeposit === sum);
+const fastest = [...fits].sort((a, b) => a.withdrawMin! - b.withdrawMin! || a.rank - b.rank)[0];
+const isCrypto = (c: Casino) => c.payments.some((p) => ['usdt', 'btc', 'crypto'].includes(p));
+const n = (x: number, d = 0) => x.toLocaleString('en-US', { maximumFractionDigits: d, minimumFractionDigits: d }).replace(/^-/, '−');
+const names = (l: Casino[]) => l.map((c) => c.name.replace(' Casino', '')).join(', ');
+const fmtD = (d: string) => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+const RTP = 0.96; const stake = sum / 100;
+const bets = sum === 100 ? [1, 2, 5, 10] : sum === 500 ? [2, 5, 10, 25] : [5, 10, 25, 50];
+const pct = (c: Casino) => { const m = (c.bonus ?? '').match(/(\d{2,3})%/); return m && +m[1] >= 50 ? +m[1] : null; };
+const fs = (c: Casino) => { const m = (c.bonus ?? '').match(/(\d+)\s*фриспин/); return m ? +m[1] : null; };
+const bonusRub = (c: Casino) => (pct(c) != null ? Math.round(sum * pct(c)! / 100) : null);
+const turnover = (c: Casino) => (bonusRub(c) != null && c.wager != null ? bonusRub(c)! * c.wager : null);
+const edge = (c: Casino) => 1 - ((c.rtp ?? 96) / 100);
+const ev = (c: Casino) => (turnover(c) != null ? Math.round(bonusRub(c)! - turnover(c)! * edge(c)) : null);
+const withMath = fits.filter((c) => turnover(c) != null); const w0 = withMath[0];
+const MAX_BET = 500; const NV = 'not checked yet';
+const usd = rates.usd ?? null; const trcFee = usd ? [1.95 * usd, 3.9 * usd] : null; const casinoCryptoMin = bc ? 10 * bc.rubPerUsdt : null;
+const minBetPragmatic = usd ? 0.2 * usd : null, minBetStarburst = usd ? 0.1 * usd : null;
+const cryptoVerdict = sum === 100 ? 'not possible' : sum === 500 ? 'borderline' : 'works';
+const H1: Record<number, string> = { 100: '100 roubles: enough to test a casino, not to play', 500: '500 roubles: the first sum you can play by the rules', 1000: '1,000 roubles: every casino accepts it, and the bonus becomes a calculation' };
+const TITLE: Record<number, string> = {
+  100: `A 100-rouble casino deposit: ${exact.length} rated casinos take it, how many spins it buys, why to skip the bonus, how to pay`,
+  500: `A 500-rouble casino deposit: ${fits.length} of ${casinos.length} rated casinos, how many spins, what the bonus really costs, how to pay`,
+  1000: `A 1,000-rouble casino deposit: all ${fits.length} rated casinos, whether to take the bonus, crypto, withdrawal minimums, when they ask for ID`,
+};
+const lead = sum === 1000 ? `All ${fits.length} rated casinos accept ${n(sum)} roubles; exactly ${n(sum)} is the threshold only at ${names(exact)}` : exact.length === fits.length ? `${n(sum)} roubles is the minimum threshold at ${fits.length} of ${casinos.length} rated casinos: ${names(exact)}` : `${n(sum)} roubles is accepted by ${fits.length} of ${casinos.length} rated casinos; for ${exact.length} of them it is the minimum — ${names(exact)}`;
+const answer = `${lead}. At a stake of 1% of the sum (${n(stake)} ₽) that is ${n(Math.floor(sum / stake))} spins, each costing ${n(stake * (1 - RTP), 2)} ₽ on average on a slot with 96% return. ${w0 ? `The bonus at ${w0.name.replace(' Casino', '')} is ${n(bonusRub(w0)!)} ₽ against ${n(turnover(w0)!)} ₽ of turnover; after full wagering it ${ev(w0)! < 0 ? `takes away ${n(Math.abs(ev(w0)!))} ₽` : `adds ${n(ev(w0)!)} ₽`} on average${sum === 100 ? ' — skip the bonus at this sum' : sum === 500 ? ' — worth it only for regular play on low volatility' : ' — the max-bet rule matters more than the bonus size'}.` : ''} A crypto deposit at this sum is ${cryptoVerdict}${sum === 100 ? ': network fees and exchanger minimums exceed the deposit itself' : sum === 500 ? ': the network fee eats up to 7% and exchangers want more' : casinoCryptoMin ? `: the cashier minimum of 10 USDT ≈ ${n(casinoCryptoMin)} ₽ fits` : ''}. Fastest payout among these: ${fastest.name}, from ${fastest.withdrawMin} minutes via SBP. Terms checked ${fmtD(lastChecked)}.`;
+const description = `${H1[sum]}. ${fits.length} casinos with terms, what each spin costs, what the bonus really gives, SBP vs card vs crypto, withdrawal minimum, how not to chase losses.`;
+const faq = sum === 100 ? [
+  { q: 'How many spins does 100 roubles buy?', a: `About 100 at a 1 ₽ stake, 50 at 2 ₽, 20 at 5 ₽. Pragmatic Play slots have a $0.20 minimum${minBetPragmatic ? ` (≈ ${n(minBetPragmatic)} ₽)` : ''}, so Gates of Olympus or Sweet Bonanza give only 5–6 spins. For 100 roubles choose $0.10-minimum, low-volatility slots — Starburst, Blood Suckers.` },
+  { q: 'Should I take a bonus on 100 roubles?', a: w0 ? `No. ${w0.name.replace(' Casino', '')} gives ${n(bonusRub(w0)!)} ₽ of bonus against ${n(turnover(w0)!)} ₽ of turnover — ${n(Math.ceil(turnover(w0)! / 1))} spins at 1 ₽, and the expected cost of wagering exceeds the bonus. Bonus thresholds are usually above 100 ₽ anyway — we check them per casino and show them in the table.` : 'No: bonus thresholds are usually above 100 ₽ and wagering turnover is dozens of times the sum.' },
+  { q: 'Can I deposit 100 roubles in crypto?', a: `Practically no. The USDT TRC-20 network fee is ${trcFee ? `${n(trcFee[0])}–${n(trcFee[1])} ₽` : 'about $2–4'}, BestChange exchangers start from ${bc ? `${n(bc.minSum)} ₽` : 'about a thousand roubles'}, and cashiers take crypto from 10 USDT${casinoCryptoMin ? ` (≈ ${n(casinoCryptoMin)} ₽)` : ''}. For 100 roubles — SBP or a MIR card only.` },
+  { q: 'How much can I withdraw from a 100-rouble deposit?', a: 'The withdrawal minimum is usually 300–1,000 ₽ — higher than the deposit minimum. A smaller win stays on the balance. Withdrawals go only by the method used to deposit — an anti-money-laundering rule.' },
+] : sum === 500 ? [
+  { q: 'What stake for 500 roubles?', a: '1–2% of the sum is 5–10 ₽ per spin: 50–100 spins. At 5 ₽ each spin costs 20 kopecks on average, a hundred spins 20 roubles at 96% return. On a high-volatility slot the same sum can end twice as fast — session length is set by the spread of wins, not by the return.' },
+  { q: 'Is the bonus worth it on 500 roubles?', a: withMath.length ? `Do the sum: ${withMath.slice(0, 2).map((c) => `${c.name.replace(' Casino', '')} — bonus ${n(bonusRub(c)!)} ₽, turnover ${n(turnover(c)!)} ₽, on average ${n(ev(c)!)} ₽ left after wagering`).join('; ')}. With x30–x40 wagering the bonus is almost always negative over the distance; it only pays for regular play on low volatility and with stakes under the wagering cap (usually ${n(MAX_BET)} ₽).` : 'With x30–x40 wagering the bonus is almost always negative over the distance.' },
+  { q: 'Can I deposit 500 roubles in USDT?', a: `Borderline. The TRC-20 fee is ${trcFee ? `${n(trcFee[0])}–${n(trcFee[1])} ₽ (up to ${n(trcFee[1] / sum * 100)}% of the sum)` : 'about $2–4'} and the best small-sum exchanger on BestChange starts from ${bc ? `${n(bc.minSum)} ₽` : 'about a thousand roubles'}. SBP is free and instant.` },
+  { q: 'What opens up at 500 that 100 does not?', a: `At ${names(exact)} the entry threshold is exactly 500: tournaments and bigger packages live here. It is also the usual bonus-activation threshold at casinos whose cashier takes 100.` },
+] : [
+  { q: 'How many spins does 1,000 roubles buy, and what stake is right?', a: 'A 1% stake — 10 ₽ — gives 100 spins at an average cost of 0.40 ₽ each; 5 ₽ gives 200. It is the first sum where you choose volatility for a purpose: low for a long session, high for a shot at a big multiplier.' },
+  { q: 'Take the bonus on 1,000 roubles?', a: withMath.length ? `It is decided by the max-bet rule, not the bonus size. ${w0!.name.replace(' Casino', '')}: bonus ${n(bonusRub(w0!)!)} ₽, turnover ${n(turnover(w0!)!)} ₽ — at a ${n(w0!.maxBetWagering ?? MAX_BET)} ₽ cap that is at least ${n(Math.ceil(turnover(w0!)! / (w0!.maxBetWagering ?? MAX_BET)))} spins, at 10 ₽ — ${n(Math.ceil(turnover(w0!)! / 10))}. On average ${n(ev(w0!)!)} ₽ is left. If wagering counts deposit plus bonus, turnover rises to ${n((sum + bonusRub(w0!)!) * w0!.wager!)} ₽ — check the rules.` : 'The max-bet rule and the wagering deadline decide it.' },
+  { q: 'How do I deposit 1,000 roubles in crypto?', a: `Buy USDT from a BestChange exchanger (best small-sum rate ${bc ? `${n(bc.rubPerUsdt, 2)} ₽, from ${n(bc.minSum)} ₽` : '— see the methods table'}), allow for the TRC-20 fee${trcFee ? ` of ${n(trcFee[0])}–${n(trcFee[1])} ₽` : ''} and the 10 USDT cashier minimum${casinoCryptoMin ? ` ≈ ${n(casinoCryptoMin)} ₽` : ''}. A thousand fits, just. SBP is still cheaper and faster.` },
+  { q: 'Will they ask for documents on withdrawal?', a: 'Small first withdrawals — usually up to 5,000–15,000 ₽ — pass without a passport. Under the Curaçao licence a casino must verify identity once transaction totals reach roughly €2,000–2,500, and may ask earlier if activity looks suspicious. A 1,000 ₽ deposit is nowhere near.' },
+];
+const path = `/deposit/${sum}/`; const url = new URL('/en' + path, Astro.site).href;
+const ld = [
+  { '@context': 'https://schema.org', '@type': 'WebPage', '@id': url + '#webpage', name: TITLE[sum], url, description, inLanguage: 'en', dateModified: lastChecked,
+    breadcrumb: { '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/en/', Astro.site).href }, { '@type': 'ListItem', position: 2, name: `Deposit ${n(sum)} ₽`, item: url }] },
+    mainEntity: { '@id': url + '#question' }, hasPart: [{ '@id': url + '#list' }, { '@id': url + '#faq' }], speakable: { '@type': 'SpeakableSpecification', cssSelector: ['.answer-first'] } },
+  { '@context': 'https://schema.org', '@type': 'QAPage', '@id': url + '#qa', url, mainEntity: { '@type': 'Question', '@id': url + '#question', name: `Which casinos accept a ${n(sum)}-rouble deposit and what does it really buy?`, answerCount: 1, dateModified: lastChecked, acceptedAnswer: { '@type': 'Answer', text: answer, url, dateModified: lastChecked } } },
+  { '@context': 'https://schema.org', '@type': 'ItemList', '@id': url + '#list', name: `Casinos with deposits from ${n(sum)} ₽`, url, numberOfItems: fits.length, itemListElement: fits.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: `${c.name} — from ${n(c.minDeposit!)} ₽`, url: new URL(`/en/casino/${c.slug}/`, Astro.site).href })) },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', '@id': url + '#faq', url, mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+];
+---
+<Base locale="en" {path} title={TITLE[sum]} {description}>
+  <Fragment slot="head">{ld.map((x) => <script type="application/ld+json" set:html={JSON.stringify(x)} />)}</Fragment>
+  <div class="container">
+    <nav class="crumbs" aria-label="breadcrumb"><ol><li><a href="/en/">Home</a></li><li aria-current="page">Deposit {n(sum)} ₽</li></ol></nav>
+    <div class="page-head"><h1>{H1[sum]}</h1><p class="lede answer-first">{answer}</p></div>
+    <nav class="filters" role="group" aria-label="Deposit threshold" style="margin-bottom:24px">{SUMS.map((s) => <a class:list={['filter-btn', { active: s === sum }]} href={`/en/deposit/${s}/`} aria-current={s === sum ? 'page' : undefined}>{n(s)} ₽</a>)}<a class="filter-btn" href="/en/#rating">full rating</a></nav>
+    <section id="casinos">
+      <h2 class="section-title" style="font-size:1.25rem">Who accepts {n(sum)} ₽ and on what terms</h2>
+      <div class="tbl-wrap"><table class="tbl">
+        <thead><tr><th>#</th><th>Casino</th><th>Min. deposit</th><th>Withdrawal</th><th>Deposit via</th><th>RTP</th><th>Bonus on {n(sum)} ₽</th><th>Bonus from</th><th>Turnover</th><th>Max bet</th><th title="What is left of the bonus after full wagering, on average">Bonus on average</th></tr></thead>
+        <tbody>{fits.map((c) => (<tr class:list={{ me: c.minDeposit === sum }}><td class="num">{c.rank}</td><td><a href={`/en/casino/${c.slug}/`}>{c.name}</a></td><td class="num">{formatMoney(c.minDeposit!)}</td><td class="num">from {c.withdrawMin} min</td><td>{c.paymentsLabelEn}</td><td class="num">{c.rtp != null ? `${c.rtp.toFixed(1)}%` : '—'}</td><td class="num">{bonusRub(c) != null ? `${pct(c)}% → ${n(bonusRub(c)!)} ₽` : fs(c) ? `${fs(c)} FS` : '—'}</td><td class:list={['num', { no: c.bonusMinDeposit != null && c.bonusMinDeposit > sum, ok: c.bonusMinDeposit != null && c.bonusMinDeposit <= sum }]}>{c.bonusMinDeposit != null ? `${n(c.bonusMinDeposit)} ₽` : <span class="verified">{NV}</span>}</td><td class="num">{turnover(c) != null ? `${n(turnover(c)!)} ₽ · x${c.wager}` : c.wager ? `x${c.wager}` : '—'}</td><td class="num">{c.maxBetWagering != null ? `${n(c.maxBetWagering)} ₽` : <span class="verified">{NV}</span>}</td><td class:list={['num', { ok: ev(c) != null && ev(c)! > 0, no: ev(c) != null && ev(c)! <= 0 }]} style="color:var(--text)">{ev(c) != null ? `${ev(c)! > 0 ? '+' : ''}${n(ev(c)!)} ₽` : '—'}</td></tr>))}</tbody>
+      </table></div>
+      <p class="section-sub" style="margin-top:10px">Highlighted: casinos where {n(sum)} ₽ is the cashier minimum. "Bonus from" and "Max bet" are recorded in each cashier during the Monday check — "not checked yet" means no market average is substituted. Turnover = bonus × wagering. "Bonus on average" — what remains after full wagering given the slots' return; 96% assumed where the casino does not publish it.</p>
+    </section>
+    <section class="prose" style="padding-top:32px">
+      <h2>How many spins — and what each one costs</h2>
+      <p>Each spin costs the share of the stake the slot keeps: at 96% return that is 4 kopecks per rouble. It is an average over billions of spins, not a forecast of your session — but it is the honest price of an hour's entertainment.</p>
+      <div class="tbl-wrap"><table class="tbl"><thead><tr><th>Stake</th><th>Share of deposit</th><th>Spins</th><th>Average cost per spin</th><th>Cost of 100 spins</th></tr></thead>
+        <tbody>{bets.map((b) => (<tr class:list={{ me: b === stake }}><td class="num">{n(b)} ₽</td><td class="num">{n(b / sum * 100, 1)}%</td><td class="num">{n(Math.floor(sum / b))}</td><td class="num">{n(b * (1 - RTP), 2)} ₽</td><td class="num">{n(100 * b * (1 - RTP))} ₽</td></tr>))}</tbody></table></div>
+      <p><strong>A slot's minimum stake may exceed yours.</strong> Gates of Olympus and Sweet Bonanza (Pragmatic Play) start at $0.20{minBetPragmatic && ` ≈ ${n(minBetPragmatic)} ₽ today`}; Starburst (NetEnt) and Book of Dead (Play'n GO) at $0.10{minBetStarburst && ` (≈ ${n(minBetStarburst)} ₽)`}. {sum === 100 ? 'For 100 roubles this is the main choice: a low-volatility $0.10 slot gives a session, a high-volatility one gives five spins.' : sum === 500 ? 'At 500 the Pragmatic minimum no longer bites, but 4% of the deposit per spin is the upper limit of reasonable.' : 'At 1,000 any provider minimum is available; volatility becomes a choice of purpose, not a constraint.'} The return of the exact build at a given casino is shown in the game's "i" menu — Gates of Olympus exists in 96.5%, 95.5% and 94.5% versions.</p>
+    </section>
+    <section class="prose" style="padding-top:8px">
+      <h2>The bonus: calculate, do not trust</h2>
+      <p>A bonus is an obligation: to withdraw, its sum must be wagered as many times as the multiplier says, and every 100 ₽ wagered leaves the casino about 4 ₽ (at 96% return). Hence <em>left of the bonus = bonus − turnover × (1 − return)</em>. {w0 ? `For ${w0.name.replace(' Casino', '')} on ${n(sum)} ₽: bonus ${n(bonusRub(w0)!)} ₽, turnover ${n(turnover(w0)!)} ₽, wagering costs ${n(turnover(w0)! * edge(w0))} ₽ on average — result ${n(ev(w0)!)} ₽.` : ''} {sum === 100 ? 'At 100 that settles it: turnover is dozens of times the whole sum.' : sum === 500 ? 'At 500 a minus is not a ban — some players pay it knowingly for a long session. Just know the price first.' : 'At 1,000 the minus equals an evening of play — and the decision hinges on the rules below, not arithmetic.'}</p>
+      <ul>
+        <li><strong>Max bet while wagering</strong> — market norm about {n(MAX_BET)} ₽ (≈ $5) or 10–20% of the bonus; one stake above it voids bonus and winnings. Per-casino caps: see "Max bet" in the table.</li>
+        <li><strong>Wagering base.</strong> "x35 of the bonus" and "x35 of deposit plus bonus" differ by a lot — look for the word "deposit" next to the multiplier.</li>
+        <li><strong>Deadline</strong> — usually 7–14 days; unfinished turnover expires with the bonus.</li>
+        <li><strong>Which games count.</strong> Slots 100%, table and live games 5–10% or nothing.</li>
+      </ul>
+      <p><strong>Instead of a bonus: cashback.</strong> A 5–20% refund of weekly losses needs no turnover — or a symbolic one. {sum === 100 ? 'For 100 roubles it is the only promotion that lowers risk instead of raising it.' : sum === 500 ? 'At 500 — cashback, or a bonus only on a low-volatility slot with stakes under 5 ₽.' : 'At 1,000 the choice is real: wager-free cashback for occasional play, a bonus up to x35 for two weeks of play by the rules.'}</p>
+    </section>
+    <section class="prose" style="padding-top:8px">
+      <h2>How to pay {n(sum)} ₽ — and how not to</h2>
+      <div class="tbl-wrap"><table class="tbl"><thead><tr><th>Method</th><th>Fee</th><th>Credited</th><th>Withdrawal</th><th>Verdict for {n(sum)} ₽</th></tr></thead><tbody>
+        <tr class="me"><td><a href="/en/methods/sbp/">SBP</a></td><td>0 ₽ (up to 100,000 ₽/month free by Bank of Russia decision)</td><td>seconds</td><td>same bank, {fastest.withdrawMin}–40 min</td><td class="ok">fits</td></tr>
+        <tr><td><a href="/en/methods/card/">MIR card</a></td><td>usually 0 ₽</td><td>instant</td><td>1–3 working days (clearing)</td><td>{sum === 100 ? 'fits, but some cashiers set 200–300 ₽ for cards' : 'fits'}</td></tr>
+        <tr><td><a href="/en/methods/crypto/">USDT TRC-20</a></td><td>{trcFee ? `network fee ${n(trcFee[0])}–${n(trcFee[1])} ₽ (${n(trcFee[0] / sum * 100, 1)}–${n(trcFee[1] / sum * 100, 1)}% of the sum)` : 'network fee ≈ $2–4'}{bc ? ` + exchanger rate ${n(bc.rubPerUsdt, 2)} ₽` : ''}</td><td>1–3 min</td><td>from $20, fee 1–3 USDT</td><td class:list={{ no: sum === 100, ok: sum === 1000 }}>{cryptoVerdict}{casinoCryptoMin ? `: cashier minimum 10 USDT ≈ ${n(casinoCryptoMin)} ₽` : ''}</td></tr>
+        <tr><td>E-wallet</td><td>0–2%</td><td>minutes</td><td>15–60 min</td><td>{sum === 100 ? 'rarely: minimum usually 500 ₽' : 'fits where available'}</td></tr>
+      </tbody></table></div>
+      <p>Withdrawals go only by the deposit method and only to an account in your name — an anti-money-laundering rule. Withdrawal minimums are usually higher than deposit minimums (300–1,000 ₽); per-casino values appear in the table as they are checked. Small first withdrawals normally pass without a passport; identity checks kick in around €2,000–2,500 of transactions. {fits.some(isCrypto) ? `Crypto among these is accepted by ${names(fits.filter(isCrypto))} — cashier rates on the ` : 'More on '}<a href="/en/methods/crypto/">crypto page</a>.</p>
+    </section>
+    <section class="prose" style="padding-top:8px">
+      <h2>Why a small deposit is not a small risk</h2>
+      <p>The danger of {n(sum)} ₽ is how easy it is to repeat: ten deposits of {n(sum)} ₽ are {n(sum * 10)} ₽ nobody planned. Set a deposit limit in the account before the first deposit (Curaçao-licensed casinos must offer one), keep a separate card with a limit, and use self-exclusion — in Russia a federal self-ban via Gosuslugi has applied since 1 September 2026 (Federal Law No. 575-FZ). Help: Gamblers Anonymous — <a href="https://gamblersanonymous.ru" rel="noopener" target="_blank">gamblersanonymous.ru</a>; free online support in Russian and English — <a href="https://www.gamblingtherapy.org" rel="noopener" target="_blank">Gambling Therapy</a>. Adults only.</p>
+    </section>
+    <section id="faq" style="padding-top:24px">
+      <h2 class="section-title" style="font-size:1.25rem">Questions about a {n(sum)} ₽ deposit</h2>
+      <div class="faq-list">{faq.map((f) => (<details class="faq-item" name="faq-deposit"><summary class="faq-q">{f.q}<span class="faq-arrow">▼</span></summary><div class="faq-a"><div class="faq-a-inner">{f.a}</div></div></details>))}</div>
+    </section>
+    <p class="section-sub" style="margin:24px 0 48px">Rates as of {rateDate(false)}; casino terms as of {fmtD(lastChecked)}. Sources and assumptions are listed on the <a href="/deposit/100/#sources" hreflang="ru">Russian 100 ₽ page</a>. Payout speed — <a href="/en/fast-withdrawal/">by the minute</a>; methods — <a href="/en/methods/">summary table</a>; terms — <a href="/en/glossary/">glossary</a>.</p>
+  </div>
+</Base>

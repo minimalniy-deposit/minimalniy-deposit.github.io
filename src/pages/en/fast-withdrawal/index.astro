@@ -1,0 +1,68 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { casinos } from '../../../lib/casinos';
+import { changesFor, observedSince, lastChecked } from '../../../lib/history';
+import { formatMoney } from '../../../i18n';
+
+const withTime = casinos.filter((c) => c.withdrawMin != null);
+const sorted = [...withTime].sort((a, b) => a.withdrawMin! - b.withdrawMin! || a.rank - b.rank);
+const groups = [...new Set(sorted.map((c) => c.withdrawMin!))].map((m) => ({ min: m, list: sorted.filter((c) => c.withdrawMin === m) }));
+const fastest = groups[0], slowest = groups[groups.length - 1];
+const within15 = withTime.filter((c) => c.withdrawMin! <= 15).length;
+const fmtD = (d: string) => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+const short = (c: (typeof casinos)[number]) => c.name.replace(' Casino', '');
+const everChanged = withTime.filter((c) => changesFor(c.slug).filter((e) => e.diffs.some((d) => d.key === 'withdrawMin')).length > 1).length;
+const sinceMin = withTime.map((c) => observedSince(c.slug)).filter(Boolean).sort()[0]!;
+
+const title = `Which of the ${withTime.length} rated casinos pays out fastest: ${fastest.min} minutes at ${fastest.list.length}, under 15 minutes at ${within15}`;
+const description = `First SBP withdrawal speed compared across the rated casinos: ${fastest.list.map(short).join(', ')} from ${fastest.min} minutes; slowest ${slowest.list.map(short).join(' and ')} from ${slowest.min}. What is measured and when speed does not apply.`;
+const answer = `${fastest.list.length} of the ${withTime.length} rated casinos pay a first SBP withdrawal within ${fastest.min} minutes — ${fastest.list.map((c) => c.name).join(', ')}. Another ${within15 - fastest.list.length} stay within 15 minutes. Slowest are ${slowest.list.map((c) => c.name).join(' and ')} at ${slowest.min}+ minutes. Terms checked ${fmtD(lastChecked)}; we have tracked every value since ${fmtD(sinceMin)}.`;
+const url = new URL('/en/fast-withdrawal/', Astro.site).href;
+const ld = [
+  { '@context': 'https://schema.org', '@type': 'WebPage', '@id': url + '#webpage', name: title, url, description, inLanguage: 'en', dateModified: lastChecked,
+    breadcrumb: { '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/en/', Astro.site).href }, { '@type': 'ListItem', position: 2, name: 'Withdrawal speed', item: url }] },
+    mainEntity: { '@id': url + '#question' }, speakable: { '@type': 'SpeakableSpecification', cssSelector: ['.answer-first'] } },
+  { '@context': 'https://schema.org', '@type': 'QAPage', '@id': url + '#qa', url, mainEntity: { '@type': 'Question', '@id': url + '#question', name: 'Which minimum-deposit casino pays out fastest?', answerCount: 1, dateModified: lastChecked, acceptedAnswer: { '@type': 'Answer', text: answer, url, dateModified: lastChecked } } },
+  { '@context': 'https://schema.org', '@type': 'ItemList', '@id': url + '#list', name: 'Rated casinos by withdrawal speed', url, itemListOrder: 'https://schema.org/ItemListOrderAscending', numberOfItems: sorted.length,
+    itemListElement: sorted.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: `${c.name} — from ${c.withdrawMin} min`, url: new URL(`/en/casino/${c.slug}/`, Astro.site).href })) },
+];
+---
+<Base locale="en" path="/fast-withdrawal/" {title} {description}>
+  <Fragment slot="head">{ld.map((x) => <script type="application/ld+json" set:html={JSON.stringify(x)} />)}</Fragment>
+  <div class="container">
+    <nav class="crumbs" aria-label="breadcrumb"><ol><li><a href="/en/">Home</a></li><li aria-current="page">Withdrawal speed</li></ol></nav>
+    <div class="page-head"><h1>Who pays out fastest: {withTime.length} rated casinos by the minute</h1><p class="lede answer-first">{answer}</p></div>
+    <div class="callouts">
+      <div class="callout">Fastest: <b>{fastest.list.map(short).join(', ')}</b> — {fastest.min} min</div>
+      <div class="callout">Within 15 minutes: <b>{within15}</b> of {withTime.length}</div>
+      <div class="callout">Slowest: <b>{slowest.list.map(short).join(', ')}</b> — {slowest.min}+ min</div>
+      <div class="callout">Changed speed since tracking began: <b>{everChanged}</b></div>
+    </div>
+    <div class="prose">
+      <h2>What is measured</h2>
+      <p>The minutes in the cards are the time from tapping "Withdraw" to the money arriving via SBP on a first, small withdrawal. Not a review average and not an advert: we time it during checks and keep it in each casino's terms history. It describes the operator's <a href="/en/glossary/#processing">processing time</a> — the player's bank adds almost nothing, an <a href="/en/methods/sbp/">SBP transfer</a> takes seconds; a card takes <a href="/en/methods/card/">one to three days of clearing</a>.</p>
+    </div>
+    {groups.map((g) => (
+      <section style="padding:20px 0 0">
+        <h2 class="section-title" style="font-size:1.2rem">From {g.min} minutes — {g.list.length} {g.list.length === 1 ? 'casino' : 'casinos'}</h2>
+        <div class="tbl-wrap"><table class="tbl">
+          <thead><tr><th>#</th><th>Casino</th><th>Withdrawal</th><th>Via</th><th>Min. deposit</th><th>History</th></tr></thead>
+          <tbody>{g.list.map((c) => { const h = changesFor(c.slug).filter((e) => e.diffs.some((d) => d.key === 'withdrawMin')); const since = observedSince(c.slug); return (
+            <tr><td class="num">{c.rank}</td><td><a href={`/en/casino/${c.slug}/`}>{c.name}</a></td><td>from {c.withdrawMin} min</td><td>{c.paymentsLabelEn}</td><td class="num">{c.minDeposit != null ? formatMoney(c.minDeposit) : '—'}</td>
+            <td style="white-space:normal;color:var(--muted);font-size:.85rem">{h.length > 1 ? h.slice(1).map((e) => { const d = e.diffs.find((x) => x.key === 'withdrawMin')!; return `${fmtD(e.date)}: ${d.from} → ${d.to} min`; }).join('; ') : since ? `unchanged since ${fmtD(since)}` : '—'}</td></tr>); })}</tbody>
+        </table></div>
+      </section>))}
+    <div class="prose" style="padding:32px 0 48px">
+      <h2>When speed does not apply</h2>
+      <ul>
+        <li><strong>Withdrawal to a bank card.</strong> The minutes refer to SBP and crypto. A MIR card transfer goes through interbank clearing — one to three working days, outside the casino's control.</li>
+        <li><strong>Amount above the automatic threshold.</strong> Requests up to roughly 30,000 ₽ are processed without a human. Anything above goes to the finance team: an extra hour to a day.</li>
+        <li><strong>First withdrawal after a bonus.</strong> Until the <a href="/en/glossary/#wager">wagering</a> is complete, the request is declined or held.</li>
+        <li><strong>A verification request.</strong> Small first withdrawals — usually up to 5,000–15,000 ₽ — pass without documents; if a request does come, the clock restarts after the check, normally a day.</li>
+      </ul>
+      <h2>How to check it yourself in one withdrawal</h2>
+      <p>Deposit the minimum via SBP, place a few bets and immediately request a withdrawal back to the same bank. Time it to the bank notification. If the result differs from the table by more than ten minutes, <a href="/en/methodology/">tell us</a> — we re-check at the next Monday review and record it in the history.</p>
+      <p class="section-sub">Withdrawal speed carries 35% of the rating weight — see the <a href="/en/methodology/">methodology</a>. Deposit methods and limits per casino — in the <a href="/en/methods/">summary table</a>.</p>
+    </div>
+  </div>
+</Base>

@@ -37,7 +37,7 @@ const ld = [
     itemListElement: sorted.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: `${c.name} — от ${c.withdrawMin} минут`, url: new URL(`/casino/${c.slug}/`, Astro.site).href })) },
 ];
 ---
-<Base locale="ru" path="/fast-withdrawal/" {title} {description} translated={false}>
+<Base locale="ru" path="/fast-withdrawal/" {title} {description}>
   <Fragment slot="head">{ld.map((x) => <script type="application/ld+json" set:html={JSON.stringify(x)} />)}</Fragment>
   <div class="container">
     <nav class="crumbs" aria-label="breadcrumb"><ol><li><a href="/">Главная</a></li><li aria-current="page">Скорость вывода</li></ol></nav>

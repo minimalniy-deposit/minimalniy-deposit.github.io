@@ -1,0 +1,135 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { casinos, type Casino } from '../../../lib/casinos';
+import { lastChecked } from '../../../lib/history';
+import { rates, bc, hasRates, toUsdt, rateDate, spread, fmtRub } from '../../../lib/rates';
+import limits from '../../../data/payment-limits.json';
+import { formatMoney } from '../../../i18n';
+
+export function getStaticPaths() { return (['sbp', 'card', 'crypto'] as const).map((key) => ({ params: { key }, props: { key } })); }
+type Key = 'sbp' | 'card' | 'crypto';
+const { key } = Astro.props as { key: Key };
+const accepts = (c: Casino) => key === 'crypto' ? c.payments.some((p) => ['usdt', 'btc', 'crypto'].includes(p)) : c.payments.includes(key);
+const list = casinos.filter(accepts).sort((a, b) => a.rank - b.rank);
+const notList = casinos.filter((c) => !accepts(c));
+const fastest = [...list].sort((a, b) => a.withdrawMin! - b.withdrawMin! || a.rank - b.rank)[0];
+const lowest = [...list].sort((a, b) => a.minDeposit! - b.minDeposit! || a.rank - b.rank)[0];
+const within15 = list.filter((c) => c.withdrawMin! <= 15).length;
+const lim = limits.find((l) => l.key === key)!;
+const n = (x: number, d = 0) => x.toLocaleString('en-US', { maximumFractionDigits: d, minimumFractionDigits: d });
+const names = (l: Casino[]) => l.map((c) => c.name.replace(' Casino', '')).join(', ');
+const fmtD = (d: string) => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+const NV = 'not checked yet';
+const usd = rates.usd ?? null; const trcFee = usd ? [1.95 * usd, 3.9 * usd] : null; const casinoCryptoMin = bc ? 10 * bc.rubPerUsdt : null;
+const withCashier = list.filter((c) => c.cashierUsdtRate != null);
+const usdtOnly = list.filter((c) => c.payments.includes('usdt')), btcOnly = list.filter((c) => c.payments.includes('btc'));
+const META: Record<Key, { h1: string; title: string; crumb: string; q: string }> = {
+  sbp: { h1: 'Deposits and withdrawals via SBP: how it works and who pays fastest', crumb: 'SBP', title: `Casinos accepting SBP: all ${list.length} rated casinos, withdrawals from ${fastest.withdrawMin} minutes, limits and what SBP cannot do`, q: 'Which casinos accept SBP and how fast do they pay back?' },
+  card: { h1: 'MIR card at a casino: instant deposit, withdrawal in days', crumb: 'MIR card', title: `Casinos accepting MIR cards: ${list.length} rated casinos, why card withdrawals take 1–3 days and how to avoid it`, q: 'Which casinos accept MIR cards and how long does a card withdrawal take?' },
+  crypto: { h1: 'Crypto at a casino: when USDT beats roubles, and when it does not', crumb: 'Crypto', title: `Casinos with crypto deposits: ${list.length} of ${casinos.length} rated casinos take USDT or BTC — cashier rates vs exchangers, network fees and minimums`, q: 'Which casinos accept USDT and Bitcoin, and is a crypto deposit worth it?' },
+};
+const m = META[key];
+const answer = key === 'sbp'
+  ? `All ${list.length} rated casinos accept SBP (Russia's Faster Payments System). Deposits land in seconds via QR code; withdrawals return to the same bank — fastest is ${fastest.name} from ${fastest.withdrawMin} minutes, and ${within15} of ${list.length} stay within 15. The lowest SBP deposit is ${formatMoney(lowest.minDeposit!)} at ${names(list.filter((c) => c.minDeposit === lowest.minDeposit))}. Banks process SBP transfers up to 100,000 ₽ a month free of charge by decision of the Bank of Russia; casinos charge nothing either. Terms checked ${fmtD(lastChecked)}.`
+  : key === 'card'
+    ? `All ${list.length} rated casinos accept MIR cards and credit deposits instantly. The way back is slower: a card withdrawal goes through interbank clearing for one to three working days — a property of card transfers, not a casino delay. The lowest card deposit is ${formatMoney(lowest.minDeposit!)}. If payout speed matters, deposit by card and withdraw via SBP to the same bank. Terms checked ${fmtD(lastChecked)}.`
+    : `${list.length} of ${casinos.length} rated casinos accept crypto: ${names(list)}. USDT (TRC-20) at ${usdtOnly.length}, Bitcoin at ${btcOnly.length}. ${hasRates && bc ? `Today an exchanger on BestChange sells USDT at ${n(bc.rubPerUsdt, 2)} ₽ (small sums from ${n(bc.minSum)} ₽), the exchange rate is ${n(rates.usdt!, 2)} ₽; ` : ''}${trcFee ? `the network fee is ${n(trcFee[0])}–${n(trcFee[1])} ₽ per transfer, ` : ''}${casinoCryptoMin ? `and the cashier minimum is usually 10 USDT ≈ ${n(casinoCryptoMin)} ₽. ` : ''}Crypto only pays off from about 1,000 ₽, and only if the cashier converts roubles no worse than an exchanger — we ${withCashier.length ? `have checked cashier rates at ${names(withCashier)}` : 'have not checked cashier rates yet'}. Terms checked ${fmtD(lastChecked)}.`;
+const description = key === 'sbp' ? `All ${list.length} casinos with SBP: minimum deposit, withdrawal minutes, bank limits, and what SBP cannot do — anonymity, reversals, a different bank on withdrawal.` : key === 'card' ? `${list.length} casinos with MIR cards: instant deposit, 1–3 days clearing on withdrawal, minimums, why Russian-issued Visa and Mastercard do not work, how to speed up payouts.` : `${list.length} casinos with USDT and Bitcoin: today's exchanger and market rates, TRC-20 network fee, 10 USDT cashier minimum, cashier markups, when crypto beats roubles.`;
+const faq = key === 'sbp' ? [
+  { q: 'Is there a minimum SBP transfer?', a: `Not from the Bank of Russia — the casino cashier sets it: ${formatMoney(lowest.minDeposit!)} and up among the rated casinos.` },
+  { q: 'Does the withdrawal go to the same bank?', a: 'Yes — by phone number to the bank you chose. Most cashiers return money only by the method used to deposit; that is an anti-money-laundering rule, not an SBP limitation.' },
+  { q: 'Do casinos charge for SBP?', a: 'None of the rated casinos charge for deposits. Banks process up to 100,000 ₽ a month free; above that, no more than 0.5% and never more than 1,500 ₽ per transfer.' },
+  { q: 'Can a bank block a transfer to a casino?', a: 'It can flag a first or large transfer for anti-fraud review. The money is not lost — it either clears after confirmation or is returned. Smaller, less frequent transfers pass more easily.' },
+] : key === 'card' ? [
+  { q: 'Why does a card withdrawal take 1–3 days?', a: 'It goes through interbank clearing with processing at the issuing bank — a property of card transfers, not a casino delay. The casino itself approves the request in the same minutes as for SBP.' },
+  { q: 'Do Russian-issued Visa and Mastercard work?', a: 'No — since 2022 they do not operate outside Russia, and casino payment gateways are abroad. MIR works; some cashiers also take foreign-issued cards.' },
+  { q: 'Can I reverse a card payment?', a: 'No. A casino deposit is a purchase of a service and is practically impossible to dispute; "loss refund" services promising otherwise are scams. The only protection is a card limit and a separate account for play.' },
+  { q: 'How do I get paid faster after a card deposit?', a: 'Choose SBP to the same bank that issued the card — the cashier sees the same owner, and most casinos allow it.' },
+] : [
+  { q: 'Which USDT network — TRC-20 or ERC-20?', a: `TRC-20: the fee is ${trcFee ? `${n(trcFee[0])}–${n(trcFee[1])} ₽` : 'about $2–4'} and transfers land in 1–3 minutes. ERC-20 fees are several times higher and depend on network load — pointless for sums in the thousands of roubles.` },
+  { q: 'What is the minimum crypto deposit?', a: `Cashiers usually accept from 10 USDT${casinoCryptoMin ? ` — about ${n(casinoCryptoMin)} ₽ at the exchanger rate` : ''}. Add the network fee and the exchanger spread and the realistic floor is 1,000 ₽; 100 and 500 ₽ simply do not add up in crypto.` },
+  { q: 'Bitcoin or USDT?', a: 'USDT: it is pegged to the dollar, so the balance does not move while the deposit and withdrawal are processed. Bitcoin can swing 2–5% in an hour — at 1,000 ₽ that is more than any fee.' },
+  { q: 'Do I need a passport for a crypto deposit?', a: 'Not to deposit. For withdrawals the same licence rules apply as for roubles: small sums usually pass without documents; once transaction totals reach the threshold, the casino must verify identity.' },
+];
+const path = `/methods/${key}/`; const url = new URL('/en' + path, Astro.site).href;
+const ld = [
+  { '@context': 'https://schema.org', '@type': 'WebPage', '@id': url + '#webpage', name: m.title, url, description, inLanguage: 'en', dateModified: lastChecked,
+    breadcrumb: { '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/en/', Astro.site).href }, { '@type': 'ListItem', position: 2, name: 'Deposit and withdrawal methods', item: new URL('/en/methods/', Astro.site).href }, { '@type': 'ListItem', position: 3, name: m.crumb, item: url }] },
+    mainEntity: { '@id': url + '#question' }, hasPart: [{ '@id': url + '#list' }, { '@id': url + '#faq' }], speakable: { '@type': 'SpeakableSpecification', cssSelector: ['.answer-first'] } },
+  { '@context': 'https://schema.org', '@type': 'QAPage', '@id': url + '#qa', url, mainEntity: { '@type': 'Question', '@id': url + '#question', name: m.q, answerCount: 1, dateModified: lastChecked, acceptedAnswer: { '@type': 'Answer', text: answer, url, dateModified: lastChecked } } },
+  { '@context': 'https://schema.org', '@type': 'ItemList', '@id': url + '#list', name: `Rated casinos: ${m.crumb}`, url, numberOfItems: list.length, itemListElement: list.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.name, url: new URL(`/en/casino/${c.slug}/`, Astro.site).href })) },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', '@id': url + '#faq', url, mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+];
+const bcLine = hasRates && bc ? `${n(bc.rubPerUsdt, 2)} ₽ per USDT (best for sums up to ${n(bc.maxMinSum)} ₽, ${bc.offersSmall} offers, ${rateDate(false)})` : null;
+const mktLine = hasRates ? `${n(rates.usdt!, 2)} ₽` : null;
+const feeLine = trcFee ? `${n(trcFee[0])}–${n(trcFee[1])} ₽ per transfer` : null;
+const minLine = casinoCryptoMin ? `≈ ${n(casinoCryptoMin)} ₽` : null;
+const spreadLine = hasRates && bc ? `today ${n((bc.rubPerUsdt / rates.usdt! - 1) * 100, 1)}%` : 'usually 0.5–3%';
+const cashierLine = withCashier.length ? `at ${names(withCashier)} (see the table)` : 'on Mondays; none of the casinos has been checked yet';
+const fromLine = `cashier minimum 10 USDT${casinoCryptoMin ? ` ≈ ${n(casinoCryptoMin)} ₽` : ''}, network fee${trcFee ? ` ${n(trcFee[0])}–${n(trcFee[1])} ₽` : ''}, exchanger minimums${bc ? ` from ${n(bc.minSum)} ₽` : ''}`;
+const KEYS: { key: Key; label: string }[] = [{ key: 'sbp', label: 'SBP' }, { key: 'card', label: 'MIR card' }, { key: 'crypto', label: 'Crypto' }];
+---
+<Base locale="en" {path} title={m.title} {description}>
+  <Fragment slot="head">{ld.map((x) => <script type="application/ld+json" set:html={JSON.stringify(x)} />)}</Fragment>
+  <div class="container">
+    <nav class="crumbs" aria-label="breadcrumb"><ol><li><a href="/en/">Home</a></li><li><a href="/en/methods/">Deposit and withdrawal methods</a></li><li aria-current="page">{m.crumb}</li></ol></nav>
+    <div class="page-head"><h1>{m.h1}</h1><p class="lede answer-first">{answer}</p></div>
+    <nav class="filters" role="group" aria-label="Payment method" style="margin-bottom:24px">{KEYS.map((k) => <a class:list={['filter-btn', { active: k.key === key }]} href={`/en/methods/${k.key}/`} aria-current={k.key === key ? 'page' : undefined}>{k.label}</a>)}<a class="filter-btn" href="/en/methods/">summary table</a></nav>
+    <div class="callouts">
+      <div class="callout">Accepted by: <b>{list.length}</b> of {casinos.length}</div>
+      <div class="callout">Fastest payout: <b><a href={`/en/casino/${fastest.slug}/`}>{fastest.name}</a></b> — from {fastest.withdrawMin} min</div>
+      <div class="callout">Lowest threshold: <b><a href={`/en/casino/${lowest.slug}/`}>{lowest.name}</a></b> — {formatMoney(lowest.minDeposit!)}</div>
+      <div class="callout">Method speed and limit: <b>{lim.timeEn}</b>, {lim.limitEn}</div>
+    </div>
+    <section id="casinos">
+      <h2 class="section-title" style="font-size:1.25rem">Who accepts {m.crumb} and on what terms</h2>
+      <div class="tbl-wrap"><table class="tbl">
+        <thead><tr><th>#</th><th>Casino</th><th>Min. deposit</th>{key === 'crypto' && hasRates && <th>in USDT</th>}<th>Withdrawal</th><th>Min. withdrawal</th>{key === 'crypto' && <th>Cashier rate, ₽/USDT</th>}{key === 'crypto' && <th>Markup vs exchanger</th>}<th>All methods</th></tr></thead>
+        <tbody>{list.map((c) => (<tr><td class="num">{c.rank}</td><td><a href={`/en/casino/${c.slug}/`}>{c.name}</a></td><td class="num">{formatMoney(c.minDeposit!)}</td>{key === 'crypto' && hasRates && <td class="num">≈ {toUsdt(c.minDeposit!)}</td>}<td class="num">from {c.withdrawMin} min</td><td class="num">{c.withdrawMinAmount != null ? formatMoney(c.withdrawMinAmount) : <span class="verified">{NV}</span>}</td>{key === 'crypto' && <td class="num">{c.cashierUsdtRate != null ? `${fmtRub(c.cashierUsdtRate)} ₽` : <span class="verified">{NV}</span>}</td>}{key === 'crypto' && <td class:list={['num', { no: spread(c.cashierUsdtRate) != null && spread(c.cashierUsdtRate)! > 3 }]}>{c.cashierUsdtRate != null ? `${spread(c.cashierUsdtRate)! > 0 ? '+' : ''}${spread(c.cashierUsdtRate)}%` : '—'}</td>}<td>{c.paymentsLabelEn}</td></tr>))}</tbody>
+      </table></div>
+      <p class="section-sub" style="margin-top:10px">"Min. withdrawal"{key === 'crypto' ? ' and the cashier rate' : ''} are recorded in each casino's cashier during the Monday check; "not checked yet" means we have not reached that casino and are not substituting a market average.{notList.length ? ` Do not accept ${m.crumb}: ${names(notList)}.` : ''}</p>
+    </section>
+    <div class="prose" style="padding:24px 0 8px">
+      {key === 'sbp' && <>
+        <h2>How a deposit and withdrawal work</h2>
+        <p>Pick SBP and an amount in the cashier, scan the QR code in your banking app, confirm — the money is on the casino balance in seconds. On withdrawal you enter a phone number and bank; the casino approves the request (that is the minutes in the table) and the transfer arrives instantly. No clearing, no "working days" — hence the gap with card withdrawals.</p>
+        <h2>Five things SBP cannot do</h2>
+        <ul><li><strong>Be anonymous.</strong> Your bank sees the recipient — the payment gateway's legal entity — and keeps the history.</li><li><strong>Be reversed.</strong> An SBP transfer is final; a wrong amount can only be fixed through casino support.</li><li><strong>Withdraw to a different bank.</strong> Most cashiers return money the way it came — same phone, same bank.</li><li><strong>Bypass your bank's limit.</strong> The daily cap is set by your bank, usually 100,000–200,000 ₽; the casino sets none.</li><li><strong>Pass at every bank.</strong> Some banks block transfers to gambling gateways; if a payment fails twice, switching banks beats arguing with support.</li></ul>
+        <h2>Where SBP wins outright</h2>
+        <p>Small sums. For a 100–500 ₽ deposit it is the only lossless route: no fee, a cashier minimum of {formatMoney(lowest.minDeposit!)}, and a return transfer within minutes at {within15} of {list.length} casinos. What each sum buys — <a href="/en/deposit/100/">100</a>, <a href="/en/deposit/500/">500</a>, <a href="/en/deposit/1000/">1,000 ₽</a>; who pays fastest — <a href="/en/fast-withdrawal/">by the minute</a>.</p>
+      </>}
+      {key === 'card' && <>
+        <h2>Deposit: instant and free</h2>
+        <p>A MIR card deposit lands immediately and the rated casinos charge nothing. Limits are on the bank side: 3-D Secure on the first payment, a daily online-purchase cap and anti-fraud checks. The cashier minimum is {formatMoney(lowest.minDeposit!)}; some cashiers set it higher for cards than for SBP — 200–300 ₽.</p>
+        <h2>Withdrawal: why days, not minutes</h2>
+        <p>The casino approves the request in the same minutes shown in the table — then the money enters interbank clearing: one to three working days, weekends excluded. No casino can speed that up. The rule for anyone who cares about speed: <strong>deposit by card, withdraw via SBP to the same bank</strong> — most cashiers allow it because the account holder is the same.</p>
+        <h2>What does not work and why</h2>
+        <ul><li><strong>Russian-issued Visa and Mastercard.</strong> They have not worked outside Russia since 2022, and casino gateways are abroad. MIR works; some cashiers take foreign cards.</li><li><strong>Someone else's card.</strong> A deposit from a card not in the player's name guarantees a declined withdrawal under anti-money-laundering rules.</li><li><strong>Chargebacks.</strong> Disputing a casino deposit as a purchase is practically impossible — "loss refund" services are scams. The protection is a card limit, not a dispute afterwards.</li></ul>
+      </>}
+      {key === 'crypto' && <>
+        <h2>What a crypto deposit really costs</h2>
+        {bcLine && <div class="callouts">
+          <div class="callout">Exchangers (BestChange): <b>{bcLine}</b></div>
+          <div class="callout">Exchange rate: <b>{mktLine}</b></div>
+          {feeLine && <div class="callout">TRC-20 network fee: <b>{feeLine}</b></div>}
+          {minLine && <div class="callout">Cashier minimum 10 USDT: <b>{minLine}</b></div>}
+        </div>}
+        {!bcLine && <p class="section-sub">Rates appear after the next update.</p>}
+        <p>A rouble's path into USDT has three losses: the exchanger spread ({spreadLine}), the network fee on the transfer to the cashier's address, and — least visible — the rate at which the cashier converts USDT back into roubles on your balance. We record that third figure {cashierLine}. A cashier markup above 3% over an exchanger means crypto costs more than a card.</p>
+        <h2>When crypto makes sense</h2>
+        <ul>
+          <li><strong>From 1,000 ₽.</strong> Below that the arithmetic fails: {fromLine}. Full breakdown on the <a href="/en/deposit/1000/">1,000 ₽ page</a>.</li>
+          <li><strong>No rouble card or SBP</strong> — outside Russia, for example. Then crypto is not "cheaper", it is the only option.</li>
+          <li><strong>Large withdrawals.</strong> No daily bank cap, and arrival in minutes regardless of the amount.</li>
+        </ul>
+        <h2>USDT versus Bitcoin</h2>
+        <p>For deposits — USDT only: pegged to the dollar, so the sum does not move while the transfer and approval happen. Bitcoin swings by percent within an hour — at 1,000 ₽ that exceeds any fee. Network — TRC-20. Among the rated casinos USDT is accepted by {names(usdtOnly)}, Bitcoin by {names(btcOnly)}.</p>
+      </>}
+    </div>
+    <section id="faq" style="padding-top:16px">
+      <h2 class="section-title" style="font-size:1.25rem">Questions about {m.crumb}</h2>
+      <div class="faq-list">{faq.map((f) => (<details class="faq-item" name="faq-method"><summary class="faq-q">{f.q}<span class="faq-arrow">▼</span></summary><div class="faq-a"><div class="faq-a-inner">{f.a}</div></div></details>))}</div>
+    </section>
+    <p class="section-sub" style="margin:24px 0 48px">Rates as of {rateDate(false)}; casino terms as of {fmtD(lastChecked)}. All methods and limits — in the <a href="/en/methods/">summary table</a>; terms — in the <a href="/en/glossary/#sbp">glossary</a>.</p>
+  </div>
+</Base>

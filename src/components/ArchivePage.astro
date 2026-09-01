@@ -1,0 +1,56 @@
+---
+import Base from '../layouts/Base.astro';
+import site from '../data/site.json';
+import { casinos } from '../lib/casinos';
+import { entries, snapshots, lastChecked } from '../lib/history';
+import { minDepositIndex, svgLine } from '../lib/charts';
+import { useT, localePath, type Locale } from '../i18n';
+import ratesHist from '../data/rates-history.jsonl?raw';
+interface Props { locale: Locale }
+const { locale } = Astro.props; const t = useT(locale); const ru = locale === 'ru';
+const home = localePath(locale, '/');
+const dates = [...new Set(entries.map((e) => e.date))].sort();
+const since = dates[0];
+const rateDays = ratesHist.trim() ? ratesHist.trim().split('\n').length : 0;
+const idx = minDepositIndex(); const idxSvg = svgLine(idx.map((p) => [p.date, p.avg]), { unit: ' ₽', title: t.fresh.index });
+const fmtD = (d: string) => new Date(d).toLocaleDateString(ru ? 'ru-RU' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' }).replace(' г.', '');
+const RAW = `https://github.com/minimalniy-deposit/minimalniy-deposit.github.io/blob/main/src/data`;
+const RAWD = `https://raw.githubusercontent.com/minimalniy-deposit/minimalniy-deposit.github.io/main/src/data`;
+const files = [
+  { f: 'history.json', ru: 'История условий: все записи по каждой площадке с датой и источником', en: 'Terms history: every record per casino with date and source' },
+  { f: 'casinos.json', ru: 'Текущие условия двенадцати площадок — то, из чего собраны все страницы', en: 'Current terms of the twelve casinos — the file every page is built from' },
+  { f: 'rates-history.jsonl', ru: 'Курсы по дням: ЦБ, биржа, лучший обменник — одна строка в день', en: 'Daily rates: central bank, market, best exchanger — one line per day' },
+  { f: 'slots.json', ru: 'Каталог слотов с датой синхронизации', en: 'Slot catalogue with sync date' },
+];
+const title = ru ? 'Архив: что мы записываем, с какой даты и где это скачать' : 'Archive: what we record, since when, and where to download it';
+const description = ru ? `Открытые данные сайта: история условий ${casinos.length} площадок с ${fmtD(since)}, курсы по дням, снимки правил в веб-архиве. Скачать, проверить, процитировать.` : `Open data: terms history of ${casinos.length} casinos since ${fmtD(since)}, daily rates, Web Archive snapshots of rules. Download, verify, cite.`;
+const url = new URL(localePath(locale, '/archive/'), Astro.site).href;
+const ld = { '@context': 'https://schema.org', '@type': 'Dataset', '@id': url + '#dataset', name: ru ? 'История условий казино с минимальным депозитом' : 'Terms history of minimum-deposit casinos', description, url, inLanguage: locale, license: 'https://creativecommons.org/licenses/by/4.0/', temporalCoverage: `${since}/${lastChecked}`, dateModified: lastChecked,
+  creator: { '@type': 'Organization', name: ru ? 'МинДеп.рейтинг' : 'MinDep.rating', url: new URL('/', Astro.site).href },
+  distribution: files.map((x) => ({ '@type': 'DataDownload', encodingFormat: x.f.endsWith('.jsonl') ? 'application/x-ndjson' : 'application/json', contentUrl: `${RAWD}/${x.f}` })) };
+---
+<Base {locale} path="/archive/" {title} {description}>
+  <Fragment slot="head"><script type="application/ld+json" set:html={JSON.stringify(ld)} /></Fragment>
+  <div class="container">
+    <nav class="crumbs" aria-label="breadcrumb"><ol><li><a href={home}>{t.casino.breadcrumbHome}</a></li><li aria-current="page">{ru ? 'Архив' : 'Archive'}</li></ol></nav>
+    <div class="page-head"><h1>{title}</h1>
+      <p class="lede">{ru ? `Всё, что видно на сайте, собирается из нескольких открытых файлов. Здесь они лежат целиком — с историей изменений, датами и источниками, — чтобы любой мог проверить цифру, а не поверить на слово.` : `Everything on this site is built from a few open files. They live here in full — with change history, dates and sources — so anyone can check a figure rather than take it on trust.`}</p></div>
+    <div class="callouts">
+      <div class="callout">{ru ? 'Записей в истории' : 'History records'}: <b>{entries.length}</b> · {ru ? 'с' : 'since'} {fmtD(since)}</div>
+      <div class="callout">{ru ? 'Дат проверки' : 'Check dates'}: <b>{dates.length}</b> · {ru ? 'последняя' : 'latest'} {fmtD(lastChecked)}</div>
+      <div class="callout">{ru ? 'Дней с курсами' : 'Days of rates'}: <b>{rateDays}</b></div>
+      <div class="callout">{ru ? 'Снимков правил в веб-архиве' : 'Rule snapshots in the Web Archive'}: <b>{snapshots.length}</b></div>
+    </div>
+    {idxSvg && <section style="margin:8px 0 16px"><h2 class="section-title" style="font-size:1.1rem">{t.fresh.index}: {idx[idx.length - 1].avg} ₽</h2><p class="section-sub">{t.fresh.indexSub}</p><Fragment set:html={idxSvg} /></section>}
+    <div class="prose" style="padding-bottom:48px">
+      <h2>{ru ? 'Что записывается' : 'What is recorded'}</h2>
+      <p>{ru ? 'По каждой площадке — минимальный депозит, минуты на первый вывод через СБП, вейджер, отдача, кешбэк, курс кассы для USDT, минимальные ставки в двух слотах, порог бонуса, потолок ставки при отыгрыше, срок отыгрыша, минимум вывода. Запись появляется только когда значение изменилось; каждая — с датой и источником: архив don8play, старая версия этого сайта, еженедельная проверка.' : 'For every casino — minimum deposit, minutes to first SBP withdrawal, wagering, return, cashback, cashier USDT rate, minimum stakes in two slots, bonus threshold, max bet while wagering, wagering deadline, withdrawal minimum. A record appears only when a value changed; each carries a date and a source: the don8play archive, the previous version of this site, the weekly check.'}</p>
+      <h2>{ru ? 'Как проверить и как цитировать' : 'How to verify and how to cite'}</h2>
+      <p>{ru ? 'Файлы лежат в открытом репозитории; у каждого изменения есть дата коммита, которую нельзя подменить задним числом. Снимки страниц правил делает веб-архив — это независимое свидетельство того, какими были условия в конкретный день. Ссылаясь на цифру, укажите площадку, дату и адрес этой страницы: например, «по данным minimalniy-deposit.github.io, вывод у 7K — от 10 минут (проверено ' + fmtD(lastChecked) + ')».' : 'The files live in a public repository; every change has a commit date that cannot be backdated. Rule-page snapshots are taken by the Web Archive — independent evidence of the terms on a given day. When citing a figure, name the casino, the date and this page: e.g. "according to minimalniy-deposit.github.io, 7K pays out from 10 minutes (checked ' + fmtD(lastChecked) + ')".'}</p>
+      <h2>{ru ? 'Скачать' : 'Download'}</h2>
+      <div class="tbl-wrap"><table class="tbl"><thead><tr><th>{ru ? 'Файл' : 'File'}</th><th>{ru ? 'Что внутри' : 'Contents'}</th><th></th></tr></thead>
+        <tbody>{files.map((x) => <tr><td><code>{x.f}</code></td><td style="white-space:normal">{ru ? x.ru : x.en}</td><td><a href={`${RAWD}/${x.f}`} rel="noopener">{ru ? 'скачать' : 'download'}</a> · <a href={`${RAW}/${x.f}`} rel="noopener">{ru ? 'история' : 'history'}</a></td></tr>)}</tbody></table></div>
+      <p class="section-sub" style="margin-top:10px">{ru ? 'Данные — под лицензией CC BY 4.0: используйте свободно со ссылкой на источник.' : 'Data is CC BY 4.0: use freely with attribution.'} {ru ? 'Как считается рейтинг —' : 'How the rating is built —'} <a href={localePath(locale, '/methodology/')}>{ru ? 'методология' : 'methodology'}</a>.</p>
+    </div>
+  </div>
+</Base>
