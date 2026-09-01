@@ -38,6 +38,33 @@ const money = (n: number) => rub(n) + ' ₽';
     .gal { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; } .gal figure { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 12px; margin: 0; display: grid; gap: 8px; place-items: center; } .gal svg { width: 100%; height: 110px; } .gal figcaption { font-size: .72rem; color: var(--muted); }
     .icons { display: flex; flex-wrap: wrap; gap: 14px; } .icons span { display: grid; place-items: center; gap: 4px; font-size: .7rem; color: var(--muted); width: 72px; } .icons svg { width: 30px; height: 30px; }
 
+
+    /* ===== E · Дымчатое стекло ===== */
+    .E { position: relative; isolation: isolate; font-family: var(--ui); color: #dfe3ea; --g1: rgba(140,146,158,.16); --g2: rgba(70,75,84,.10); --edge: rgba(255,255,255,.14); --amber: #e8a33a; --blue: #5aa8ff; --mute: #9aa3b0; overflow: hidden; }
+    .E::before { content: ""; position: absolute; inset: -40px; z-index: -2; background: #0b0d11 url(/img/hero-bg.webp) center/cover no-repeat; filter: blur(26px) saturate(1.15) brightness(.55); }
+    .E::after { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(ellipse 60% 50% at 50% 55%, rgba(11,13,17,.55), transparent 70%); }
+    .E h2 { font-family: var(--ui); font-weight: 600; font-size: clamp(1.5rem, 3.2vw, 2.2rem); letter-spacing: -.02em; line-height: 1.15; color: #eef1f5; }
+    .E .lead { color: var(--mute); max-width: 560px; margin-top: 10px; font-size: .98rem; }
+    .E .pane { position: relative; border-radius: 18px; padding: 20px 22px;
+      background: linear-gradient(160deg, var(--g1), var(--g2)); border: 1px solid var(--edge); backdrop-filter: blur(18px) saturate(1.2);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.22), inset 0 -24px 48px rgba(0,0,0,.28), 0 30px 60px -40px rgba(0,0,0,.9); }
+    .E .pane::before { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; background: linear-gradient(115deg, rgba(90,168,255,.10), transparent 35%, transparent 65%, rgba(232,163,58,.10)); }
+    .E .pane::after { content: ""; position: absolute; left: 12%; right: 12%; top: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent); pointer-events: none; }
+    .E .card { display: grid; grid-template-columns: 56px 1fr auto; gap: 18px; align-items: start; }
+    .E .rank { width: 56px; height: 56px; border-radius: 14px; display: grid; place-items: center; font-family: var(--mono); font-size: 1.3rem; color: #eef1f5; background: rgba(255,255,255,.06); border: 1px solid var(--edge); box-shadow: inset 0 1px 0 rgba(255,255,255,.2), inset 0 -10px 20px rgba(0,0,0,.3); }
+    .E .rank.top { color: var(--amber); box-shadow: inset 0 1px 0 rgba(255,255,255,.2), inset 0 -10px 20px rgba(0,0,0,.3), 0 0 32px -6px rgba(232,163,58,.45); }
+    .E .name { font-size: 1.15rem; font-weight: 600; color: #eef1f5; }
+    .E .facts { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 8px; font-size: .86rem; color: var(--mute); } .E .facts span { display: inline-flex; gap: 6px; align-items: center; } .E .facts svg { width: 15px; height: 15px; color: var(--blue); opacity: .9; } .E .facts b { color: #eef1f5; font-family: var(--mono); font-weight: 500; }
+    .E .facts span.warm svg { color: var(--amber); }
+    .E .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; } .E .chip { padding: 4px 10px; border-radius: 999px; font-size: .76rem; color: #cfd5de; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); box-shadow: inset 0 1px 0 rgba(255,255,255,.12); }
+    .E .btn { display: inline-block; padding: 11px 22px; border-radius: 12px; color: #1a1408; font-weight: 700; background: linear-gradient(180deg, #f2b85a, #d9922a); box-shadow: inset 0 1px 0 rgba(255,255,255,.45), 0 10px 30px -12px rgba(232,163,58,.7); }
+    .E .btn.ghost { color: #eef1f5; background: rgba(255,255,255,.07); border: 1px solid var(--edge); box-shadow: inset 0 1px 0 rgba(255,255,255,.2); font-weight: 600; }
+    .E .stat { padding: 16px 18px; } .E .stat .l { font-size: .78rem; color: var(--mute); display: flex; gap: 7px; align-items: center; } .E .stat .l svg { width: 15px; height: 15px; color: var(--blue); } .E .stat .v { font-family: var(--mono); font-size: 1.55rem; color: #eef1f5; margin-top: 4px; } .E .stat .v em { font-style: normal; color: var(--amber); }
+    .E .tbl-e { width: 100%; border-collapse: separate; border-spacing: 0 6px; font-size: .88rem; } .E .tbl-e th { text-align: left; font-weight: 500; color: var(--mute); font-size: .74rem; letter-spacing: .05em; text-transform: uppercase; padding: 4px 12px; }
+    .E .tbl-e td { padding: 11px 12px; background: rgba(255,255,255,.045); border-top: 1px solid rgba(255,255,255,.09); border-bottom: 1px solid rgba(0,0,0,.35); } .E .tbl-e td:first-child { border-left: 1px solid rgba(255,255,255,.09); border-radius: 10px 0 0 10px; } .E .tbl-e td:last-child { border-right: 1px solid rgba(255,255,255,.09); border-radius: 0 10px 10px 0; }
+    .E .tbl-e td.n { font-family: var(--mono); } .E .ok { color: #7fd3a5; } .E .no { color: #f19a9a; }
+    .E .guide { display: grid; grid-template-columns: 34px 1fr; gap: 12px; padding: 14px 16px; color: #eef1f5; } .E .guide svg { width: 24px; height: 24px; color: var(--blue); } .E .guide b { display: block; font-weight: 600; } .E .guide span { color: var(--mute); font-size: .8rem; } .E .guide:hover { text-decoration: none; } .E .guide:hover svg { color: var(--amber); }
+
     /* ===== A · Обсерватория (glass + gold) ===== */
     .A { font-family: var(--ui); background: radial-gradient(ellipse at 20% 0%, rgba(245,166,35,.10), transparent 50%), radial-gradient(ellipse at 100% 100%, rgba(60,120,255,.10), transparent 50%), var(--bg); }
     .A h2 { font-family: var(--disp); font-weight: 600; font-size: clamp(1.4rem, 3vw, 2rem); letter-spacing: -.02em; line-height: 1.15; }
@@ -80,8 +107,47 @@ const money = (n: number) => rub(n) + ' ₽';
   </style>
 
   <div class="container pv" style="padding:24px 0 48px">
-    <h1 style="font-size:1.4rem;font-weight:700">Галерея оформления: четыре направления на реальных данных</h1>
+    <h1 style="font-size:1.4rem;font-weight:700">Галерея оформления: пять направлений на реальных данных</h1>
     <p class="section-sub">Не в меню и не в индексе. Каждое направление — свои шрифты, цвет, ритм и иконки; карточка №1, блок фактов и заголовок собраны из живых данных сайта. Ниже — библиотека материалов, из которой всё это сделано.</p>
+
+
+    <!-- ===== E ===== -->
+    <section class="dir E">
+      <div class="dir-head" style="background:rgba(20,23,28,.6);border-color:rgba(255,255,255,.1);color:#9aa3b0;backdrop-filter:blur(12px)"><span>E · Дымчатое стекло — ваш кадр за стеклом, свет только по краям</span><span>Golos Text + JetBrains Mono · Tabler</span></div>
+      <div class="dir-body">
+        <div class="row">
+          <div><h2>Что происходит за стеклом — видно по цифрам</h2><p class="lead">Фон — ваш кадр, размытый до пятен; панели — толстое серое стекло с бликом по верхней кромке и тенью толщины снизу. Синий и янтарный не красят элементы, а просвечивают сквозь них: холодный — у иконок и графиков, тёплый — у первого места и кнопки. Центр спокойный, свет живёт по краям.</p></div>
+          <div class="pane stat" style="align-self:center"><div class="l"><Icon name="tabler:history" />JoyCasino · вывод, минуты</div><Fragment set:html={spark.replace(/var\(--gold\)/g, '#5aa8ff')} /></div>
+        </div>
+        <div class="pane card">
+          <div class="rank top">{c1.rank}</div>
+          <div>
+            <div class="name">{c1.name}</div>
+            <div class="facts"><span class="warm"><Icon name="tabler:coin" />депозит от <b>{money(c1.minDeposit!)}</b></span><span><Icon name="tabler:clock-bolt" />вывод <b>от {c1.withdrawMin} мин</b></span><span><Icon name="tabler:shield-check" />{c1.licenseShort}</span><span><Icon name="tabler:percentage" />RTP <b>{c1.rtp}%</b></span></div>
+            <div class="chips"><span class="chip">карта «Мир»</span><span class="chip">СБП</span><span class="chip">USDT</span><span class="chip">BTC</span></div>
+            <p style="margin-top:10px;font-size:.88rem;color:#b9c1cc" set:html={c1.bonus} />
+          </div>
+          <div style="display:grid;gap:8px;justify-items:end"><a class="btn" href="#">Играть</a><a class="btn ghost" href="#" style="font-size:.85rem;padding:8px 14px">условия и история</a></div>
+        </div>
+        <div class="mini-grid">
+          <div class="pane stat"><div class="l"><Icon name="tabler:bolt" />Быстрее всех выводят</div><div class="v">10 <em>мин</em></div><div style="font-size:.78rem;color:var(--mute);margin-top:4px">7K, Jetton, Gizbo · СБП</div></div>
+          <div class="pane stat"><div class="l"><Icon name="tabler:chart-line" />Индекс минимального депозита</div><div class="v">375 <em>₽</em></div><div style="font-size:.78rem;color:var(--mute);margin-top:4px">среднее по 12 площадкам</div></div>
+          <div class="pane stat"><div class="l"><Icon name="tabler:database" />В истории условий</div><div class="v">27</div><div style="font-size:.78rem;color:var(--mute);margin-top:4px">записей с 20 февраля 2026</div></div>
+        </div>
+        <div class="pane" style="padding:14px 10px">
+          <table class="tbl-e"><thead><tr><th>Способ</th><th>Комиссия</th><th>Зачисление</th><th>Вывод</th><th>Для 100 ₽</th></tr></thead><tbody>
+            <tr><td>СБП</td><td class="n">0 ₽</td><td>секунды</td><td class="n">10–40 мин</td><td class="ok">подходит</td></tr>
+            <tr><td>Карта «Мир»</td><td class="n">0 ₽</td><td>мгновенно</td><td>1–3 дня</td><td class="ok">подходит</td></tr>
+            <tr><td>USDT TRC-20</td><td class="n">168–337 ₽</td><td class="n">1–3 мин</td><td>от $20</td><td class="no">невозможно</td></tr>
+          </tbody></table>
+        </div>
+        <div class="mini-grid">
+          <a class="pane guide" href="#"><Icon name="tabler:arrow-down-circle" /><div><b>Депозит 100 ₽</b><span>5 площадок · сколько спинов, брать ли бонус</span></div></a>
+          <a class="pane guide" href="#"><Icon name="tabler:bolt" /><div><b>Кто выводит быстрее</b><span>от 10 минут · все по минутам</span></div></a>
+          <a class="pane guide" href="#"><Icon name="tabler:scale" /><div><b>Методология</b><span>пять критериев, веса, день проверки</span></div></a>
+        </div>
+      </div>
+    </section>
 
     <!-- ===== A ===== -->
     <section class="dir A">
