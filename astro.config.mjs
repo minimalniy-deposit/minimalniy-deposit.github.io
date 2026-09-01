@@ -24,6 +24,34 @@ const priorityFor = (path) => {
   return 0.7;
 };
 
+// Post-build sitemap cleanup:
+// 1) Strip <xhtml:link> hreflang alternates — Yandex Webmaster flags any non-core
+//    element as the «Неизвестный тег» error and ignores it anyway; both Yandex and
+//    Google read hreflang from the <link rel="alternate"> tags already present in
+//    every page's <head>, so nothing is lost.
+// 2) Drop the now-unused namespace declarations.
+// 3) Copy sitemap-index.xml to /sitemap.xml so the conventional URL (and any old
+//    submission in a webmaster panel) resolves instead of 404ing.
+const sitemapCleanup = () => ({
+  name: 'sitemap-cleanup',
+  hooks: {
+    'astro:build:done': async ({ dir }) => {
+      const { fileURLToPath } = await import('node:url');
+      const fs = await import('node:fs/promises');
+      const path = await import('node:path');
+      const out = fileURLToPath(dir);
+      const file = path.join(out, 'sitemap-0.xml');
+      let xml = await fs.readFile(file, 'utf8');
+      xml = xml
+        .replace(/<xhtml:link\b[^>]*\/>/g, '')
+        .replace(/ xmlns:(?:news|xhtml|image|video)="[^"]*"/g, '');
+      await fs.writeFile(file, xml);
+      await fs.copyFile(path.join(out, 'sitemap-index.xml'), path.join(out, 'sitemap.xml'));
+      console.log('[sitemap-cleanup] stripped xhtml:link alternates; wrote /sitemap.xml alias');
+    },
+  },
+});
+
 export default defineConfig({
   site: 'https://minimalniy-deposit.github.io',
   output: 'static',
@@ -49,5 +77,6 @@ export default defineConfig({
         return item;
       },
     }),
+    sitemapCleanup(),
   ],
 });

@@ -3,8 +3,7 @@ Allow: /
 
 User-agent: Yandex
 Allow: /
-Clean-param: *
-Noarchive: /
+Clean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term&yclid&ysclid&gclid&etext&from
 
 User-agent: YandexImages
 Disallow: /
