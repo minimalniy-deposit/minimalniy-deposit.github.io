@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import icon from 'astro-icon';
 import site from './src/data/site.json' with { type: 'json' };
 import slots from './src/data/slots.json' with { type: 'json' };
 
@@ -34,7 +35,9 @@ export default defineConfig({
     routing: { prefixDefaultLocale: false },
   },
   integrations: [
+    icon({ include: { tabler: ['clock-bolt', 'shield-check', 'coin', 'bolt', 'qrcode', 'credit-card', 'wallet', 'calculator', 'database', 'history', 'chart-line', 'scale', 'list-check', 'trophy', 'arrow-down-circle', 'building-bank', 'gift', 'percentage', 'dice-5', 'device-mobile', 'external-link', 'check', 'alert-triangle', 'archive'] } }),
     sitemap({
+      filter: (page) => !page.includes('/preview/'),
       i18n: { defaultLocale: 'ru', locales: { ru: 'ru', en: 'en' } },
       serialize(item) {
         const u = new URL(item.url);

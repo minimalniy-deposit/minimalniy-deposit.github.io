@@ -16,7 +16,7 @@ orph = [l for l in r.stdout.splitlines() if re.search(r'\s[1-9]\d*$', l) and not
 for l in r.stdout.splitlines()[1:]:
     if not l.strip() or l.startswith('broken'): break
     parts = l.split()
-    if len(parts) == 5 and parts[4] != '0': fail.append(f'orphan pages in {parts[0]}: {parts[4]}')
+    if len(parts) == 5 and parts[4] != '0' and parts[0] != 'preview': fail.append(f'orphan pages in {parts[0]}: {parts[4]}')  # /preview/ is an unlinked design draft
 # 3. data
 r = subprocess.run(['node', 'scripts/check-data.mjs'], capture_output=True, text=True)
 if 'incomplete' in r.stdout: fail.append('casinos.json incomplete: ' + r.stdout.strip().splitlines()[0])
