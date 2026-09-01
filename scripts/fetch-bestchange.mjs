@@ -32,7 +32,7 @@ const toIds = findIds(/Tether\s*TRC.?20|USDT\s*TRC/i);
 console.log('from ids', fromIds.map((i) => cy[i]), '| to ids', toIds.map((i) => cy[i]));
 
 const rows = rates.filter((r) => fromIds.includes(r[0]) && toIds.includes(r[1]))
-  .map((r) => ({ from: cy[r[0]], exchanger: ex[r[2]] ?? r[2], give: +r[3], get: +r[4], reviews: parseInt(String(r[6]).split('.')[0]) || 0, minSum: +r[7] || 0, maxSum: +r[8] || 0 }))
+  .map((r) => ({ from: cy[r[0]], exchanger: ex[r[2]] ?? r[2], give: +r[3], get: +r[4], reviews: 0, minSum: +r[8] || 0, maxSum: +r[9] || 0 }  // observed format: from;to;exch;give;get;reserve;?;?;minsum;maxsum))
   .filter((r) => r.give > 0 && r.get > 0)
   .map((r) => ({ ...r, rubPerUsdt: +(r.give / r.get).toFixed(2) }));
 const small = rows.filter((r) => r.minSum <= MAX_MIN_SUM).sort((a, b) => a.rubPerUsdt - b.rubPerUsdt);
@@ -45,7 +45,7 @@ const j = JSON.parse(readFileSync(out, 'utf8'));
 j.bestchange = {
   rubPerUsdt: best.rubPerUsdt, exchanger: best.exchanger, from: best.from, minSum: best.minSum,
   medianSmall: median(small.slice(0, 10)), bestAny: all[0]?.rubPerUsdt ?? null, offersSmall: small.length, offersAll: all.length,
-  maxMinSum: MAX_MIN_SUM, rawSample: rates.find((r) => fromIds.includes(r[0]) && toIds.includes(r[1]))?.slice(0, 10).join(';') ?? null, checkedAt: new Date().toISOString().slice(0, 16) + 'Z', url: 'https://www.bestchange.ru/',
+  maxMinSum: MAX_MIN_SUM, checkedAt: new Date().toISOString().slice(0, 16) + 'Z', url: 'https://www.bestchange.ru/',
 };
 if (!j.sources.includes('BestChange')) j.sources.push('BestChange');
 writeFileSync(out, JSON.stringify(j, null, 2) + '\n');
