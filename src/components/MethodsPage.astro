@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import site from '../data/site.json';
 import methods from '../data/methods.json';
 import limits from '../data/payment-limits.json';
-import { rates, hasRates, toUsdt, rateDate, spread, fmtRub } from '../lib/rates';
+import { rates, bc, hasRates, toUsdt, rateDate, spread, fmtRub } from '../lib/rates';
 import { casinos, paymentKeys, acceptsMethod } from '../lib/casinos';
 import { useT, fmt, localePath, formatMoney, type Locale } from '../i18n';
 
@@ -77,6 +77,7 @@ const ld = {
         <p class="section-sub">{t.rates.lede}</p>
         <div class="callouts">
           <div class="callout">{t.rates.cbr}: <b>{fmtRub(rates.usd!)} ₽</b> / $ <span class="verified">({fmt(t.rates.asOf, { date: rateDate(ru) })})</span></div>
+          {bc && <div class="callout">{t.rates.bcBest}: <b>{fmtRub(bc.rubPerUsdt)} ₽</b> / USDT <span class="verified">({fmt(t.rates.bcNote, { min: bc.maxMinSum.toLocaleString('ru-RU'), n: bc.offersSmall })})</span></div>}
           <div class="callout">{t.rates.market}: <b>{fmtRub(rates.usdt!)} ₽</b></div>
           <div class="callout">{t.rates.btc}: <b>{fmtRub(rates.btc!)} ₽</b></div>
           {bestCashier && <div class="callout">{t.rates.bestSpread}: <b><a href={localePath(locale, `/casino/${bestCashier.slug}/`)}>{bestCashier.name}</a></b> — +{spread(bestCashier.cashierUsdtRate)}%</div>}
@@ -95,7 +96,7 @@ const ld = {
               </tr>))}</tbody>
           </table>
         </div>
-        <p class="section-sub" style="margin-top:10px">{t.rates.note} {fmt(t.rates.sources, { s: rates.sources.join(', ') })}</p>
+        <p class="section-sub" style="margin-top:10px">{t.rates.note} {fmt(t.rates.sources, { s: rates.sources.join(', ') })}{bc && <> · {t.rates.bcAttr} <a href={bc.url} rel="noopener" target="_blank">BestChange.ru</a></>}</p>
       </section>
     )}
 

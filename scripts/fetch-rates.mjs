@@ -26,11 +26,11 @@ async function market() {
 }
 
 const [c, m] = await Promise.all([cbrUsd(), market()]);
-const rates = { date: today, cbrDate: c.date, usd: c.usd, eur: c.eur, usdt: m.usdt, btc: m.btc, sources: [c.source, m.source] };
 const prev = existsSync(out) ? JSON.parse(readFileSync(out, 'utf8')) : {};
+const rates = { date: today, cbrDate: c.date, usd: c.usd, eur: c.eur, usdt: m.usdt, btc: m.btc, sources: [c.source, m.source, ...(prev.bestchange ? ['BestChange'] : [])], bestchange: prev.bestchange ?? null };
 if (prev.date === today && prev.usd === rates.usd && prev.usdt === rates.usdt) { console.log('rates unchanged today'); process.exit(0); }
 writeFileSync(out, JSON.stringify(rates, null, 2) + '\n');
-const line = JSON.stringify({ date: today, usd: c.usd, usdt: m.usdt, btc: m.btc });
+const line = JSON.stringify({ date: today, usd: c.usd, usdt: m.usdt, btc: m.btc, bestchange: prev.bestchange?.rubPerUsdt ?? null });
 const lines = existsSync(hist) ? readFileSync(hist, 'utf8').trim().split('\n').filter(Boolean) : [];
 if (!lines.some((l) => l.startsWith(`{"date":"${today}"`))) appendFileSync(hist, line + '\n');
 console.log('rates ->', rates);

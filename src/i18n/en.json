@@ -148,18 +148,21 @@
   "rates": {
     "line": "≈ {usdt} USDT at the {date} rate",
     "cbr": "Bank of Russia rate",
-    "market": "USDT market rate",
+    "market": "USDT exchange rate",
     "btc": "BTC",
     "asOf": "as of {date}",
     "h": "Where a crypto deposit costs less",
-    "lede": "Minimum deposit in USDT at the market rate, and the rate at which each casino's cashier converts roubles. The gap between them is a hidden conversion fee.",
+    "lede": "Minimum deposit in USDT at the best small-sum exchanger rate from BestChange — and the rate at which each casino's cashier converts roubles. The gap between them is a hidden conversion fee.",
     "colMin": "Min. deposit",
-    "colUsdt": "in USDT (market)",
+    "colUsdt": "in USDT (exchanger rate)",
     "colCashier": "Cashier rate, ₽/USDT",
-    "colSpread": "Markup vs market",
+    "colSpread": "Markup vs exchanger",
     "pending": "checked on Mondays",
     "note": "The cashier rate is recorded by hand during the weekly check — before confirming a payment, without depositing. Until recorded, the cell shows a dash.",
     "bestSpread": "Lowest markup",
-    "sources": "Sources: {s}"
+    "sources": "Sources: {s}",
+    "bcBest": "Exchangers (BestChange)",
+    "bcNote": "best rate among exchangers accepting {min} ₽ or less; {n} offers",
+    "bcAttr": "Exchanger rates by"
   }
 }
