@@ -3,8 +3,8 @@
   "cbrDate": "2026-09-01",
   "usd": 86.3793,
   "eur": 100.5714,
-  "usdt": 86.41,
-  "btc": 6779456,
+  "usdt": 86.77,
+  "btc": 6776564,
   "sources": [
     "ЦБ РФ (cbr-xml-daily.ru)",
     "CoinGecko",
@@ -17,10 +17,10 @@
     "minSum": 1300.95,
     "medianSmall": 89.49,
     "bestAny": 86.82,
-    "offersSmall": 218,
-    "offersAll": 1056,
+    "offersSmall": 222,
+    "offersAll": 1070,
     "maxMinSum": 3000,
-    "checkedAt": "2026-09-01T08:11Z",
+    "checkedAt": "2026-09-01T11:38Z",
     "url": "https://www.bestchange.ru/"
   }
 }
