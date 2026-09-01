@@ -9,6 +9,13 @@ export interface Casino {
   withdrawMin: number | null; license: string; reviews: number | null;
   bonusEn: string | null; badgesEn: string[]; ctaLinesEn: string[]; promoCode: string | null;
   rtp: number | null; licenseFull: string | null; licenseShort: string | null; wager: number | null; cashback: number | null; features: string[]; d8cats: string[]; cashierUsdtRate: number | null; urlBackup?: string | null;
+  /** Checked by hand on Mondays; null = not verified yet (pages say so instead of assuming). */
+  minBetStarburst: number | null;   // ₽, minimum bet in Starburst at this cashier
+  minBetGates: number | null;       // ₽, minimum bet in Gates of Olympus
+  bonusMinDeposit: number | null;   // ₽, minimum deposit that activates the welcome bonus
+  maxBetWagering: number | null;    // ₽, max bet allowed while wagering
+  wagerDays: number | null;         // days to complete wagering
+  withdrawMinAmount: number | null; // ₽, minimum withdrawal
 }
 export const casinos: Casino[] = ([...data] as Casino[]).sort((a, b) => a.rank - b.rank);
 export const bySlug = (slug: string) => casinos.find((c) => c.slug === slug);

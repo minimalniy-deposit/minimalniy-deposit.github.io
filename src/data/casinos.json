@@ -84,7 +84,13 @@
       "live",
       "reload"
     ],
-    "cashierUsdtRate": null
+    "cashierUsdtRate": null,
+    "minBetStarburst": null,
+    "minBetGates": null,
+    "bonusMinDeposit": null,
+    "maxBetWagering": null,
+    "wagerDays": null,
+    "withdrawMinAmount": null
   },
   {
     "slug": "norm",
@@ -174,7 +180,13 @@
       "noverif"
     ],
     "cashierUsdtRate": null,
-    "urlBackup": "https://dashplay37.com/?serial=61360323&creative_id=7675&anid=%7Byour_click%7D_sub2_sub3_sub4_sub5"
+    "urlBackup": "https://dashplay37.com/?serial=61360323&creative_id=7675&anid=%7Byour_click%7D_sub2_sub3_sub4_sub5",
+    "minBetStarburst": null,
+    "minBetGates": null,
+    "bonusMinDeposit": null,
+    "maxBetWagering": null,
+    "wagerDays": null,
+    "withdrawMinAmount": null
   },
   {
     "slug": "7k",
@@ -211,7 +223,7 @@
       }
     ],
     "bonus": "Бонус: 200% на первый депозит + 500 фриспинов на Gates of Olympus — пополнение от 100 ₽ через СБП, вывод за 10 минут",
-    "url": "https://myslotdice.com/l/6a7373ab7da48e79330338a2?sub_id=minimalniy-deposit",
+    "url": "https://7k-casino.ru",
     "ctaLines": [
       "Мин. депозит: 100 ₽",
       "Вывод за 10 мин"
@@ -255,93 +267,18 @@
       "live",
       "new2026"
     ],
-    "cashierUsdtRate": null
-  },
-  {
-    "slug": "spinto",
-    "name": "Spinto Casino",
-    "rank": 4,
-    "top": false,
-    "gold": false,
-    "minDeposit": 50,
-    "rating": 9.8,
-    "stars": "★★★★★",
-    "ratingCnt": "/ 10.0 · 4 210 отзывов",
-    "badges": [
-      {
-        "cls": "badge-hot",
-        "text": "БЫСТРЫЙ ВЫВОД"
-      }
-    ],
-    "pills": [
-      {
-        "cls": "dep",
-        "text": "от 50 ₽"
-      },
-      {
-        "cls": "fast",
-        "text": "вывод от 20 мин"
-      },
-      {
-        "cls": "",
-        "text": "Карта · СБП · USDT · BTC"
-      },
-      {
-        "cls": "",
-        "text": "Лицензия Кюрасао"
-      }
-    ],
-    "bonus": "Бонус: 200% на первый депозит + 150 фриспинов — депозит от 50 ₽, вывод в USDT за 20 минут",
-    "url": "https://myslotdice.com/l/6a78ad0c4f78c2c48004d7f2?sub_id=minimalniy-deposit",
-    "ctaLines": [
-      "Мин. депозит: 50 ₽",
-      "Вывод за 20 мин"
-    ],
-    "promo": null,
-    "payments": [
-      "card",
-      "sbp",
-      "usdt",
-      "btc"
-    ],
-    "paymentsLabel": "Карта · СБП · USDT · BTC",
-    "paymentsLabelEn": "Card · SBP · USDT · BTC",
-    "withdrawMin": 20,
-    "license": "Кюрасао",
-    "reviews": 4210,
-    "bonusEn": "Bonus: 200% on first deposit + 150 free spins — deposit from 50 ₽, withdrawal in USDT in 20 minutes",
-    "badgesEn": [
-      "FAST PAYOUTS"
-    ],
-    "ctaLinesEn": [
-      "Min. deposit: 50 ₽",
-      "Withdrawal in 20 min"
-    ],
-    "promoCode": null,
-    "rtp": 96.8,
-    "licenseFull": "Лицензия Curacao eGaming #1668/JAZ",
-    "licenseShort": "Curacao #1668/JAZ",
-    "wager": 30,
-    "cashback": null,
-    "features": [
-      "Вывод в USDT",
-      "Быстрые выплаты",
-      "Nolimit City · Hacksaw",
-      "Депозит от 50 ₽",
-      "Live 24/7"
-    ],
-    "d8cats": [
-      "all",
-      "fast-payout",
-      "live",
-      "new2026"
-    ],
-    "cashierUsdtRate": null
+    "cashierUsdtRate": null,
+    "minBetStarburst": null,
+    "minBetGates": null,
+    "bonusMinDeposit": null,
+    "maxBetWagering": null,
+    "wagerDays": null,
+    "withdrawMinAmount": null
   },
   {
     "slug": "fugu",
     "name": "Fugu Casino",
-    "rank": 5,
+    "rank": 4,
     "top": false,
     "gold": false,
     "minDeposit": 500,
@@ -405,12 +342,18 @@
     "cashback": null,
     "features": [],
     "d8cats": [],
-    "cashierUsdtRate": null
+    "cashierUsdtRate": null,
+    "minBetStarburst": null,
+    "minBetGates": null,
+    "bonusMinDeposit": null,
+    "maxBetWagering": null,
+    "wagerDays": null,
+    "withdrawMinAmount": null
   },
   {
     "slug": "melbet",
     "name": "MelBet Casino",
-    "rank": 6,
+    "rank": 5,
     "top": false,
     "gold": false,
     "minDeposit": 500,
@@ -472,12 +415,18 @@
     "cashback": null,
     "features": [],
     "d8cats": [],
-    "cashierUsdtRate": null
+    "cashierUsdtRate": null,
+    "minBetStarburst": null,
+    "minBetGates": null,
+    "bonusMinDeposit": null,
+    "maxBetWagering": null,
+    "wagerDays": null,
+    "withdrawMinAmount": null
   },
   {
     "slug": "jetton",
     "name": "Jetton Casino",
-    "rank": 7,
+    "rank": 6,
     "top": false,
     "gold": false,
     "minDeposit": 100,
@@ -541,12 +490,18 @@
     "cashback": null,
     "features": [],
     "d8cats": [],
-    "cashierUsdtRate": null
+    "cashierUsdtRate": null,
+    "minBetStarburst": null,
+    "minBetGates": null,
+    "bonusMinDeposit": null,
+    "maxBetWagering": null,
+    "wagerDays": null,
+    "withdrawMinAmount": null
   },
   {
     "slug": "dragon",
     "name": "Dragon Casino",
-    "rank": 8,
+    "rank": 7,
     "top": false,
     "gold": false,
     "minDeposit": 100,
@@ -610,12 +565,18 @@
     "cashback": 15,
     "features": [],
     "d8cats": [],
-    "cashierUsdtRate": null
+    "cashierUsdtRate": null,
+    "minBetStarburst": null,
+    "minBetGates": null,
+    "bonusMinDeposit": null,
+    "maxBetWagering": null,
+    "wagerDays": null,
+    "withdrawMinAmount": null
   },
   {
     "slug": "gizbo",
     "name": "Gizbo Casino",
-    "rank": 9,
+    "rank": 8,
     "top": false,
     "gold": false,
     "minDeposit": 500,
@@ -687,12 +648,18 @@
       "crypto",
       "fast-payout"
     ],
-    "cashierUsdtRate": null
+    "cashierUsdtRate": null,
+    "minBetStarburst": null,
+    "minBetGates": null,
+    "bonusMinDeposit": null,
+    "maxBetWagering": null,
+    "wagerDays": null,
+    "withdrawMinAmount": null
   },
   {
     "slug": "spinbetter",
     "name": "SpinBetter",
-    "rank": 10,
+    "rank": 9,
     "top": false,
     "gold": false,
     "minDeposit": 500,
@@ -755,12 +722,18 @@
     "cashback": null,
     "features": [],
     "d8cats": [],
-    "cashierUsdtRate": null
+    "cashierUsdtRate": null,
+    "minBetStarburst": null,
+    "minBetGates": null,
+    "bonusMinDeposit": null,
+    "maxBetWagering": null,
+    "wagerDays": null,
+    "withdrawMinAmount": null
   },
   {
     "slug": "twin",
     "name": "Twin Casino",
-    "rank": 11,
+    "rank": 10,
     "top": false,
     "gold": false,
     "minDeposit": 500,
@@ -817,12 +790,18 @@
     "cashback": null,
     "features": [],
     "d8cats": [],
-    "cashierUsdtRate": null
+    "cashierUsdtRate": null,
+    "minBetStarburst": null,
+    "minBetGates": null,
+    "bonusMinDeposit": null,
+    "maxBetWagering": null,
+    "wagerDays": null,
+    "withdrawMinAmount": null
   },
   {
     "slug": "slott",
     "name": "Slott Casino",
-    "rank": 12,
+    "rank": 11,
     "top": false,
     "gold": false,
     "minDeposit": 500,
@@ -886,12 +865,18 @@
     "cashback": null,
     "features": [],
     "d8cats": [],
-    "cashierUsdtRate": null
+    "cashierUsdtRate": null,
+    "minBetStarburst": null,
+    "minBetGates": null,
+    "bonusMinDeposit": null,
+    "maxBetWagering": null,
+    "wagerDays": null,
+    "withdrawMinAmount": null
   },
   {
     "slug": "flagman",
     "name": "Flagman Casino",
-    "rank": 13,
+    "rank": 12,
     "top": false,
     "gold": false,
     "minDeposit": 1000,
@@ -957,6 +942,12 @@
       "crypto",
       "noverif"
     ],
-    "cashierUsdtRate": null
+    "cashierUsdtRate": null,
+    "minBetStarburst": null,
+    "minBetGates": null,
+    "bonusMinDeposit": null,
+    "maxBetWagering": null,
+    "wagerDays": null,
+    "withdrawMinAmount": null
   }
 ]

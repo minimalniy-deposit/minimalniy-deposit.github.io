@@ -8,3 +8,5 @@ for (const x of c) {
   if (missing.length) { bad++; console.log(`#${x.rank} ${x.name}: missing ${missing.join(', ')}`); }
 }
 console.log(bad ? `${bad} casino(s) incomplete` : 'all casinos complete');
+const monday = ['minBetStarburst', 'minBetGates', 'bonusMinDeposit', 'maxBetWagering', 'wagerDays', 'withdrawMinAmount', 'cashierUsdtRate'];
+for (const k of monday) { const n = c.filter((x) => x[k] == null).length; if (n) console.log(`monday field ${k}: ${n} of ${c.length} not verified`); }

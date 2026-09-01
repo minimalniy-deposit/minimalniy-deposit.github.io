@@ -6,7 +6,13 @@
   "rtp",
   "rating",
   "cashback",
-  "cashierUsdtRate"
+  "cashierUsdtRate",
+  "minBetStarburst",
+  "minBetGates",
+  "bonusMinDeposit",
+  "maxBetWagering",
+  "wagerDays",
+  "withdrawMinAmount"
  ],
  "lastChecked": "2026-08-31",
  "entries": [
