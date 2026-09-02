@@ -46,8 +46,28 @@ const sitemapCleanup = () => ({
         .replace(/<xhtml:link\b[^>]*\/>/g, '')
         .replace(/ xmlns:(?:news|xhtml|image|video)="[^"]*"/g, '');
       await fs.writeFile(file, xml);
-      await fs.copyFile(path.join(out, 'sitemap-index.xml'), path.join(out, 'sitemap.xml'));
-      console.log('[sitemap-cleanup] stripped xhtml:link alternates; wrote /sitemap.xml alias');
+      // Segment the sitemap so webmaster panels report indexing per section:
+      // staged indexing needs per-segment stats (core first, slots in waves).
+      const head = xml.slice(0, xml.indexOf('<url>'));
+      const urls = xml.match(/<url>.*?<\/url>/gs) ?? [];
+      const seg = { 'core-ru': [], 'core-en': [], 'slots-ru': [], 'slots-en': [] };
+      for (const u of urls) {
+        const en = u.includes('/en/');
+        const slot = u.includes('/slots/');
+        seg[`${slot ? 'slots' : 'core'}-${en ? 'en' : 'ru'}`].push(u);
+      }
+      const site = 'https://minimalniy-deposit.github.io';
+      const today = new Date().toISOString().slice(0, 10);
+      for (const [name, list] of Object.entries(seg)) {
+        await fs.writeFile(path.join(out, `sitemap-${name}.xml`), head + list.join('') + '</urlset>');
+      }
+      const index = `<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">` +
+        Object.keys(seg).map((n) => `<sitemap><loc>${site}/sitemap-${n}.xml</loc><lastmod>${today}</lastmod></sitemap>`).join('') +
+        `</sitemapindex>`;
+      await fs.writeFile(path.join(out, 'sitemap-index.xml'), index);
+      await fs.writeFile(path.join(out, 'sitemap.xml'), index);
+      await fs.rm(path.join(out, 'sitemap-0.xml'));
+      console.log('[sitemap-cleanup] segments:', Object.entries(seg).map(([k, v]) => `${k}=${v.length}`).join(' '));
     },
   },
 });
