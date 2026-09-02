@@ -12,9 +12,13 @@
 }
 .theme-glass .tab { font-variant-numeric: tabular-nums; }
 /* page backdrop: the frame, blurred, behind everything; storm sits above it */
-.theme-glass .backdrop { position: fixed; inset: -40px; z-index: -2; background: #0b0d11 url(/img/hero-bg.webp) center/cover no-repeat; filter: blur(28px) saturate(1.1) brightness(.5); }
-.theme-glass .backdrop::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 55% at 50% 50%, rgba(11,13,17,.62), transparent 72%); }
+.theme-glass .backdrop { position: fixed; inset: 0; z-index: -2; background: #0a0c10 url(/img/sky.webp) center/cover no-repeat; }
+.theme-glass .backdrop .sheet { display: block; position: absolute; inset: 0; background: url(/img/sky-lit.webp) center/cover no-repeat; opacity: 0; will-change: opacity; animation: g-sheet 34s linear infinite; }
+@keyframes g-sheet { 0%, 22.7% { opacity: 0; } 23% { opacity: .28; } 23.9% { opacity: 0; } 55.7% { opacity: 0; } 56% { opacity: .75; } 56.6% { opacity: .15; } 57.2% { opacity: .5; } 58.6% { opacity: 0; } 100% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .theme-glass .backdrop .sheet { animation: none; } }
+.theme-glass .backdrop::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 75% 60% at 50% 46%, rgba(11,13,17,.35), transparent 75%); }
 .theme-glass .storm { position: fixed; z-index: -1; }
+.theme-glass .storm .glow { opacity: .55; }
 
 /* header */
 .theme-glass header { position: sticky; top: 0; z-index: 40; background: rgba(12,14,19,.62); backdrop-filter: blur(16px) saturate(1.2); border-bottom: 1px solid var(--edge); }
