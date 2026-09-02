@@ -1,1 +1,286 @@
-{}
+{
+ "joycasino": {
+  "ok": true,
+  "source": "site",
+  "src": "https://joycasino.com/media/ui/joy/favicon_apple",
+  "px": 180,
+  "program": "poshfriends",
+  "fetched": "2026-09-02"
+ },
+ "norm": {
+  "ok": false,
+  "checked": "2026-09-02"
+ },
+ "7k": {
+  "ok": false,
+  "checked": "2026-09-02"
+ },
+ "fugu": {
+  "ok": true,
+  "source": "google-s2",
+  "src": "https://www.google.com/s2/favicons?domain=fugu.casino&sz=128",
+  "px": 128,
+  "program": "royalpartners",
+  "fetched": "2026-09-02"
+ },
+ "melbet": {
+  "ok": true,
+  "source": "google-s2",
+  "src": "https://www.google.com/s2/favicons?domain=melbet.com&sz=128",
+  "px": 128,
+  "program": "other",
+  "fetched": "2026-09-02"
+ },
+ "jetton": {
+  "ok": true,
+  "source": "site",
+  "src": "https://jetton.game/apple-touch-icon.png",
+  "px": 180,
+  "program": "other",
+  "fetched": "2026-09-02"
+ },
+ "dragon": {
+  "ok": false,
+  "checked": "2026-09-02"
+ },
+ "gizbo": {
+  "ok": true,
+  "source": "google-s2",
+  "src": "https://www.google.com/s2/favicons?domain=gizbo.casino&sz=128",
+  "px": 128,
+  "program": "royalpartners",
+  "fetched": "2026-09-02"
+ },
+ "spinbetter": {
+  "ok": true,
+  "source": "google-s2",
+  "src": "https://www.google.com/s2/favicons?domain=spinbetter.com&sz=128",
+  "px": 100,
+  "program": "other",
+  "fetched": "2026-09-02"
+ },
+ "twin": {
+  "ok": true,
+  "source": "site",
+  "src": "https://twin.com/favicon/favicon-192.png",
+  "px": 192,
+  "program": "other",
+  "fetched": "2026-09-02"
+ },
+ "slott": {
+  "ok": false,
+  "checked": "2026-09-02"
+ },
+ "flagman": {
+  "ok": true,
+  "source": "google-s2",
+  "src": "https://www.google.com/s2/favicons?domain=flagman.casino&sz=128",
+  "px": 128,
+  "program": "royalpartners",
+  "fetched": "2026-09-02"
+ },
+ "izzi": {
+  "ok": true,
+  "source": "duckduckgo",
+  "src": "https://icons.duckduckgo.com/ip3/izzi.casino.ico",
+  "px": 32,
+  "program": "royalpartners",
+  "fetched": "2026-09-02"
+ },
+ "rox": {
+  "ok": false,
+  "checked": "2026-09-02"
+ },
+ "fresh": {
+  "ok": true,
+  "source": "google-s2",
+  "src": "https://www.google.com/s2/favicons?domain=fresh.casino&sz=128",
+  "px": 128,
+  "program": "royalpartners",
+  "fetched": "2026-09-02"
+ },
+ "sol": {
+  "ok": true,
+  "source": "google-s2",
+  "src": "https://www.google.com/s2/favicons?domain=sol.casino&sz=128",
+  "px": 128,
+  "program": "royalpartners",
+  "fetched": "2026-09-02"
+ },
+ "jet": {
+  "ok": true,
+  "source": "google-s2",
+  "src": "https://www.google.com/s2/favicons?domain=jet.casino&sz=128",
+  "px": 128,
+  "program": "royalpartners",
+  "fetched": "2026-09-02"
+ },
+ "starda": {
+  "ok": true,
+  "source": "google-s2",
+  "src": "https://www.google.com/s2/favicons?domain=starda.casino&sz=128",
+  "px": 128,
+  "program": "royalpartners",
+  "fetched": "2026-09-02"
+ },
+ "legzo": {
+  "ok": true,
+  "source": "google-s2",
+  "src": "https://www.google.com/s2/favicons?domain=legzo.casino&sz=128",
+  "px": 128,
+  "program": "royalpartners",
+  "fetched": "2026-09-02"
+ },
+ "volna": {
+  "ok": true,
+  "source": "duckduckgo",
+  "src": "https://icons.duckduckgo.com/ip3/volna.casino.ico",
+  "px": 32,
+  "program": "royalpartners",
+  "fetched": "2026-09-02"
+ },
+ "drip": {
+  "ok": true,
+  "source": "google-s2",
+  "src": "https://www.google.com/s2/favicons?domain=drip.casino&sz=128",
+  "px": 128,
+  "program": "royalpartners",
+  "fetched": "2026-09-02"
+ },
+ "monro": {
+  "ok": true,
+  "source": "google-s2",
+  "src": "https://www.google.com/s2/favicons?domain=monro.casino&sz=128",
+  "px": 128,
+  "program": "royalpartners",
+  "fetched": "2026-09-02"
+ },
+ "1go": {
+  "ok": true,
+  "source": "google-s2",
+  "src": "https://www.google.com/s2/favicons?domain=1go.casino&sz=128",
+  "px": 128,
+  "program": "royalpartners",
+  "fetched": "2026-09-02"
+ },
+ "lex": {
+  "ok": true,
+  "source": "google-s2",
+  "src": "https://www.google.com/s2/favicons?domain=lex.casino&sz=128",
+  "px": 128,
+  "program": "royalpartners",
+  "fetched": "2026-09-02"
+ },
+ "irwin": {
+  "ok": true,
+  "source": "google-s2",
+  "src": "https://www.google.com/s2/favicons?domain=irwin.casino&sz=128",
+  "px": 128,
+  "program": "royalpartners",
+  "fetched": "2026-09-02"
+ },
+ "martin": {
+  "ok": true,
+  "source": "google-s2",
+  "src": "https://www.google.com/s2/favicons?domain=martin.casino&sz=128",
+  "px": 128,
+  "program": "royalpartners",
+  "fetched": "2026-09-02"
+ },
+ "beef": {
+  "ok": true,
+  "source": "google-s2",
+  "src": "https://www.google.com/s2/favicons?domain=beef.casino&sz=128",
+  "px": 128,
+  "program": "royalpartners",
+  "fetched": "2026-09-02"
+ },
+ "casino-x": {
+  "ok": true,
+  "source": "google-s2",
+  "src": "https://www.google.com/s2/favicons?domain=casino-x.com&sz=128",
+  "px": 128,
+  "program": "poshfriends",
+  "fetched": "2026-09-02"
+ },
+ "ramenbet": {
+  "ok": true,
+  "source": "google-s2",
+  "src": "https://www.google.com/s2/favicons?domain=ramenbet.com&sz=128",
+  "px": 128,
+  "program": "poshfriends",
+  "fetched": "2026-09-02"
+ },
+ "vavada": {
+  "ok": true,
+  "source": "google-s2",
+  "src": "https://www.google.com/s2/favicons?domain=vavada.com&sz=128",
+  "px": 35,
+  "program": "other",
+  "fetched": "2026-09-02"
+ },
+ "1win": {
+  "ok": true,
+  "source": "site",
+  "src": "https://1win.com/resources/v1/plain/favicons/android-chrome-512x512-v3.png",
+  "px": 512,
+  "program": "other",
+  "fetched": "2026-09-02"
+ },
+ "pinup": {
+  "ok": true,
+  "source": "google-s2",
+  "src": "https://www.google.com/s2/favicons?domain=pin-up.world&sz=128",
+  "px": 128,
+  "program": "other",
+  "fetched": "2026-09-02"
+ },
+ "mostbet": {
+  "ok": true,
+  "source": "google-s2",
+  "src": "https://www.google.com/s2/favicons?domain=mostbet.com&sz=128",
+  "px": 51,
+  "program": "other",
+  "fetched": "2026-09-02"
+ },
+ "kent": {
+  "ok": true,
+  "source": "google-s2",
+  "src": "https://www.google.com/s2/favicons?domain=kent.casino&sz=128",
+  "px": 48,
+  "program": "other",
+  "fetched": "2026-09-02"
+ },
+ "cat": {
+  "ok": false,
+  "checked": "2026-09-02"
+ },
+ "daddy": {
+  "ok": false,
+  "checked": "2026-09-02"
+ },
+ "r7": {
+  "ok": true,
+  "source": "google-s2",
+  "src": "https://www.google.com/s2/favicons?domain=r7.casino&sz=128",
+  "px": 48,
+  "program": "other",
+  "fetched": "2026-09-02"
+ },
+ "arkada": {
+  "ok": false,
+  "checked": "2026-09-02"
+ },
+ "vodka": {
+  "ok": true,
+  "source": "site",
+  "src": "https://vodka.bet/logo192.png",
+  "px": 192,
+  "program": "other",
+  "fetched": "2026-09-02"
+ },
+ "selector": {
+  "ok": false,
+  "checked": "2026-09-02"
+ }
+}
