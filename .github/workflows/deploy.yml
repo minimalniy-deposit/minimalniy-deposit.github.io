@@ -4,7 +4,7 @@ on:
     branches: [main]
   workflow_dispatch:
   workflow_run:
-    workflows: ["Weekly data check"]
+    workflows: ["Weekly data check", "Fetch brand icons", "Sync demo-slot catalog"]
     types: [completed]
 permissions:
   contents: read
