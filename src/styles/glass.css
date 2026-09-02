@@ -111,3 +111,94 @@
   .theme-glass .g-hero { padding: var(--s-6) 0 var(--s-3); }
   .theme-glass .g-bar { flex-wrap: wrap; gap: var(--s-1) var(--s-3); } .theme-glass .g-bar .sub { flex-basis: 100%; }
 }
+
+/* ===== Compat layer: the legacy content classes dressed in glass. =====
+   Raw SEO-anchored HTML blocks keep their markup; only surfaces change. */
+body.theme-glass { background: transparent; font-family: 'Golos Text Variable', 'Golos Text', system-ui, sans-serif; font-feature-settings: 'tnum' 1, 'ss01' 1; }
+.theme-glass main a { color: var(--gold2); } .theme-glass main a:hover { color: #ffe0a3; }
+.theme-glass .section-title { letter-spacing: -.01em; font-weight: 600; }
+.theme-glass .section-sub, .theme-glass .lede, .theme-glass .hero-desc, .theme-glass .intro-text { color: var(--muted); }
+
+/* hero + stats */
+.theme-glass .hero { background: transparent; }
+.theme-glass .hero-stats .stat { border-radius: var(--r-lg); border: 1px solid rgba(255,255,255,.12);
+  background: linear-gradient(115deg, rgba(111,176,255,.09), transparent 40%, rgba(240,170,60,.08)), linear-gradient(160deg, rgba(140,146,158,.15), rgba(70,75,84,.09)), rgba(16,19,25,.9);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.2), inset 0 -14px 28px rgba(0,0,0,.22); }
+.theme-glass .stat-num { color: var(--gold2); font-weight: 700; font-variant-numeric: tabular-nums; }
+.theme-glass .stat-label { color: var(--muted); }
+
+/* rating card family */
+.theme-glass .casino-card { border-radius: 16px; border: 1px solid rgba(255,255,255,.12);
+  background: linear-gradient(115deg, rgba(111,176,255,.09), transparent 36%, transparent 64%, rgba(240,170,60,.09)), linear-gradient(160deg, rgba(140,146,158,.15), rgba(70,75,84,.09)), rgba(16,19,25,.9);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.22), inset 0 -20px 40px rgba(0,0,0,.24), 0 24px 48px -36px rgba(0,0,0,.9); }
+.theme-glass .casino-card.top { border-color: rgba(240,170,60,.32); box-shadow: inset 0 1px 0 rgba(255,255,255,.22), inset 0 -20px 40px rgba(0,0,0,.24), 0 30px 60px -40px rgba(240,170,60,.35); }
+.theme-glass .card-rank { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 10px; color: var(--gold2);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.22), inset 0 -10px 20px rgba(0,0,0,.3); }
+.theme-glass .casino-card.top .card-rank { width: 52px; height: 52px; padding: 6px; border: 0; border-radius: 50%;
+  display: grid; place-items: center; color: #2c1e05; font-weight: 700;
+  background: radial-gradient(circle at 35% 30%, #f6c464, #d9922a 62%, #a8690f) content-box,
+              repeating-conic-gradient(rgba(246,196,100,.95) 0 11deg, rgba(26,20,8,.95) 11deg 22deg) border-box;
+  text-shadow: 0 1px 0 rgba(255,255,255,.45), 0 -1px 0 rgba(0,0,0,.35);
+  box-shadow: 0 8px 22px -8px rgba(240,170,60,.65), inset 0 1px 1px rgba(255,255,255,.4); }
+.theme-glass .casino-name { font-weight: 600; letter-spacing: -.01em; }
+.theme-glass .card-badge { border-radius: 999px; letter-spacing: .04em; }
+.theme-glass .badge-top { color: var(--gold); border: 1px solid rgba(240,170,60,.4); background: rgba(240,170,60,.08); }
+.theme-glass .badge-new { color: var(--blue); border: 1px solid rgba(111,176,255,.4); background: rgba(111,176,255,.08); }
+.theme-glass .badge-hot, .theme-glass .badge-promo { color: var(--red); border: 1px solid rgba(241,154,154,.4); background: rgba(241,154,154,.08); }
+.theme-glass .pill { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12); border-radius: 999px; color: #cfd5de; box-shadow: inset 0 1px 0 rgba(255,255,255,.1); }
+.theme-glass .pill.dep { color: var(--gold2); border-color: rgba(240,170,60,.35); }
+.theme-glass .stars { color: var(--gold); } .theme-glass .rating-num { color: var(--gold2); font-weight: 700; } .theme-glass .rating-cnt { color: var(--muted); }
+.theme-glass .card-bonus { color: #b9c1cc; }
+.theme-glass .card-bonus.o-ticket { margin-top: 10px; }
+.theme-glass .btn-go { background: linear-gradient(180deg, var(--gold2b, #f6c464), #d9922a); color: #1a1408; font-weight: 700; border: 0; border-radius: 10px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.45), 0 10px 26px -12px rgba(240,170,60,.7); }
+.theme-glass .btn-go:hover { filter: brightness(1.06); }
+.theme-glass .cta-min, .theme-glass .card-more { color: var(--muted); }
+.theme-glass .promo-tag { color: var(--gold2); border: 1px dashed rgba(240,170,60,.5); background: rgba(240,170,60,.07); border-radius: 8px; }
+.theme-glass .card-cta .o-gauge { width: 84px; margin: 0 auto 2px; }
+.theme-glass .card-cta .g-meta { margin-top: 6px; display: flex; justify-content: center; }
+
+/* filters */
+.theme-glass .filters { background: transparent; }
+.theme-glass .filter-btn { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12); border-radius: 999px; color: var(--muted); }
+.theme-glass .filter-btn.active, .theme-glass .filter-btn:hover { color: var(--text); background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.2); }
+.theme-glass .filters-label { color: var(--muted); }
+
+/* page chrome (crumbs, facts, boxes) */
+.theme-glass .crumbs, .theme-glass .crumbs a { color: var(--muted); }
+.theme-glass .rank-chip { border: 1px solid rgba(240,170,60,.4); background: rgba(240,170,60,.08); color: var(--gold2); border-radius: 999px; }
+.theme-glass .facts .fact { background: rgba(255,255,255,.045); border: 1px solid rgba(255,255,255,.09); border-radius: var(--r-md); }
+.theme-glass .facts dt { color: var(--muted); } .theme-glass .facts dd { font-variant-numeric: tabular-nums; }
+.theme-glass .facts dd.gold, .theme-glass .gold { color: var(--gold2); }
+.theme-glass .verified { color: var(--muted); }
+.theme-glass .bonus-box { border-radius: var(--r-lg); border: 1px solid rgba(240,170,60,.3);
+  background: linear-gradient(160deg, rgba(240,170,60,.14), rgba(240,170,60,.05)); }
+.theme-glass .promo-code { color: var(--gold2); background: rgba(240,170,60,.1); border: 1px dashed rgba(240,170,60,.5); border-radius: 6px; padding: 1px 8px; }
+.theme-glass .mentions blockquote { border-left: 2px solid rgba(240,170,60,.5); background: rgba(255,255,255,.035); border-radius: 0 var(--r-md) var(--r-md) 0; }
+.theme-glass mark { background: rgba(240,170,60,.25); color: var(--text); border-radius: 3px; }
+
+/* tables */
+.theme-glass .tbl-wrap { border-radius: var(--r-lg); border: 1px solid rgba(255,255,255,.1);
+  background: linear-gradient(160deg, rgba(140,146,158,.1), rgba(70,75,84,.06)), rgba(14,17,22,.9);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.14); }
+.theme-glass .tbl th { color: var(--muted); border-bottom: 1px solid rgba(255,255,255,.12); }
+.theme-glass .tbl td { border-bottom: 1px solid rgba(255,255,255,.06); }
+.theme-glass .tbl tr.me td { background: rgba(240,170,60,.07); }
+.theme-glass .tbl .num, .theme-glass td.num { font-variant-numeric: tabular-nums; }
+.theme-glass .ok { color: var(--green); } .theme-glass .no { color: var(--red); }
+
+/* callouts / methods / criteria / pros-cons / faq / text blocks */
+.theme-glass .callout, .theme-glass .method-card, .theme-glass .criteria-card, .theme-glass .text-block,
+.theme-glass .pros-box, .theme-glass .cons-box, .theme-glass .faq-item, .theme-glass .demo-empty {
+  border-radius: var(--r-lg); border: 1px solid rgba(255,255,255,.11);
+  background: linear-gradient(160deg, rgba(140,146,158,.12), rgba(70,75,84,.07)), rgba(16,19,25,.88);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.16), inset 0 -12px 24px rgba(0,0,0,.2); }
+.theme-glass .pros-box { border-color: rgba(127,211,165,.3); } .theme-glass .cons-box { border-color: rgba(241,154,154,.3); }
+.theme-glass .method-icon, .theme-glass .criteria-icon { color: var(--blue); }
+.theme-glass .method-speed { color: var(--gold2); }
+.theme-glass .faq-q { font-weight: 600; } .theme-glass .faq-item[open] { border-left: 2px solid var(--gold); }
+.theme-glass .faq-arrow { color: var(--gold2); }
+.theme-glass .demo-wrap { border-radius: var(--r-lg); border: 1px solid rgba(255,255,255,.14); box-shadow: 0 24px 48px -30px rgba(0,0,0,.9); }
+.theme-glass .disclaimer { color: var(--muted); border-top: 1px solid rgba(255,255,255,.08); }
+.theme-glass .pg-gauge { width: 92px; margin-left: auto; flex: none; }
+.theme-glass .box-title { color: var(--text); }

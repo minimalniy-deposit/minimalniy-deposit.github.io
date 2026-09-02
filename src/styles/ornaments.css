@@ -96,3 +96,7 @@
   .theme-glass .backdrop .sheet { background-image: url(/img/sky-lit-m.webp); }
   .theme-glass .storm .glow, .theme-glass .storm .bolt { display: none; }
 }
+
+/* brand logo chip next to a casino name */
+.g-logo { width: 28px; height: 28px; border-radius: 8px; padding: 3px; background: rgba(255,255,255,.07);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); vertical-align: -7px; margin-right: 6px; }

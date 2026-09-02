@@ -6,6 +6,7 @@ import { casinos, type Casino } from '../../../lib/casinos';
 import { lastChecked } from '../../../lib/history';
 import { rates, bc, hasRates, toUsdt, rateDate } from '../../../lib/rates';
 import { formatMoney } from '../../../i18n';
+import Reels from '../../../components/ui/Reels.astro';
 
 export function getStaticPaths() { return [100, 500, 1000].map((sum) => ({ params: { sum: String(sum) }, props: { sum } })); }
 const { sum } = Astro.props as { sum: number };
@@ -69,7 +70,8 @@ const ld = [
   <Fragment slot="head">{ld.map((x) => <script type="application/ld+json" set:html={JSON.stringify(x)} />)}</Fragment>
   <div class="container">
     <nav class="crumbs" aria-label="breadcrumb"><ol><li><a href="/en/">Home</a></li><li aria-current="page">Deposit {n(sum)} ₽</li></ol></nav>
-    <div class="page-head"><h1>{H1[sum]}</h1><p class="lede answer-first">{answer}</p></div>
+    <div class="page-head"><h1>{H1[sum]}</h1><p class="lede answer-first">{answer}</p>
+      <p class="lede" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:2px">enough for ≈ <Reels value={sum} /> <b style="color:var(--text)">spins</b> at a 1 ₽ stake — <a href="#session">exact maths below</a></p></div>
     <nav class="filters" role="group" aria-label="Deposit threshold" style="margin-bottom:24px">{SUMS.map((s) => <a class:list={['filter-btn', { active: s === sum }]} href={`/en/deposit/${s}/`} aria-current={s === sum ? 'page' : undefined}>{n(s)} ₽</a>)}<a class="filter-btn" href="/en/#rating">full rating</a></nav>
     <Toc locale="en" items={[{ id: 'casinos', label: 'Casinos' }, { id: 'session', label: 'Spins' }, { id: 'bonus', label: 'Bonus' }, { id: 'pay', label: 'How to pay' }, { id: 'rg', label: 'Risks' }, { id: 'faq', label: 'FAQ' }]} />
     <section id="casinos">

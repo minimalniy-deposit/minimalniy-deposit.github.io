@@ -1,12 +1,18 @@
 ---
 import Base from '../layouts/Base.astro';
+import Medallion from '../components/ui/Medallion.astro';
+import Reels from '../components/ui/Reels.astro';
 import { useT } from '../i18n';
 const t = useT('ru');
 ---
 <Base locale="ru" path="/404/" title={t.notFound.title} description={t.notFound.text} translated={false} noindex>
-  <div class="container" style="padding:64px 0">
-    <h1 style="font-size:2rem;font-weight:800">{t.notFound.title}</h1>
-    <p style="color:var(--muted);margin:12px 0 20px">{t.notFound.text} / Page not found.</p>
-    <a class="btn-go" href="/">{t.notFound.link}</a> &nbsp; <a class="btn-go" href="/en/">Home (EN)</a>
+  <div class="container" style="padding:72px 0;max-width:560px">
+    <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+      <Medallion n="?" />
+      <span style="font-size:1.7rem"><Reels value={404} /></span>
+      <h1 style="font-size:1.5rem;font-weight:600;margin:0">{t.notFound.title}</h1>
+    </div>
+    <p style="color:var(--muted);margin:14px 0 22px">{t.notFound.text} / Page not found. Даже барабаны иногда выпадают не той стороной.</p>
+    <a class="btn-go" href="/" style="padding:12px 18px">{t.notFound.link}</a> &nbsp; <a class="btn-go" href="/en/" style="padding:12px 18px;filter:saturate(.4)">Home (EN)</a>
   </div>
 </Base>

@@ -186,5 +186,12 @@
   "a11y": {
     "skip": "Skip to content",
     "scrollHint": "scroll the table →"
+  },
+  "orn": {
+    "spins": "enough for ≈",
+    "spinsTail": "spins at a 1 ₽ stake",
+    "market": "market",
+    "here": "here",
+    "score": "of 10"
   }
 }

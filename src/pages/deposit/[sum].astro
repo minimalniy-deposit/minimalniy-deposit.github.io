@@ -6,6 +6,7 @@ import { casinos, type Casino } from '../../lib/casinos';
 import { lastChecked } from '../../lib/history';
 import { rates, bc, hasRates, toUsdt, rateDate, fmtRub } from '../../lib/rates';
 import { formatMoney } from '../../i18n';
+import Reels from '../../components/ui/Reels.astro';
 
 export function getStaticPaths() {
   return [100, 500, 1000].map((sum) => ({ params: { sum: String(sum) }, props: { sum } }));
@@ -131,6 +132,7 @@ const ld = [
     <div class="page-head">
       <h1>{H1[sum]}</h1>
       <p class="lede answer-first">{answer}</p>
+      <p class="lede" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:2px">хватит на ≈ <Reels value={sum} /> <b style="color:var(--text)">спинов</b> при ставке 1 ₽ — <a href="#session">точные расчёты ниже</a></p>
     </div>
 
     <nav class="filters" role="group" aria-label="Порог депозита" style="margin-bottom:24px">

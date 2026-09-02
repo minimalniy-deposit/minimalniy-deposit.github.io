@@ -3,6 +3,10 @@
 import { useT, localePath, formatMoney, type Locale } from '../i18n';
 import type { Casino } from '../lib/casinos';
 import { hasRates, toUsdt, rateDate } from '../lib/rates';
+import site from '../data/site.json';
+import brandIcons from '../../public/brands/manifest.json';
+import Stamp from './ui/Stamp.astro';
+import Gauge from './ui/Gauge.astro';
 import { fmt } from '../i18n';
 interface Props { c: Casino; locale: Locale }
 const { c, locale } = Astro.props;
@@ -19,13 +23,16 @@ const ctaLines = ru ? c.ctaLines : c.ctaLinesEn;
 const bonus = ru ? c.bonus : c.bonusEn;
 const detailsHref = localePath(locale, `/casino/${c.slug}/`);
 const crypto = c.payments.some((p) => ['usdt', 'btc', 'crypto'].includes(p));
+const dd = new Date(site.lastVerified);
+const stampDate = `${String(dd.getDate()).padStart(2, '0')}.${String(dd.getMonth() + 1).padStart(2, '0')}`;
+const logo = (brandIcons as Record<string, { ok?: boolean }>)[c.slug]?.ok ? `/brands/${c.slug}.webp` : null;
 const usdtLine = hasRates && crypto && c.minDeposit != null ? fmt(t.rates.line, { usdt: toUsdt(c.minDeposit)!, date: rateDate(ru) }) : null;
 ---
 <div class:list={['casino-card', { top: c.top }]} data-deposit={c.minDeposit ?? undefined}>
   <div class:list={['card-rank', { 'gold-rank': c.gold }]}>{c.rank}</div>
   <div class="card-body">
     <div class="card-top-row">
-      <span class="casino-name"><a href={detailsHref} style="color:inherit">{c.name}</a></span>
+      <span class="casino-name">{logo && <img class="g-logo" src={logo} alt="" width="28" height="28" loading="lazy" />}<a href={detailsHref} style="color:inherit">{c.name}</a></span>
       {c.badges.map((b, i) => <span class:list={['card-badge', b.cls]}>{badges[i]}</span>)}
     </div>
     {c.rating != null && (
@@ -38,13 +45,15 @@ const usdtLine = hasRates && crypto && c.minDeposit != null ? fmt(t.rates.line, 
     <div class="card-pills">
       {c.pills.map((p, i) => <span class:list={['pill', p.cls]}>{pills[i]}</span>)}
     </div>
-    {bonus && <div class="card-bonus" set:html={bonus} />}
+    {bonus && <div class:list={['card-bonus', { 'o-ticket': c.top }]} set:html={bonus} />}
   </div>
   <div class="card-cta">
+    {c.top && c.rating != null && <Gauge value={c.rating} unit={t.orn.score} />}
     <a href={c.url} rel="nofollow noopener" target="_blank" class="btn-go">{t.card.play}</a>
     {ctaLines.map((l) => <span class="cta-min">{l}</span>)}
     {usdtLine && <span class="cta-min" style="color:var(--muted)">{usdtLine}</span>}
     {c.promo && <span class="promo-tag">{ru ? c.promo : `${t.card.promo}: ${c.promoCode}`}</span>}
     <a class="card-more" href={detailsHref}>{fmt(t.card.details, { name: c.name })}</a>
+    <span class="g-meta"><Stamp date={stampDate} label={t.casino.verified} tilt={-3} /></span>
   </div>
 </div>

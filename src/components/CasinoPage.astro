@@ -7,6 +7,10 @@ import { series, svgLine } from '../lib/charts';
 import GuidesGrid from './GuidesGrid.astro';
 import { hasRates, toUsdt, rateDate, spread, fmtRub } from '../lib/rates';
 import { useT, fmt, localePath, formatMoney, type Locale } from '../i18n';
+import brandIcons from '../../public/brands/manifest.json';
+import Gauge from './ui/Gauge.astro';
+import Stamp from './ui/Stamp.astro';
+import WagerBand from './ui/WagerBand.astro';
 
 import intro from '../content/home/intro.html?raw';
 import otherCasinos from '../content/home/other-casinos.html?raw';
@@ -65,6 +69,11 @@ const ld = {
   ] },
 };
 const verifiedHuman = new Date(site.lastVerified).toLocaleDateString(ru ? 'ru-RU' : 'en-GB');
+const ddv = new Date(site.lastVerified);
+const stampDate = `${String(ddv.getDate()).padStart(2, '0')}.${String(ddv.getMonth() + 1).padStart(2, '0')}`;
+const logo = (brandIcons as Record<string, { ok?: boolean }>)[c.slug]?.ok ? `/brands/${c.slug}.webp` : null;
+const wagers = casinos.map((x) => x.wager).filter((n): n is number => n != null);
+const wMin = Math.min(...wagers), wMax = Math.max(...wagers);
 ---
 <Base {locale} path={`/casino/${c.slug}/`} {title} {description}>
   <Fragment slot="head">
@@ -82,7 +91,11 @@ const verifiedHuman = new Date(site.lastVerified).toLocaleDateString(ru ? 'ru-RU
 
     <div class="page-head">
       <span class="rank-chip"><b>#{c.rank}</b> {t.casino.rankIn} {fmt(t.casino.of10, { n: casinos.length })}{c.rating != null && <> · {c.stars} {c.rating.toFixed(1)} · {c.reviews?.toLocaleString(ru ? 'ru-RU' : 'en-US')} {t.casino.reviews}</>}</span>
-      <h1>{c.name}</h1>
+      <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:6px 0 2px">
+        {logo && <img class="g-logo" style="width:44px;height:44px;border-radius:12px" src={logo} alt="" width="44" height="44" />}
+        <h1 style="margin:0">{c.name}</h1>
+        {c.rating != null && <Gauge value={c.rating} unit={t.orn.score} class="pg-gauge" />}
+      </div>
       <p class="lede">{description}</p>
     </div>
 
@@ -98,6 +111,7 @@ const verifiedHuman = new Date(site.lastVerified).toLocaleDateString(ru ? 'ru-RU
       {c.wager != null && <div class="fact"><dt><a href={g('wager')}>{t.facts2.wager}</a></dt><dd>x{c.wager}</dd></div>}
       {c.cashback != null && <div class="fact"><dt><a href={g('cashback')}>{t.facts2.cashback}</a></dt><dd>{ru ? 'до' : 'up to'} {c.cashback}%</dd></div>}
     </dl>
+    {c.wager != null && wagers.length > 1 && wMax > wMin && <div style="max-width:380px;margin:8px 0 14px"><WagerBand min={wMin} max={wMax} value={c.wager} left={`${t.orn.market} x${wMin}`} mid={`${t.orn.here} x${c.wager}`} right={`x${wMax}`} /></div>}
     {c.features.length > 0 && <div class="card-pills" style="margin:4px 0 8px">{c.features.map((f) => <span class="pill">{f}</span>)}</div>}
     {c.licenseFull && <p class="verified" style="margin:4px 0 12px">{t.facts2.licenseFull}: {c.licenseFull}</p>}
 
@@ -108,7 +122,7 @@ const verifiedHuman = new Date(site.lastVerified).toLocaleDateString(ru ? 'ru-RU
 
     <div class="cta-row">
       <a href={c.url} rel="nofollow noopener" target="_blank" class="btn-go">{fmt(t.casino.goto, { name: c.name })}</a>
-      <span class="verified">{t.casino.verified}: <time datetime={site.lastVerified}>{verifiedHuman}</time></span>
+      <span class="g-meta"><Stamp date={stampDate} label={t.casino.verified} /></span><time datetime={site.lastVerified} style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">{verifiedHuman}</time>
     </div>
 
     {mentions.length > 0 && (

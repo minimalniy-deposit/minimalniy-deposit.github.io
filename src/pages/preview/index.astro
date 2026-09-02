@@ -2,7 +2,6 @@
 /* Design polygon, "smoked glass" theme on real data: home mock + the ornament
    vocabulary projected onto every page type. Unlinked, noindex. */
 import Base from '../../layouts/Base.astro';
-import StormBg from '../../components/StormBg.astro';
 import Gauge from '../../components/ui/Gauge.astro';
 import Medallion from '../../components/ui/Medallion.astro';
 import Stamp from '../../components/ui/Stamp.astro';
@@ -14,9 +13,6 @@ import { series, svgLine } from '../../lib/charts';
 import { entries } from '../../lib/history';
 import { bySlug, vol } from '../../lib/slots';
 import brandIcons from '../../../public/brands/manifest.json';
-import '@fontsource-variable/golos-text';
-import '../../styles/glass.css';
-import '../../styles/ornaments.css';
 const top = casinos.slice(0, 5);
 const fastest = [...casinos].sort((a, b) => a.withdrawMin! - b.withdrawMin!)[0];
 const within15 = casinos.filter((c) => c.withdrawMin! <= 15).length;
@@ -28,8 +24,6 @@ const slot = bySlug('fire-in-the-hole-3-nolimit-city');
 const logo = (s: string) => (brandIcons as Record<string, { ok?: boolean }>)[s]?.ok ? `/brands/${s}.webp` : null;
 ---
 <Base locale="ru" path="/preview/" title="Превью: дымчатое стекло" description="Макет главной и проекция деталей на все разделы" translated={false} noindex theme="theme-glass">
-  <div class="backdrop" aria-hidden="true"><i class="sheet"></i></div>
-  <StormBg />
 
   <section class="g-hero"><div class="container">
     <h1>Казино с минимальным депозитом: <em>12 площадок</em>, проверенных по минутам и рублям</h1>
@@ -62,7 +56,7 @@ const logo = (s: string) => (brandIcons as Record<string, { ok?: boolean }>)[s]?
             {c.rank === 1
               ? <div class="o-ticket" style="margin-top:12px">бонус-купон: <b>200% и 200 фриспинов</b> от 100 ₽ · вейджер x35</div>
               : <p class="g-bonus" set:html={c.bonus} />}
-            {c.rank === 1 && <div style="margin-top:12px;max-width:340px"><WagerBand min={30} max={38} value={35} /></div>}
+            {c.rank === 1 && <div style="margin-top:12px;max-width:340px"><WagerBand min={30} max={38} value={35} left="рынок x30" mid="у них x35" right="x38" /></div>}
           </div>
           <div class="g-cta">
             {c.rank === 1 && <Gauge value={Number(c.rating) || 9.6} class="cta-gauge" />}
@@ -108,7 +102,7 @@ const logo = (s: string) => (brandIcons as Record<string, { ok?: boolean }>)[s]?
         </div>
         <Gauge value={Number(c1.rating) || 9.6} />
       </div>
-      <div style="margin-top:var(--s-4);max-width:360px"><WagerBand min={30} max={38} value={35} /></div>
+      <div style="margin-top:var(--s-4);max-width:360px"><WagerBand min={30} max={38} value={35} left="рынок x30" mid="у них x35" right="x38" /></div>
       <div class="o-pipdiv" style="margin:var(--s-4) 0" aria-hidden="true"><span class="ln"></span><span class="pips"><b></b><b></b><b></b><b></b></span><span class="ln"></span></div>
       <p class="o-spec" style="margin-bottom:var(--s-2)">история изменений</p>
       <div class="o-ledger">
@@ -166,7 +160,6 @@ const logo = (s: string) => (brandIcons as Record<string, { ok?: boolean }>)[s]?
   <style>
     .g-cta .o-gauge.cta-gauge { justify-self: center; width: 84px; margin-bottom: 2px; }
     .g-meta .o-stamp { transform: rotate(-3deg) scale(.92); }
-    .g-logo { width: 28px; height: 28px; border-radius: 8px; padding: 3px; background: rgba(255,255,255,.07); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); vertical-align: -7px; margin-right: 2px; }
     @media (max-width: 719px) { .g-cta .o-gauge.cta-gauge { grid-column: 1 / -1; } }
   </style>
   <script>
