@@ -13,6 +13,7 @@ import { casinos } from '../../lib/casinos';
 import { series, svgLine } from '../../lib/charts';
 import { entries } from '../../lib/history';
 import { bySlug, vol } from '../../lib/slots';
+import brandIcons from '../../../public/brands/manifest.json';
 import '@fontsource-variable/golos-text';
 import '../../styles/glass.css';
 import '../../styles/ornaments.css';
@@ -24,6 +25,7 @@ const spark = svgLine(series('joycasino', 'withdrawMin'), { unit: ' мин', inv
 const isCrypto = (c: (typeof casinos)[number]) => c.payments.some((p) => ['usdt', 'btc', 'crypto'].includes(p));
 const c1 = top[0];
 const slot = bySlug('fire-in-the-hole-3-nolimit-city');
+const logo = (s: string) => (brandIcons as Record<string, { ok?: boolean }>)[s]?.ok ? `/brands/${s}.webp` : null;
 ---
 <Base locale="ru" path="/preview/" title="Превью: дымчатое стекло" description="Макет главной и проекция деталей на все разделы" translated={false} noindex theme="theme-glass">
   <div class="backdrop" aria-hidden="true"><i class="sheet"></i></div>
@@ -49,7 +51,7 @@ const slot = bySlug('fire-in-the-hole-3-nolimit-city');
         <article class:list={['pane', 'g-card', { top: c.rank === 1 }]}>
           {c.rank === 1 ? <Medallion n={c.rank} /> : <div class="g-rank">{c.rank}</div>}
           <div>
-            <div class="g-name">{c.name}{c.rank === 1 && <span class="g-tag">выбор №1</span>}</div>
+            <div class="g-name">{logo(c.slug) && <img class="g-logo" src={logo(c.slug)} alt="" width="28" height="28" loading="lazy" />}{c.name}{c.rank === 1 && <span class="g-tag">выбор №1</span>}</div>
             <div class="g-facts">
               <div class="g-fact warm"><Icon name="tabler:coin" />депозит от <b class="tab">{n(c.minDeposit!)} ₽</b></div>
               <div class="g-fact"><Icon name="tabler:clock-bolt" />вывод <b class="tab">от {c.withdrawMin} мин</b></div>
@@ -101,7 +103,7 @@ const slot = bySlug('fire-in-the-hole-3-nolimit-city');
       <div style="display:flex;align-items:center;gap:var(--s-4);flex-wrap:wrap">
         <Medallion n={1} />
         <div style="flex:1;min-width:200px">
-          <div class="g-name" style="font-size:var(--fs-4)">{c1.name}<span class="g-tag">выбор №1</span></div>
+          <div class="g-name" style="font-size:var(--fs-4)">{logo(c1.slug) && <img class="g-logo" src={logo(c1.slug)} alt="" width="32" height="32" loading="lazy" />}{c1.name}<span class="g-tag">выбор №1</span></div>
           <p class="sub" style="margin:2px 0 0">{c1.licenseShort} · депозит от {n(c1.minDeposit!)} ₽ · вывод от {c1.withdrawMin} мин</p>
         </div>
         <Gauge value={Number(c1.rating) || 9.6} />
@@ -164,6 +166,7 @@ const slot = bySlug('fire-in-the-hole-3-nolimit-city');
   <style>
     .g-cta .o-gauge.cta-gauge { justify-self: center; width: 84px; margin-bottom: 2px; }
     .g-meta .o-stamp { transform: rotate(-3deg) scale(.92); }
+    .g-logo { width: 28px; height: 28px; border-radius: 8px; padding: 3px; background: rgba(255,255,255,.07); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); vertical-align: -7px; margin-right: 2px; }
     @media (max-width: 719px) { .g-cta .o-gauge.cta-gauge { grid-column: 1 / -1; } }
   </style>
   <script>

@@ -1,0 +1,48 @@
+{
+  "_note": "Реестр брендов для сборщика иконок (scripts/fetch-brand-icons.mjs). Логотипы используются только для идентификации брендов в обзорах; источник каждого файла фиксируется в public/brands/manifest.json. Добавить бренд = одна строка: slug, name, program, domains (кандидаты по убыванию приоритета).",
+  "brands": [
+    { "slug": "joycasino", "name": "JoyCasino", "program": "poshfriends", "active": true, "domains": ["joycasino.com"] },
+    { "slug": "norm", "name": "Norm", "program": "normaffiliates", "active": true, "domains": ["norm.casino", "normcasino.com"] },
+    { "slug": "7k", "name": "7K Casino", "program": "other", "active": true, "domains": ["7k-casino.ru", "7kcasino.com"] },
+    { "slug": "fugu", "name": "Fugu", "program": "royalpartners", "active": true, "domains": ["fugu.casino", "fugucasino.com"] },
+    { "slug": "melbet", "name": "MelBet", "program": "other", "active": true, "domains": ["melbet.com"] },
+    { "slug": "jetton", "name": "Jetton", "program": "other", "active": true, "domains": ["jetton.game", "jetton.games", "jettoncasino.com"] },
+    { "slug": "dragon", "name": "Dragon", "program": "other", "active": true, "domains": ["dragon.casino", "dragoncasino.io"] },
+    { "slug": "gizbo", "name": "Gizbo", "program": "royalpartners", "active": true, "domains": ["gizbo.casino", "gizbocasino.com"] },
+    { "slug": "spinbetter", "name": "SpinBetter", "program": "other", "active": true, "domains": ["spinbetter.com"] },
+    { "slug": "twin", "name": "Twin", "program": "other", "active": true, "domains": ["twin.com", "twincasino.com"] },
+    { "slug": "slott", "name": "Slott", "program": "other", "active": true, "domains": ["slott.casino", "slottcasino.com"] },
+    { "slug": "flagman", "name": "Flagman", "program": "royalpartners", "active": true, "domains": ["flagman.casino", "flagmancasino.com"] },
+
+    { "slug": "izzi", "name": "IZZI", "program": "royalpartners", "domains": ["izzi.casino", "izzicasino.com"] },
+    { "slug": "rox", "name": "ROX", "program": "royalpartners", "domains": ["rox.casino", "roxcasino.com"] },
+    { "slug": "fresh", "name": "Fresh", "program": "royalpartners", "domains": ["fresh.casino", "freshcasino.com"] },
+    { "slug": "sol", "name": "SOL", "program": "royalpartners", "domains": ["sol.casino", "solcasino.com"] },
+    { "slug": "jet", "name": "JET", "program": "royalpartners", "domains": ["jet.casino", "jetcasino.com"] },
+    { "slug": "starda", "name": "Starda", "program": "royalpartners", "domains": ["starda.casino", "stardacasino.com"] },
+    { "slug": "legzo", "name": "Legzo", "program": "royalpartners", "domains": ["legzo.casino", "legzocasino.com"] },
+    { "slug": "volna", "name": "Volna", "program": "royalpartners", "domains": ["volna.casino", "volnacasino.com"] },
+    { "slug": "drip", "name": "Drip", "program": "royalpartners", "domains": ["drip.casino", "dripcasino.com"] },
+    { "slug": "monro", "name": "Monro", "program": "royalpartners", "domains": ["monro.casino", "monrocasino.com"] },
+    { "slug": "1go", "name": "1GO", "program": "royalpartners", "domains": ["1go.casino", "1gocasino.com"] },
+    { "slug": "lex", "name": "LEX", "program": "royalpartners", "domains": ["lex.casino", "lexcasino.com"] },
+    { "slug": "irwin", "name": "Irwin", "program": "royalpartners", "domains": ["irwin.casino", "irwincasino.com"] },
+    { "slug": "martin", "name": "Martin", "program": "royalpartners", "domains": ["martin.casino", "martincasino.com"] },
+    { "slug": "beef", "name": "BEEF", "program": "royalpartners", "domains": ["beef.casino", "beefcasino.com"] },
+
+    { "slug": "casino-x", "name": "Casino-X", "program": "poshfriends", "domains": ["casino-x.com"] },
+    { "slug": "ramenbet", "name": "RamenBet", "program": "poshfriends", "domains": ["ramenbet.com", "ramenbet.net"] },
+
+    { "slug": "vavada", "name": "Vavada", "program": "other", "domains": ["vavada.com"] },
+    { "slug": "1win", "name": "1win", "program": "other", "domains": ["1win.pro", "1win.com"] },
+    { "slug": "pinup", "name": "Pin-Up", "program": "other", "domains": ["pin-up.world", "pin-up.ru"] },
+    { "slug": "mostbet", "name": "Mostbet", "program": "other", "domains": ["mostbet.com"] },
+    { "slug": "kent", "name": "Kent", "program": "other", "domains": ["kent.casino", "kentcasino.com"] },
+    { "slug": "cat", "name": "Cat", "program": "other", "domains": ["cat.casino", "catcasino.com"] },
+    { "slug": "daddy", "name": "Daddy", "program": "other", "domains": ["daddy.casino", "daddycasino.com"] },
+    { "slug": "r7", "name": "R7", "program": "other", "domains": ["r7.casino", "r7casino.com"] },
+    { "slug": "arkada", "name": "Arkada", "program": "other", "domains": ["arkada.casino", "arkadacasino.com"] },
+    { "slug": "vodka", "name": "Vodka", "program": "other", "domains": ["vodka.bet", "vodka.casino"] },
+    { "slug": "selector", "name": "Selector", "program": "other", "domains": ["selector.casino", "selectorcasino.com"] }
+  ]
+}
