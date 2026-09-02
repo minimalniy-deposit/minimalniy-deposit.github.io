@@ -12,8 +12,12 @@
   "checked": "2026-09-02"
  },
  "7k": {
-  "ok": false,
-  "checked": "2026-09-02"
+  "ok": true,
+  "source": "site",
+  "src": "https://casino7k.com/favicon.ico",
+  "px": 142,
+  "program": "other",
+  "fetched": "2026-09-02"
  },
  "fugu": {
   "ok": true,
@@ -40,8 +44,12 @@
   "fetched": "2026-09-02"
  },
  "dragon": {
-  "ok": false,
-  "checked": "2026-09-02"
+  "ok": true,
+  "source": "google-s2",
+  "src": "https://www.google.com/s2/favicons?domain=dragonmoney.com&sz=128",
+  "px": 128,
+  "program": "other",
+  "fetched": "2026-09-02"
  },
  "gizbo": {
   "ok": true,
@@ -68,8 +76,12 @@
   "fetched": "2026-09-02"
  },
  "slott": {
-  "ok": false,
-  "checked": "2026-09-02"
+  "ok": true,
+  "source": "site",
+  "src": "https://slottcasino.io/apple-touch-icon.png",
+  "px": 180,
+  "program": "other",
+  "fetched": "2026-09-02"
  },
  "flagman": {
   "ok": true,
@@ -252,12 +264,20 @@
   "fetched": "2026-09-02"
  },
  "cat": {
-  "ok": false,
-  "checked": "2026-09-02"
+  "ok": true,
+  "source": "google-s2",
+  "src": "https://www.google.com/s2/favicons?domain=cat-casino.com&sz=128",
+  "px": 128,
+  "program": "other",
+  "fetched": "2026-09-02"
  },
  "daddy": {
-  "ok": false,
-  "checked": "2026-09-02"
+  "ok": true,
+  "source": "site",
+  "src": "https://daddycasino.io/templates/daddycasino/img/favicons/apple-touch-icon-79f274bfee955ec912df3c46524628f817bacc6f.png",
+  "px": 180,
+  "program": "other",
+  "fetched": "2026-09-02"
  },
  "r7": {
   "ok": true,
@@ -268,8 +288,12 @@
   "fetched": "2026-09-02"
  },
  "arkada": {
-  "ok": false,
-  "checked": "2026-09-02"
+  "ok": true,
+  "source": "google-s2",
+  "src": "https://www.google.com/s2/favicons?domain=arkada.io&sz=128",
+  "px": 128,
+  "program": "other",
+  "fetched": "2026-09-02"
  },
  "vodka": {
   "ok": true,
@@ -280,7 +304,11 @@
   "fetched": "2026-09-02"
  },
  "selector": {
-  "ok": false,
-  "checked": "2026-09-02"
+  "ok": true,
+  "source": "site",
+  "src": "https://selectorcasino.io/templates/selectorcasino/img/favicons/favicon180.png",
+  "px": 180,
+  "program": "other",
+  "fetched": "2026-09-02"
  }
 }
