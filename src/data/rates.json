@@ -1,26 +1,26 @@
 {
-  "date": "2026-09-02",
-  "cbrDate": "2026-09-02",
-  "usd": 86.753,
-  "eur": 100.5988,
-  "usdt": 86.84,
-  "btc": 6647469,
+  "date": "2026-09-03",
+  "cbrDate": "2026-09-03",
+  "usd": 86.9963,
+  "eur": 100.8287,
+  "usdt": 86.71,
+  "btc": 6730444,
   "sources": [
-    "ЦБ РФ (cbr.ru)",
+    "ЦБ РФ (cbr-xml-daily.ru)",
     "CoinGecko",
     "BestChange"
   ],
   "bestchange": {
-    "rubPerUsdt": 86.82,
+    "rubPerUsdt": 87.87,
     "exchanger": "SkyCapital",
     "from": "Сбербанк RUB",
-    "minSum": 1300.95,
-    "medianSmall": 89.49,
-    "bestAny": 86.82,
-    "offersSmall": 235,
-    "offersAll": 1063,
+    "minSum": 1316.7,
+    "medianSmall": 90.08,
+    "bestAny": 87.87,
+    "offersSmall": 211,
+    "offersAll": 1065,
     "maxMinSum": 3000,
-    "checkedAt": "2026-09-02T09:47Z",
+    "checkedAt": "2026-09-03T09:59Z",
     "url": "https://www.bestchange.ru/"
   }
 }
