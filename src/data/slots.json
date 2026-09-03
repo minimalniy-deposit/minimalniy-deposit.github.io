@@ -1,9 +1,9 @@
 {
-  "fetchedAt": "2026-09-02",
+  "fetchedAt": "2026-09-03",
   "source": "slotsreach",
-  "total": 5995,
+  "total": 6002,
   "thumbs": {
-    "downloaded": 0,
+    "downloaded": 3,
     "failed": 0,
     "errors": {}
   },
@@ -1531,6 +1531,48 @@
       "image": "/slots/img/arizona-james-and-the-lost-relics-hacksaw-gaming.webp",
       "screenshot": "https://img.slotsreach.com/slot-images/arizona-james-and-the-lost-relics-hacksaw-gaming/gameplay-1.webp",
       "sourceUrl": "https://slotsreach.com/games/arizona-james-and-the-lost-relics-hacksaw-gaming",
+      "demoUrl": null
+    },
+    {
+      "slug": "le-outlaw-hacksaw-gaming",
+      "name": "Le Outlaw",
+      "provider": "Hacksaw Gaming",
+      "providerSlug": "hacksaw-gaming",
+      "rtp": 96.28,
+      "volatility": "medium",
+      "maxWin": "25,000x",
+      "grid": "6x5",
+      "hitFrequency": null,
+      "releaseDate": "2026-08-24",
+      "rating": 8,
+      "payType": "cluster",
+      "isNew": true,
+      "themes": [
+        "Western",
+        "Cartoon",
+        "Animals",
+        "Crime",
+        "Gold"
+      ],
+      "features": [
+        "Cluster Pays",
+        "Free Spins",
+        "Buy Bonus",
+        "Tumble",
+        "Multiplier",
+        "Cash Collect",
+        "Instant Prize",
+        "Gamble",
+        "Level Up",
+        "Retrigger",
+        "Booster",
+        "Symbol Transformation",
+        "Wild",
+        "Scatter"
+      ],
+      "image": "/slots/img/le-outlaw-hacksaw-gaming.webp",
+      "screenshot": "https://img.slotsreach.com/slot-images/le-outlaw-hacksaw-gaming/gameplay-1.webp",
+      "sourceUrl": "https://slotsreach.com/games/le-outlaw-hacksaw-gaming",
       "demoUrl": null
     },
     {
@@ -8404,6 +8446,38 @@
       "demoUrl": null
     },
     {
+      "slug": "forever-split-megaways-pragmatic-play",
+      "name": "Forever Split Megaways",
+      "provider": "Pragmatic Play",
+      "providerSlug": "pragmatic-play",
+      "rtp": 96.58,
+      "volatility": "medium",
+      "maxWin": "10,000x",
+      "grid": null,
+      "hitFrequency": 20.28,
+      "releaseDate": "2026-10-01",
+      "rating": 7,
+      "payType": "megaways",
+      "isNew": true,
+      "themes": [
+        "Horror",
+        "Gothic"
+      ],
+      "features": [
+        "Megaways",
+        "Tumble",
+        "Multiplier",
+        "Free Spins",
+        "Buy Bonus",
+        "Ante Bet",
+        "Scatter"
+      ],
+      "image": "/slots/img/forever-split-megaways-pragmatic-play.webp",
+      "screenshot": "https://img.slotsreach.com/slot-images/forever-split-megaways-pragmatic-play/gameplay-1.webp",
+      "sourceUrl": "https://slotsreach.com/games/forever-split-megaways-pragmatic-play",
+      "demoUrl": null
+    },
+    {
       "slug": "three-pots-of-the-genie-playn-go",
       "name": "Three Pots of the Genie",
       "provider": "Play'n GO",
@@ -8910,6 +8984,46 @@
       "image": "/slots/img/dragon-guardians-3-pots-peter-sons.webp",
       "screenshot": "https://img.slotsreach.com/slot-images/dragon-guardians-3-pots-peter-sons/gameplay-1.webp",
       "sourceUrl": "https://slotsreach.com/games/dragon-guardians-3-pots-peter-sons",
+      "demoUrl": null
+    },
+    {
+      "slug": "dragons-pub-hacksaw-gaming",
+      "name": "Dragon's Pub",
+      "provider": "Hacksaw Gaming",
+      "providerSlug": "hacksaw-gaming",
+      "rtp": 96.34,
+      "volatility": "medium",
+      "maxWin": "10,000x",
+      "grid": "6x5",
+      "hitFrequency": null,
+      "releaseDate": "2026-08-27",
+      "rating": 7,
+      "payType": "cluster",
+      "isNew": true,
+      "themes": [
+        "Dragons",
+        "Fantasy",
+        "Cartoon",
+        "Nightlife",
+        "Lucky"
+      ],
+      "features": [
+        "Cluster Pays",
+        "Free Spins",
+        "Buy Bonus",
+        "Tumble",
+        "Multiplier",
+        "Cash Collect",
+        "Instant Prize",
+        "Retrigger",
+        "Level Up",
+        "Booster",
+        "Wild",
+        "Scatter"
+      ],
+      "image": "/slots/img/dragons-pub-hacksaw-gaming.webp",
+      "screenshot": "https://img.slotsreach.com/slot-images/dragons-pub-hacksaw-gaming/gameplay-1.webp",
+      "sourceUrl": "https://slotsreach.com/games/dragons-pub-hacksaw-gaming",
       "demoUrl": null
     },
     {
@@ -9886,106 +10000,6 @@
       "image": "/slots/img/train-heist-johnny-cash-bgaming.webp",
       "screenshot": "https://img.slotsreach.com/slot-images/train-heist-johnny-cash-bgaming/gameplay-1.webp",
       "sourceUrl": "https://slotsreach.com/games/train-heist-johnny-cash-bgaming",
-      "demoUrl": null
-    },
-    {
-      "slug": "monopoly-rush-hour-big-time-gaming",
-      "name": "Monopoly Rush Hour",
-      "provider": "Big Time Gaming",
-      "providerSlug": "big-time-gaming",
-      "rtp": 96.51,
-      "volatility": "high",
-      "maxWin": "28,600x",
-      "grid": "4x4",
-      "hitFrequency": null,
-      "releaseDate": "2026-07-08",
-      "rating": 7,
-      "payType": "ways",
-      "isNew": true,
-      "themes": [
-        "Board Game",
-        "Money",
-        "Luxury"
-      ],
-      "features": [
-        "Bonus Game",
-        "Multiplier",
-        "Free Spins",
-        "Buy Bonus",
-        "Random Features",
-        "Wild"
-      ],
-      "image": "/slots/img/monopoly-rush-hour-big-time-gaming.webp",
-      "screenshot": "https://img.slotsreach.com/slot-images/monopoly-rush-hour-big-time-gaming/gameplay-1.webp",
-      "sourceUrl": "https://slotsreach.com/games/monopoly-rush-hour-big-time-gaming",
-      "demoUrl": null
-    },
-    {
-      "slug": "big-bass-blast-pragmatic-play",
-      "name": "Big Bass Blast",
-      "provider": "Pragmatic Play",
-      "providerSlug": "pragmatic-play",
-      "rtp": 96.5,
-      "volatility": "high",
-      "maxWin": "5,000x",
-      "grid": "5x3",
-      "hitFrequency": 10.64,
-      "releaseDate": "2026-07-06",
-      "rating": 7,
-      "payType": "lines",
-      "isNew": true,
-      "themes": [
-        "Fishing",
-        "Nature",
-        "Animals"
-      ],
-      "features": [
-        "Free Spins",
-        "Cash Collect",
-        "Multiplier",
-        "Buy Bonus",
-        "Ante Bet",
-        "Scatter",
-        "Wild",
-        "Instant Prize"
-      ],
-      "image": "/slots/img/big-bass-blast-pragmatic-play.webp",
-      "screenshot": "https://img.slotsreach.com/slot-images/big-bass-blast-pragmatic-play/gameplay-1.webp",
-      "sourceUrl": "https://slotsreach.com/games/big-bass-blast-pragmatic-play",
-      "demoUrl": null
-    },
-    {
-      "slug": "crypto-genesys-pragmatic-play",
-      "name": "Crypto Genesys",
-      "provider": "Pragmatic Play",
-      "providerSlug": "pragmatic-play",
-      "rtp": 96.5,
-      "volatility": "high",
-      "maxWin": "15,000x",
-      "grid": "6x5",
-      "hitFrequency": null,
-      "releaseDate": "2026-07-04",
-      "rating": 7,
-      "payType": "scatter-pays",
-      "isNew": true,
-      "themes": [
-        "Crypto",
-        "Cyberpunk",
-        "Sci Fi"
-      ],
-      "features": [
-        "Scatter Pays",
-        "Tumble",
-        "Multiplier",
-        "Free Spins",
-        "Buy Bonus",
-        "Ante Bet",
-        "Scatter",
-        "Retrigger"
-      ],
-      "image": "/slots/img/crypto-genesys-pragmatic-play.webp",
-      "screenshot": "https://img.slotsreach.com/slot-images/crypto-genesys-pragmatic-play/gameplay-1.webp",
-      "sourceUrl": "https://slotsreach.com/games/crypto-genesys-pragmatic-play",
       "demoUrl": null
     }
   ]
