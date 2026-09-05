@@ -1,9 +1,9 @@
 {
-  "fetchedAt": "2026-09-03",
+  "fetchedAt": "2026-09-05",
   "source": "slotsreach",
-  "total": 6002,
+  "total": 6013,
   "thumbs": {
-    "downloaded": 3,
+    "downloaded": 2,
     "failed": 0,
     "errors": {}
   },
@@ -826,7 +826,6 @@
         "Cluster Pays",
         "Free Spins",
         "Scatter",
-        "Scatter Pays",
         "Multiplier",
         "Buy Bonus",
         "Tumble",
@@ -1290,12 +1289,41 @@
         "Wild",
         "Expanding Grid",
         "Symbol Collection",
-        "Scatter Pays",
         "Free Spins"
       ],
       "image": "/slots/img/money-train-3-relax-gaming.webp",
       "screenshot": "https://img.slotsreach.com/slot-images/money-train-3-relax-gaming/gameplay-1.webp",
       "sourceUrl": "https://slotsreach.com/games/money-train-3-relax-gaming",
+      "demoUrl": null
+    },
+    {
+      "slug": "sugar-rush-pragmatic-play",
+      "name": "Sugar Rush",
+      "provider": "Pragmatic Play",
+      "providerSlug": "pragmatic-play",
+      "rtp": 96.5,
+      "volatility": "high",
+      "maxWin": "5,000x",
+      "grid": "7x7",
+      "hitFrequency": 34.48,
+      "releaseDate": "2022-06-30",
+      "rating": 9,
+      "payType": "cluster",
+      "isNew": false,
+      "themes": [
+        "Candy",
+        "Food"
+      ],
+      "features": [
+        "Cluster Pays",
+        "Tumble",
+        "Multiplier",
+        "Free Spins",
+        "Buy Bonus"
+      ],
+      "image": "/slots/img/sugar-rush-pragmatic-play.webp",
+      "screenshot": "https://img.slotsreach.com/slot-images/sugar-rush-pragmatic-play/gameplay-1.webp",
+      "sourceUrl": "https://slotsreach.com/games/sugar-rush-pragmatic-play",
       "demoUrl": null
     },
     {
@@ -1355,7 +1383,6 @@
         "Ways",
         "Free Spins",
         "Scatter",
-        "Scatter Pays",
         "Multiplier",
         "Buy Bonus",
         "Xways",
@@ -4176,7 +4203,6 @@
       ],
       "features": [
         "Cluster Pays",
-        "Scatter Pays",
         "Tumble",
         "Multiplier",
         "Wild",
@@ -4577,8 +4603,7 @@
         "Multiplier",
         "Free Spins",
         "Symbol Transformation",
-        "Buy Bonus",
-        "Scatter Pays"
+        "Buy Bonus"
       ],
       "image": "/slots/img/mahjong-wins-3-black-scatter-pragmatic-play.webp",
       "screenshot": "https://img.slotsreach.com/slot-images/mahjong-wins-3-black-scatter-pragmatic-play/gameplay-1.webp",
@@ -4773,8 +4798,7 @@
         "Tumble",
         "Buy Bonus",
         "Expanding Symbols",
-        "Free Spins",
-        "Scatter Pays"
+        "Free Spins"
       ],
       "image": "/slots/img/the-border-nolimit-city.webp",
       "screenshot": "https://img.slotsreach.com/screenshots/the-border-nolimit-city-gameplay.webp",
@@ -5036,7 +5060,6 @@
         "Xnudge",
         "Ways",
         "Free Spins",
-        "Scatter Pays",
         "Buy Bonus",
         "Xways",
         "Split Symbols",
@@ -7085,7 +7108,6 @@
       "features": [
         "Expanding Grid",
         "Tumble",
-        "Scatter Pays",
         "Sticky Symbols",
         "Buy Bonus",
         "Multiplier"
@@ -7768,7 +7790,6 @@
       ],
       "features": [
         "Megaways",
-        "Ways",
         "Wild",
         "Scatter",
         "Free Spins",
@@ -8746,6 +8767,40 @@
       "image": "/slots/img/hamsterdam-wicked-games.webp",
       "screenshot": "https://img.slotsreach.com/slot-images/hamsterdam-wicked-games/gameplay-1.webp",
       "sourceUrl": "https://slotsreach.com/games/hamsterdam-wicked-games",
+      "demoUrl": null
+    },
+    {
+      "slug": "thunder-coins-xxl-booster-cells-playson",
+      "name": "Thunder Coins XXL: Booster Cells",
+      "provider": "Playson",
+      "providerSlug": "playson",
+      "rtp": 95.65,
+      "volatility": "high",
+      "maxWin": "12,000x",
+      "grid": "3x5",
+      "hitFrequency": null,
+      "releaseDate": "2026-09-17",
+      "rating": 7,
+      "payType": "lines",
+      "isNew": true,
+      "themes": [
+        "Fruit",
+        "Classic",
+        "Gold"
+      ],
+      "features": [
+        "Hold And Win",
+        "Respins",
+        "Cash Collect",
+        "Buy Bonus",
+        "Ante Bet",
+        "Jackpot",
+        "Booster",
+        "Random Features"
+      ],
+      "image": "/slots/img/thunder-coins-xxl-booster-cells-playson.webp",
+      "screenshot": "https://img.slotsreach.com/slot-images/thunder-coins-xxl-booster-cells-playson/gameplay-1.webp",
+      "sourceUrl": "https://slotsreach.com/games/thunder-coins-xxl-booster-cells-playson",
       "demoUrl": null
     },
     {
@@ -9934,72 +9989,6 @@
       "image": "/slots/img/enriched-wicked-games.webp",
       "screenshot": "https://img.slotsreach.com/slot-images/enriched-wicked-games/gameplay-1.webp",
       "sourceUrl": "https://slotsreach.com/games/enriched-wicked-games",
-      "demoUrl": null
-    },
-    {
-      "slug": "the-robbery-betsoft",
-      "name": "The Robbery",
-      "provider": "Betsoft",
-      "providerSlug": "betsoft",
-      "rtp": 96,
-      "volatility": "high",
-      "maxWin": "10,000x",
-      "grid": "5x3",
-      "hitFrequency": null,
-      "releaseDate": "2026-07-16",
-      "rating": 7,
-      "payType": "ways",
-      "isNew": true,
-      "themes": [
-        "Western",
-        "Steampunk"
-      ],
-      "features": [
-        "Cash Collect",
-        "Instant Prize",
-        "Free Spins",
-        "Expanding Grid",
-        "Buy Bonus",
-        "Wild",
-        "Scatter",
-        "Jackpot"
-      ],
-      "image": "/slots/img/the-robbery-betsoft.webp",
-      "screenshot": "https://img.slotsreach.com/slot-images/the-robbery-betsoft/gameplay-1.webp",
-      "sourceUrl": "https://slotsreach.com/games/the-robbery-betsoft",
-      "demoUrl": null
-    },
-    {
-      "slug": "train-heist-johnny-cash-bgaming",
-      "name": "Train Heist Johnny Cash",
-      "provider": "BGaming",
-      "providerSlug": "bgaming",
-      "rtp": 97,
-      "volatility": "high",
-      "maxWin": "10,000x",
-      "grid": "6x5",
-      "hitFrequency": null,
-      "releaseDate": "2026-07-09",
-      "rating": 7,
-      "payType": "cluster",
-      "isNew": true,
-      "themes": [
-        "Western",
-        "Trains"
-      ],
-      "features": [
-        "Cluster Pays",
-        "Tumble",
-        "Cash Collect",
-        "Multiplier",
-        "Wild",
-        "Free Spins",
-        "Buy Bonus",
-        "Ante Bet"
-      ],
-      "image": "/slots/img/train-heist-johnny-cash-bgaming.webp",
-      "screenshot": "https://img.slotsreach.com/slot-images/train-heist-johnny-cash-bgaming/gameplay-1.webp",
-      "sourceUrl": "https://slotsreach.com/games/train-heist-johnny-cash-bgaming",
       "demoUrl": null
     }
   ]
