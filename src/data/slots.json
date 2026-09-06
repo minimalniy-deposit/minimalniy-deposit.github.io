@@ -1,9 +1,9 @@
 {
-  "fetchedAt": "2026-09-05",
+  "fetchedAt": "2026-09-06",
   "source": "slotsreach",
-  "total": 6013,
+  "total": 6017,
   "thumbs": {
-    "downloaded": 2,
+    "downloaded": 3,
     "failed": 0,
     "errors": {}
   },
@@ -362,41 +362,6 @@
       "image": "/slots/img/secret-order-hacksaw-gaming.webp",
       "screenshot": "https://img.slotsreach.com/slot-images/secret-order-hacksaw-gaming/gameplay-1.webp",
       "sourceUrl": "https://slotsreach.com/games/secret-order-hacksaw-gaming",
-      "demoUrl": null
-    },
-    {
-      "slug": "red-rascal-hacksaw-gaming",
-      "name": "Red Rascal",
-      "provider": "Hacksaw Gaming",
-      "providerSlug": "hacksaw-gaming",
-      "rtp": 96.34,
-      "volatility": "high",
-      "maxWin": "15,000x",
-      "grid": "5x5",
-      "hitFrequency": null,
-      "releaseDate": "2026-05-21",
-      "rating": 9,
-      "payType": "lines",
-      "isNew": false,
-      "themes": [
-        "Carnival",
-        "Dark",
-        "Devil"
-      ],
-      "features": [
-        "Wild",
-        "Respins",
-        "Sticky Symbols",
-        "Multiplier",
-        "Free Spins",
-        "Buy Bonus",
-        "Instant Prize",
-        "Big Symbols",
-        "Cash Collect"
-      ],
-      "image": "/slots/img/red-rascal-hacksaw-gaming.webp",
-      "screenshot": "https://img.slotsreach.com/screenshots/red-rascal-hacksaw-gaming-gameplay.webp",
-      "sourceUrl": "https://slotsreach.com/games/red-rascal-hacksaw-gaming",
       "demoUrl": null
     },
     {
@@ -1261,6 +1226,39 @@
       "image": "/slots/img/slushie-party-pragmatic-play.webp",
       "screenshot": "https://img.slotsreach.com/slot-images/slushie-party-pragmatic-play/gameplay-1.webp",
       "sourceUrl": "https://slotsreach.com/games/slushie-party-pragmatic-play",
+      "demoUrl": null
+    },
+    {
+      "slug": "pirots-elk-studios",
+      "name": "Pirots",
+      "provider": "ELK Studios",
+      "providerSlug": "elk-studios",
+      "rtp": 94,
+      "volatility": "high",
+      "maxWin": "10,000x",
+      "grid": "5x5",
+      "hitFrequency": 26.8,
+      "releaseDate": "2023-03-07",
+      "rating": 9,
+      "payType": "cluster",
+      "isNew": false,
+      "themes": [
+        "Pirate",
+        "Tropical",
+        "Animals",
+        "Gems"
+      ],
+      "features": [
+        "Symbol Collection",
+        "Expanding Grid",
+        "Symbol Transformation",
+        "Instant Prize",
+        "Free Spins",
+        "Buy Bonus"
+      ],
+      "image": "/slots/img/pirots-elk-studios.webp",
+      "screenshot": "https://img.slotsreach.com/slot-images/pirots-elk-studios/gameplay-1.webp",
+      "sourceUrl": "https://slotsreach.com/games/pirots-elk-studios",
       "demoUrl": null
     },
     {
@@ -9148,6 +9146,40 @@
       "demoUrl": null
     },
     {
+      "slug": "ne-zha-triple-powers-microgaming",
+      "name": "Ne Zha Triple Powers",
+      "provider": "Microgaming",
+      "providerSlug": "microgaming",
+      "rtp": 96.24,
+      "volatility": "very-high",
+      "maxWin": "10,000x",
+      "grid": "5x3",
+      "hitFrequency": null,
+      "releaseDate": "2026-08-26",
+      "rating": 7,
+      "payType": "ways",
+      "isNew": true,
+      "themes": [
+        "Chinese",
+        "Mythology",
+        "Gods"
+      ],
+      "features": [
+        "Ways",
+        "Free Spins",
+        "Buy Bonus",
+        "Symbol Collection",
+        "Random Wilds",
+        "Expanding Wilds",
+        "Multiplier",
+        "Retrigger"
+      ],
+      "image": "/slots/img/ne-zha-triple-powers-microgaming.webp",
+      "screenshot": "https://img.slotsreach.com/slot-images/ne-zha-triple-powers-microgaming/gameplay-1.webp",
+      "sourceUrl": "https://slotsreach.com/games/ne-zha-triple-powers-microgaming",
+      "demoUrl": null
+    },
+    {
       "slug": "viking-runecraft-1000-playn-go",
       "name": "Viking Runecraft 1000",
       "provider": "Play'n GO",
@@ -9825,6 +9857,40 @@
       "demoUrl": null
     },
     {
+      "slug": "mithai-madness-10000x-microgaming",
+      "name": "Mithai Madness 10000x",
+      "provider": "Microgaming",
+      "providerSlug": "microgaming",
+      "rtp": 96.2,
+      "volatility": "high",
+      "maxWin": "10,000x",
+      "grid": "5x3",
+      "hitFrequency": null,
+      "releaseDate": "2026-07-29",
+      "rating": 7,
+      "payType": "lines",
+      "isNew": true,
+      "themes": [
+        "Indian",
+        "Candy",
+        "Food"
+      ],
+      "features": [
+        "Hold And Win",
+        "Respins",
+        "Jackpot",
+        "Buy Bonus",
+        "Multiplier",
+        "Cash Collect",
+        "Symbol Collection",
+        "Expanding Grid"
+      ],
+      "image": "/slots/img/mithai-madness-10000x-microgaming.webp",
+      "screenshot": "https://img.slotsreach.com/slot-images/mithai-madness-10000x-microgaming/gameplay-5.webp",
+      "sourceUrl": "https://slotsreach.com/games/mithai-madness-10000x-microgaming",
+      "demoUrl": null
+    },
+    {
       "slug": "sunnydaze-asylum-pragmatic-play",
       "name": "Sunnydaze Asylum",
       "provider": "Pragmatic Play",
@@ -9922,73 +9988,6 @@
       "image": "/slots/img/le-prechaun-hacksaw-gaming.webp",
       "screenshot": "https://img.slotsreach.com/slot-images/le-prechaun-hacksaw-gaming/gameplay-1.webp",
       "sourceUrl": "https://slotsreach.com/games/le-prechaun-hacksaw-gaming",
-      "demoUrl": null
-    },
-    {
-      "slug": "cosmic-clusters-pragmatic-play",
-      "name": "Cosmic Clusters",
-      "provider": "Pragmatic Play",
-      "providerSlug": "pragmatic-play",
-      "rtp": 96.45,
-      "volatility": "medium",
-      "maxWin": "5,000x",
-      "grid": "6x6",
-      "hitFrequency": null,
-      "releaseDate": "2026-07-16",
-      "rating": 7,
-      "payType": "scatter-pays",
-      "isNew": true,
-      "themes": [
-        "Space",
-        "Aliens",
-        "Gems"
-      ],
-      "features": [
-        "Scatter Pays",
-        "Tumble",
-        "Multiplier",
-        "Free Spins",
-        "Buy Bonus",
-        "Ante Bet",
-        "Random Wilds",
-        "Instant Prize"
-      ],
-      "image": "/slots/img/cosmic-clusters-pragmatic-play.webp",
-      "screenshot": "https://img.slotsreach.com/slot-images/cosmic-clusters-pragmatic-play/gameplay-1.webp",
-      "sourceUrl": "https://slotsreach.com/games/cosmic-clusters-pragmatic-play",
-      "demoUrl": null
-    },
-    {
-      "slug": "enriched-wicked-games",
-      "name": "Enriched",
-      "provider": "Wicked Games",
-      "providerSlug": "wicked-games",
-      "rtp": 96.17,
-      "volatility": "very-high",
-      "maxWin": "10,000x",
-      "grid": "5x3",
-      "hitFrequency": null,
-      "releaseDate": "2026-07-16",
-      "rating": 7,
-      "payType": "lines",
-      "isNew": true,
-      "themes": [
-        "Comedy",
-        "Cartoon"
-      ],
-      "features": [
-        "Hold And Win",
-        "Free Spins",
-        "Wheel Bonus",
-        "Multiplier",
-        "Buy Bonus",
-        "Ante Bet",
-        "Wild",
-        "Scatter"
-      ],
-      "image": "/slots/img/enriched-wicked-games.webp",
-      "screenshot": "https://img.slotsreach.com/slot-images/enriched-wicked-games/gameplay-1.webp",
-      "sourceUrl": "https://slotsreach.com/games/enriched-wicked-games",
       "demoUrl": null
     }
   ]
