@@ -1,9 +1,9 @@
 {
-  "fetchedAt": "2026-09-06",
+  "fetchedAt": "2026-09-07",
   "source": "slotsreach",
-  "total": 6017,
+  "total": 6022,
   "thumbs": {
-    "downloaded": 3,
+    "downloaded": 2,
     "failed": 0,
     "errors": {}
   },
@@ -1419,6 +1419,39 @@
       "image": "/slots/img/fire-in-the-hole-xbomb-nolimit-city.webp",
       "screenshot": "https://img.slotsreach.com/screenshots/fire-in-the-hole-nolimit-city-gameplay.webp",
       "sourceUrl": "https://slotsreach.com/games/fire-in-the-hole-xbomb-nolimit-city",
+      "demoUrl": null
+    },
+    {
+      "slug": "big-bass-bonanza-pragmatic-play",
+      "name": "Big Bass Bonanza",
+      "provider": "Pragmatic Play",
+      "providerSlug": "pragmatic-play",
+      "rtp": 96.71,
+      "volatility": "medium-high",
+      "maxWin": "2,100x",
+      "grid": "5x3",
+      "hitFrequency": null,
+      "releaseDate": "2020-12-14",
+      "rating": 9,
+      "payType": "lines",
+      "isNew": false,
+      "themes": [
+        "Fishing",
+        "Animals",
+        "Money",
+        "Underwater"
+      ],
+      "features": [
+        "Free Spins",
+        "Cash Collect",
+        "Symbol Collection",
+        "Multiplier",
+        "Retrigger",
+        "Random Features"
+      ],
+      "image": "/slots/img/big-bass-bonanza-pragmatic-play.webp",
+      "screenshot": "https://img.slotsreach.com/slot-images/big-bass-bonanza-pragmatic-play/gameplay-1.webp",
+      "sourceUrl": "https://slotsreach.com/games/big-bass-bonanza-pragmatic-play",
       "demoUrl": null
     },
     {
@@ -6045,18 +6078,19 @@
       "maxWin": "10,000x",
       "grid": "6x6-8x8",
       "hitFrequency": 25.4,
-      "releaseDate": "2023-10-31",
+      "releaseDate": "2023-11-07",
       "rating": 8,
       "payType": "cluster",
       "isNew": false,
       "themes": [
-        "Pirate",
-        "Animals",
-        "Dinosaurs"
+        "Dinosaurs",
+        "Jungle",
+        "Adventure",
+        "Cartoon"
       ],
       "features": [
+        "Symbol Collection",
         "Cluster Pays",
-        "Wild",
         "Expanding Grid",
         "Free Spins",
         "Buy Bonus"
@@ -8398,6 +8432,38 @@
       "demoUrl": null
     },
     {
+      "slug": "deep-sea-frenzy-pragmatic-play",
+      "name": "Deep Sea Frenzy",
+      "provider": "Pragmatic Play",
+      "providerSlug": "pragmatic-play",
+      "rtp": 96.52,
+      "volatility": "medium",
+      "maxWin": "16,000x",
+      "grid": "5x4",
+      "hitFrequency": 33,
+      "releaseDate": "2026-10-05",
+      "rating": 7,
+      "payType": "lines",
+      "isNew": true,
+      "themes": [
+        "Underwater",
+        "Treasure",
+        "Animals"
+      ],
+      "features": [
+        "Cash Collect",
+        "Symbol Collection",
+        "Free Spins",
+        "Buy Bonus",
+        "Ante Bet",
+        "Multiplier"
+      ],
+      "image": "/slots/img/deep-sea-frenzy-pragmatic-play.webp",
+      "screenshot": "https://img.slotsreach.com/slot-images/deep-sea-frenzy-pragmatic-play/gameplay-1.webp",
+      "sourceUrl": "https://slotsreach.com/games/deep-sea-frenzy-pragmatic-play",
+      "demoUrl": null
+    },
+    {
       "slug": "power-of-hercules-bonanza-10-000-booming-games",
       "name": "Power of Hercules Bonanza 10,000",
       "provider": "Booming Games",
@@ -9891,38 +9957,6 @@
       "demoUrl": null
     },
     {
-      "slug": "sunnydaze-asylum-pragmatic-play",
-      "name": "Sunnydaze Asylum",
-      "provider": "Pragmatic Play",
-      "providerSlug": "pragmatic-play",
-      "rtp": 96.53,
-      "volatility": "high",
-      "maxWin": "10,000x",
-      "grid": "5x5",
-      "hitFrequency": null,
-      "releaseDate": "2026-07-27",
-      "rating": 7,
-      "payType": "ways",
-      "isNew": true,
-      "themes": [
-        "Comedy",
-        "Cartoon"
-      ],
-      "features": [
-        "Tumble",
-        "Multiplier",
-        "Free Spins",
-        "Buy Bonus",
-        "Ante Bet",
-        "Wild",
-        "Scatter"
-      ],
-      "image": "/slots/img/sunnydaze-asylum-pragmatic-play.webp",
-      "screenshot": "https://img.slotsreach.com/slot-images/sunnydaze-asylum-pragmatic-play/gameplay-1.webp",
-      "sourceUrl": "https://slotsreach.com/games/sunnydaze-asylum-pragmatic-play",
-      "demoUrl": null
-    },
-    {
       "slug": "le-bruno-hacksaw-gaming",
       "name": "Le Bruno",
       "provider": "Hacksaw Gaming",
@@ -9954,40 +9988,6 @@
       "image": "/slots/img/le-bruno-hacksaw-gaming.webp",
       "screenshot": "https://img.slotsreach.com/slot-images/le-bruno-hacksaw-gaming/gameplay-1.webp",
       "sourceUrl": "https://slotsreach.com/games/le-bruno-hacksaw-gaming",
-      "demoUrl": null
-    },
-    {
-      "slug": "le-prechaun-hacksaw-gaming",
-      "name": "Le Prechaun",
-      "provider": "Hacksaw Gaming",
-      "providerSlug": "hacksaw-gaming",
-      "rtp": 96.28,
-      "volatility": "very-high",
-      "maxWin": "15,000x",
-      "grid": "6x5",
-      "hitFrequency": null,
-      "releaseDate": "2026-07-16",
-      "rating": 7,
-      "payType": "scatter-pays",
-      "isNew": true,
-      "themes": [
-        "Irish",
-        "Fantasy",
-        "Lucky"
-      ],
-      "features": [
-        "Scatter Pays",
-        "Tumble",
-        "Multiplier",
-        "Wild",
-        "Scatter",
-        "Free Spins",
-        "Buy Bonus",
-        "Instant Prize"
-      ],
-      "image": "/slots/img/le-prechaun-hacksaw-gaming.webp",
-      "screenshot": "https://img.slotsreach.com/slot-images/le-prechaun-hacksaw-gaming/gameplay-1.webp",
-      "sourceUrl": "https://slotsreach.com/games/le-prechaun-hacksaw-gaming",
       "demoUrl": null
     }
   ]
