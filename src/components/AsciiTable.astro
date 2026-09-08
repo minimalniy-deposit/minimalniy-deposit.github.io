@@ -1,0 +1,54 @@
+---
+/** «Стол» above the footer: a strip of dark felt with drifting chips and suits in the header's gold.
+ *  Tap or click anywhere on it — a chip lands and a ring runs across the table (lib/asciiTable.ts).
+ *  The renderer is a separate chunk fetched on idle only when the block comes within 400px of the viewport,
+ *  and it animates only while the block is actually on screen. Colours come from the theme tokens (--gold, --gold2). */
+import { casinos } from '../lib/casinos';
+import type { Locale } from '../i18n';
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const ru = locale === 'ru';
+const n = casinos.length;
+const plaque = ru ? `Стол на ${n} мест` : `A table for ${n}`;
+const hint = ru ? 'Коснитесь стола — по сукну пойдёт волна' : 'Tap the table — a ripple runs across the felt';
+---
+<section class="felt" aria-label={ru ? 'Игровой стол: декоративный блок' : 'The table: decorative block'}>
+  <canvas class="felt-canvas" aria-hidden="true"></canvas>
+  <div class="container felt-ui" aria-hidden="true">
+    <span class="felt-plaque">{plaque}</span>
+    <span class="felt-hint">{hint}</span>
+  </div>
+</section>
+<style>
+  .felt { position: relative; height: clamp(200px, 32vh, 300px); overflow: hidden; contain: layout paint; touch-action: pan-y; user-select: none; -webkit-user-select: none;
+    border-top: 1px solid var(--edge, rgba(255,255,255,.12));
+    background: radial-gradient(ellipse 60% 110% at 50% 100%, rgba(240,170,60,.10), transparent 70%), rgba(8,10,14,.62); }
+  .felt-canvas { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 1.2s ease; }
+  .felt-canvas.is-on { opacity: 1; }
+  .felt-ui { position: absolute; left: 0; right: 0; bottom: 14px; display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; pointer-events: none; font-size: .78rem; color: var(--muted, #98a2b3); }
+  .felt-plaque { color: var(--gold2, #f6c464); letter-spacing: .02em; }
+  .felt-hint { transition: opacity .8s ease; text-align: right; }
+  .felt.tapped .felt-hint { opacity: 0; }
+  @media (max-width: 720px) { .felt { height: clamp(180px, 34vh, 240px); } .felt-ui { font-size: .72rem; } }
+  @media print { .felt { display: none; } }
+</style>
+<script>
+  const root = document.querySelector<HTMLElement>('section.felt');
+  const el = root?.querySelector<HTMLCanvasElement>('canvas.felt-canvas');
+  if (root && el) {
+    const nav = navigator as Navigator & { connection?: { saveData?: boolean } };
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches || !!nav.connection?.saveData;
+    const mobile = matchMedia('(max-width: 720px), (pointer: coarse)').matches;
+    const cs = getComputedStyle(document.body);
+    const colors = { dim: cs.getPropertyValue('--gold').trim() || '#f0aa3c', bright: cs.getPropertyValue('--gold2').trim() || '#f6c464' };
+    let booted = false;
+    const boot = () => { if (booted) return; booted = true; import('../lib/asciiTable').then((m) => m.start(el, root, { mobile, reduced, colors })).catch(() => {}); };
+    const idle = (cb: () => void) => {
+      const w = window as Window & { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number };
+      w.requestIdleCallback ? w.requestIdleCallback(cb, { timeout: 2000 }) : setTimeout(cb, 300);
+    };
+    // fetch the renderer only when the reader is getting close to the bottom of the page
+    const io = new IntersectionObserver((es) => { if (es.some((e) => e.isIntersecting)) { io.disconnect(); idle(boot); } }, { rootMargin: '400px 0px' });
+    io.observe(root);
+  }
+</script>

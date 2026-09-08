@@ -5,7 +5,7 @@ import '../styles/glass.css';
 import '../styles/ornaments.css';
 import '@fontsource-variable/golos-text';
 import StormBg from '../components/StormBg.astro';
-import AsciiRadar from '../components/AsciiRadar.astro';
+import AsciiTable from '../components/AsciiTable.astro';
 import site from '../data/site.json';
 import { useT, localePath, alternates, otherLocale, type Locale } from '../i18n';
 import { updated } from '../lib/dates';
@@ -79,7 +79,6 @@ const verifiedHuman = new Date(site.lastVerified).toLocaleDateString(locale === 
 <body class={theme}>
 <div class="backdrop" aria-hidden="true"><i class="sheet"></i></div>
 <StormBg />
-<AsciiRadar />
 <a class="skip" href="#main">{t.a11y.skip}</a>
 <header>
   <div class="container">
@@ -116,6 +115,8 @@ const verifiedHuman = new Date(site.lastVerified).toLocaleDateString(locale === 
 <div class="line18"><div class="container">{t.banner18}</div></div>
 
 <main id="main"><slot /></main>
+
+<AsciiTable {locale} />
 
 <footer>
   <div class="container">
