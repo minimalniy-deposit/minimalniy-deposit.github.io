@@ -3,11 +3,12 @@
 RU at `/`, EN at `/en/`. One data file → all pages.
 
 ```
-src/data/casinos.json      ← единственный источник данных (10 карточек)
+src/data/casinos.json      ← единственный источник данных (17 карточек)
 src/data/site.json         ← даты, Metrika, источник
 src/content/home/*.html    ← текст главной 1-в-1 из старого index.html (не шаблонизируется)
 src/i18n/{ru,en}.json      ← строки интерфейса
 src/pages/                 ← / , /casino/[slug]/ , /methods/ , /methodology/ , /en/… , 404
+src/components/AsciiRadar.astro + src/lib/asciiRadar.ts ← ASCII-радар на фоне всех страниц: чанк подгружается на idle, мобильный бюджет 15 fps / dpr 1, reduced-motion → статичный кадр; яркость — CSS-переменные --radar-opacity / --radar-opacity-m
 .github/workflows/deploy.yml   ← сборка + деплой в Pages (withastro/action)
 .github/workflows/verify.yml   ← понедельник 06:00 UTC: обновить lastVerified → коммит → деплой
 scripts/textdiff.py        ← проверка, что видимый текст главной не изменился

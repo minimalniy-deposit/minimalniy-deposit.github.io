@@ -21,7 +21,7 @@ const items = [
 ---
 <nav class:list={['guides', { compact }]} aria-label={ru ? 'Разборы' : 'Guides'}>
   {!compact && <h2 class="section-title" style="font-size:1.2rem">{ru ? 'Разборы: сумма, скорость, способ' : 'Guides: sum, speed, method'}</h2>}
-  {!compact && <p class="section-sub">{ru ? 'Те же 12 площадок под конкретный вопрос — с цифрами из еженедельной проверки.' : 'The same 12 casinos, one question at a time — with figures from the weekly check.'}</p>}
+  {!compact && <p class="section-sub">{ru ? `Те же ${casinos.length} площадок под конкретный вопрос — с цифрами из еженедельной проверки.` : `The same ${casinos.length} casinos, one question at a time — with figures from the weekly check.`}</p>}
   <div class="guides-grid">
     {items.map((i) => <a class="guide" href={localePath(locale, i.path)}><b>{i.t}</b><span>{i.d}</span></a>)}
   </div>

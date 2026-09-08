@@ -26,11 +26,11 @@ const logo = (s: string) => (brandIcons as Record<string, { ok?: boolean }>)[s]?
 <Base locale="ru" path="/preview/" title="Превью: дымчатое стекло" description="Макет главной и проекция деталей на все разделы" translated={false} noindex theme="theme-glass">
 
   <section class="g-hero"><div class="container">
-    <h1>Казино с минимальным депозитом: <em>12 площадок</em>, проверенных по минутам и рублям</h1>
+    <h1>Казино с минимальным депозитом: <em>{casinos.length} площадок</em>, проверенных по минутам и рублям</h1>
     <p>Депозит от 100 ₽, вывод через СБП от {fastest.withdrawMin} минут, условия каждой площадки — с историей изменений и датой проверки. Ни одной цифры из рекламы.</p>
     <div class="kpis">
       <div class="pane kpi"><Icon name="tabler:coin" /><b>от 100 <em>₽</em></b><span>минимальный депозит у 5 площадок</span></div>
-      <div class="pane kpi"><Icon name="tabler:clock-bolt" /><b>от {fastest.withdrawMin} <em>мин</em></b><span>вывод через СБП, {within15} из 12 — до 15 минут</span></div>
+      <div class="pane kpi"><Icon name="tabler:clock-bolt" /><b>от {fastest.withdrawMin} <em>мин</em></b><span>вывод через СБП, {within15} из {casinos.length} — до 15 минут</span></div>
       <div class="pane kpi"><Icon name="tabler:chart-line" /><b>375 <em>₽</em></b><span>индекс минимального депозита</span></div>
       <div class="pane kpi"><Icon name="tabler:database" /><b>{entries.length}</b><span>записей в истории условий с февраля</span></div>
     </div>
@@ -39,7 +39,7 @@ const logo = (s: string) => (brandIcons as Record<string, { ok?: boolean }>)[s]?
 
   <section class="g-sec first"><div class="container">
     <div class="g-bar"><h2>Рейтинг</h2><p class="sub">по скорости вывода, условиям бонуса и лицензии — веса можно проверить</p></div>
-    <div class="g-filters"><button class="active">Все 12</button><button>до 100 ₽</button><button>до 500 ₽</button><button>до 1 000 ₽</button><a href="/deposit/100/">Разбор по сумме →</a></div>
+    <div class="g-filters"><button class="active">Все {casinos.length}</button><button>до 100 ₽</button><button>до 500 ₽</button><button>до 1 000 ₽</button><a href="/deposit/100/">Разбор по сумме →</a></div>
     <div style="display:grid;gap:12px">
       {top.map((c) => (
         <article class:list={['pane', 'g-card', { top: c.rank === 1 }]}>

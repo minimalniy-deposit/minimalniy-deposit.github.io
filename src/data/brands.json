@@ -22,6 +22,16 @@
       ]
     },
     {
+      "slug": "spinto",
+      "name": "Spinto",
+      "program": "other",
+      "active": true,
+      "domains": [
+        "spinto.casino",
+        "spintocasino.com"
+      ]
+    },
+    {
       "slug": "7k",
       "name": "7K Casino",
       "program": "other",
@@ -32,6 +42,16 @@
         "7k-casino.ru",
         "7kcasino.com"
       ]
+    },
+    {
+      "slug": "1win",
+      "name": "1win",
+      "program": "other",
+      "domains": [
+        "1win.pro",
+        "1win.com"
+      ],
+      "active": true
     },
     {
       "slug": "fugu",
@@ -53,6 +73,16 @@
       ]
     },
     {
+      "slug": "banda",
+      "name": "Banda",
+      "program": "other",
+      "active": true,
+      "domains": [
+        "banda.casino",
+        "bandacasino.com"
+      ]
+    },
+    {
       "slug": "jetton",
       "name": "Jetton",
       "program": "other",
@@ -61,6 +91,17 @@
         "jetton.game",
         "jetton.games",
         "jettoncasino.com"
+      ]
+    },
+    {
+      "slug": "leebet",
+      "name": "LeeBet",
+      "program": "other",
+      "active": true,
+      "domains": [
+        "leebet.casino",
+        "leebet.com",
+        "leebetcasino.com"
       ]
     },
     {
@@ -73,6 +114,17 @@
         "dragon.money",
         "dragon.casino",
         "dragoncasino.io"
+      ]
+    },
+    {
+      "slug": "apex",
+      "name": "Apex",
+      "program": "other",
+      "active": true,
+      "domains": [
+        "apex.casino",
+        "apexcasino.com",
+        "apex-casino.com"
       ]
     },
     {
@@ -286,15 +338,6 @@
       "program": "other",
       "domains": [
         "vavada.com"
-      ]
-    },
-    {
-      "slug": "1win",
-      "name": "1win",
-      "program": "other",
-      "domains": [
-        "1win.pro",
-        "1win.com"
       ]
     },
     {

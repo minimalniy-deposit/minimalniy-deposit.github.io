@@ -39,7 +39,7 @@ const usdtLine = hasRates && crypto && c.minDeposit != null ? fmt(t.rates.line, 
       <div class="card-rating">
         <span class="stars">{c.stars}</span>
         <span class="rating-num">{c.rating.toFixed(1)}</span>
-        <span class="rating-cnt">{ru ? c.ratingCnt : `/ 10.0 · ${c.reviews?.toLocaleString('en-US')} reviews`}</span>
+        <span class="rating-cnt">{ru ? c.ratingCnt : c.reviews != null ? `/ 10.0 · ${c.reviews.toLocaleString('en-US')} reviews` : '/ 10.0'}</span>
       </div>
     )}
     <div class="card-pills">

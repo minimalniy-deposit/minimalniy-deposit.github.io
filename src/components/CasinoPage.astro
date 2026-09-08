@@ -90,7 +90,7 @@ const wMin = Math.min(...wagers), wMax = Math.max(...wagers);
     </nav>
 
     <div class="page-head">
-      <span class="rank-chip"><b>#{c.rank}</b> {t.casino.rankIn} {fmt(t.casino.of10, { n: casinos.length })}{c.rating != null && <> · {c.stars} {c.rating.toFixed(1)} · {c.reviews?.toLocaleString(ru ? 'ru-RU' : 'en-US')} {t.casino.reviews}</>}</span>
+      <span class="rank-chip"><b>#{c.rank}</b> {t.casino.rankIn} {fmt(t.casino.of10, { n: casinos.length })}{c.rating != null && <> · {c.stars} {c.rating.toFixed(1)}{c.reviews != null && <> · {c.reviews.toLocaleString(ru ? 'ru-RU' : 'en-US')} {t.casino.reviews}</>}</>}</span>
       <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:6px 0 2px">
         {logo && <img class="g-logo" style="width:44px;height:44px;border-radius:12px" src={logo} alt="" width="44" height="44" />}
         <h1 style="margin:0">{c.name}</h1>

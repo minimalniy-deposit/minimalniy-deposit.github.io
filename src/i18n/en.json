@@ -2,9 +2,9 @@
   "lang": "en",
   "logo": "MinDep",
   "logoSuffix": ".rating",
-  "updated": "Updated: May 2026",
+  "updated": "Updated: September 2026",
   "nav": {
-    "rating": "Top 12 rating",
+    "rating": "Top 17 rating",
     "methods": "Payment methods",
     "howto": "How to choose",
     "faq": "FAQ",
@@ -31,7 +31,7 @@
   },
   "casino": {
     "breadcrumbHome": "Home",
-    "breadcrumbRating": "Top 12 rating",
+    "breadcrumbRating": "Top 17 rating",
     "rankIn": "Rank",
     "of10": "of {n}",
     "facts": "Key terms at a glance",

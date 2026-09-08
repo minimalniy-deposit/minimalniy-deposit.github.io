@@ -18,7 +18,7 @@ const RAW = `https://github.com/minimalniy-deposit/minimalniy-deposit.github.io/
 const RAWD = `https://raw.githubusercontent.com/minimalniy-deposit/minimalniy-deposit.github.io/main/src/data`;
 const files = [
   { f: 'history.json', ru: 'История условий: все записи по каждой площадке с датой и источником', en: 'Terms history: every record per casino with date and source' },
-  { f: 'casinos.json', ru: 'Текущие условия двенадцати площадок — то, из чего собраны все страницы', en: 'Current terms of the twelve casinos — the file every page is built from' },
+  { f: 'casinos.json', ru: `Текущие условия ${casinos.length} площадок — то, из чего собраны все страницы`, en: `Current terms of the ${casinos.length} casinos — the file every page is built from` },
   { f: 'rates-history.jsonl', ru: 'Курсы по дням: ЦБ, биржа, лучший обменник — одна строка в день', en: 'Daily rates: central bank, market, best exchanger — one line per day' },
   { f: 'slots.json', ru: 'Каталог слотов с датой синхронизации', en: 'Slot catalogue with sync date' },
 ];

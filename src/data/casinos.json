@@ -195,9 +195,102 @@
     "siteDomain": "autumn-ice.com"
   },
   {
+    "slug": "spinto",
+    "name": "Spinto Casino",
+    "rank": 3,
+    "top": false,
+    "gold": false,
+    "minDeposit": 50,
+    "rating": 9.7,
+    "stars": "★★★★★",
+    "ratingCnt": "/ 10.0",
+    "badges": [
+      {
+        "cls": "badge-new",
+        "text": "НОВИНКА 2025"
+      }
+    ],
+    "pills": [
+      {
+        "cls": "dep",
+        "text": "от 50 ₽"
+      },
+      {
+        "cls": "fast",
+        "text": "вывод от 15 мин"
+      },
+      {
+        "cls": "",
+        "text": "Карта · СБП · USDT · BTC"
+      },
+      {
+        "cls": "",
+        "text": "Лицензия Кюрасао"
+      }
+    ],
+    "bonus": "Бонус: 120% до 50 000 ₽ и 50 фриспинов на первый депозит от 500 ₽; всего четыре стартовых бонуса — до 600% и 500 фриспинов. Вейджер x45, релоад до 70%, кешбэк до 12% еженедельно",
+    "url": "https://myslotdice.com/l/6a78ad0c4f78c2c48004d7f2?sub_id=minimalniy-depozit-reiting",
+    "ctaLines": [
+      "Мин. депозит: 50 ₽",
+      "Вывод от 15 мин"
+    ],
+    "promo": null,
+    "payments": [
+      "card",
+      "sbp",
+      "usdt",
+      "btc",
+      "crypto"
+    ],
+    "paymentsLabel": "Карта · СБП · USDT · BTC",
+    "paymentsLabelEn": "Card · SBP · USDT · BTC",
+    "withdrawMin": 15,
+    "license": "Кюрасао",
+    "reviews": null,
+    "bonusEn": "Bonus: 120% up to 50,000 ₽ + 50 free spins on a first deposit from 500 ₽; four welcome bonuses in total — up to 600% and 500 free spins. 45x wagering, reload up to 70%, weekly cashback up to 12%",
+    "badgesEn": [
+      "NEW 2025"
+    ],
+    "ctaLinesEn": [
+      "Min. deposit: 50 ₽",
+      "Withdrawal from 15 min"
+    ],
+    "promoCode": null,
+    "rtp": null,
+    "licenseFull": "Лицензия Curaçao Gaming Control Board OGL/2024/818/0448, оператор TwiceDice B.V.",
+    "licenseShort": "Curacao OGL/2024/818/0448",
+    "wager": 45,
+    "cashback": 12,
+    "features": [
+      "Новинка 2025",
+      "Релоад-бонус",
+      "Live 24/7",
+      "Магазин бонусов",
+      "Карта · СБП · крипта"
+    ],
+    "d8cats": [
+      "all",
+      "min-deposit",
+      "live",
+      "reload",
+      "crypto",
+      "new2026"
+    ],
+    "cashierUsdtRate": null,
+    "minBetStarburst": null,
+    "minBetGates": null,
+    "bonusMinDeposit": null,
+    "maxBetWagering": null,
+    "wagerDays": null,
+    "withdrawMinAmount": null,
+    "licenseVerifyUrl": null,
+    "termsUrl": null,
+    "siteDomain": null
+  },
+  {
     "slug": "7k",
     "name": "7K Casino",
-    "rank": 3,
+    "rank": 4,
     "top": false,
     "gold": false,
     "minDeposit": 100,
@@ -229,7 +322,7 @@
       }
     ],
     "bonus": "Бонус: 200% на первый депозит + 500 фриспинов на Gates of Olympus — пополнение от 100 ₽ через СБП, вывод за 10 минут",
-    "url": "https://7k-casino.ru",
+    "url": "https://myslotdice.com/l/6a7373ab7da48e79330338a2",
     "ctaLines": [
       "Мин. депозит: 100 ₽",
       "Вывод за 10 мин"
@@ -285,9 +378,99 @@
     "siteDomain": "7k-casino.ru"
   },
   {
+    "slug": "1win",
+    "name": "1win",
+    "rank": 5,
+    "top": false,
+    "gold": false,
+    "minDeposit": 500,
+    "rating": 9.6,
+    "stars": "★★★★★",
+    "ratingCnt": "/ 10.0",
+    "badges": [
+      {
+        "cls": "badge-hot",
+        "text": "КАЗИНО + СТАВКИ"
+      }
+    ],
+    "pills": [
+      {
+        "cls": "dep",
+        "text": "от 500 ₽"
+      },
+      {
+        "cls": "fast",
+        "text": "вывод от 15 мин"
+      },
+      {
+        "cls": "",
+        "text": "Карта · СБП · USDT · BTC"
+      },
+      {
+        "cls": "",
+        "text": "Лицензия Кюрасао"
+      }
+    ],
+    "bonus": "Бонус: 200% на первый депозит (всего до 500% и 200 000 ₽ за четыре пополнения) + 70 фриспинов за первый депозит от 1 000 ₽. Кешбэк до 30%, 10 000+ игр и ставки на спорт в одном кабинете",
+    "url": "https://lkhv.pro/7f6c95",
+    "ctaLines": [
+      "Мин. депозит: 500 ₽",
+      "Вывод от 15 мин"
+    ],
+    "promo": null,
+    "payments": [
+      "card",
+      "sbp",
+      "usdt",
+      "btc",
+      "crypto"
+    ],
+    "paymentsLabel": "Карта · СБП · USDT · BTC",
+    "paymentsLabelEn": "Card · SBP · USDT · BTC",
+    "withdrawMin": 15,
+    "license": "Кюрасао",
+    "reviews": null,
+    "bonusEn": "Bonus: 200% on the first deposit (up to 500% and 200,000 ₽ across four deposits) + 70 free spins on a first deposit from 1,000 ₽. Cashback up to 30%, 10,000+ games and sports betting in one account",
+    "badgesEn": [
+      "CASINO + SPORTS"
+    ],
+    "ctaLinesEn": [
+      "Min. deposit: 500 ₽",
+      "Withdrawal from 15 min"
+    ],
+    "promoCode": null,
+    "rtp": null,
+    "licenseFull": "Лицензия Curaçao eGaming 8048/JAZ2018-040, оператор 1WIN N.V.",
+    "licenseShort": "Curacao #8048/JAZ2018-040",
+    "wager": null,
+    "cashback": 30,
+    "features": [
+      "Ставки на спорт",
+      "Live 24/7",
+      "Кешбэк до 30%",
+      "Карта · СБП · крипта"
+    ],
+    "d8cats": [
+      "all",
+      "live",
+      "crypto",
+      "fast-payout"
+    ],
+    "cashierUsdtRate": null,
+    "minBetStarburst": null,
+    "minBetGates": null,
+    "bonusMinDeposit": null,
+    "maxBetWagering": null,
+    "wagerDays": null,
+    "withdrawMinAmount": null,
+    "licenseVerifyUrl": null,
+    "termsUrl": null,
+    "siteDomain": null
+  },
+  {
     "slug": "fugu",
     "name": "Fugu Casino",
-    "rank": 4,
+    "rank": 6,
     "top": false,
     "gold": false,
     "minDeposit": 500,
@@ -365,7 +548,7 @@
   {
     "slug": "melbet",
     "name": "MelBet Casino",
-    "rank": 5,
+    "rank": 7,
     "top": false,
     "gold": false,
     "minDeposit": 500,
@@ -439,9 +622,99 @@
     "siteDomain": null
   },
   {
+    "slug": "banda",
+    "name": "Banda Casino",
+    "rank": 8,
+    "top": false,
+    "gold": false,
+    "minDeposit": 1000,
+    "rating": 9.4,
+    "stars": "★★★★☆",
+    "ratingCnt": "/ 10.0",
+    "badges": [
+      {
+        "cls": "badge-new",
+        "text": "ФРИСПИНЫ"
+      }
+    ],
+    "pills": [
+      {
+        "cls": "dep",
+        "text": "от 1 000 ₽"
+      },
+      {
+        "cls": "fast",
+        "text": "вывод от 60 мин"
+      },
+      {
+        "cls": "",
+        "text": "Карта · СБП · USDT · BTC"
+      },
+      {
+        "cls": "",
+        "text": "Лицензия Anjouan"
+      }
+    ],
+    "bonus": "Бонус: до 150 фриспинов на первый депозит или пакет 100% и 300 фриспинов; всего до 750 фриспинов за три депозита. Вейджер x45, еженедельный кешбэк до 20% по уровням, колесо фортуны после депозитов",
+    "url": "https://joyous-bahd4-6.com/adplyqj9ug",
+    "ctaLines": [
+      "Мин. депозит: 1 000 ₽",
+      "Крипто-вывод 15–60 мин"
+    ],
+    "promo": null,
+    "payments": [
+      "card",
+      "sbp",
+      "usdt",
+      "btc",
+      "crypto"
+    ],
+    "paymentsLabel": "Карта · СБП · USDT · BTC",
+    "paymentsLabelEn": "Card · SBP · USDT · BTC",
+    "withdrawMin": 60,
+    "license": "Anjouan",
+    "reviews": null,
+    "bonusEn": "Bonus: up to 150 free spins on the first deposit, or a 100% + 300 free spins package; up to 750 free spins across three deposits. 45x wagering, weekly cashback up to 20% by level, a fortune wheel after deposits",
+    "badgesEn": [
+      "FREE SPINS"
+    ],
+    "ctaLinesEn": [
+      "Min. deposit: 1 000 ₽",
+      "Crypto withdrawal 15–60 min"
+    ],
+    "promoCode": null,
+    "rtp": null,
+    "licenseFull": "Лицензия Anjouan Gaming (Computer Gaming Licensing Act 007/2005) ALSI-202510054-FI2, оператор BitPulse Solution Limitada",
+    "licenseShort": "Anjouan ALSI-202510054-FI2",
+    "wager": 45,
+    "cashback": 20,
+    "features": [
+      "Новинка 2025",
+      "Крипто",
+      "Live 24/7",
+      "VIP-клуб 10 уровней"
+    ],
+    "d8cats": [
+      "all",
+      "crypto",
+      "live",
+      "new2026"
+    ],
+    "cashierUsdtRate": null,
+    "minBetStarburst": null,
+    "minBetGates": null,
+    "bonusMinDeposit": null,
+    "maxBetWagering": null,
+    "wagerDays": null,
+    "withdrawMinAmount": null,
+    "licenseVerifyUrl": null,
+    "termsUrl": null,
+    "siteDomain": null
+  },
+  {
     "slug": "jetton",
     "name": "Jetton Casino",
-    "rank": 6,
+    "rank": 9,
     "top": false,
     "gold": false,
     "minDeposit": 100,
@@ -517,9 +790,99 @@
     "siteDomain": null
   },
   {
+    "slug": "leebet",
+    "name": "LeeBet Casino",
+    "rank": 10,
+    "top": false,
+    "gold": false,
+    "minDeposit": 1000,
+    "rating": 9.3,
+    "stars": "★★★★☆",
+    "ratingCnt": "/ 10.0",
+    "badges": [
+      {
+        "cls": "badge-new",
+        "text": "КРИПТА"
+      }
+    ],
+    "pills": [
+      {
+        "cls": "dep",
+        "text": "от 1 000 ₽"
+      },
+      {
+        "cls": "fast",
+        "text": "вывод от 60 мин"
+      },
+      {
+        "cls": "",
+        "text": "Карта · СБП · USDT · BTC"
+      },
+      {
+        "cls": "",
+        "text": "Лицензия Anjouan"
+      }
+    ],
+    "bonus": "Бонус: 75% и 50 фриспинов на первый депозит от 1 000 ₽, затем 50% + 75 FS и 25% + 125 FS — всего 150% и 250 фриспинов за три депозита. Вейджер x45, еженедельный кешбэк до 15%, релоад 50–100%",
+    "url": "https://play-leebet-4th.com/adtrq0e9mj",
+    "ctaLines": [
+      "Мин. депозит: 1 000 ₽",
+      "Крипто-вывод 15–60 мин"
+    ],
+    "promo": null,
+    "payments": [
+      "card",
+      "sbp",
+      "usdt",
+      "btc",
+      "crypto"
+    ],
+    "paymentsLabel": "Карта · СБП · USDT · BTC",
+    "paymentsLabelEn": "Card · SBP · USDT · BTC",
+    "withdrawMin": 60,
+    "license": "Anjouan",
+    "reviews": null,
+    "bonusEn": "Bonus: 75% + 50 free spins on a first deposit from 1,000 ₽, then 50% + 75 FS and 25% + 125 FS — 150% and 250 free spins across three deposits. 45x wagering, weekly cashback up to 15%, 50–100% reloads",
+    "badgesEn": [
+      "CRYPTO"
+    ],
+    "ctaLinesEn": [
+      "Min. deposit: 1 000 ₽",
+      "Crypto withdrawal 15–60 min"
+    ],
+    "promoCode": null,
+    "rtp": null,
+    "licenseFull": "Лицензия Anjouan Gaming (Computer Gaming Licensing Act 007/2005) ALSI-202510054-FI2, оператор 3-102-937610 SRL / BitPulse Solution Limitada",
+    "licenseShort": "Anjouan ALSI-202510054-FI2",
+    "wager": 45,
+    "cashback": 15,
+    "features": [
+      "Крипто без комиссий",
+      "Live 24/7",
+      "Релоад-бонус",
+      "VIP-клуб 10 уровней"
+    ],
+    "d8cats": [
+      "all",
+      "crypto",
+      "live",
+      "reload"
+    ],
+    "cashierUsdtRate": null,
+    "minBetStarburst": null,
+    "minBetGates": null,
+    "bonusMinDeposit": null,
+    "maxBetWagering": null,
+    "wagerDays": null,
+    "withdrawMinAmount": null,
+    "licenseVerifyUrl": null,
+    "termsUrl": null,
+    "siteDomain": null
+  },
+  {
     "slug": "dragon",
     "name": "Dragon Casino",
-    "rank": 7,
+    "rank": 11,
     "top": false,
     "gold": false,
     "minDeposit": 100,
@@ -595,9 +958,96 @@
     "siteDomain": null
   },
   {
+    "slug": "apex",
+    "name": "Apex Casino",
+    "rank": 12,
+    "top": false,
+    "gold": false,
+    "minDeposit": 100,
+    "rating": 9.3,
+    "stars": "★★★★☆",
+    "ratingCnt": "/ 10.0",
+    "badges": [
+      {
+        "cls": "badge-new",
+        "text": "2026"
+      }
+    ],
+    "pills": [
+      {
+        "cls": "dep",
+        "text": "от 100 ₽"
+      },
+      {
+        "cls": "fast",
+        "text": "вывод от 30 мин"
+      },
+      {
+        "cls": "",
+        "text": "Карта · СБП · Крипта"
+      },
+      {
+        "cls": "",
+        "text": "Лицензия Anjouan"
+      }
+    ],
+    "bonus": "Бонус: пакет бонусов и фриспинов на первые депозиты (до 575 фриспинов), первый депозит от 100 ₽. Вейджер x40, кешбэк до 10%, колесо фортуны за каждые три депозита и магазин бонусов",
+    "url": "https://9reenhouse-7apeks.com/addfgxolo1",
+    "ctaLines": [
+      "Мин. депозит: 100 ₽",
+      "Вывод от 30 мин"
+    ],
+    "promo": null,
+    "payments": [
+      "card",
+      "sbp",
+      "crypto"
+    ],
+    "paymentsLabel": "Карта · СБП · Крипта",
+    "paymentsLabelEn": "Card · SBP · Crypto",
+    "withdrawMin": 30,
+    "license": "Anjouan",
+    "reviews": null,
+    "bonusEn": "Bonus: a package of bonuses and free spins on the first deposits (up to 575 free spins), first deposit from 100 ₽. 40x wagering, cashback up to 10%, a fortune wheel every three deposits and a bonus shop",
+    "badgesEn": [
+      "2026"
+    ],
+    "ctaLinesEn": [
+      "Min. deposit: 100 ₽",
+      "Withdrawal from 30 min"
+    ],
+    "promoCode": null,
+    "rtp": null,
+    "licenseFull": "Лицензия Anjouan Gaming ALSI-202411072-FI2, оператор 3-102-937610 SRL",
+    "licenseShort": "Anjouan ALSI-202411072-FI2",
+    "wager": 40,
+    "cashback": 10,
+    "features": [
+      "Новое 2026",
+      "Крипто",
+      "Турниры",
+      "Карта · СБП · крипта"
+    ],
+    "d8cats": [
+      "all",
+      "new2026",
+      "crypto"
+    ],
+    "cashierUsdtRate": null,
+    "minBetStarburst": null,
+    "minBetGates": null,
+    "bonusMinDeposit": null,
+    "maxBetWagering": null,
+    "wagerDays": null,
+    "withdrawMinAmount": null,
+    "licenseVerifyUrl": null,
+    "termsUrl": null,
+    "siteDomain": null
+  },
+  {
     "slug": "gizbo",
     "name": "Gizbo Casino",
-    "rank": 8,
+    "rank": 13,
     "top": false,
     "gold": false,
     "minDeposit": 500,
@@ -683,7 +1133,7 @@
   {
     "slug": "spinbetter",
     "name": "SpinBetter",
-    "rank": 9,
+    "rank": 14,
     "top": false,
     "gold": false,
     "minDeposit": 500,
@@ -760,7 +1210,7 @@
   {
     "slug": "twin",
     "name": "Twin Casino",
-    "rank": 10,
+    "rank": 15,
     "top": false,
     "gold": false,
     "minDeposit": 500,
@@ -831,7 +1281,7 @@
   {
     "slug": "slott",
     "name": "Slott Casino",
-    "rank": 11,
+    "rank": 16,
     "top": false,
     "gold": false,
     "minDeposit": 500,
@@ -909,7 +1359,7 @@
   {
     "slug": "flagman",
     "name": "Flagman Casino",
-    "rank": 12,
+    "rank": 17,
     "top": false,
     "gold": false,
     "minDeposit": 1000,
