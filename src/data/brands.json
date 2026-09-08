@@ -98,11 +98,7 @@
       "name": "LeeBet",
       "program": "other",
       "active": true,
-      "domains": [
-        "leebet.casino",
-        "leebet.com",
-        "leebetcasino.com"
-      ]
+      "domains": []
     },
     {
       "slug": "dragon",

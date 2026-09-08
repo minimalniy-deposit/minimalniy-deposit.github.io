@@ -324,12 +324,9 @@
   "fetched": "2026-09-08"
  },
  "leebet": {
-  "ok": true,
-  "source": "site",
-  "src": "https://forsale.spaceship-cdn.com/static/latest/3.latest/assets/fonts/favicon-512x512.png",
-  "px": 512,
-  "program": "other",
-  "fetched": "2026-09-08"
+  "ok": false,
+  "checked": "2026-09-08",
+  "note": "leebet.casino is a parked domain; its favicon is not the brand"
  },
  "apex": {
   "ok": false,

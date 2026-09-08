@@ -59,6 +59,7 @@ async function bestForDomain(domain) {
 }
 
 async function fetchBrand(b) {
+  if (!b.domains?.length) return null;   // no known domain → no aggregator guess (parked domains give wrong icons)
   for (const d of b.domains) {
     const hit = await bestForDomain(d);
     if (hit && hit.px >= 32) return { ...hit, source: 'site' };
