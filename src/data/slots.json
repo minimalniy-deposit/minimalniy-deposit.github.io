@@ -1,9 +1,9 @@
 {
-  "fetchedAt": "2026-09-07",
+  "fetchedAt": "2026-09-09",
   "source": "slotsreach",
-  "total": 6022,
+  "total": 6028,
   "thumbs": {
-    "downloaded": 2,
+    "downloaded": 0,
     "failed": 0,
     "errors": {}
   },
@@ -1774,7 +1774,7 @@
       "releaseDate": "2026-07-10",
       "rating": 8,
       "payType": "megaways",
-      "isNew": true,
+      "isNew": false,
       "themes": [
         "Board Game",
         "Money",
