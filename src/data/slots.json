@@ -1,9 +1,9 @@
 {
-  "fetchedAt": "2026-09-09",
+  "fetchedAt": "2026-09-10",
   "source": "slotsreach",
-  "total": 6028,
+  "total": 6032,
   "thumbs": {
-    "downloaded": 0,
+    "downloaded": 1,
     "failed": 0,
     "errors": {}
   },
@@ -6492,39 +6492,6 @@
       "demoUrl": null
     },
     {
-      "slug": "zeus-vs-hades-gods-of-war-pragmatic-play",
-      "name": "Zeus vs Hades - Gods of War",
-      "provider": "Pragmatic Play",
-      "providerSlug": "pragmatic-play",
-      "rtp": 96.07,
-      "volatility": "very-high",
-      "maxWin": "15,000x",
-      "grid": "5x5",
-      "hitFrequency": 16.05,
-      "releaseDate": "2023-05-22",
-      "rating": 8,
-      "payType": "lines",
-      "isNew": false,
-      "themes": [
-        "Greek",
-        "Mythology",
-        "Gods",
-        "Warriors"
-      ],
-      "features": [
-        "Wild",
-        "Expanding Wilds",
-        "Multiplier",
-        "Free Spins",
-        "Buy Bonus",
-        "Sticky Wilds"
-      ],
-      "image": "/slots/img/zeus-vs-hades-gods-of-war-pragmatic-play.webp",
-      "screenshot": null,
-      "sourceUrl": "https://slotsreach.com/games/zeus-vs-hades-gods-of-war-pragmatic-play",
-      "demoUrl": null
-    },
-    {
       "slug": "sugar-twist-pragmatic-play",
       "name": "Sugar Twist",
       "provider": "Pragmatic Play",
@@ -9988,6 +9955,40 @@
       "image": "/slots/img/le-bruno-hacksaw-gaming.webp",
       "screenshot": "https://img.slotsreach.com/slot-images/le-bruno-hacksaw-gaming/gameplay-1.webp",
       "sourceUrl": "https://slotsreach.com/games/le-bruno-hacksaw-gaming",
+      "demoUrl": null
+    },
+    {
+      "slug": "le-prechaun-hacksaw-gaming",
+      "name": "Le Prechaun",
+      "provider": "Hacksaw Gaming",
+      "providerSlug": "hacksaw-gaming",
+      "rtp": 96.28,
+      "volatility": "very-high",
+      "maxWin": "15,000x",
+      "grid": "6x5",
+      "hitFrequency": null,
+      "releaseDate": "2026-07-16",
+      "rating": 7,
+      "payType": "scatter-pays",
+      "isNew": true,
+      "themes": [
+        "Irish",
+        "Fantasy",
+        "Lucky"
+      ],
+      "features": [
+        "Scatter Pays",
+        "Tumble",
+        "Multiplier",
+        "Wild",
+        "Scatter",
+        "Free Spins",
+        "Buy Bonus",
+        "Instant Prize"
+      ],
+      "image": "/slots/img/le-prechaun-hacksaw-gaming.webp",
+      "screenshot": "https://img.slotsreach.com/slot-images/le-prechaun-hacksaw-gaming/gameplay-1.webp",
+      "sourceUrl": "https://slotsreach.com/games/le-prechaun-hacksaw-gaming",
       "demoUrl": null
     }
   ]
