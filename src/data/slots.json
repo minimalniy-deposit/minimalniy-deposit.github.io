@@ -1,7 +1,7 @@
 {
-  "fetchedAt": "2026-09-10",
+  "fetchedAt": "2026-09-12",
   "source": "slotsreach",
-  "total": 6032,
+  "total": 6041,
   "thumbs": {
     "downloaded": 1,
     "failed": 0,
@@ -1740,7 +1740,7 @@
       "releaseDate": "2026-07-13",
       "rating": 8,
       "payType": "megaways",
-      "isNew": true,
+      "isNew": false,
       "themes": [
         "Dogs",
         "Animals",
@@ -8903,6 +8903,40 @@
       "demoUrl": null
     },
     {
+      "slug": "crabbys-gold-iii-playn-go",
+      "name": "Crabby's Gold III",
+      "provider": "Play'n GO",
+      "providerSlug": "playn-go",
+      "rtp": 96.2,
+      "volatility": "medium",
+      "maxWin": "35,000x",
+      "grid": "6x4",
+      "hitFrequency": 31.15,
+      "releaseDate": "2026-09-11",
+      "rating": 7,
+      "payType": "ways",
+      "isNew": true,
+      "themes": [
+        "Pirate",
+        "Treasure",
+        "Gold",
+        "Adventure"
+      ],
+      "features": [
+        "Hold And Win",
+        "Respins",
+        "Cash Collect",
+        "Expanding Wilds",
+        "Sticky Wilds",
+        "Multiplier",
+        "Gamble"
+      ],
+      "image": "/slots/img/crabbys-gold-iii-playn-go.webp",
+      "screenshot": "https://img.slotsreach.com/slot-images/crabbys-gold-iii-playn-go/gameplay-1.webp",
+      "sourceUrl": "https://slotsreach.com/games/crabbys-gold-iii-playn-go",
+      "demoUrl": null
+    },
+    {
       "slug": "triple-beasts-of-fortune-playn-go",
       "name": "Triple Beasts of Fortune",
       "provider": "Play'n GO",
@@ -9955,40 +9989,6 @@
       "image": "/slots/img/le-bruno-hacksaw-gaming.webp",
       "screenshot": "https://img.slotsreach.com/slot-images/le-bruno-hacksaw-gaming/gameplay-1.webp",
       "sourceUrl": "https://slotsreach.com/games/le-bruno-hacksaw-gaming",
-      "demoUrl": null
-    },
-    {
-      "slug": "le-prechaun-hacksaw-gaming",
-      "name": "Le Prechaun",
-      "provider": "Hacksaw Gaming",
-      "providerSlug": "hacksaw-gaming",
-      "rtp": 96.28,
-      "volatility": "very-high",
-      "maxWin": "15,000x",
-      "grid": "6x5",
-      "hitFrequency": null,
-      "releaseDate": "2026-07-16",
-      "rating": 7,
-      "payType": "scatter-pays",
-      "isNew": true,
-      "themes": [
-        "Irish",
-        "Fantasy",
-        "Lucky"
-      ],
-      "features": [
-        "Scatter Pays",
-        "Tumble",
-        "Multiplier",
-        "Wild",
-        "Scatter",
-        "Free Spins",
-        "Buy Bonus",
-        "Instant Prize"
-      ],
-      "image": "/slots/img/le-prechaun-hacksaw-gaming.webp",
-      "screenshot": "https://img.slotsreach.com/slot-images/le-prechaun-hacksaw-gaming/gameplay-1.webp",
-      "sourceUrl": "https://slotsreach.com/games/le-prechaun-hacksaw-gaming",
       "demoUrl": null
     }
   ]
