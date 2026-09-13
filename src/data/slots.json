@@ -1,9 +1,9 @@
 {
-  "fetchedAt": "2026-09-12",
+  "fetchedAt": "2026-09-13",
   "source": "slotsreach",
-  "total": 6041,
+  "total": 6048,
   "thumbs": {
-    "downloaded": 1,
+    "downloaded": 2,
     "failed": 0,
     "errors": {}
   },
@@ -8365,6 +8365,39 @@
       "demoUrl": null
     },
     {
+      "slug": "dont-die-wicked-games",
+      "name": "Don't Die",
+      "provider": "Wicked Games",
+      "providerSlug": "wicked-games",
+      "rtp": 96.16,
+      "volatility": "medium-high",
+      "maxWin": "10,000x",
+      "grid": "6x4",
+      "hitFrequency": null,
+      "releaseDate": "2026-10-15",
+      "rating": 7,
+      "payType": "lines",
+      "isNew": true,
+      "themes": [
+        "Comedy",
+        "Sci Fi"
+      ],
+      "features": [
+        "Free Spins",
+        "Expanding Wilds",
+        "Roaming Wilds",
+        "Multiplier",
+        "Respins",
+        "Symbol Collection",
+        "Buy Bonus",
+        "Ante Bet"
+      ],
+      "image": "/slots/img/dont-die-wicked-games.webp",
+      "screenshot": "https://img.slotsreach.com/slot-images/dont-die-wicked-games/gameplay-1.webp",
+      "sourceUrl": "https://slotsreach.com/games/dont-die-wicked-games",
+      "demoUrl": null
+    },
+    {
       "slug": "demonic-dolls-hacksaw-gaming",
       "name": "Demonic Dolls",
       "provider": "Hacksaw Gaming",
@@ -8900,6 +8933,41 @@
       "image": "/slots/img/helios-triple-sun-pragmatic-play.webp",
       "screenshot": "https://img.slotsreach.com/slot-images/helios-triple-sun-pragmatic-play/gameplay-1.webp",
       "sourceUrl": "https://slotsreach.com/games/helios-triple-sun-pragmatic-play",
+      "demoUrl": null
+    },
+    {
+      "slug": "pots-of-power-dragons-blessing-avatarux",
+      "name": "Pots of Power: Dragon's Blessing",
+      "provider": "AvatarUX",
+      "providerSlug": "avatarux",
+      "rtp": 96.05,
+      "volatility": "high",
+      "maxWin": "10,000x",
+      "grid": "5x3",
+      "hitFrequency": null,
+      "releaseDate": "2026-09-12",
+      "rating": 7,
+      "payType": "lines",
+      "isNew": true,
+      "themes": [
+        "Dragons",
+        "Chinese",
+        "Gold",
+        "Fortune"
+      ],
+      "features": [
+        "Hold And Win",
+        "Respins",
+        "Jackpot",
+        "Multiplier",
+        "Expanding Wilds",
+        "Symbol Collection",
+        "Buy Bonus",
+        "Ante Bet"
+      ],
+      "image": "/slots/img/pots-of-power-dragons-blessing-avatarux.webp",
+      "screenshot": "https://img.slotsreach.com/slot-images/pots-of-power-dragons-blessing-avatarux/gameplay-1.webp",
+      "sourceUrl": "https://slotsreach.com/games/pots-of-power-dragons-blessing-avatarux",
       "demoUrl": null
     },
     {
@@ -9921,74 +9989,6 @@
       "image": "/slots/img/the-governor-betsoft.webp",
       "screenshot": "https://img.slotsreach.com/slot-images/the-governor-betsoft/gameplay-1.webp",
       "sourceUrl": "https://slotsreach.com/games/the-governor-betsoft",
-      "demoUrl": null
-    },
-    {
-      "slug": "mithai-madness-10000x-microgaming",
-      "name": "Mithai Madness 10000x",
-      "provider": "Microgaming",
-      "providerSlug": "microgaming",
-      "rtp": 96.2,
-      "volatility": "high",
-      "maxWin": "10,000x",
-      "grid": "5x3",
-      "hitFrequency": null,
-      "releaseDate": "2026-07-29",
-      "rating": 7,
-      "payType": "lines",
-      "isNew": true,
-      "themes": [
-        "Indian",
-        "Candy",
-        "Food"
-      ],
-      "features": [
-        "Hold And Win",
-        "Respins",
-        "Jackpot",
-        "Buy Bonus",
-        "Multiplier",
-        "Cash Collect",
-        "Symbol Collection",
-        "Expanding Grid"
-      ],
-      "image": "/slots/img/mithai-madness-10000x-microgaming.webp",
-      "screenshot": "https://img.slotsreach.com/slot-images/mithai-madness-10000x-microgaming/gameplay-5.webp",
-      "sourceUrl": "https://slotsreach.com/games/mithai-madness-10000x-microgaming",
-      "demoUrl": null
-    },
-    {
-      "slug": "le-bruno-hacksaw-gaming",
-      "name": "Le Bruno",
-      "provider": "Hacksaw Gaming",
-      "providerSlug": "hacksaw-gaming",
-      "rtp": 94.29,
-      "volatility": "medium",
-      "maxWin": "2,500x",
-      "grid": "6x5",
-      "hitFrequency": null,
-      "releaseDate": "2026-07-20",
-      "rating": 7,
-      "payType": "cluster",
-      "isNew": true,
-      "themes": [
-        "African",
-        "Adventure",
-        "Animals"
-      ],
-      "features": [
-        "Cluster Pays",
-        "Tumble",
-        "Instant Prize",
-        "Cash Collect",
-        "Multiplier",
-        "Wild",
-        "Free Spins",
-        "Buy Bonus"
-      ],
-      "image": "/slots/img/le-bruno-hacksaw-gaming.webp",
-      "screenshot": "https://img.slotsreach.com/slot-images/le-bruno-hacksaw-gaming/gameplay-1.webp",
-      "sourceUrl": "https://slotsreach.com/games/le-bruno-hacksaw-gaming",
       "demoUrl": null
     }
   ]
