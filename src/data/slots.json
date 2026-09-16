@@ -1,9 +1,9 @@
 {
-  "fetchedAt": "2026-09-13",
+  "fetchedAt": "2026-09-16",
   "source": "slotsreach",
-  "total": 6048,
+  "total": 6072,
   "thumbs": {
-    "downloaded": 2,
+    "downloaded": 1,
     "failed": 0,
     "errors": {}
   },
@@ -8699,6 +8699,39 @@
       "demoUrl": null
     },
     {
+      "slug": "bonanza-billion-merge-up-bgaming",
+      "name": "Bonanza Billion Merge Up",
+      "provider": "BGaming",
+      "providerSlug": "bgaming",
+      "rtp": 97.04,
+      "volatility": "very-high",
+      "maxWin": "15,000x",
+      "grid": "6x5",
+      "hitFrequency": 38.61,
+      "releaseDate": "2026-09-24",
+      "rating": 7,
+      "payType": "scatter-pays",
+      "isNew": true,
+      "themes": [
+        "Fruit",
+        "Gems"
+      ],
+      "features": [
+        "Tumble",
+        "Symbol Transformation",
+        "Scatter Pays",
+        "Free Spins",
+        "Multiplier",
+        "Buy Bonus",
+        "Ante Bet",
+        "Retrigger"
+      ],
+      "image": "/slots/img/bonanza-billion-merge-up-bgaming.webp",
+      "screenshot": "https://img.slotsreach.com/slot-images/bonanza-billion-merge-up-bgaming/gameplay-1.webp",
+      "sourceUrl": "https://slotsreach.com/games/bonanza-billion-merge-up-bgaming",
+      "demoUrl": null
+    },
+    {
       "slug": "lawn-n-complete-disorder-playn-go",
       "name": "Lawn n' Complete Disorder",
       "provider": "Play'n GO",
@@ -9956,39 +9989,6 @@
       "image": "/slots/img/farmstead-fortune-pg-soft.webp",
       "screenshot": "https://img.slotsreach.com/slot-images/farmstead-fortune-pg-soft/gameplay-1.webp",
       "sourceUrl": "https://slotsreach.com/games/farmstead-fortune-pg-soft",
-      "demoUrl": null
-    },
-    {
-      "slug": "the-governor-betsoft",
-      "name": "The Governor",
-      "provider": "Betsoft",
-      "providerSlug": "betsoft",
-      "rtp": 96,
-      "volatility": "high",
-      "maxWin": "10,000x",
-      "grid": "6x5",
-      "hitFrequency": null,
-      "releaseDate": "2026-07-30",
-      "rating": 7,
-      "payType": "cluster",
-      "isNew": true,
-      "themes": [
-        "Crime",
-        "Money"
-      ],
-      "features": [
-        "Cluster Pays",
-        "Tumble",
-        "Cash Collect",
-        "Free Spins",
-        "Multiplier",
-        "Wild",
-        "Scatter",
-        "Buy Bonus"
-      ],
-      "image": "/slots/img/the-governor-betsoft.webp",
-      "screenshot": "https://img.slotsreach.com/slot-images/the-governor-betsoft/gameplay-1.webp",
-      "sourceUrl": "https://slotsreach.com/games/the-governor-betsoft",
       "demoUrl": null
     }
   ]
