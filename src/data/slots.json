@@ -1,7 +1,7 @@
 {
-  "fetchedAt": "2026-09-16",
+  "fetchedAt": "2026-09-17",
   "source": "slotsreach",
-  "total": 6072,
+  "total": 6076,
   "thumbs": {
     "downloaded": 1,
     "failed": 0,
@@ -1708,7 +1708,7 @@
       "releaseDate": "2026-07-18",
       "rating": 8,
       "payType": "scatter-pays",
-      "isNew": true,
+      "isNew": false,
       "themes": [
         "Underwater",
         "Cartoon"
@@ -9140,6 +9140,38 @@
       "demoUrl": null
     },
     {
+      "slug": "prosperity-lanterns-pg-soft",
+      "name": "Prosperity Lanterns",
+      "provider": "PG Soft",
+      "providerSlug": "pg-soft",
+      "rtp": 96.77,
+      "volatility": "high",
+      "maxWin": "10,000x",
+      "grid": "5x3",
+      "hitFrequency": 34.01,
+      "releaseDate": "2026-09-01",
+      "rating": 7,
+      "payType": "lines",
+      "isNew": true,
+      "themes": [
+        "Chinese",
+        "Festival",
+        "Fortune",
+        "Sky"
+      ],
+      "features": [
+        "Hold And Win",
+        "Respins",
+        "Multiplier",
+        "Expanding Grid",
+        "Random Features"
+      ],
+      "image": "/slots/img/prosperity-lanterns-pg-soft.webp",
+      "screenshot": "https://img.slotsreach.com/slot-images/prosperity-lanterns-pg-soft/gameplay-1.webp",
+      "sourceUrl": "https://slotsreach.com/games/prosperity-lanterns-pg-soft",
+      "demoUrl": null
+    },
+    {
       "slug": "hearts-of-venus-pragmatic-play",
       "name": "Hearts of Venus",
       "provider": "Pragmatic Play",
@@ -9653,38 +9685,6 @@
       "image": "/slots/img/mega-fire-blaze-coyol-diosa-de-la-luna-playtech.webp",
       "screenshot": "https://img.slotsreach.com/slot-images/mega-fire-blaze-coyol-diosa-de-la-luna-playtech/gameplay-1.webp",
       "sourceUrl": "https://slotsreach.com/games/mega-fire-blaze-coyol-diosa-de-la-luna-playtech",
-      "demoUrl": null
-    },
-    {
-      "slug": "touchdown-wins-pg-soft",
-      "name": "Touchdown Wins",
-      "provider": "PG Soft",
-      "providerSlug": "pg-soft",
-      "rtp": 96.74,
-      "volatility": "medium",
-      "maxWin": "5,000x",
-      "grid": "2-3-2",
-      "hitFrequency": 29.24,
-      "releaseDate": "2026-08-18",
-      "rating": 7,
-      "payType": "scatter-pays",
-      "isNew": true,
-      "themes": [
-        "Football",
-        "Sports",
-        "American"
-      ],
-      "features": [
-        "Scatter Pays",
-        "Tumble",
-        "Multiplier",
-        "Free Spins",
-        "Ante Bet",
-        "Random Features"
-      ],
-      "image": "/slots/img/touchdown-wins-pg-soft.webp",
-      "screenshot": "https://img.slotsreach.com/slot-images/touchdown-wins-pg-soft/gameplay-1.webp",
-      "sourceUrl": "https://slotsreach.com/games/touchdown-wins-pg-soft",
       "demoUrl": null
     },
     {
