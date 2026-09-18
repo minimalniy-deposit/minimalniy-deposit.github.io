@@ -1,7 +1,7 @@
 {
-  "fetchedAt": "2026-09-17",
+  "fetchedAt": "2026-09-18",
   "source": "slotsreach",
-  "total": 6076,
+  "total": 6084,
   "thumbs": {
     "downloaded": 1,
     "failed": 0,
@@ -8297,6 +8297,39 @@
       "demoUrl": null
     },
     {
+      "slug": "gates-of-olympus-2500-pragmatic-play",
+      "name": "Gates of Olympus 2500",
+      "provider": "Pragmatic Play",
+      "providerSlug": "pragmatic-play",
+      "rtp": 96.52,
+      "volatility": "high",
+      "maxWin": "25,000x",
+      "grid": "6x5",
+      "hitFrequency": 27.93,
+      "releaseDate": "2027-09-28",
+      "rating": 7,
+      "payType": "scatter-pays",
+      "isNew": true,
+      "themes": [
+        "Greek",
+        "Mythology",
+        "Gods"
+      ],
+      "features": [
+        "Tumble",
+        "Multiplier",
+        "Scatter Pays",
+        "Free Spins",
+        "Buy Bonus",
+        "Ante Bet",
+        "Retrigger"
+      ],
+      "image": "/slots/img/gates-of-olympus-2500-pragmatic-play.webp",
+      "screenshot": "https://img.slotsreach.com/slot-images/gates-of-olympus-2500-pragmatic-play/gameplay-1.webp",
+      "sourceUrl": "https://slotsreach.com/games/gates-of-olympus-2500-pragmatic-play",
+      "demoUrl": null
+    },
+    {
       "slug": "le-clubber-hacksaw-gaming",
       "name": "Le Clubber",
       "provider": "Hacksaw Gaming",
@@ -8328,6 +8361,41 @@
       "image": "/slots/img/le-clubber-hacksaw-gaming.webp",
       "screenshot": "https://img.slotsreach.com/slot-images/le-clubber-hacksaw-gaming/gameplay-1.webp",
       "sourceUrl": "https://slotsreach.com/games/le-clubber-hacksaw-gaming",
+      "demoUrl": null
+    },
+    {
+      "slug": "nuclear-tumble-relax-gaming",
+      "name": "Nuclear Tumble",
+      "provider": "Relax Gaming",
+      "providerSlug": "relax-gaming",
+      "rtp": 96.1,
+      "volatility": "medium-high",
+      "maxWin": "5,000x",
+      "grid": "6x6",
+      "hitFrequency": null,
+      "releaseDate": "2026-10-29",
+      "rating": 7,
+      "payType": "ways",
+      "isNew": true,
+      "themes": [
+        "Post Apocalyptic",
+        "Animals",
+        "Food"
+      ],
+      "features": [
+        "Tumble",
+        "Ways",
+        "Free Spins",
+        "Cash Collect",
+        "Ante Bet",
+        "Gamble",
+        "Retrigger",
+        "Symbol Collection",
+        "Wild"
+      ],
+      "image": "/slots/img/nuclear-tumble-relax-gaming.webp",
+      "screenshot": "https://img.slotsreach.com/slot-images/nuclear-tumble-relax-gaming/gameplay-1.webp",
+      "sourceUrl": "https://slotsreach.com/games/nuclear-tumble-relax-gaming",
       "demoUrl": null
     },
     {
@@ -8593,39 +8661,6 @@
       "image": "/slots/img/three-pots-of-the-genie-playn-go.webp",
       "screenshot": "https://img.slotsreach.com/slot-images/three-pots-of-the-genie-play-n-go/gameplay-1.webp",
       "sourceUrl": "https://slotsreach.com/games/three-pots-of-the-genie-playn-go",
-      "demoUrl": null
-    },
-    {
-      "slug": "gates-of-olympus-2500-pragmatic-play",
-      "name": "Gates of Olympus 2500",
-      "provider": "Pragmatic Play",
-      "providerSlug": "pragmatic-play",
-      "rtp": 96.52,
-      "volatility": "high",
-      "maxWin": "25,000x",
-      "grid": "6x5",
-      "hitFrequency": 27.93,
-      "releaseDate": "2026-09-28",
-      "rating": 7,
-      "payType": "scatter-pays",
-      "isNew": true,
-      "themes": [
-        "Greek",
-        "Mythology",
-        "Gods"
-      ],
-      "features": [
-        "Tumble",
-        "Multiplier",
-        "Scatter Pays",
-        "Free Spins",
-        "Buy Bonus",
-        "Ante Bet",
-        "Retrigger"
-      ],
-      "image": "/slots/img/gates-of-olympus-2500-pragmatic-play.webp",
-      "screenshot": "https://img.slotsreach.com/slot-images/gates-of-olympus-2500-pragmatic-play/gameplay-1.webp",
-      "sourceUrl": "https://slotsreach.com/games/gates-of-olympus-2500-pragmatic-play",
       "demoUrl": null
     },
     {
@@ -9955,40 +9990,6 @@
       "image": "/slots/img/jade-legends-pragmatic-play.webp",
       "screenshot": "https://img.slotsreach.com/slot-images/jade-legends-pragmatic-play/gameplay-1.webp",
       "sourceUrl": "https://slotsreach.com/games/jade-legends-pragmatic-play",
-      "demoUrl": null
-    },
-    {
-      "slug": "farmstead-fortune-pg-soft",
-      "name": "Farmstead Fortune",
-      "provider": "PG Soft",
-      "providerSlug": "pg-soft",
-      "rtp": 96.76,
-      "volatility": "high",
-      "maxWin": "10,000x",
-      "grid": "5x5-7x7",
-      "hitFrequency": 31.25,
-      "releaseDate": "2026-08-03",
-      "rating": 7,
-      "payType": "cluster",
-      "isNew": true,
-      "themes": [
-        "Food",
-        "Nature",
-        "Cartoon"
-      ],
-      "features": [
-        "Cluster Pays",
-        "Tumble",
-        "Expanding Grid",
-        "Free Spins",
-        "Buy Bonus",
-        "Multiplier",
-        "Level Up",
-        "Wild"
-      ],
-      "image": "/slots/img/farmstead-fortune-pg-soft.webp",
-      "screenshot": "https://img.slotsreach.com/slot-images/farmstead-fortune-pg-soft/gameplay-1.webp",
-      "sourceUrl": "https://slotsreach.com/games/farmstead-fortune-pg-soft",
       "demoUrl": null
     }
   ]
