@@ -1,9 +1,9 @@
 {
-  "fetchedAt": "2026-09-18",
+  "fetchedAt": "2026-09-21",
   "source": "slotsreach",
-  "total": 6084,
+  "total": 6094,
   "thumbs": {
-    "downloaded": 1,
+    "downloaded": 0,
     "failed": 0,
     "errors": {}
   },
@@ -176,7 +176,7 @@
       "releaseDate": "2026-07-22",
       "rating": 9,
       "payType": "cluster",
-      "isNew": true,
+      "isNew": false,
       "themes": [
         "Egyptian",
         "Mythology",
