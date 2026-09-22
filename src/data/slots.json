@@ -1,7 +1,7 @@
 {
-  "fetchedAt": "2026-09-21",
+  "fetchedAt": "2026-09-22",
   "source": "slotsreach",
-  "total": 6094,
+  "total": 6095,
   "thumbs": {
     "downloaded": 0,
     "failed": 0,
@@ -146,7 +146,7 @@
       "releaseDate": "2026-07-23",
       "rating": 9,
       "payType": "lines",
-      "isNew": true,
+      "isNew": false,
       "themes": [
         "Western"
       ],
@@ -1674,7 +1674,7 @@
       "releaseDate": "2026-07-23",
       "rating": 8,
       "payType": "ways",
-      "isNew": true,
+      "isNew": false,
       "themes": [
         "Aliens",
         "Space",
