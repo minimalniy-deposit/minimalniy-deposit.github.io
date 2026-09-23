@@ -1,9 +1,9 @@
 {
-  "fetchedAt": "2026-09-22",
+  "fetchedAt": "2026-09-23",
   "source": "slotsreach",
-  "total": 6095,
+  "total": 6099,
   "thumbs": {
-    "downloaded": 0,
+    "downloaded": 1,
     "failed": 0,
     "errors": {}
   },
@@ -1234,7 +1234,7 @@
       "provider": "ELK Studios",
       "providerSlug": "elk-studios",
       "rtp": 94,
-      "volatility": "high",
+      "volatility": "medium-high",
       "maxWin": "10,000x",
       "grid": "5x5",
       "hitFrequency": 26.8,
@@ -1244,17 +1244,20 @@
       "isNew": false,
       "themes": [
         "Pirate",
-        "Tropical",
+        "Underwater",
+        "Gems",
         "Animals",
-        "Gems"
+        "Adventure",
+        "Treasure"
       ],
       "features": [
-        "Symbol Collection",
-        "Expanding Grid",
-        "Symbol Transformation",
-        "Instant Prize",
         "Free Spins",
-        "Buy Bonus"
+        "Buy Bonus",
+        "Expanding Grid",
+        "Symbol Collection",
+        "Symbol Transformation",
+        "Cash Collect",
+        "Tumble"
       ],
       "image": "/slots/img/pirots-elk-studios.webp",
       "screenshot": "https://img.slotsreach.com/slot-images/pirots-elk-studios/gameplay-1.webp",
@@ -3409,6 +3412,41 @@
       "demoUrl": null
     },
     {
+      "slug": "pirots-4-elk-studios",
+      "name": "Pirots 4",
+      "provider": "ELK Studios",
+      "providerSlug": "elk-studios",
+      "rtp": 94,
+      "volatility": "high",
+      "maxWin": "10,000x",
+      "grid": "6x6-8x8",
+      "hitFrequency": 25,
+      "releaseDate": "2025-07-24",
+      "rating": 8,
+      "payType": "ways",
+      "isNew": false,
+      "themes": [
+        "Space",
+        "Sci Fi",
+        "Aliens",
+        "Adventure",
+        "Animals",
+        "Cartoon"
+      ],
+      "features": [
+        "Symbol Collection",
+        "Expanding Grid",
+        "Free Spins",
+        "Buy Bonus",
+        "Random Features",
+        "Multiplier"
+      ],
+      "image": "/slots/img/pirots-4-elk-studios.webp",
+      "screenshot": "https://img.slotsreach.com/slot-images/pirots-4-elk-studios/gameplay-1.webp",
+      "sourceUrl": "https://slotsreach.com/games/pirots-4-elk-studios",
+      "demoUrl": null
+    },
+    {
       "slug": "aiko-and-the-wind-spirit-hacksaw-gaming",
       "name": "Aiko and the Wind Spirit",
       "provider": "Hacksaw Gaming",
@@ -5217,18 +5255,19 @@
       "payType": "cluster",
       "isNew": false,
       "themes": [
-        "Pirate",
-        "Animals",
         "Western",
         "Trains",
-        "Dinosaurs"
+        "Adventure",
+        "Animals",
+        "Cartoon"
       ],
       "features": [
+        "Symbol Collection",
         "Cluster Pays",
-        "Wild",
         "Expanding Grid",
         "Free Spins",
-        "Buy Bonus"
+        "Buy Bonus",
+        "Random Features"
       ],
       "image": "/slots/img/pirots-3-elk-studios.webp",
       "screenshot": "https://img.slotsreach.com/slot-images/pirots-3-elk-studios/gameplay-1.webp",
@@ -9956,40 +9995,6 @@
       "image": "/slots/img/poseidon-the-deep-king-mascot-gaming.webp",
       "screenshot": "https://img.slotsreach.com/slot-images/poseidon-the-deep-king-mascot-gaming/gameplay-1.webp",
       "sourceUrl": "https://slotsreach.com/games/poseidon-the-deep-king-mascot-gaming",
-      "demoUrl": null
-    },
-    {
-      "slug": "jade-legends-pragmatic-play",
-      "name": "Jade Legends",
-      "provider": "Pragmatic Play",
-      "providerSlug": "pragmatic-play",
-      "rtp": 96.5,
-      "volatility": "high",
-      "maxWin": "20,000x",
-      "grid": "7x7",
-      "hitFrequency": null,
-      "releaseDate": "2026-08-03",
-      "rating": 7,
-      "payType": "cluster",
-      "isNew": true,
-      "themes": [
-        "Chinese",
-        "Dragons",
-        "Fortune"
-      ],
-      "features": [
-        "Cluster Pays",
-        "Tumble",
-        "Cash Collect",
-        "Multiplier",
-        "Free Spins",
-        "Buy Bonus",
-        "Ante Bet",
-        "Wild"
-      ],
-      "image": "/slots/img/jade-legends-pragmatic-play.webp",
-      "screenshot": "https://img.slotsreach.com/slot-images/jade-legends-pragmatic-play/gameplay-1.webp",
-      "sourceUrl": "https://slotsreach.com/games/jade-legends-pragmatic-play",
       "demoUrl": null
     }
   ]
