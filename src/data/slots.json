@@ -1,9 +1,9 @@
 {
-  "fetchedAt": "2026-09-23",
+  "fetchedAt": "2026-09-24",
   "source": "slotsreach",
-  "total": 6099,
+  "total": 6113,
   "thumbs": {
-    "downloaded": 1,
+    "downloaded": 2,
     "failed": 0,
     "errors": {}
   },
@@ -8472,6 +8472,40 @@
       "demoUrl": null
     },
     {
+      "slug": "propaganda-2-elk-studios",
+      "name": "Propaganda 2",
+      "provider": "ELK Studios",
+      "providerSlug": "elk-studios",
+      "rtp": 96,
+      "volatility": "high",
+      "maxWin": "25,000x",
+      "grid": "6x6",
+      "hitFrequency": 21.11,
+      "releaseDate": "2026-10-22",
+      "rating": 7,
+      "payType": "cluster",
+      "isNew": true,
+      "themes": [
+        "Dystopian",
+        "Urban"
+      ],
+      "features": [
+        "Cluster Pays",
+        "Tumble",
+        "Multiplier",
+        "Random Wilds",
+        "Symbol Collection",
+        "Hold And Win",
+        "Free Spins",
+        "Retrigger",
+        "Buy Bonus"
+      ],
+      "image": "/slots/img/propaganda-2-elk-studios.webp",
+      "screenshot": "https://img.slotsreach.com/slot-images/propaganda-2-elk-studios/gameplay-1.webp",
+      "sourceUrl": "https://slotsreach.com/games/propaganda-2-elk-studios",
+      "demoUrl": null
+    },
+    {
       "slug": "dont-die-wicked-games",
       "name": "Don't Die",
       "provider": "Wicked Games",
@@ -9177,6 +9211,41 @@
       "image": "/slots/img/3-super-volcanoes-evoplay.webp",
       "screenshot": "https://img.slotsreach.com/slot-images/3-super-volcanoes-evoplay/gameplay-1.webp",
       "sourceUrl": "https://slotsreach.com/games/3-super-volcanoes-evoplay",
+      "demoUrl": null
+    },
+    {
+      "slug": "3-fisher-cats-amigo-gaming",
+      "name": "3 Fisher Cats",
+      "provider": "Amigo Gaming",
+      "providerSlug": "amigo-gaming",
+      "rtp": 96.04,
+      "volatility": "very-high",
+      "maxWin": "21,000x",
+      "grid": "5x3",
+      "hitFrequency": null,
+      "releaseDate": "2026-09-02",
+      "rating": 7,
+      "payType": "lines",
+      "isNew": true,
+      "themes": [
+        "Cats",
+        "Fishing",
+        "Underwater",
+        "Tropical"
+      ],
+      "features": [
+        "Hold And Win",
+        "Respins",
+        "Buy Bonus",
+        "Symbol Collection",
+        "Cash Collect",
+        "Multiplier",
+        "Jackpot",
+        "Random Features"
+      ],
+      "image": "/slots/img/3-fisher-cats-amigo-gaming.webp",
+      "screenshot": "https://img.slotsreach.com/slot-images/3-fisher-cats-amigo-gaming/gameplay-1.webp",
+      "sourceUrl": "https://slotsreach.com/games/3-fisher-cats-amigo-gaming",
       "demoUrl": null
     },
     {
@@ -9928,73 +9997,6 @@
       "image": "/slots/img/holy-moo-extreme-power-playn-go.webp",
       "screenshot": "https://img.slotsreach.com/slot-images/holy-moo-extreme-power-playn-go/gameplay-1.webp",
       "sourceUrl": "https://slotsreach.com/games/holy-moo-extreme-power-playn-go",
-      "demoUrl": null
-    },
-    {
-      "slug": "super-serge-pragmatic-play",
-      "name": "Super Serge",
-      "provider": "Pragmatic Play",
-      "providerSlug": "pragmatic-play",
-      "rtp": 96.5,
-      "volatility": "medium",
-      "maxWin": "10,000x",
-      "grid": "6x4-6x6",
-      "hitFrequency": null,
-      "releaseDate": "2026-08-06",
-      "rating": 7,
-      "payType": "ways",
-      "isNew": true,
-      "themes": [
-        "Superhero",
-        "Urban",
-        "Money"
-      ],
-      "features": [
-        "Cash Collect",
-        "Jackpot",
-        "Free Spins",
-        "Multiplier",
-        "Expanding Grid",
-        "Buy Bonus",
-        "Wild",
-        "Scatter"
-      ],
-      "image": "/slots/img/super-serge-pragmatic-play.webp",
-      "screenshot": "https://img.slotsreach.com/slot-images/super-serge-pragmatic-play/gameplay-1.webp",
-      "sourceUrl": "https://slotsreach.com/games/super-serge-pragmatic-play",
-      "demoUrl": null
-    },
-    {
-      "slug": "poseidon-the-deep-king-mascot-gaming",
-      "name": "Poseidon the Deep King",
-      "provider": "Mascot Gaming",
-      "providerSlug": "mascot-gaming",
-      "rtp": 96.18,
-      "volatility": "high",
-      "maxWin": "22,500x",
-      "grid": "6x7",
-      "hitFrequency": null,
-      "releaseDate": "2026-08-06",
-      "rating": 7,
-      "payType": "ways",
-      "isNew": true,
-      "themes": [
-        "Greek",
-        "Mythology",
-        "Underwater"
-      ],
-      "features": [
-        "Tumble",
-        "Multiplier",
-        "Free Spins",
-        "Buy Bonus",
-        "Wild",
-        "Scatter",
-        "Gamble"
-      ],
-      "image": "/slots/img/poseidon-the-deep-king-mascot-gaming.webp",
-      "screenshot": "https://img.slotsreach.com/slot-images/poseidon-the-deep-king-mascot-gaming/gameplay-1.webp",
-      "sourceUrl": "https://slotsreach.com/games/poseidon-the-deep-king-mascot-gaming",
       "demoUrl": null
     }
   ]
