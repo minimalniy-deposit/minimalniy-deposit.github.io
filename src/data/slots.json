@@ -1,9 +1,9 @@
 {
-  "fetchedAt": "2026-09-24",
+  "fetchedAt": "2026-09-25",
   "source": "slotsreach",
-  "total": 6113,
+  "total": 6118,
   "thumbs": {
-    "downloaded": 2,
+    "downloaded": 1,
     "failed": 0,
     "errors": {}
   },
@@ -8539,6 +8539,41 @@
       "demoUrl": null
     },
     {
+      "slug": "moonlight-romance-twilight-microgaming",
+      "name": "Moonlight Romance - Twilight",
+      "provider": "Microgaming",
+      "providerSlug": "microgaming",
+      "rtp": 96.2,
+      "volatility": "very-high",
+      "maxWin": "12,150x",
+      "grid": "5x3",
+      "hitFrequency": null,
+      "releaseDate": "2026-10-14",
+      "rating": 7,
+      "payType": "ways",
+      "isNew": true,
+      "themes": [
+        "Horror",
+        "Romance",
+        "Gothic"
+      ],
+      "features": [
+        "Free Spins",
+        "Buy Bonus",
+        "Multiplier",
+        "Ways",
+        "Expanding Grid",
+        "Symbol Collection",
+        "Random Wilds",
+        "Stacked Wilds",
+        "Retrigger"
+      ],
+      "image": "/slots/img/moonlight-romance-twilight-microgaming.webp",
+      "screenshot": "https://img.slotsreach.com/slot-images/moonlight-romance-twilight-microgaming/gameplay-3.webp",
+      "sourceUrl": "https://slotsreach.com/games/moonlight-romance-twilight-microgaming",
+      "demoUrl": null
+    },
+    {
       "slug": "demonic-dolls-hacksaw-gaming",
       "name": "Demonic Dolls",
       "provider": "Hacksaw Gaming",
@@ -9963,40 +9998,6 @@
       "image": "/slots/img/miss-cherry-wild-frames-bgaming.webp",
       "screenshot": "https://img.slotsreach.com/slot-images/miss-cherry-wild-frames-bgaming/gameplay-1.webp",
       "sourceUrl": "https://slotsreach.com/games/miss-cherry-wild-frames-bgaming",
-      "demoUrl": null
-    },
-    {
-      "slug": "holy-moo-extreme-power-playn-go",
-      "name": "Holy Moo! Extreme Power",
-      "provider": "Play'n GO",
-      "providerSlug": "playn-go",
-      "rtp": 96.2,
-      "volatility": "high",
-      "maxWin": "4,000x",
-      "grid": "6x6",
-      "hitFrequency": null,
-      "releaseDate": "2026-08-06",
-      "rating": 7,
-      "payType": "scatter-pays",
-      "isNew": true,
-      "themes": [
-        "Greek",
-        "Mythology",
-        "Animals"
-      ],
-      "features": [
-        "Cash Collect",
-        "Scatter Pays",
-        "Free Spins",
-        "Wild",
-        "Scatter",
-        "Jackpot",
-        "Multiplier",
-        "Sticky Symbols"
-      ],
-      "image": "/slots/img/holy-moo-extreme-power-playn-go.webp",
-      "screenshot": "https://img.slotsreach.com/slot-images/holy-moo-extreme-power-playn-go/gameplay-1.webp",
-      "sourceUrl": "https://slotsreach.com/games/holy-moo-extreme-power-playn-go",
       "demoUrl": null
     }
   ]
