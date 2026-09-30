@@ -1,9 +1,9 @@
 {
-  "fetchedAt": "2026-09-28",
+  "fetchedAt": "2026-09-30",
   "source": "slotsreach",
-  "total": 6145,
+  "total": 6158,
   "thumbs": {
-    "downloaded": 2,
+    "downloaded": 1,
     "failed": 0,
     "errors": {}
   },
@@ -9936,6 +9936,40 @@
       "demoUrl": null
     },
     {
+      "slug": "judgemental-netent",
+      "name": "Judgemental",
+      "provider": "NetEnt",
+      "providerSlug": "netent",
+      "rtp": 96.2,
+      "volatility": "very-high",
+      "maxWin": "15,000x",
+      "grid": "5x4",
+      "hitFrequency": 22,
+      "releaseDate": "2026-08-13",
+      "rating": 7,
+      "payType": "ways",
+      "isNew": true,
+      "themes": [
+        "Tv Movie",
+        "Music"
+      ],
+      "features": [
+        "Free Spins",
+        "Respins",
+        "Sticky Symbols",
+        "Multiplier",
+        "Random Wilds",
+        "Buy Bonus",
+        "Ante Bet",
+        "Ways",
+        "Scatter"
+      ],
+      "image": "/slots/img/judgemental-netent.webp",
+      "screenshot": "https://img.slotsreach.com/slot-images/judgemental-netent/gameplay-6.webp",
+      "sourceUrl": "https://slotsreach.com/games/judgemental-netent",
+      "demoUrl": null
+    },
+    {
       "slug": "holy-moo-extreme-power-playn-go",
       "name": "Holy Moo! Extreme Power",
       "provider": "Play'n GO",
@@ -9967,40 +10001,6 @@
       "image": "/slots/img/holy-moo-extreme-power-playn-go.webp",
       "screenshot": "https://img.slotsreach.com/slot-images/holy-moo-extreme-power-playn-go/gameplay-1.webp",
       "sourceUrl": "https://slotsreach.com/games/holy-moo-extreme-power-playn-go",
-      "demoUrl": null
-    },
-    {
-      "slug": "super-serge-pragmatic-play",
-      "name": "Super Serge",
-      "provider": "Pragmatic Play",
-      "providerSlug": "pragmatic-play",
-      "rtp": 96.5,
-      "volatility": "medium",
-      "maxWin": "10,000x",
-      "grid": "6x4-6x6",
-      "hitFrequency": null,
-      "releaseDate": "2026-08-06",
-      "rating": 7,
-      "payType": "ways",
-      "isNew": true,
-      "themes": [
-        "Superhero",
-        "Urban",
-        "Money"
-      ],
-      "features": [
-        "Cash Collect",
-        "Jackpot",
-        "Free Spins",
-        "Multiplier",
-        "Expanding Grid",
-        "Buy Bonus",
-        "Wild",
-        "Scatter"
-      ],
-      "image": "/slots/img/super-serge-pragmatic-play.webp",
-      "screenshot": "https://img.slotsreach.com/slot-images/super-serge-pragmatic-play/gameplay-1.webp",
-      "sourceUrl": "https://slotsreach.com/games/super-serge-pragmatic-play",
       "demoUrl": null
     }
   ]
