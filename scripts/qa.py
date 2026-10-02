@@ -4,7 +4,7 @@ fail = []
 # 1. home text: nothing from the legacy page may be missing except known allowed tokens (dates, numbers)
 r = subprocess.run([sys.executable, 'scripts/textdiff.py', 'docs/legacy-index.html', 'dist/index.html'], capture_output=True, text=True)
 missing = [l[4:] for l in r.stdout.splitlines() if l.startswith('  - ')]
-ALLOWED = re.compile(r'^(май|мае|\d+|ТОП-10|топ-10|\d\d\.\d\d\.\d{4}|Подробнее|ВЫБОР №1|Обновлено: \d\d\.\d\d\.\d{4}|Источник данных:)$')  # dates, rank numbers, badge moved to #1, footer labels
+ALLOWED = re.compile(r'^(май|мае|\d+|ТОП-10|топ-10|\d\d\.\d\d\.\d{4}|Подробнее|ВЫБОР №1|Обновлено: \d\d\.\d\d\.\d{4}|Источник данных:|7K)$')  # dates, rank numbers, badge moved to #1, footer labels, casino name reordered by rank
 bad = [m for m in missing if not ALLOWED.match(m)]
 if bad: fail.append(f'home text lost: {bad[:10]}')
 # 2. links
