@@ -3,13 +3,17 @@
     "slug": "spinto",
     "name": "Spinto Casino",
     "rank": 1,
-    "top": false,
-    "gold": false,
+    "top": true,
+    "gold": true,
     "minDeposit": 50,
     "rating": 9.7,
     "stars": "★★★★★",
     "ratingCnt": "/ 10.0",
     "badges": [
+      {
+        "cls": "badge-top",
+        "text": "ВЫБОР №1"
+      },
       {
         "cls": "badge-new",
         "text": "НОВИНКА 2025"
@@ -54,6 +58,7 @@
     "reviews": null,
     "bonusEn": "Bonus: 120% up to 50,000 ₽ + 50 free spins on a first deposit from 500 ₽; four welcome bonuses in total — up to 600% and 500 free spins. 45x wagering, reload up to 70%, weekly cashback up to 12%",
     "badgesEn": [
+      "TOP PICK",
       "NEW 2025"
     ],
     "ctaLinesEn": [
@@ -96,8 +101,8 @@
     "slug": "7k",
     "name": "7K Casino",
     "rank": 2,
-    "top": false,
-    "gold": false,
+    "top": true,
+    "gold": true,
     "minDeposit": 100,
     "rating": 9.9,
     "stars": "★★★★★",
@@ -186,17 +191,13 @@
     "slug": "joycasino",
     "name": "JoyCasino",
     "rank": 3,
-    "top": true,
-    "gold": true,
+    "top": false,
+    "gold": false,
     "minDeposit": 100,
     "rating": 9.6,
     "stars": "★★★★★",
     "ratingCnt": "/ 10.0",
     "badges": [
-      {
-        "cls": "badge-top",
-        "text": "ВЫБОР №1"
-      },
       {
         "cls": "badge-new",
         "text": "RTP 97%"
@@ -241,7 +242,6 @@
     "reviews": null,
     "bonusEn": "Bonus: 200% + 200 free spins on a first deposit from 100 ₽ — spins on top slots. 35x wagering, weekly reload, cashback up to 12%",
     "badgesEn": [
-      "TOP PICK",
       "RTP 97%"
     ],
     "ctaLinesEn": [
@@ -282,8 +282,8 @@
     "slug": "norm",
     "name": "Norm",
     "rank": 4,
-    "top": true,
-    "gold": true,
+    "top": false,
+    "gold": false,
     "minDeposit": 100,
     "rating": 9.5,
     "stars": "★★★★☆",
