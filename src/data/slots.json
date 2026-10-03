@@ -1,9 +1,9 @@
 {
-  "fetchedAt": "2026-10-01",
+  "fetchedAt": "2026-10-03",
   "source": "slotsreach",
-  "total": 6160,
+  "total": 6166,
   "thumbs": {
-    "downloaded": 2,
+    "downloaded": 0,
     "failed": 0,
     "errors": {}
   },
@@ -8271,39 +8271,6 @@
       "demoUrl": null
     },
     {
-      "slug": "gates-of-olympus-2500-pragmatic-play",
-      "name": "Gates of Olympus 2500",
-      "provider": "Pragmatic Play",
-      "providerSlug": "pragmatic-play",
-      "rtp": 96.52,
-      "volatility": "high",
-      "maxWin": "25,000x",
-      "grid": "6x5",
-      "hitFrequency": 27.93,
-      "releaseDate": "2027-09-28",
-      "rating": 7,
-      "payType": "scatter-pays",
-      "isNew": true,
-      "themes": [
-        "Greek",
-        "Mythology",
-        "Gods"
-      ],
-      "features": [
-        "Tumble",
-        "Multiplier",
-        "Scatter Pays",
-        "Free Spins",
-        "Buy Bonus",
-        "Ante Bet",
-        "Retrigger"
-      ],
-      "image": "/slots/img/gates-of-olympus-2500-pragmatic-play.webp",
-      "screenshot": "https://img.slotsreach.com/slot-images/gates-of-olympus-2500-pragmatic-play/gameplay-1.webp",
-      "sourceUrl": "https://slotsreach.com/games/gates-of-olympus-2500-pragmatic-play",
-      "demoUrl": null
-    },
-    {
       "slug": "le-clubber-hacksaw-gaming",
       "name": "Le Clubber",
       "provider": "Hacksaw Gaming",
@@ -8704,6 +8671,39 @@
       "image": "/slots/img/three-pots-of-the-genie-playn-go.webp",
       "screenshot": "https://img.slotsreach.com/slot-images/three-pots-of-the-genie-play-n-go/gameplay-1.webp",
       "sourceUrl": "https://slotsreach.com/games/three-pots-of-the-genie-playn-go",
+      "demoUrl": null
+    },
+    {
+      "slug": "gates-of-olympus-2500-pragmatic-play",
+      "name": "Gates of Olympus 2500",
+      "provider": "Pragmatic Play",
+      "providerSlug": "pragmatic-play",
+      "rtp": 96.52,
+      "volatility": "high",
+      "maxWin": "25,000x",
+      "grid": "6x5",
+      "hitFrequency": 27.93,
+      "releaseDate": "2026-09-28",
+      "rating": 7,
+      "payType": "scatter-pays",
+      "isNew": true,
+      "themes": [
+        "Greek",
+        "Mythology",
+        "Gods"
+      ],
+      "features": [
+        "Tumble",
+        "Multiplier",
+        "Scatter Pays",
+        "Free Spins",
+        "Buy Bonus",
+        "Ante Bet",
+        "Retrigger"
+      ],
+      "image": "/slots/img/gates-of-olympus-2500-pragmatic-play.webp",
+      "screenshot": "https://img.slotsreach.com/slot-images/gates-of-olympus-2500-pragmatic-play/gameplay-1.webp",
+      "sourceUrl": "https://slotsreach.com/games/gates-of-olympus-2500-pragmatic-play",
       "demoUrl": null
     },
     {
