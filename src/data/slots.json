@@ -1,9 +1,9 @@
 {
-  "fetchedAt": "2026-10-05",
+  "fetchedAt": "2026-10-06",
   "source": "slotsreach",
-  "total": 6195,
+  "total": 6203,
   "thumbs": {
-    "downloaded": 2,
+    "downloaded": 0,
     "failed": 0,
     "errors": {}
   },
@@ -1584,7 +1584,7 @@
       "releaseDate": "2026-08-06",
       "rating": 8,
       "payType": "lines",
-      "isNew": true,
+      "isNew": false,
       "themes": [
         "Classic",
         "Casino",
