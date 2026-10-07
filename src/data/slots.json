@@ -1,9 +1,9 @@
 {
-  "fetchedAt": "2026-10-06",
+  "fetchedAt": "2026-10-07",
   "source": "slotsreach",
-  "total": 6203,
+  "total": 6208,
   "thumbs": {
-    "downloaded": 0,
+    "downloaded": 6,
     "failed": 0,
     "errors": {}
   },
@@ -43,7 +43,7 @@
       "provider": "Pragmatic Play",
       "providerSlug": "pragmatic-play",
       "rtp": 96.5,
-      "volatility": "high",
+      "volatility": "medium",
       "maxWin": "5,000x",
       "grid": "6x5",
       "hitFrequency": 28.82,
@@ -52,20 +52,21 @@
       "payType": "scatter-pays",
       "isNew": false,
       "themes": [
-        "Mythology",
         "Greek",
-        "Gods"
+        "Gods",
+        "Mythology"
       ],
       "features": [
-        "Free Spins",
-        "Multiplier",
         "Tumble",
-        "Scatter",
+        "Multiplier",
+        "Free Spins",
         "Buy Bonus",
-        "Ante Bet"
+        "Ante Bet",
+        "Scatter Pays",
+        "Retrigger"
       ],
       "image": "/slots/img/gates-of-olympus-pragmatic-play.webp",
-      "screenshot": null,
+      "screenshot": "https://img.slotsreach.com/slot-images/gates-of-olympus-pragmatic-play/gameplay-1.webp",
       "sourceUrl": "https://slotsreach.com/games/gates-of-olympus-pragmatic-play",
       "demoUrl": null
     },
@@ -935,7 +936,7 @@
       "demoUrl": null
     },
     {
-      "slug": "trolling-1000",
+      "slug": "trolling-1000-pragmatic-play",
       "name": "Trolling 1000",
       "provider": "Pragmatic Play",
       "providerSlug": "pragmatic-play",
@@ -962,9 +963,9 @@
         "Cluster Pays",
         "Jackpot"
       ],
-      "image": "/slots/img/trolling-1000.webp",
+      "image": "/slots/img/trolling-1000-pragmatic-play.webp",
       "screenshot": "https://img.slotsreach.com/slot-images/trolling-1000-pragmatic-play/gameplay-1.webp",
-      "sourceUrl": "https://slotsreach.com/games/trolling-1000",
+      "sourceUrl": "https://slotsreach.com/games/trolling-1000-pragmatic-play",
       "demoUrl": null
     },
     {
@@ -1292,40 +1293,6 @@
       "image": "/slots/img/sugar-rush-pragmatic-play.webp",
       "screenshot": "https://img.slotsreach.com/slot-images/sugar-rush-pragmatic-play/gameplay-1.webp",
       "sourceUrl": "https://slotsreach.com/games/sugar-rush-pragmatic-play",
-      "demoUrl": null
-    },
-    {
-      "slug": "starlight-princess-pragmatic-play",
-      "name": "Starlight Princess",
-      "provider": "Pragmatic Play",
-      "providerSlug": "pragmatic-play",
-      "rtp": 96.5,
-      "volatility": "high",
-      "maxWin": "5,000x",
-      "grid": "6x5",
-      "hitFrequency": null,
-      "releaseDate": "2021-09-23",
-      "rating": 9,
-      "payType": "scatter-pays",
-      "isNew": false,
-      "themes": [
-        "Anime",
-        "Fantasy",
-        "Gems"
-      ],
-      "features": [
-        "Scatter Pays",
-        "Tumble",
-        "Multiplier",
-        "Free Spins",
-        "Buy Bonus",
-        "Ante Bet",
-        "Retrigger",
-        "Wild"
-      ],
-      "image": "/slots/img/starlight-princess-pragmatic-play.webp",
-      "screenshot": "https://img.slotsreach.com/slot-images/starlight-princess-pragmatic-play/gameplay-1.webp",
-      "sourceUrl": "https://slotsreach.com/games/starlight-princess-pragmatic-play",
       "demoUrl": null
     },
     {
@@ -2371,7 +2338,7 @@
       "demoUrl": null
     },
     {
-      "slug": "big-bass-raceday-repeat",
+      "slug": "big-bass-raceday-repeat-pragmatic-play",
       "name": "Big Bass Raceday Repeat",
       "provider": "Pragmatic Play",
       "providerSlug": "pragmatic-play",
@@ -2401,9 +2368,9 @@
         "Jackpot",
         "Progressive Free Spins"
       ],
-      "image": "/slots/img/big-bass-raceday-repeat.webp",
+      "image": "/slots/img/big-bass-raceday-repeat-pragmatic-play.webp",
       "screenshot": "https://img.slotsreach.com/slot-images/big-bass-raceday-repeat-pragmatic-play/gameplay-1.webp",
-      "sourceUrl": "https://slotsreach.com/games/big-bass-raceday-repeat",
+      "sourceUrl": "https://slotsreach.com/games/big-bass-raceday-repeat-pragmatic-play",
       "demoUrl": null
     },
     {
@@ -2543,7 +2510,7 @@
       "demoUrl": null
     },
     {
-      "slug": "zeus-vs-hades-gods-of-war-250",
+      "slug": "zeus-vs-hades-gods-of-war-250-pragmatic-play",
       "name": "Zeus vs Hades - Gods of War 250",
       "provider": "Pragmatic Play",
       "providerSlug": "pragmatic-play",
@@ -2571,9 +2538,9 @@
         "Expanding Wilds",
         "Volatility Switch"
       ],
-      "image": "/slots/img/zeus-vs-hades-gods-of-war-250.webp",
+      "image": "/slots/img/zeus-vs-hades-gods-of-war-250-pragmatic-play.webp",
       "screenshot": "https://img.slotsreach.com/slot-images/zeus-vs-hades-gods-of-war-250-pragmatic-play/gameplay-1.webp",
-      "sourceUrl": "https://slotsreach.com/games/zeus-vs-hades-gods-of-war-250",
+      "sourceUrl": "https://slotsreach.com/games/zeus-vs-hades-gods-of-war-250-pragmatic-play",
       "demoUrl": null
     },
     {
@@ -7091,41 +7058,6 @@
       "demoUrl": null
     },
     {
-      "slug": "big-bass-splash-pragmatic-play",
-      "name": "Big Bass Splash",
-      "provider": "Pragmatic Play",
-      "providerSlug": "pragmatic-play",
-      "rtp": 96.71,
-      "volatility": "very-high",
-      "maxWin": "5,000x",
-      "grid": "5x3",
-      "hitFrequency": null,
-      "releaseDate": "2022-06-23",
-      "rating": 8,
-      "payType": "lines",
-      "isNew": false,
-      "themes": [
-        "Fishing",
-        "Nature"
-      ],
-      "features": [
-        "Free Spins",
-        "Cash Collect",
-        "Multiplier",
-        "Wild",
-        "Scatter",
-        "Instant Prize",
-        "Buy Bonus",
-        "Progressive Free Spins",
-        "Retrigger",
-        "Random Features"
-      ],
-      "image": "/slots/img/big-bass-splash-pragmatic-play.webp",
-      "screenshot": "https://img.slotsreach.com/screenshots/big-bass-splash-pragmatic-play-gameplay.webp",
-      "sourceUrl": "https://slotsreach.com/games/big-bass-splash-pragmatic-play",
-      "demoUrl": null
-    },
-    {
       "slug": "outlaws-inc-hacksaw-gaming",
       "name": "Outlaws Inc.",
       "provider": "Hacksaw Gaming",
@@ -8140,39 +8072,6 @@
       "image": "/slots/img/the-wizard-of-oz-road-to-emerald-city-light-wonder.webp",
       "screenshot": "https://img.slotsreach.com/slot-images/the-wizard-of-oz-road-to-emerald-city-light-wonder/gameplay-1.webp",
       "sourceUrl": "https://slotsreach.com/games/the-wizard-of-oz-road-to-emerald-city-light-wonder",
-      "demoUrl": null
-    },
-    {
-      "slug": "wolf-gold-pragmatic-play",
-      "name": "Wolf Gold",
-      "provider": "Pragmatic Play",
-      "providerSlug": "pragmatic-play",
-      "rtp": 96,
-      "volatility": "low",
-      "maxWin": "2,500x",
-      "grid": "5x3",
-      "hitFrequency": null,
-      "releaseDate": "2017-04-25",
-      "rating": 8,
-      "payType": "lines",
-      "isNew": false,
-      "themes": [
-        "Animals",
-        "Nature",
-        "Western",
-        "Gold"
-      ],
-      "features": [
-        "Free Spins",
-        "Stacked Wilds",
-        "Hold And Win",
-        "Instant Prize",
-        "Jackpot",
-        "Retrigger"
-      ],
-      "image": "/slots/img/wolf-gold-pragmatic-play.webp",
-      "screenshot": "https://img.slotsreach.com/slot-images/wolf-gold-pragmatic-play/gameplay-1.webp",
-      "sourceUrl": "https://slotsreach.com/games/wolf-gold-pragmatic-play",
       "demoUrl": null
     },
     {
@@ -10005,6 +9904,107 @@
       "image": "/slots/img/judgemental-netent.webp",
       "screenshot": "https://img.slotsreach.com/slot-images/judgemental-netent/gameplay-6.webp",
       "sourceUrl": "https://slotsreach.com/games/judgemental-netent",
+      "demoUrl": null
+    },
+    {
+      "slug": "holy-moo-extreme-power-playn-go",
+      "name": "Holy Moo! Extreme Power",
+      "provider": "Play'n GO",
+      "providerSlug": "playn-go",
+      "rtp": 96.2,
+      "volatility": "high",
+      "maxWin": "4,000x",
+      "grid": "6x6",
+      "hitFrequency": null,
+      "releaseDate": "2026-08-06",
+      "rating": 7,
+      "payType": "scatter-pays",
+      "isNew": false,
+      "themes": [
+        "Greek",
+        "Mythology",
+        "Animals"
+      ],
+      "features": [
+        "Cash Collect",
+        "Scatter Pays",
+        "Free Spins",
+        "Wild",
+        "Scatter",
+        "Jackpot",
+        "Multiplier",
+        "Sticky Symbols"
+      ],
+      "image": "/slots/img/holy-moo-extreme-power-playn-go.webp",
+      "screenshot": "https://img.slotsreach.com/slot-images/holy-moo-extreme-power-playn-go/gameplay-1.webp",
+      "sourceUrl": "https://slotsreach.com/games/holy-moo-extreme-power-playn-go",
+      "demoUrl": null
+    },
+    {
+      "slug": "super-serge-pragmatic-play",
+      "name": "Super Serge",
+      "provider": "Pragmatic Play",
+      "providerSlug": "pragmatic-play",
+      "rtp": 96.5,
+      "volatility": "medium",
+      "maxWin": "10,000x",
+      "grid": "6x4-6x6",
+      "hitFrequency": null,
+      "releaseDate": "2026-08-06",
+      "rating": 7,
+      "payType": "ways",
+      "isNew": false,
+      "themes": [
+        "Superhero",
+        "Urban",
+        "Money"
+      ],
+      "features": [
+        "Cash Collect",
+        "Jackpot",
+        "Free Spins",
+        "Multiplier",
+        "Expanding Grid",
+        "Buy Bonus",
+        "Wild",
+        "Scatter"
+      ],
+      "image": "/slots/img/super-serge-pragmatic-play.webp",
+      "screenshot": "https://img.slotsreach.com/slot-images/super-serge-pragmatic-play/gameplay-1.webp",
+      "sourceUrl": "https://slotsreach.com/games/super-serge-pragmatic-play",
+      "demoUrl": null
+    },
+    {
+      "slug": "poseidon-the-deep-king-mascot-gaming",
+      "name": "Poseidon the Deep King",
+      "provider": "Mascot Gaming",
+      "providerSlug": "mascot-gaming",
+      "rtp": 96.18,
+      "volatility": "high",
+      "maxWin": "22,500x",
+      "grid": "6x7",
+      "hitFrequency": null,
+      "releaseDate": "2026-08-06",
+      "rating": 7,
+      "payType": "ways",
+      "isNew": false,
+      "themes": [
+        "Greek",
+        "Mythology",
+        "Underwater"
+      ],
+      "features": [
+        "Tumble",
+        "Multiplier",
+        "Free Spins",
+        "Buy Bonus",
+        "Wild",
+        "Scatter",
+        "Gamble"
+      ],
+      "image": "/slots/img/poseidon-the-deep-king-mascot-gaming.webp",
+      "screenshot": "https://img.slotsreach.com/slot-images/poseidon-the-deep-king-mascot-gaming/gameplay-1.webp",
+      "sourceUrl": "https://slotsreach.com/games/poseidon-the-deep-king-mascot-gaming",
       "demoUrl": null
     }
   ]
