@@ -1,7 +1,7 @@
 {
-  "fetchedAt": "2026-10-08",
+  "fetchedAt": "2026-10-09",
   "source": "slotsreach",
-  "total": 6215,
+  "total": 6221,
   "thumbs": {
     "downloaded": 1,
     "failed": 0,
@@ -8482,6 +8482,38 @@
       "demoUrl": null
     },
     {
+      "slug": "sari-sari-shop-riddec-games",
+      "name": "Sari-Sari Shop",
+      "provider": "Riddec Games",
+      "providerSlug": "riddec-games",
+      "rtp": 95.02,
+      "volatility": "very-high",
+      "maxWin": "10,000x",
+      "grid": "7x7",
+      "hitFrequency": 27.9,
+      "releaseDate": "2026-10-08",
+      "rating": 7,
+      "payType": "cluster",
+      "isNew": true,
+      "themes": [
+        "Food",
+        "Asian"
+      ],
+      "features": [
+        "Cluster Pays",
+        "Tumble",
+        "Multiplier",
+        "Free Spins",
+        "Retrigger",
+        "Buy Bonus",
+        "Ante Bet"
+      ],
+      "image": "/slots/img/sari-sari-shop-riddec-games.webp",
+      "screenshot": "https://img.slotsreach.com/slot-images/sari-sari-shop-riddec-games/gameplay-1.webp",
+      "sourceUrl": "https://slotsreach.com/games/sari-sari-shop-riddec-games",
+      "demoUrl": null
+    },
+    {
       "slug": "demonic-dolls-hacksaw-gaming",
       "name": "Demonic Dolls",
       "provider": "Hacksaw Gaming",
@@ -9973,40 +10005,6 @@
       "image": "/slots/img/holy-moo-extreme-power-playn-go.webp",
       "screenshot": "https://img.slotsreach.com/slot-images/holy-moo-extreme-power-playn-go/gameplay-1.webp",
       "sourceUrl": "https://slotsreach.com/games/holy-moo-extreme-power-playn-go",
-      "demoUrl": null
-    },
-    {
-      "slug": "super-serge-pragmatic-play",
-      "name": "Super Serge",
-      "provider": "Pragmatic Play",
-      "providerSlug": "pragmatic-play",
-      "rtp": 96.5,
-      "volatility": "medium",
-      "maxWin": "10,000x",
-      "grid": "6x4-6x6",
-      "hitFrequency": null,
-      "releaseDate": "2026-08-06",
-      "rating": 7,
-      "payType": "ways",
-      "isNew": false,
-      "themes": [
-        "Superhero",
-        "Urban",
-        "Money"
-      ],
-      "features": [
-        "Cash Collect",
-        "Jackpot",
-        "Free Spins",
-        "Multiplier",
-        "Expanding Grid",
-        "Buy Bonus",
-        "Wild",
-        "Scatter"
-      ],
-      "image": "/slots/img/super-serge-pragmatic-play.webp",
-      "screenshot": "https://img.slotsreach.com/slot-images/super-serge-pragmatic-play/gameplay-1.webp",
-      "sourceUrl": "https://slotsreach.com/games/super-serge-pragmatic-play",
       "demoUrl": null
     }
   ]
