@@ -1,9 +1,9 @@
 {
-  "fetchedAt": "2026-10-12",
+  "fetchedAt": "2026-10-13",
   "source": "slotsreach",
-  "total": 6225,
+  "total": 6235,
   "thumbs": {
-    "downloaded": 2,
+    "downloaded": 0,
     "failed": 0,
     "errors": {}
   },
@@ -9750,7 +9750,7 @@
       "releaseDate": "2026-08-13",
       "rating": 7,
       "payType": "ways",
-      "isNew": true,
+      "isNew": false,
       "themes": [
         "Aliens",
         "Animals",
@@ -9784,7 +9784,7 @@
       "releaseDate": "2026-08-13",
       "rating": 7,
       "payType": "lines",
-      "isNew": true,
+      "isNew": false,
       "themes": [
         "Heist",
         "Crime"
@@ -9817,7 +9817,7 @@
       "releaseDate": "2026-08-13",
       "rating": 7,
       "payType": "scatter-pays",
-      "isNew": true,
+      "isNew": false,
       "themes": [
         "Crime",
         "Vegas",
@@ -9851,7 +9851,7 @@
       "releaseDate": "2026-08-13",
       "rating": 7,
       "payType": "lines",
-      "isNew": true,
+      "isNew": false,
       "themes": [
         "Fruit",
         "Classic",
@@ -9885,7 +9885,7 @@
       "releaseDate": "2026-08-13",
       "rating": 7,
       "payType": "ways",
-      "isNew": true,
+      "isNew": false,
       "themes": [
         "Tv Movie",
         "Music"
