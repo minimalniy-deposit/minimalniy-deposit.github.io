@@ -1,7 +1,7 @@
 {
-  "fetchedAt": "2026-10-14",
+  "fetchedAt": "2026-10-15",
   "source": "slotsreach",
-  "total": 6245,
+  "total": 6254,
   "thumbs": {
     "downloaded": 1,
     "failed": 0,
@@ -8411,6 +8411,39 @@
       "demoUrl": null
     },
     {
+      "slug": "dead-mans-broadside-backseat-gaming",
+      "name": "Dead Man's Broadside",
+      "provider": "Backseat Gaming",
+      "providerSlug": "backseat-gaming",
+      "rtp": 96.01,
+      "volatility": "very-high",
+      "maxWin": "15,000x",
+      "grid": "6x5",
+      "hitFrequency": 18.49,
+      "releaseDate": "2026-10-14",
+      "rating": 7,
+      "payType": "scatter-pays",
+      "isNew": true,
+      "themes": [
+        "Pirate",
+        "Treasure"
+      ],
+      "features": [
+        "Scatter Pays",
+        "Tumble",
+        "Multiplier",
+        "Symbol Transformation",
+        "Free Spins",
+        "Scatter",
+        "Buy Bonus",
+        "Ante Bet"
+      ],
+      "image": "/slots/img/dead-mans-broadside-backseat-gaming.webp",
+      "screenshot": "https://img.slotsreach.com/slot-images/dead-mans-broadside-backseat-gaming/gameplay-1.webp",
+      "sourceUrl": "https://slotsreach.com/games/dead-mans-broadside-backseat-gaming",
+      "demoUrl": null
+    },
+    {
       "slug": "bjorn-thunderkick",
       "name": "Bjorn",
       "provider": "Thunderkick",
@@ -9972,40 +10005,6 @@
       "image": "/slots/img/holy-moo-extreme-power-playn-go.webp",
       "screenshot": "https://img.slotsreach.com/slot-images/holy-moo-extreme-power-playn-go/gameplay-1.webp",
       "sourceUrl": "https://slotsreach.com/games/holy-moo-extreme-power-playn-go",
-      "demoUrl": null
-    },
-    {
-      "slug": "super-serge-pragmatic-play",
-      "name": "Super Serge",
-      "provider": "Pragmatic Play",
-      "providerSlug": "pragmatic-play",
-      "rtp": 96.5,
-      "volatility": "medium",
-      "maxWin": "10,000x",
-      "grid": "6x4-6x6",
-      "hitFrequency": null,
-      "releaseDate": "2026-08-06",
-      "rating": 7,
-      "payType": "ways",
-      "isNew": false,
-      "themes": [
-        "Superhero",
-        "Urban",
-        "Money"
-      ],
-      "features": [
-        "Cash Collect",
-        "Jackpot",
-        "Free Spins",
-        "Multiplier",
-        "Expanding Grid",
-        "Buy Bonus",
-        "Wild",
-        "Scatter"
-      ],
-      "image": "/slots/img/super-serge-pragmatic-play.webp",
-      "screenshot": "https://img.slotsreach.com/slot-images/super-serge-pragmatic-play/gameplay-1.webp",
-      "sourceUrl": "https://slotsreach.com/games/super-serge-pragmatic-play",
       "demoUrl": null
     }
   ]
