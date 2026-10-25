@@ -1,7 +1,7 @@
 {
-  "fetchedAt": "2026-10-24",
+  "fetchedAt": "2026-10-25",
   "source": "slotsreach",
-  "total": 6316,
+  "total": 6322,
   "thumbs": {
     "downloaded": 0,
     "failed": 0,
@@ -1441,7 +1441,7 @@
       "releaseDate": "2026-08-25",
       "rating": 8,
       "payType": "cluster",
-      "isNew": true,
+      "isNew": false,
       "themes": [
         "Adventure",
         "Treasure",
@@ -9509,7 +9509,7 @@
       "releaseDate": "2026-08-25",
       "rating": 7,
       "payType": "scatter-pays",
-      "isNew": true,
+      "isNew": false,
       "themes": [
         "Norse",
         "Mythology",
@@ -9541,7 +9541,7 @@
       "releaseDate": "2026-08-25",
       "rating": 7,
       "payType": "lines",
-      "isNew": true,
+      "isNew": false,
       "themes": [
         "Game Show",
         "Tv Movie",
