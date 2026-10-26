@@ -1,7 +1,7 @@
 {
-  "fetchedAt": "2026-10-25",
+  "fetchedAt": "2026-10-26",
   "source": "slotsreach",
-  "total": 6322,
+  "total": 6333,
   "thumbs": {
     "downloaded": 0,
     "failed": 0,
@@ -9409,7 +9409,7 @@
       "releaseDate": "2026-08-26",
       "rating": 7,
       "payType": "cluster",
-      "isNew": true,
+      "isNew": false,
       "themes": [
         "Underwater",
         "Animals"
@@ -9442,7 +9442,7 @@
       "releaseDate": "2026-08-26",
       "rating": 7,
       "payType": "lines",
-      "isNew": true,
+      "isNew": false,
       "themes": [
         "Urban",
         "Zombies",
@@ -9475,7 +9475,7 @@
       "releaseDate": "2026-08-26",
       "rating": 7,
       "payType": "ways",
-      "isNew": true,
+      "isNew": false,
       "themes": [
         "Chinese",
         "Mythology",
