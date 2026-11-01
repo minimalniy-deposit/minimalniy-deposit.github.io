@@ -1,7 +1,7 @@
 {
-  "fetchedAt": "2026-10-27",
+  "fetchedAt": "2026-11-01",
   "source": "slotsreach",
-  "total": 6335,
+  "total": 6373,
   "thumbs": {
     "downloaded": 0,
     "failed": 0,
@@ -9269,7 +9269,7 @@
       "releaseDate": "2026-09-01",
       "rating": 7,
       "payType": "ways",
-      "isNew": true,
+      "isNew": false,
       "themes": [
         "Animals",
         "Nature",
@@ -9303,7 +9303,7 @@
       "releaseDate": "2026-09-01",
       "rating": 7,
       "payType": "lines",
-      "isNew": true,
+      "isNew": false,
       "themes": [
         "Chinese",
         "Festival",
