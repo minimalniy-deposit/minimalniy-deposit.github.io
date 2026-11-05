@@ -1,9 +1,9 @@
 {
-  "fetchedAt": "2026-11-02",
+  "fetchedAt": "2026-11-05",
   "source": "slotsreach",
-  "total": 6375,
+  "total": 6391,
   "thumbs": {
-    "downloaded": 0,
+    "downloaded": 1,
     "failed": 0,
     "errors": {}
   },
@@ -4019,40 +4019,6 @@
       "image": "/slots/img/fruit-party-dice-pragmatic-play.webp",
       "screenshot": "https://img.slotsreach.com/slot-images/fruit-party-dice-pragmatic-play/gameplay-1.webp",
       "sourceUrl": "https://slotsreach.com/games/fruit-party-dice-pragmatic-play",
-      "demoUrl": null
-    },
-    {
-      "slug": "5-lions-megaways-2-pragmatic-play",
-      "name": "5 Lions Megaways 2",
-      "provider": "Pragmatic Play",
-      "providerSlug": "pragmatic-play",
-      "rtp": 96.5,
-      "volatility": "very-high",
-      "maxWin": "8,000x",
-      "grid": "6x2-8",
-      "hitFrequency": null,
-      "releaseDate": "2025-02-27",
-      "rating": 8,
-      "payType": "megaways",
-      "isNew": false,
-      "themes": [
-        "Asian",
-        "Mythology"
-      ],
-      "features": [
-        "Free Spins",
-        "Wild",
-        "Scatter",
-        "Multiplier",
-        "Tumble",
-        "Megaways",
-        "Buy Bonus",
-        "Ante Bet",
-        "Level Up"
-      ],
-      "image": "/slots/img/5-lions-megaways-2-pragmatic-play.webp",
-      "screenshot": "https://img.slotsreach.com/slot-images/vsways5lions2-pragmatic-play/gameplay-1.webp",
-      "sourceUrl": "https://slotsreach.com/games/5-lions-megaways-2-pragmatic-play",
       "demoUrl": null
     },
     {
@@ -10005,6 +9971,40 @@
       "image": "/slots/img/holy-moo-extreme-power-playn-go.webp",
       "screenshot": "https://img.slotsreach.com/slot-images/holy-moo-extreme-power-playn-go/gameplay-1.webp",
       "sourceUrl": "https://slotsreach.com/games/holy-moo-extreme-power-playn-go",
+      "demoUrl": null
+    },
+    {
+      "slug": "super-serge-pragmatic-play",
+      "name": "Super Serge",
+      "provider": "Pragmatic Play",
+      "providerSlug": "pragmatic-play",
+      "rtp": 96.5,
+      "volatility": "medium",
+      "maxWin": "10,000x",
+      "grid": "6x4-6x6",
+      "hitFrequency": null,
+      "releaseDate": "2026-08-06",
+      "rating": 7,
+      "payType": "ways",
+      "isNew": false,
+      "themes": [
+        "Superhero",
+        "Urban",
+        "Money"
+      ],
+      "features": [
+        "Cash Collect",
+        "Jackpot",
+        "Free Spins",
+        "Multiplier",
+        "Expanding Grid",
+        "Buy Bonus",
+        "Wild",
+        "Scatter"
+      ],
+      "image": "/slots/img/super-serge-pragmatic-play.webp",
+      "screenshot": "https://img.slotsreach.com/slot-images/super-serge-pragmatic-play/gameplay-1.webp",
+      "sourceUrl": "https://slotsreach.com/games/super-serge-pragmatic-play",
       "demoUrl": null
     }
   ]
