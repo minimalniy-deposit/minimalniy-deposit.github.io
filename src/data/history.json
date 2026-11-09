@@ -14,7 +14,7 @@
   "wagerDays",
   "withdrawMinAmount"
  ],
- "lastChecked": "2026-11-02",
+ "lastChecked": "2026-11-09",
  "entries": [
   {
    "date": "2026-02-20",
@@ -422,6 +422,12 @@
   },
   {
    "date": "2026-11-02",
+   "casino": "7k",
+   "url": "https://7k-casino.ru/",
+   "snapshot": "http://web.archive.org/web/20260921131049/https://7k-casino.ru/"
+  },
+  {
+   "date": "2026-11-09",
    "casino": "7k",
    "url": "https://7k-casino.ru/",
    "snapshot": "http://web.archive.org/web/20260921131049/https://7k-casino.ru/"
