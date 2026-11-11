@@ -1,9 +1,9 @@
 {
-  "fetchedAt": "2026-11-10",
+  "fetchedAt": "2026-11-11",
   "source": "slotsreach",
-  "total": 6444,
+  "total": 6456,
   "thumbs": {
-    "downloaded": 1,
+    "downloaded": 0,
     "failed": 0,
     "errors": {}
   },
@@ -9066,7 +9066,7 @@
       "releaseDate": "2026-09-11",
       "rating": 7,
       "payType": "ways",
-      "isNew": true,
+      "isNew": false,
       "themes": [
         "Pirate",
         "Treasure",
