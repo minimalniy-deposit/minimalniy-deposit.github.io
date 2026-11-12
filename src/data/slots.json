@@ -1,7 +1,7 @@
 {
-  "fetchedAt": "2026-11-11",
+  "fetchedAt": "2026-11-12",
   "source": "slotsreach",
-  "total": 6456,
+  "total": 6464,
   "thumbs": {
     "downloaded": 0,
     "failed": 0,
@@ -9031,7 +9031,7 @@
       "releaseDate": "2026-09-12",
       "rating": 7,
       "payType": "lines",
-      "isNew": true,
+      "isNew": false,
       "themes": [
         "Dragons",
         "Chinese",
