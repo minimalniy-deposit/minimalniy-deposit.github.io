@@ -1,9 +1,9 @@
 {
-  "fetchedAt": "2026-11-12",
+  "fetchedAt": "2026-11-16",
   "source": "slotsreach",
-  "total": 6464,
+  "total": 6482,
   "thumbs": {
-    "downloaded": 0,
+    "downloaded": 1,
     "failed": 0,
     "errors": {}
   },
@@ -1260,36 +1260,6 @@
       "image": "/slots/img/mental-nolimit-city.webp",
       "screenshot": "https://img.slotsreach.com/screenshots/mental-nolimit-city-gameplay.webp",
       "sourceUrl": "https://slotsreach.com/games/mental-nolimit-city",
-      "demoUrl": null
-    },
-    {
-      "slug": "fire-in-the-hole-xbomb-nolimit-city",
-      "name": "Fire in the Hole xBomb",
-      "provider": "Nolimit City",
-      "providerSlug": "nolimit-city",
-      "rtp": 96.06,
-      "volatility": "very-high",
-      "maxWin": "60,000x",
-      "grid": "6x3-6",
-      "hitFrequency": null,
-      "releaseDate": "2021-04-28",
-      "rating": 9,
-      "payType": "ways",
-      "isNew": false,
-      "themes": [
-        "Mining",
-        "Adventure",
-        "Fantasy"
-      ],
-      "features": [
-        "Expanding Grid",
-        "Ways",
-        "Multiplier",
-        "Buy Bonus"
-      ],
-      "image": "/slots/img/fire-in-the-hole-xbomb-nolimit-city.webp",
-      "screenshot": "https://img.slotsreach.com/screenshots/fire-in-the-hole-nolimit-city-gameplay.webp",
-      "sourceUrl": "https://slotsreach.com/games/fire-in-the-hole-xbomb-nolimit-city",
       "demoUrl": null
     },
     {
@@ -8997,7 +8967,7 @@
       "releaseDate": "2026-09-16",
       "rating": 7,
       "payType": "cluster",
-      "isNew": true,
+      "isNew": false,
       "themes": [
         "Mahjong",
         "Chinese",
@@ -10006,6 +9976,40 @@
       "image": "/slots/img/poseidon-the-deep-king-mascot-gaming.webp",
       "screenshot": "https://img.slotsreach.com/slot-images/poseidon-the-deep-king-mascot-gaming/gameplay-1.webp",
       "sourceUrl": "https://slotsreach.com/games/poseidon-the-deep-king-mascot-gaming",
+      "demoUrl": null
+    },
+    {
+      "slug": "zombie-dawgs-backseat-gaming",
+      "name": "Zombie Dawgs",
+      "provider": "Backseat Gaming",
+      "providerSlug": "backseat-gaming",
+      "rtp": 96.01,
+      "volatility": "very-high",
+      "maxWin": "10,000x",
+      "grid": "6x5",
+      "hitFrequency": 15.93,
+      "releaseDate": "2026-08-04",
+      "rating": 7,
+      "payType": "scatter-pays",
+      "isNew": false,
+      "themes": [
+        "Zombies",
+        "Dogs",
+        "Horror"
+      ],
+      "features": [
+        "Scatter Pays",
+        "Tumble",
+        "Multiplier",
+        "Free Spins",
+        "Retrigger",
+        "Scatter",
+        "Buy Bonus",
+        "Ante Bet"
+      ],
+      "image": "/slots/img/zombie-dawgs-backseat-gaming.webp",
+      "screenshot": "https://img.slotsreach.com/slot-images/zombie-dawgs-backseat-gaming/gameplay-1.webp",
+      "sourceUrl": "https://slotsreach.com/games/zombie-dawgs-backseat-gaming",
       "demoUrl": null
     }
   ]
