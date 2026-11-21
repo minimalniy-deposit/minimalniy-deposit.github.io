@@ -1,9 +1,9 @@
 {
-  "fetchedAt": "2026-11-17",
+  "fetchedAt": "2026-11-21",
   "source": "slotsreach",
-  "total": 6482,
+  "total": 6505,
   "thumbs": {
-    "downloaded": 0,
+    "downloaded": 1,
     "failed": 0,
     "errors": {}
   },
@@ -2064,42 +2064,6 @@
       "image": "/slots/img/power-of-ten-hacksaw-gaming.webp",
       "screenshot": "https://img.slotsreach.com/slot-images/power-of-ten-hacksaw-gaming/gameplay-1.webp",
       "sourceUrl": "https://slotsreach.com/games/power-of-ten-hacksaw-gaming",
-      "demoUrl": null
-    },
-    {
-      "slug": "oxygen-3-elk-studios",
-      "name": "Oxygen 3",
-      "provider": "ELK Studios",
-      "providerSlug": "elk-studios",
-      "rtp": 96,
-      "volatility": "high",
-      "maxWin": "25,000x",
-      "grid": "6x7",
-      "hitFrequency": 33,
-      "releaseDate": "2026-04-07",
-      "rating": 8,
-      "payType": "cluster",
-      "isNew": false,
-      "themes": [
-        "Underwater",
-        "Animals"
-      ],
-      "features": [
-        "Cluster Pays",
-        "Tumble",
-        "Multiplier",
-        "Wild",
-        "Random Wilds",
-        "Big Symbols",
-        "Buy Bonus",
-        "Bonus Game",
-        "Sticky Symbols",
-        "Symbol Transformation",
-        "Retrigger"
-      ],
-      "image": "/slots/img/oxygen-3-elk-studios.webp",
-      "screenshot": "https://img.slotsreach.com/slot-images/oxygen-3-elk-studios/gameplay-1.webp",
-      "sourceUrl": "https://slotsreach.com/games/oxygen-3-elk-studios",
       "demoUrl": null
     },
     {
@@ -10010,6 +9974,42 @@
       "image": "/slots/img/zombie-dawgs-backseat-gaming.webp",
       "screenshot": "https://img.slotsreach.com/slot-images/zombie-dawgs-backseat-gaming/gameplay-1.webp",
       "sourceUrl": "https://slotsreach.com/games/zombie-dawgs-backseat-gaming",
+      "demoUrl": null
+    },
+    {
+      "slug": "jade-legends-pragmatic-play",
+      "name": "Jade Legends",
+      "provider": "Pragmatic Play",
+      "providerSlug": "pragmatic-play",
+      "rtp": 96.5,
+      "volatility": "medium",
+      "maxWin": "20,000x",
+      "grid": "7x7",
+      "hitFrequency": 23.58,
+      "releaseDate": "2026-08-03",
+      "rating": 7,
+      "payType": "cluster",
+      "isNew": false,
+      "themes": [
+        "Asian",
+        "Chinese",
+        "Dragons",
+        "Gems"
+      ],
+      "features": [
+        "Tumble",
+        "Cluster Pays",
+        "Free Spins",
+        "Cash Collect",
+        "Multiplier",
+        "Buy Bonus",
+        "Ante Bet",
+        "Gamble",
+        "Retrigger"
+      ],
+      "image": "/slots/img/jade-legends-pragmatic-play.webp",
+      "screenshot": "https://img.slotsreach.com/slot-images/jade-legends-pragmatic-play/gameplay-1.webp",
+      "sourceUrl": "https://slotsreach.com/games/jade-legends-pragmatic-play",
       "demoUrl": null
     }
   ]
