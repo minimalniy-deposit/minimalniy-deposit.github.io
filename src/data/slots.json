@@ -1,7 +1,7 @@
 {
-  "fetchedAt": "2026-11-21",
+  "fetchedAt": "2026-11-22",
   "source": "slotsreach",
-  "total": 6505,
+  "total": 6509,
   "thumbs": {
     "downloaded": 1,
     "failed": 0,
@@ -7123,38 +7123,6 @@
       "demoUrl": null
     },
     {
-      "slug": "big-bass-bonanza-megaways-pragmatic-play",
-      "name": "Big Bass Bonanza Megaways",
-      "provider": "Pragmatic Play",
-      "providerSlug": "pragmatic-play",
-      "rtp": 96.72,
-      "volatility": "very-high",
-      "maxWin": "4,000x",
-      "grid": "6x2-7",
-      "hitFrequency": null,
-      "releaseDate": "2021-11-18",
-      "rating": 8,
-      "payType": "megaways",
-      "isNew": false,
-      "themes": [
-        "Fishing",
-        "Nature"
-      ],
-      "features": [
-        "Megaways",
-        "Tumble",
-        "Free Spins",
-        "Symbol Collection",
-        "Multiplier",
-        "Random Features",
-        "Retrigger"
-      ],
-      "image": "/slots/img/big-bass-bonanza-megaways-pragmatic-play.webp",
-      "screenshot": "https://img.slotsreach.com/slot-images/big-bass-bonanza-megaways-pragmatic-play/gameplay-1.webp",
-      "sourceUrl": "https://slotsreach.com/games/big-bass-bonanza-megaways-pragmatic-play",
-      "demoUrl": null
-    },
-    {
       "slug": "wanted-dead-or-a-wild-hacksaw-gaming",
       "name": "Wanted Dead or a Wild",
       "provider": "Hacksaw Gaming",
@@ -10010,6 +9978,39 @@
       "image": "/slots/img/jade-legends-pragmatic-play.webp",
       "screenshot": "https://img.slotsreach.com/slot-images/jade-legends-pragmatic-play/gameplay-1.webp",
       "sourceUrl": "https://slotsreach.com/games/jade-legends-pragmatic-play",
+      "demoUrl": null
+    },
+    {
+      "slug": "the-governor-betsoft",
+      "name": "The Governor",
+      "provider": "Betsoft",
+      "providerSlug": "betsoft",
+      "rtp": 96.43,
+      "volatility": "high",
+      "maxWin": "10,000x",
+      "grid": "6x5",
+      "hitFrequency": null,
+      "releaseDate": "2026-07-30",
+      "rating": 7,
+      "payType": "cluster",
+      "isNew": false,
+      "themes": [
+        "Crime",
+        "Money"
+      ],
+      "features": [
+        "Cluster Pays",
+        "Tumble",
+        "Cash Collect",
+        "Free Spins",
+        "Multiplier",
+        "Wild",
+        "Scatter",
+        "Buy Bonus"
+      ],
+      "image": "/slots/img/the-governor-betsoft.webp",
+      "screenshot": "https://img.slotsreach.com/slot-images/the-governor-betsoft/gameplay-1.webp",
+      "sourceUrl": "https://slotsreach.com/games/the-governor-betsoft",
       "demoUrl": null
     }
   ]
