@@ -1,9 +1,9 @@
 {
-  "fetchedAt": "2026-11-22",
+  "fetchedAt": "2026-11-23",
   "source": "slotsreach",
-  "total": 6509,
+  "total": 6512,
   "thumbs": {
-    "downloaded": 1,
+    "downloaded": 2,
     "failed": 0,
     "errors": {}
   },
@@ -3316,39 +3316,6 @@
       "demoUrl": null
     },
     {
-      "slug": "indian-adventure-infinity-freespins-onlyplay",
-      "name": "Indian Adventure: Infinity Freespins",
-      "provider": "Onlyplay",
-      "providerSlug": "onlyplay",
-      "rtp": 95.2,
-      "volatility": "high",
-      "maxWin": "18,000x",
-      "grid": "7x7",
-      "hitFrequency": 30.61,
-      "releaseDate": "2025-06-26",
-      "rating": 8,
-      "payType": "scatter-pays",
-      "isNew": false,
-      "themes": [
-        "Adventure",
-        "Aztec",
-        "Jungle"
-      ],
-      "features": [
-        "Scatter Pays",
-        "Tumble",
-        "Free Spins",
-        "Multiplier",
-        "Buy Bonus",
-        "Ante Bet",
-        "Cash Out"
-      ],
-      "image": "/slots/img/indian-adventure-infinity-freespins-onlyplay.webp",
-      "screenshot": "https://img.slotsreach.com/slot-images/indian-adventure-infinity-freespins-onlyplay/gameplay-1.webp",
-      "sourceUrl": "https://slotsreach.com/games/indian-adventure-infinity-freespins-onlyplay",
-      "demoUrl": null
-    },
-    {
       "slug": "booze-bash-hacksaw-gaming",
       "name": "Booze Bash",
       "provider": "Hacksaw Gaming",
@@ -3719,42 +3686,6 @@
       "image": "/slots/img/the-wizard-of-oz-munchkinland-light-wonder.webp",
       "screenshot": "https://img.slotsreach.com/slot-images/the-wizard-of-oz-munchkinland-light-and-wonder/gameplay-1.webp",
       "sourceUrl": "https://slotsreach.com/games/the-wizard-of-oz-munchkinland-light-wonder",
-      "demoUrl": null
-    },
-    {
-      "slug": "book-of-monsters-pragmatic-play",
-      "name": "Book of Monsters",
-      "provider": "Pragmatic Play",
-      "providerSlug": "pragmatic-play",
-      "rtp": 96.5,
-      "volatility": "very-high",
-      "maxWin": "5,000x",
-      "grid": "7x7",
-      "hitFrequency": 23.2,
-      "releaseDate": "2025-03-27",
-      "rating": 8,
-      "payType": "cluster",
-      "isNew": false,
-      "themes": [
-        "Fantasy",
-        "Magic",
-        "Monsters",
-        "Book of"
-      ],
-      "features": [
-        "Free Spins",
-        "Wild",
-        "Scatter",
-        "Cluster Pays",
-        "Ante Bet",
-        "Buy Bonus",
-        "Gamble",
-        "Symbol Collection",
-        "Progressive Free Spins"
-      ],
-      "image": "/slots/img/book-of-monsters-pragmatic-play.webp",
-      "screenshot": "https://img.slotsreach.com/slot-images/vs20fatbook-pragmatic-play/gameplay-1.webp",
-      "sourceUrl": "https://slotsreach.com/games/book-of-monsters-pragmatic-play",
       "demoUrl": null
     },
     {
@@ -10011,6 +9942,74 @@
       "image": "/slots/img/the-governor-betsoft.webp",
       "screenshot": "https://img.slotsreach.com/slot-images/the-governor-betsoft/gameplay-1.webp",
       "sourceUrl": "https://slotsreach.com/games/the-governor-betsoft",
+      "demoUrl": null
+    },
+    {
+      "slug": "mithai-madness-10000x-microgaming",
+      "name": "Mithai Madness 10000x",
+      "provider": "Microgaming",
+      "providerSlug": "microgaming",
+      "rtp": 96.2,
+      "volatility": "high",
+      "maxWin": "10,000x",
+      "grid": "5x3",
+      "hitFrequency": null,
+      "releaseDate": "2026-07-29",
+      "rating": 7,
+      "payType": "lines",
+      "isNew": false,
+      "themes": [
+        "Indian",
+        "Candy",
+        "Food"
+      ],
+      "features": [
+        "Hold And Win",
+        "Respins",
+        "Jackpot",
+        "Buy Bonus",
+        "Multiplier",
+        "Cash Collect",
+        "Symbol Collection",
+        "Expanding Grid"
+      ],
+      "image": "/slots/img/mithai-madness-10000x-microgaming.webp",
+      "screenshot": "https://img.slotsreach.com/slot-images/mithai-madness-10000x-microgaming/gameplay-5.webp",
+      "sourceUrl": "https://slotsreach.com/games/mithai-madness-10000x-microgaming",
+      "demoUrl": null
+    },
+    {
+      "slug": "le-bruno-hacksaw-gaming",
+      "name": "Le Bruno",
+      "provider": "Hacksaw Gaming",
+      "providerSlug": "hacksaw-gaming",
+      "rtp": 94.29,
+      "volatility": "medium",
+      "maxWin": "2,500x",
+      "grid": "6x5",
+      "hitFrequency": null,
+      "releaseDate": "2026-07-20",
+      "rating": 7,
+      "payType": "cluster",
+      "isNew": false,
+      "themes": [
+        "African",
+        "Adventure",
+        "Animals"
+      ],
+      "features": [
+        "Cluster Pays",
+        "Tumble",
+        "Instant Prize",
+        "Cash Collect",
+        "Multiplier",
+        "Wild",
+        "Free Spins",
+        "Buy Bonus"
+      ],
+      "image": "/slots/img/le-bruno-hacksaw-gaming.webp",
+      "screenshot": "https://img.slotsreach.com/slot-images/le-bruno-hacksaw-gaming/gameplay-1.webp",
+      "sourceUrl": "https://slotsreach.com/games/le-bruno-hacksaw-gaming",
       "demoUrl": null
     }
   ]
