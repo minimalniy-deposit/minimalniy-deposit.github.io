@@ -1,9 +1,9 @@
 {
-  "fetchedAt": "2026-11-23",
+  "fetchedAt": "2026-11-24",
   "source": "slotsreach",
   "total": 6512,
   "thumbs": {
-    "downloaded": 2,
+    "downloaded": 0,
     "failed": 0,
     "errors": {}
   },
@@ -1308,7 +1308,7 @@
       "releaseDate": "2026-09-24",
       "rating": 8,
       "payType": "lines",
-      "isNew": true,
+      "isNew": false,
       "themes": [
         "Post Apocalyptic",
         "Western",
@@ -8558,7 +8558,7 @@
       "releaseDate": "2026-09-24",
       "rating": 7,
       "payType": "cluster",
-      "isNew": true,
+      "isNew": false,
       "themes": [
         "Crime",
         "Cartoon",
@@ -8592,7 +8592,7 @@
       "releaseDate": "2026-09-24",
       "rating": 7,
       "payType": "cluster",
-      "isNew": true,
+      "isNew": false,
       "themes": [
         "Urban",
         "Comedy",
@@ -8628,7 +8628,7 @@
       "releaseDate": "2026-09-24",
       "rating": 7,
       "payType": "scatter-pays",
-      "isNew": true,
+      "isNew": false,
       "themes": [
         "Fruit",
         "Gems"
