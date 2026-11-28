@@ -1,7 +1,7 @@
 {
-  "fetchedAt": "2026-11-24",
+  "fetchedAt": "2026-11-28",
   "source": "slotsreach",
-  "total": 6512,
+  "total": 6551,
   "thumbs": {
     "downloaded": 0,
     "failed": 0,
@@ -8525,7 +8525,7 @@
       "releaseDate": "2026-09-28",
       "rating": 7,
       "payType": "scatter-pays",
-      "isNew": true,
+      "isNew": false,
       "themes": [
         "Greek",
         "Mythology",
